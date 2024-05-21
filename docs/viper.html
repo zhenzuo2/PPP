@@ -366,7 +366,7 @@ Enriched Regulon analysis</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -377,8 +377,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -391,9 +391,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -416,21 +416,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -521,15 +518,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree07f44d6c2f8d0b9b58577476fec1def5e243623btargetblank07f44d6a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree91c2633e3e51d0ae0f7ff1fae6e148d828da73fctargetblank91c2633a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/07f44d6c2f8d0b9b58577476fec1def5e243623b" target="_blank">07f44d6</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/91c2633e3e51d0ae0f7ff1fae6e148d828da73fc" target="_blank">91c2633</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree07f44d6c2f8d0b9b58577476fec1def5e243623btargetblank07f44d6a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree91c2633e3e51d0ae0f7ff1fae6e148d828da73fctargetblank91c2633a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -539,7 +536,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/07f44d6c2f8d0b9b58577476fec1def5e243623b" target="_blank">07f44d6</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/91c2633e3e51d0ae0f7ff1fae6e148d828da73fc" target="_blank">91c2633</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -558,10 +555,7 @@ Ignored files:
     Ignored:    data/.DS_Store
 
 Untracked files:
-    Untracked:  data/regulon/
-
-Unstaged changes:
-    Modified:   analysis/viper.Rmd
+    Untracked:  data/regulon/merged.adj
 
 </code></pre>
 <p>
@@ -606,6 +600,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/91c2633e3e51d0ae0f7ff1fae6e148d828da73fc/analysis/viper.Rmd" target="_blank">91c2633</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+wflow_publish(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/04e9be63f23b05b4a9c97d81c6d1a58329a8d765/analysis/viper.Rmd" target="_blank">04e9be6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/04e9be63f23b05b4a9c97d81c6d1a58329a8d765/docs/viper.html" target="_blank">04e9be6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -941,6 +986,43 @@ ZNF101   ZNF101  301 -3.22 0.001300 0.028
 KLF9       KLF9  337 -3.24 0.001190 0.028</code></pre>
 <pre class="r"><code>plot(mrs, cex = .7)</code></pre>
 <p><img src="figure/viper.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
+Past versions of unnamed-chunk-13-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-13-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/04e9be63f23b05b4a9c97d81c6d1a58329a8d765/docs/figure/viper.Rmd/unnamed-chunk-13-1.png" target="_blank">04e9be6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>mrs &lt;- ledge(mrs)
 summary(mrs)</code></pre>
 <pre><code>        Regulon Size   NES  p.value   FDR
@@ -970,6 +1052,43 @@ mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
 mrs &lt;- bootstrapmsviper(mrs, &quot;mode&quot;)
 plot(mrs, cex = .7)</code></pre>
 <p><img src="figure/viper.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
+Past versions of unnamed-chunk-15-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/04e9be63f23b05b4a9c97d81c6d1a58329a8d765/docs/figure/viper.Rmd/unnamed-chunk-15-1.png" target="_blank">04e9be6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>mrshadow &lt;- shadow(mrs, regulators = 25, verbose = FALSE)
 summary(mrshadow)</code></pre>
 <pre><code>$msviper.results
