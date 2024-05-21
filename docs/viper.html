@@ -365,7 +365,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -376,8 +376,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -390,9 +390,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -415,18 +415,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -517,15 +520,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree1bb174fcfa00a3fcd4413d113f045c59e50a6b29targetblank1bb174fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreeb4440e6482dc8746dc1fb3bf740848298332a674targetblankb4440e6a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/1bb174fcfa00a3fcd4413d113f045c59e50a6b29" target="_blank">1bb174f</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/b4440e6482dc8746dc1fb3bf740848298332a674" target="_blank">b4440e6</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree1bb174fcfa00a3fcd4413d113f045c59e50a6b29targetblank1bb174fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreeb4440e6482dc8746dc1fb3bf740848298332a674targetblankb4440e6a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -535,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/1bb174fcfa00a3fcd4413d113f045c59e50a6b29" target="_blank">1bb174f</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/b4440e6482dc8746dc1fb3bf740848298332a674" target="_blank">b4440e6</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -551,6 +554,9 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
+
+Unstaged changes:
+    Modified:   analysis/viper.Rmd
 
 </code></pre>
 <p>
@@ -597,6 +603,23 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/a8e0d136a0a820f20eba1e8598469be6969f57cb/docs/viper.html" target="_blank">a8e0d13</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
@@ -619,7 +642,8 @@ Publish the initial files for myproject
 </div>
 </div>
 </div>
-<pre class="r"><code>library(viper)</code></pre>
+<pre class="r"><code># Load packages
+library(viper)</code></pre>
 <pre><code>Loading required package: Biobase</code></pre>
 <pre><code>Loading required package: BiocGenerics</code></pre>
 <pre><code>
@@ -640,6 +664,107 @@ Attaching package: &#39;BiocGenerics&#39;</code></pre>
     Vignettes contain introductory material; view with
     &#39;browseVignettes()&#39;. To cite Bioconductor, see
     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre class="r"><code>library(aracne.networks)</code></pre>
+<pre class="r"><code># Names of the individual context-specific networks
+print(data(package=&quot;aracne.networks&quot;)$results[, &quot;Item&quot;])</code></pre>
+<pre><code> [1] &quot;regulonblca&quot; &quot;regulonbrca&quot; &quot;reguloncesc&quot; &quot;reguloncoad&quot; &quot;regulonesca&quot;
+ [6] &quot;regulongbm&quot;  &quot;regulonhnsc&quot; &quot;regulonkirc&quot; &quot;regulonkirp&quot; &quot;regulonlaml&quot;
+[11] &quot;regulonlihc&quot; &quot;regulonluad&quot; &quot;regulonlusc&quot; &quot;regulonnet&quot;  &quot;regulonov&quot;  
+[16] &quot;regulonpaad&quot; &quot;regulonpcpg&quot; &quot;regulonprad&quot; &quot;regulonread&quot; &quot;regulonsarc&quot;
+[21] &quot;regulonstad&quot; &quot;regulontgct&quot; &quot;regulonthca&quot; &quot;regulonthym&quot; &quot;regulonucec&quot;</code></pre>
+<pre class="r"><code>print(data(package=&quot;aracne.networks&quot;))</code></pre>
+<pre class="r"><code>data(bcellViper, package=&quot;bcellViper&quot;)
+adjfile &lt;- system.file(&quot;aracne&quot;, &quot;bcellaracne.adj&quot;, package = &quot;bcellViper&quot;)
+regul &lt;- aracne2regulon(adjfile, dset, verbose = FALSE)</code></pre>
+<pre><code>number of iterations= 301 </code></pre>
+<pre class="r"><code>signature &lt;- rowTtest(dset, &quot;description&quot;, c(&quot;CB&quot;, &quot;CC&quot;), &quot;N&quot;)</code></pre>
+<pre class="r"><code>signature &lt;- (qnorm(signature$p.value/2, lower.tail = FALSE) * + sign(signature$statistic))[, 1]</code></pre>
+<pre class="r"><code>nullmodel &lt;- ttestNull(dset, &quot;description&quot;, c(&quot;CB&quot;, &quot;CC&quot;), &quot;N&quot;, per = 1000, repos = TRUE, verbose = FALSE)</code></pre>
+<pre class="r"><code>mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)</code></pre>
+<pre class="r"><code>summary(mrs)</code></pre>
+<pre><code>        Regulon Size   NES  p.value   FDR
+TCF3       TCF3  298  3.30 0.000962 0.028
+BCL6       BCL6  401  3.28 0.001030 0.028
+KLF10     KLF10  254  3.25 0.001170 0.028
+MYBL2     MYBL2  240  3.22 0.001300 0.028
+TSC22D3 TSC22D3  333 -3.17 0.001520 0.028
+HES1       HES1  360 -3.18 0.001470 0.028
+ZNF32     ZNF32  291 -3.19 0.001420 0.028
+ZMYND11 ZMYND11  452 -3.20 0.001380 0.028
+ZNF101   ZNF101  301 -3.22 0.001300 0.028
+KLF9       KLF9  337 -3.24 0.001190 0.028</code></pre>
+<pre class="r"><code>plot(mrs, cex = .7)</code></pre>
+<p><img src="figure/viper.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>mrs &lt;- ledge(mrs)
+summary(mrs)</code></pre>
+<pre><code>        Regulon Size   NES  p.value   FDR
+TCF3       TCF3  298  3.30 0.000962 0.028
+BCL6       BCL6  401  3.28 0.001030 0.028
+KLF10     KLF10  254  3.25 0.001170 0.028
+MYBL2     MYBL2  240  3.22 0.001300 0.028
+TSC22D3 TSC22D3  333 -3.17 0.001520 0.028
+HES1       HES1  360 -3.18 0.001470 0.028
+ZNF32     ZNF32  291 -3.19 0.001420 0.028
+ZMYND11 ZMYND11  452 -3.20 0.001380 0.028
+ZNF101   ZNF101  301 -3.22 0.001300 0.028
+KLF9       KLF9  337 -3.24 0.001190 0.028
+                                              Ledge
+TCF3    SMARCA4, MCM7, TRAF3IP3, NDC80, + 110 genes
+BCL6        KIF14, BUB1, DLGAP4, GINS1, + 217 genes
+KLF10       TRIP13, NDC80, AHNAK, KIF2C, + 99 genes
+MYBL2     SMARCA4, MCM7, TRIP13, GINS1, + 138 genes
+TSC22D3      NOTCH2, RAD1, RBM19, MLEC, + 190 genes
+HES1          CDK4, SHC1, STX7, MAN1A1, + 104 genes
+ZNF32       GNA12, PLAG1, PSMB1, CARM1, + 145 genes
+ZMYND11   ANKRD26, EXTL2, IGFBP4, CTSC, + 234 genes
+ZNF101     SLC46A3, GCLM, TCEA2, HMOX2, + 128 genes
+KLF9          IFIT1, LPAR1, NID1, STOM, + 158 genes</code></pre>
+<pre class="r"><code>signature &lt;- bootstrapTtest(dset, &quot;description&quot;, c(&quot;CB&quot;, &quot;CC&quot;), &quot;N&quot;, verbose = FALSE)
+mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
+mrs &lt;- bootstrapmsviper(mrs, &quot;mode&quot;)
+plot(mrs, cex = .7)</code></pre>
+<p><img src="figure/viper.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>mrshadow &lt;- shadow(mrs, regulators = 25, verbose = FALSE)
+summary(mrshadow)</code></pre>
+<pre><code>$msviper.results
+        Regulon Size   NES p.value    FDR
+BCL6       BCL6  401  3.18 0.00146 0.0709
+MYBL2     MYBL2  240  3.12 0.00184 0.0709
+WHSC1     WHSC1  257  3.07 0.00213 0.0709
+TOP2A     TOP2A  749  3.06 0.00222 0.0709
+MYBL1     MYBL1  225  3.04 0.00239 0.0709
+PTTG1     PTTG1  471  3.00 0.00273 0.0709
+NR1D2     NR1D2  259 -3.00 0.00266 0.0709
+TSC22D3 TSC22D3  313 -3.02 0.00255 0.0709
+ZNF274   ZNF274  160 -3.04 0.00235 0.0709
+ZMYND11 ZMYND11  452 -3.06 0.00220 0.0709
+
+$Shadow.pairs
+ [1] &quot;BCL6 -&gt; TCF3&quot;      &quot;BCL6 -&gt; HES1&quot;      &quot;MYBL2 -&gt; ZNF32&quot;   
+ [4] &quot;MYBL2 -&gt; HES1&quot;     &quot;MYBL2 -&gt; ZNF23&quot;    &quot;MYBL2 -&gt; MEIS2&quot;   
+ [7] &quot;KLF10 -&gt; ZNF101&quot;   &quot;KLF10 -&gt; HES1&quot;     &quot;KLF9 -&gt; HES1&quot;     
+[10] &quot;ZNF32 -&gt; HES1&quot;     &quot;WHSC1 -&gt; TSC22D3&quot;  &quot;WHSC1 -&gt; ZNF101&quot;  
+[13] &quot;WHSC1 -&gt; IRF5&quot;     &quot;WHSC1 -&gt; KDM1A&quot;    &quot;WHSC1 -&gt; E2F2&quot;    
+[16] &quot;TSC22D3 -&gt; HES1&quot;   &quot;TSC22D3 -&gt; ZNF23&quot;  &quot;TOP2A -&gt; CREB3L2&quot; 
+[19] &quot;TOP2A -&gt; E2F2&quot;     &quot;TOP2A -&gt; HES1&quot;     &quot;TOP2A -&gt; HMGB2&quot;   
+[22] &quot;TOP2A -&gt; MEIS2&quot;    &quot;ZMYND11 -&gt; IRF5&quot;   &quot;ZMYND11 -&gt; E2F2&quot;  
+[25] &quot;ZMYND11 -&gt; HES1&quot;   &quot;ZMYND11 -&gt; MEIS2&quot;  &quot;CREB3L2 -&gt; E2F2&quot;  
+[28] &quot;PRKDC -&gt; HES1&quot;     &quot;IRF5 -&gt; HES1&quot;      &quot;PTTG1 -&gt; E2F2&quot;    
+[31] &quot;ZNF274 -&gt; E2F2&quot;    &quot;ZNF274 -&gt; ZNF23&quot;   &quot;ZNF274 -&gt; MEIS2&quot;  
+[34] &quot;NR1D2 -&gt; HES1&quot;     &quot;NR1D2 -&gt; HMGB2&quot;    &quot;HES1 -&gt; HMGB2&quot;    
+[37] &quot;WHSC1 -&gt; KLF10&quot;    &quot;TSC22D3 -&gt; KLF10&quot;  &quot;PRKDC -&gt; KLF10&quot;   
+[40] &quot;ZNF274 -&gt; KLF10&quot;   &quot;KDM1A -&gt; KLF10&quot;    &quot;ZNF23 -&gt; KLF10&quot;   
+[43] &quot;HMGB2 -&gt; KLF10&quot;    &quot;MEIS2 -&gt; KLF10&quot;    &quot;ZNF32 -&gt; KLF9&quot;    
+[46] &quot;PRKDC -&gt; KLF9&quot;     &quot;MYBL1 -&gt; KLF9&quot;     &quot;IRF5 -&gt; KLF9&quot;     
+[49] &quot;ZNF274 -&gt; KLF9&quot;    &quot;WHSC1 -&gt; ZNF32&quot;    &quot;TSC22D3 -&gt; ZNF32&quot; 
+[52] &quot;KDM1A -&gt; ZNF32&quot;    &quot;HMGB2 -&gt; ZNF32&quot;    &quot;PRKDC -&gt; TCF3&quot;    
+[55] &quot;MYBL1 -&gt; TCF3&quot;     &quot;IRF5 -&gt; TCF3&quot;      &quot;PTTG1 -&gt; TCF3&quot;    
+[58] &quot;KDM1A -&gt; TCF3&quot;     &quot;HMGB2 -&gt; TCF3&quot;     &quot;TOP2A -&gt; ZNF101&quot;  
+[61] &quot;PRKDC -&gt; ZNF101&quot;   &quot;MYBL1 -&gt; ZNF101&quot;   &quot;PTTG1 -&gt; ZNF101&quot;  
+[64] &quot;ZNF274 -&gt; ZNF101&quot;  &quot;NR1D2 -&gt; ZNF101&quot;   &quot;PTTG1 -&gt; CREB3L2&quot; 
+[67] &quot;ZNF274 -&gt; CREB3L2&quot; &quot;HMGB2 -&gt; CREB3L2&quot;  &quot;MYBL1 -&gt; PRKDC&quot;   
+[70] &quot;HMGB2 -&gt; MYBL1&quot;    &quot;ZNF274 -&gt; PTTG1&quot;   &quot;HMGB2 -&gt; KDM1A&quot;   
+[73] &quot;NR1D2 -&gt; E2F2&quot;    </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -667,27 +792,28 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] viper_1.38.0        Biobase_2.64.0      BiocGenerics_0.50.0
+[1] aracne.networks_1.30.0 viper_1.38.0           Biobase_2.64.0        
+[4] BiocGenerics_0.50.0   
 
 loaded via a namespace (and not attached):
  [1] gtable_0.3.5       xfun_0.44          bslib_0.7.0        ggplot2_3.5.1     
  [5] htmlwidgets_1.6.4  lattice_0.22-6     vctrs_0.6.5        tools_4.4.0       
  [9] generics_0.1.3     parallel_4.4.0     tibble_3.2.1       proxy_0.4-27      
-[13] fansi_1.0.6        pkgconfig_2.0.3    Matrix_1.7-0       KernSmooth_2.23-24
-[17] data.table_1.15.4  lifecycle_1.0.4    compiler_4.4.0     stringr_1.5.1     
-[21] git2r_0.33.0       mixtools_2.0.0     munsell_0.5.1      httpuv_1.6.15     
-[25] htmltools_0.5.8.1  class_7.3-22       sass_0.4.9         yaml_2.3.8        
-[29] lazyeval_0.2.2     plotly_4.10.4      later_1.3.2        pillar_1.9.0      
-[33] jquerylib_0.1.4    whisker_0.4.1      tidyr_1.3.1        MASS_7.3-60.2     
-[37] cachem_1.1.0       nlme_3.1-164       tidyselect_1.2.1   digest_0.6.35     
-[41] stringi_1.8.4      kernlab_0.9-32     dplyr_1.1.4        purrr_1.0.2       
-[45] splines_4.4.0      rprojroot_2.0.4    fastmap_1.2.0      grid_4.4.0        
-[49] colorspace_2.1-0   cli_3.6.2          magrittr_2.0.3     survival_3.6-4    
-[53] utf8_1.2.4         e1071_1.7-14       scales_1.3.0       promises_1.3.0    
-[57] segmented_2.1-0    rmarkdown_2.27     httr_1.4.7         workflowr_1.7.1   
-[61] evaluate_0.23      knitr_1.46         viridisLite_0.4.2  rlang_1.1.3       
-[65] Rcpp_1.0.12        glue_1.7.0         rstudioapi_0.16.0  jsonlite_1.8.8    
-[69] R6_2.5.1           fs_1.6.4          </code></pre>
+[13] fansi_1.0.6        highr_0.10         pkgconfig_2.0.3    Matrix_1.7-0      
+[17] KernSmooth_2.23-24 data.table_1.15.4  lifecycle_1.0.4    compiler_4.4.0    
+[21] stringr_1.5.1      git2r_0.33.0       mixtools_2.0.0     munsell_0.5.1     
+[25] httpuv_1.6.15      htmltools_0.5.8.1  class_7.3-22       sass_0.4.9        
+[29] yaml_2.3.8         lazyeval_0.2.2     plotly_4.10.4      later_1.3.2       
+[33] pillar_1.9.0       jquerylib_0.1.4    whisker_0.4.1      tidyr_1.3.1       
+[37] MASS_7.3-60.2      cachem_1.1.0       nlme_3.1-164       tidyselect_1.2.1  
+[41] digest_0.6.35      stringi_1.8.4      kernlab_0.9-32     dplyr_1.1.4       
+[45] purrr_1.0.2        splines_4.4.0      rprojroot_2.0.4    fastmap_1.2.0     
+[49] grid_4.4.0         colorspace_2.1-0   cli_3.6.2          magrittr_2.0.3    
+[53] survival_3.6-4     utf8_1.2.4         e1071_1.7-14       scales_1.3.0      
+[57] promises_1.3.0     segmented_2.1-0    rmarkdown_2.27     httr_1.4.7        
+[61] workflowr_1.7.1    evaluate_0.23      knitr_1.46         viridisLite_0.4.2 
+[65] rlang_1.1.3        Rcpp_1.0.12        glue_1.7.0         rstudioapi_0.16.0 
+[69] jsonlite_1.8.8     R6_2.5.1           fs_1.6.4          </code></pre>
 </div>
 
 

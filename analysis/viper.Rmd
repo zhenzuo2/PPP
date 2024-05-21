@@ -7,7 +7,66 @@ editor_options:
   chunk_output_type: console
 ---
 
+
 ```{r}
+# Load packages
 library(viper)
+library(aracne.networks)
+```
+
+```{r}
+# Names of the individual context-specific networks
+print(data(package="aracne.networks")$results[, "Item"])
+```
+
+```{r}
+print(data(package="aracne.networks"))
+```
+
+```{r}
+data(bcellViper, package="bcellViper")
+adjfile <- system.file("aracne", "bcellaracne.adj", package = "bcellViper")
+regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+```
+
+```{r}
+signature <- rowTtest(dset, "description", c("CB", "CC"), "N")
+```
+
+```{r}
+signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * + sign(signature$statistic))[, 1]
+```
+
+```{r}
+nullmodel <- ttestNull(dset, "description", c("CB", "CC"), "N", per = 1000, repos = TRUE, verbose = FALSE)
+```
+
+```{r}
+mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+```
+
+```{r}
+summary(mrs)
+```
+
+```{r}
+plot(mrs, cex = .7)
+```
+
+```{r}
+mrs <- ledge(mrs)
+summary(mrs)
+```
+
+```{r}
+signature <- bootstrapTtest(dset, "description", c("CB", "CC"), "N", verbose = FALSE)
+mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+mrs <- bootstrapmsviper(mrs, "mode")
+plot(mrs, cex = .7)
+```
+
+```{r}
+mrshadow <- shadow(mrs, regulators = 25, verbose = FALSE)
+summary(mrshadow)
 ```
 
