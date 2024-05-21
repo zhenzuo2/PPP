@@ -32,6 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -263,7 +265,13 @@ $(document).ready(function () {
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/zhenzuo2/PPP">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -281,7 +289,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -292,8 +300,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -306,9 +314,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -331,31 +339,36 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong8aa49f1">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreeacccd441ec5674742de83c49eec141954b93dd24targetblankacccd44a">
 <span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong> 8aa49f1
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/zhenzuo2/PPP/tree/acccd441ec5674742de83c49eec141954b93dd24" target="_blank">acccd44</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrong8aa49f1"
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreeacccd441ec5674742de83c49eec141954b93dd24targetblankacccd44a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -364,7 +377,8 @@ and connecting the code version to the results is critical for
 reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version 8aa49f1.
+The results in this page were generated with repository version
+<a href="https://github.com/zhenzuo2/PPP/tree/acccd441ec5674742de83c49eec141954b93dd24" target="_blank">acccd44</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -378,7 +392,12 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
-working directory clean
+Ignored files:
+    Ignored:    .DS_Store
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -424,10 +443,27 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/4aa2e514459baccda9e5c6de0aaae6ba85b6d362/docs/index.html" target="_blank">4aa2e51</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
-8aa49f1
+<a href="https://github.com/zhenzuo2/PPP/blob/8aa49f1c062ac198c62b0c551a6df9a718952c51/analysis/index.Rmd" target="_blank">8aa49f1</a>
 </td>
 <td>
 Zhen Zuo
@@ -447,6 +483,42 @@ Start workflowr project.
 </div>
 </div>
 <p>Welcome to my research website.</p>
+<p>Click on this <a href="viper.html">link</a> to see my results.</p>
+<div id="environment-setup" class="section level2">
+<h2>Environment setup</h2>
+<details>
+<summary>
+Set up python2.7
+</summary>
+<p>To set up python2.7 on MacOs</p>
+<ul>
+<li><p>Follow <a
+href="https://stackoverflow.com/questions/67380286/anaconda-channel-for-installing-python-2-7"
+class="uri">https://stackoverflow.com/questions/67380286/anaconda-channel-for-installing-python-2-7</a></p></li>
+<li><p>Install additional packages with <a
+href="https://github.com/zhenzuo2/Proteomics-and-Phosphoproteomics-Pipeline/blob/main/Env/py27.yml">Env/py27.yml</a></p></li>
+</ul>
+<p>Then run</p>
+<pre><code>conda create -n py27 --f py27.yml</code></pre>
+<p>To active it</p>
+<pre><code>source /opt/homebrew/Caskroom/mambaforge/base/etc/profile.d/conda.sh;  
+conda activate py27;  </code></pre>
+</details>
+<details>
+<summary>
+Set up Viper
+</summary>
+<ul>
+<li>Follow <a
+href="https://www.bioconductor.org/packages/release/bioc/html/viper.html"
+class="uri">https://www.bioconductor.org/packages/release/bioc/html/viper.html</a></li>
+</ul>
+<pre><code>if (!require(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)
+
+BiocManager::install(&quot;viper&quot;)</code></pre>
+</details>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
