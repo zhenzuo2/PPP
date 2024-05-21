@@ -7,20 +7,20 @@ editor_options:
   chunk_output_type: console
 ---
 
-
-```{r}
 # Load packages
+```{r message=FALSE, warning=FALSE}
 library(viper)
 library(aracne.networks)
 ```
 
+# Context-specific networks
 ```{r}
-# Names of the individual context-specific networks
 print(data(package="aracne.networks")$results[, "Item"])
 ```
 
 ```{r}
-print(data(package="aracne.networks"))
+df <- read.csv("data/aracne.networks.csv")
+knitr::kable(df)
 ```
 
 ```{r}

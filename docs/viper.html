@@ -326,7 +326,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">PPP</a>
+      <a class="navbar-brand" href="index.html">Proteomics and Phosphoproteomics Pipeline</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -365,7 +365,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -376,8 +376,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -390,9 +390,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -415,18 +415,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -517,15 +520,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree68d3a8b3d3dedbcfdab38b434d08fa854b66f724targetblank68d3a8ba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree3e0915ca3a19ee36e8630a7af963b6c2122db8detargetblank3e0915ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/68d3a8b3d3dedbcfdab38b434d08fa854b66f724" target="_blank">68d3a8b</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/3e0915ca3a19ee36e8630a7af963b6c2122db8de" target="_blank">3e0915c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree68d3a8b3d3dedbcfdab38b434d08fa854b66f724targetblank68d3a8ba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree3e0915ca3a19ee36e8630a7af963b6c2122db8detargetblank3e0915ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -535,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/68d3a8b3d3dedbcfdab38b434d08fa854b66f724" target="_blank">68d3a8b</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/3e0915ca3a19ee36e8630a7af963b6c2122db8de" target="_blank">3e0915c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -551,6 +554,14 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
+
+Untracked files:
+    Untracked:  data/aracne.networks.csv
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/viper.Rmd
 
 </code></pre>
 <p>
@@ -595,6 +606,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/3e0915ca3a19ee36e8630a7af963b6c2122db8de/docs/viper.html" target="_blank">3e0915c</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -687,37 +715,158 @@ Publish the initial files for myproject
 </div>
 </div>
 </div>
-<pre class="r"><code># Load packages
-library(viper)</code></pre>
-<pre><code>Loading required package: Biobase</code></pre>
-<pre><code>Loading required package: BiocGenerics</code></pre>
-<pre><code>
-Attaching package: &#39;BiocGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
-    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
-    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
-    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
-    tapply, union, unique, unsplit, which.max, which.min</code></pre>
-<pre><code>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
-<pre class="r"><code>library(aracne.networks)</code></pre>
-<pre class="r"><code># Names of the individual context-specific networks
-print(data(package=&quot;aracne.networks&quot;)$results[, &quot;Item&quot;])</code></pre>
+<div id="load-packages" class="section level1">
+<h1>Load packages</h1>
+<pre class="r"><code>library(viper)
+library(aracne.networks)</code></pre>
+</div>
+<div id="context-specific-networks" class="section level1">
+<h1>Context-specific networks</h1>
+<pre class="r"><code>print(data(package=&quot;aracne.networks&quot;)$results[, &quot;Item&quot;])</code></pre>
 <pre><code> [1] &quot;regulonblca&quot; &quot;regulonbrca&quot; &quot;reguloncesc&quot; &quot;reguloncoad&quot; &quot;regulonesca&quot;
  [6] &quot;regulongbm&quot;  &quot;regulonhnsc&quot; &quot;regulonkirc&quot; &quot;regulonkirp&quot; &quot;regulonlaml&quot;
 [11] &quot;regulonlihc&quot; &quot;regulonluad&quot; &quot;regulonlusc&quot; &quot;regulonnet&quot;  &quot;regulonov&quot;  
 [16] &quot;regulonpaad&quot; &quot;regulonpcpg&quot; &quot;regulonprad&quot; &quot;regulonread&quot; &quot;regulonsarc&quot;
 [21] &quot;regulonstad&quot; &quot;regulontgct&quot; &quot;regulonthca&quot; &quot;regulonthym&quot; &quot;regulonucec&quot;</code></pre>
-<pre class="r"><code>print(data(package=&quot;aracne.networks&quot;))</code></pre>
+<pre class="r"><code>df &lt;- read.csv(&quot;data/aracne.networks.csv&quot;)
+knitr::kable(df)</code></pre>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">regulon</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">regulonblca</td>
+<td align="left">Human Bladder Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonbrca</td>
+<td align="left">Human Breast Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">reguloncesc</td>
+<td align="left">Human Cervical Squamous Carcinoma context-specific
+ARACNe interactome</td>
+</tr>
+<tr class="even">
+<td align="left">reguloncoad</td>
+<td align="left">Human Colon Adenocarcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonesca</td>
+<td align="left">Human Esophageal Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulongbm</td>
+<td align="left">Human Glioblastoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonhnsc</td>
+<td align="left">Human Head and Neck Squamous Carcinoma context-specific
+ARACNe interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonkirc</td>
+<td align="left">Human Kidney Renal Clear Cell Carcinoma
+context-specific ARACNe interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonkirp</td>
+<td align="left">Human Kidney Papillary Carcinoma context-specific
+ARACNe interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonlaml</td>
+<td align="left">Human Acute Myeloid Leukemia context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonlihc</td>
+<td align="left">Human Liver Hepatocellular Carcinoma context-specific
+ARACNe interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonluad</td>
+<td align="left">Human Lung Adenocarcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonlusc</td>
+<td align="left">Human Lung Squamous Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonnet</td>
+<td align="left">Human Neuroendocrine tumor context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonov</td>
+<td align="left">Human Ovarian Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonpaad</td>
+<td align="left">Human Pancreas Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonpcpg</td>
+<td align="left">Human Pheochromocytoma and Paraganglioma
+context-specific ARACNe interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonprad</td>
+<td align="left">Human Prostate Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonread</td>
+<td align="left">Human Rectal Adenocarcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonsarc</td>
+<td align="left">Human Sarcoma context-specific ARACNe interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonstad</td>
+<td align="left">Human Stomach Adenocarcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulontgct</td>
+<td align="left">Human Testicular Cancer context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonthca</td>
+<td align="left">Human Thyroid Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">regulonthym</td>
+<td align="left">Human Thymoma context-specific ARACNe interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">regulonucec</td>
+<td align="left">Human Utherine Corpus Endometroid Carcinoma
+context-specific ARACNe interactome</td>
+</tr>
+</tbody>
+</table>
 <pre class="r"><code>data(bcellViper, package=&quot;bcellViper&quot;)
 adjfile &lt;- system.file(&quot;aracne&quot;, &quot;bcellaracne.adj&quot;, package = &quot;bcellViper&quot;)
 regul &lt;- aracne2regulon(adjfile, dset, verbose = FALSE)</code></pre>
@@ -933,6 +1082,7 @@ loaded via a namespace (and not attached):
 [61] workflowr_1.7.1    evaluate_0.23      knitr_1.46         viridisLite_0.4.2 
 [65] rlang_1.1.3        Rcpp_1.0.12        glue_1.7.0         rstudioapi_0.16.0 
 [69] jsonlite_1.8.8     R6_2.5.1           fs_1.6.4          </code></pre>
+</div>
 </div>
 
 

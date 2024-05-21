@@ -1,7 +1,7 @@
-name: PPP
+name: Proteomics and Phosphoproteomics Pipeline
 output_dir: ../docs
 navbar:
-  title: PPP
+  title: Proteomics and Phosphoproteomics Pipeline
   left:
   - text: Home
     href: index.html
