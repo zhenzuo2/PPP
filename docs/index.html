@@ -366,7 +366,7 @@ Pipeline</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -377,8 +377,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -391,9 +391,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -416,36 +416,33 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree186e619eb73a72c8f96d41fea2587a0202d9ae58targetblank186e619a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreedf425d99b1420a6091f49a6941fe4dd19f1bcfb6targetblankdf425d9a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/186e619eb73a72c8f96d41fea2587a0202d9ae58" target="_blank">186e619</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/df425d99b1420a6091f49a6941fe4dd19f1bcfb6" target="_blank">df425d9</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree186e619eb73a72c8f96d41fea2587a0202d9ae58targetblank186e619a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreedf425d99b1420a6091f49a6941fe4dd19f1bcfb6targetblankdf425d9a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -455,7 +452,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/186e619eb73a72c8f96d41fea2587a0202d9ae58" target="_blank">186e619</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/df425d99b1420a6091f49a6941fe4dd19f1bcfb6" target="_blank">df425d9</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -473,41 +470,10 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    data/.DS_Store
-    Ignored:    data/regulon/.DS_Store
 
 Untracked files:
     Untracked:  analysis/viper_1.Rmd
-    Untracked:  data/RNA_BCM_v1/
-    Untracked:  data/RNA_regulon_pairs.csv
-    Untracked:  data/regulon/regulonblca_SYMBOL.adj
-    Untracked:  data/regulon/regulonbrca_SYMBOL.adj
-    Untracked:  data/regulon/reguloncesc_SYMBOL.adj
-    Untracked:  data/regulon/reguloncoad_SYMBOL.adj
-    Untracked:  data/regulon/regulonesca_SYMBOL.adj
-    Untracked:  data/regulon/regulongbm_SYMBOL.adj
-    Untracked:  data/regulon/regulonhnsc_SYMBOL.adj
-    Untracked:  data/regulon/regulonkirc_SYMBOL.adj
-    Untracked:  data/regulon/regulonkirp_SYMBOL.adj
-    Untracked:  data/regulon/regulonlaml_SYMBOL.adj
-    Untracked:  data/regulon/regulonlihc_SYMBOL.adj
-    Untracked:  data/regulon/regulonluad_SYMBOL.adj
-    Untracked:  data/regulon/regulonlusc_SYMBOL.adj
-    Untracked:  data/regulon/regulonnet_SYMBOL.adj
-    Untracked:  data/regulon/regulonov_SYMBOL.adj
-    Untracked:  data/regulon/regulonpaad_SYMBOL.adj
-    Untracked:  data/regulon/regulonpcpg_SYMBOL.adj
-    Untracked:  data/regulon/regulonprad_SYMBOL.adj
-    Untracked:  data/regulon/regulonread_SYMBOL.adj
-    Untracked:  data/regulon/regulonsarc_SYMBOL.adj
-    Untracked:  data/regulon/regulonstad_SYMBOL.adj
-    Untracked:  data/regulon/regulontgct_SYMBOL.adj
-    Untracked:  data/regulon/regulonthca_SYMBOL.adj
-    Untracked:  data/regulon/regulonthym_SYMBOL.adj
-    Untracked:  data/regulon/regulonucec_SYMBOL.adj
-
-Unstaged changes:
-    Modified:   analysis/index.Rmd
-    Deleted:    analysis/viper.Rmd
+    Untracked:  data/viper/
 
 </code></pre>
 <p>
@@ -552,6 +518,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/df425d99b1420a6091f49a6941fe4dd19f1bcfb6/analysis/index.Rmd" target="_blank">df425d9</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-22
+</td>
+<td>
+wflow_publish(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/df425d99b1420a6091f49a6941fe4dd19f1bcfb6/docs/index.html" target="_blank">df425d9</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-22
+</td>
+<td>
+wflow_publish(all = TRUE)
+</td>
+</tr>
 <tr>
 <td>
 Rmd
