@@ -1,0 +1,110 @@
+---
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)"
+output:
+  workflowr::wflow_html:
+    toc: True
+editor_options:
+  chunk_output_type: console
+---
+
+# Introduction
+The VIPER (Virtual Inference of Protein-activity by Enriched Regulon analysis) algorithm allows computational inference of protein activity, on an individual sample basis, from gene expression profile data. It uses the expression of genes that are most directly regulated by a given protein, such as the targets of a transcription factor (TF), as an accurate reporter of its activity.  
+
+We have shown that analysis of TF targets inferred by the ARACNe algorithm, using the Master Regulator Inference algorithm (MARINA), is effective in identifying drivers of specific cellular phenotype which could be experimentally validated.
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(aracne.networks)
+library(dplyr)
+library(plyr)
+library(stringr)
+library(Biobase)
+library(EnsDb.Hsapiens.v86)
+```
+
+# Extract context-specific networks
+ARACNe-AP was run on RNA-Seq datasets normalized using Variance-Stabilizing Transformation. The raw data was downloaded on April 15th, 2015 from the TCGA official website.
+
+## Extract ARACNe-inferred gene networks from TCGA tumor datasets.
+```{r}
+items <- data(package="aracne.networks")$results[, "Item"]
+print(items)
+```
+
+```{r}
+df <- read.csv("data/viper/aracne.networks.csv")
+knitr::kable(df)
+```
+
+## Process network and save as adj files
+
+Export network to adj files
+```{r}
+for (item in items) {
+    if (!file.exists(paste("data/viper/regulon/", item, ".adj",
+            sep = ""))) {
+        get(item)
+        write.regulon(get(item), file = paste("data/viper/regulon/", item, ".adj",
+            sep = ""))
+    }
+}
+```
+
+Convert Entrez Gene ids to SYMBOL.
+```{r}
+for (item in items) {
+    if (!file.exists(paste("data/viper/regulon/", item, "_SYMBOL.adj", sep = ""))) {
+        df <- read.csv(paste("data/viper/regulon/", item, ".adj", sep = ""),
+            sep = "\t")
+
+        geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Regulator),
+            keytype = "ENTREZID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+        df$Regulator <- plyr::mapvalues(df$Regulator, from = geneID$ENTREZID,
+            to = geneID$SYMBOL, warn_missing = FALSE)
+
+        geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Target),
+            keytype = "ENTREZID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+        df$Target <- plyr::mapvalues(df$Target, from = geneID$ENTREZID,
+            to = geneID$SYMBOL, warn_missing = FALSE)
+
+        can_be_integer <- function(x) {
+            suppressWarnings(!is.na(as.integer(x)))
+        }
+        f1 <- !sapply(df$Regulator, can_be_integer)
+        f2 <- !sapply(df$Target, can_be_integer)
+        df <- df[f1 & f2, ]
+        write.table(df, file = paste("data/viper/regulon/", item, "_SYMBOL.adj",
+            sep = ""),sep = "\t",quote = FALSE, row.names = FALSE)
+    }
+}
+```
+
+# Define RNA-seq and network pairs
+```{r}
+df <- read.csv("data/viper/RNA_regulon_pairs.csv")
+knitr::kable(df)
+```
+
+# Extract and process gene expression signatures
+```{r}
+for (i in 1:nrow(df)) {
+    exprsFile <- df$RNA[i]
+    adjfile <- paste("data/viper/regulon/", df$regulon[1], "_SYMBOL.adj", sep = "")
+    exprs <- as.matrix(read.table(exprsFile, header = TRUE, sep = "\t",
+        row.names = 1, as.is = TRUE))
+    rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
+    geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
+        keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+    rownames(exprs) <- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+    print(table(sapply(rownames(exprs), function(x) startsWith(x, "ENSG"))))
+    exprs <- exprs[!sapply(rownames(exprs), function(x) startsWith(x, "ENSG")),
+        ]
+    # Identify duplicated row names
+    duplicated_rows <- duplicated(rownames(exprs))
+    # Remove rows with duplicated row names
+    cleaned_exprs <- exprs[!duplicated_rows, , drop = FALSE]
+    saveRDS(cleaned_exprs, paste("data/viper/exprs/", df$Lable[i], ".RDS", sep = ""))
+}
+```
