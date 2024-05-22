@@ -518,15 +518,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree94fd282192ddaa118aa4d0eda682398a66b7c0fdtargetblank94fd282a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreec8c01a07decf6236287bab21e7b37b226d831d65targetblankc8c01a0a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/94fd282192ddaa118aa4d0eda682398a66b7c0fd" target="_blank">94fd282</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/c8c01a07decf6236287bab21e7b37b226d831d65" target="_blank">c8c01a0</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree94fd282192ddaa118aa4d0eda682398a66b7c0fdtargetblank94fd282a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreec8c01a07decf6236287bab21e7b37b226d831d65targetblankc8c01a0a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -536,7 +536,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/94fd282192ddaa118aa4d0eda682398a66b7c0fd" target="_blank">94fd282</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/c8c01a07decf6236287bab21e7b37b226d831d65" target="_blank">c8c01a0</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -555,7 +555,11 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    data/.DS_Store
     Ignored:    data/viper/.DS_Store
-    Ignored:    data/viper/regulon/.DS_Store
+    Ignored:    data/viper/regulon/
+    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  output/viper/
 
 </code></pre>
 <p>
@@ -601,6 +605,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/c8c01a07decf6236287bab21e7b37b226d831d65/analysis/viper_1.Rmd" target="_blank">c8c01a0</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-22
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/cc34e48d9c9a33b990792b29cec3826ca05a1049/analysis/viper_1.Rmd" target="_blank">cc34e48</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-22
+</td>
+<td>
+wflow_publish(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/5f9a8bc72333ebaf512d2f8aeccac246266d7e35/docs/viper_1.html" target="_blank">5f9a8bc</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -825,17 +880,17 @@ context-specific ARACNe interactome</td>
 <h2>Process network and save as adj files</h2>
 <p>Export network to adj files</p>
 <pre class="r"><code>for (item in items) {
-    if (!file.exists(paste(&quot;data/viper/regulon/&quot;, item, &quot;.adj&quot;,
+    if (!file.exists(paste(&quot;output/viper/regulon/&quot;, item, &quot;.adj&quot;,
             sep = &quot;&quot;))) {
         get(item)
-        write.regulon(get(item), file = paste(&quot;data/viper/regulon/&quot;, item, &quot;.adj&quot;,
+        write.regulon(get(item), file = paste(&quot;output/viper/regulon/&quot;, item, &quot;.adj&quot;,
             sep = &quot;&quot;))
     }
 }</code></pre>
 <p>Convert Entrez Gene ids to SYMBOL.</p>
 <pre class="r"><code>for (item in items) {
-    if (!file.exists(paste(&quot;data/viper/regulon/&quot;, item, &quot;_SYMBOL.adj&quot;, sep = &quot;&quot;))) {
-        df &lt;- read.csv(paste(&quot;data/viper/regulon/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;),
+    if (!file.exists(paste(&quot;output/viper/regulon/&quot;, item, &quot;_SYMBOL.adj&quot;, sep = &quot;&quot;))) {
+        df &lt;- read.csv(paste(&quot;output/viper/regulon/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;),
             sep = &quot;\t&quot;)
 
         geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Regulator),
@@ -854,7 +909,7 @@ context-specific ARACNe interactome</td>
         f1 &lt;- !sapply(df$Regulator, can_be_integer)
         f2 &lt;- !sapply(df$Target, can_be_integer)
         df &lt;- df[f1 &amp; f2, ]
-        write.table(df, file = paste(&quot;data/viper/regulon/&quot;, item, &quot;_SYMBOL.adj&quot;,
+        write.table(df, file = paste(&quot;output/viper/regulon/&quot;, item, &quot;_SYMBOL.adj&quot;,
             sep = &quot;&quot;),sep = &quot;\t&quot;,quote = FALSE, row.names = FALSE)
     }
 }</code></pre>
@@ -968,7 +1023,7 @@ class="section level1">
 <h1>Extract and process gene expression signatures</h1>
 <pre class="r"><code>for (i in 1:nrow(df)) {
     exprsFile &lt;- df$RNA[i]
-    adjfile &lt;- paste(&quot;data/viper/regulon/&quot;, df$regulon[1], &quot;_SYMBOL.adj&quot;, sep = &quot;&quot;)
+    adjfile &lt;- paste(&quot;output/viper/regulon/&quot;, df$regulon[1], &quot;_SYMBOL.adj&quot;, sep = &quot;&quot;)
     exprs &lt;- as.matrix(read.table(exprsFile, header = TRUE, sep = &quot;\t&quot;,
         row.names = 1, as.is = TRUE))
     rownames(exprs) &lt;- sub(&quot;\\..*$&quot;, &quot;&quot;, rownames(exprs))
@@ -976,45 +1031,14 @@ class="section level1">
         keytype = &quot;GENEID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
     rownames(exprs) &lt;- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
         to = geneID$SYMBOL, warn_missing = FALSE)
-    print(table(sapply(rownames(exprs), function(x) startsWith(x, &quot;ENSG&quot;))))
     exprs &lt;- exprs[!sapply(rownames(exprs), function(x) startsWith(x, &quot;ENSG&quot;)),
         ]
     # Identify duplicated row names
     duplicated_rows &lt;- duplicated(rownames(exprs))
     # Remove rows with duplicated row names
     cleaned_exprs &lt;- exprs[!duplicated_rows, , drop = FALSE]
-    saveRDS(cleaned_exprs, paste(&quot;data/viper/exprs/&quot;, df$Lable[i], &quot;.RDS&quot;, sep = &quot;&quot;))
+    saveRDS(cleaned_exprs, paste(&quot;output/viper/exprs/&quot;, df$Lable[i], &quot;.RDS&quot;, sep = &quot;&quot;))
 }</code></pre>
-<pre><code>
-FALSE 
- 6913 
-
-FALSE 
- 6913 
-
-FALSE  TRUE 
-57207  3462 
-
-FALSE  TRUE 
-57207  3462 
-
-FALSE  TRUE 
-57207  3462 
-
-FALSE  TRUE 
-57207  3462 
-
-FALSE  TRUE 
-57207  3462 
-
-FALSE  TRUE 
-57207  3462 
-
-FALSE  TRUE 
-57207  3462 
-
-FALSE  TRUE 
-57207  3462 </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
