@@ -1,19 +1,22 @@
 ---
-title: "Home"
+title: "Proteomics and Phosphoproteomics Pipeline"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
     toc: True
+    number_sections: true
 editor_options:
   chunk_output_type: console
+  
 ---
 
-Welcome to my research website.
+# Virtual Inference of Protein-activity by Enriched Regulon analysis
 
-Click on this [link](viper.html) to see my results.
+## Preparing input
 
+[Preparing input](viper_1.html)
 
-## Environment setup
+# Environment setup
 <details>
   <summary>Set up python2.7</summary>
 
