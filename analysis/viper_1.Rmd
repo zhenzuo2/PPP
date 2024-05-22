@@ -3,6 +3,9 @@ title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (prep
 output:
   workflowr::wflow_html:
     toc: True
+    toc_float: true
+    theme: cosmo
+    highlight: textmate
 editor_options:
   chunk_output_type: console
 ---
@@ -98,7 +101,6 @@ for (i in 1:nrow(df)) {
         keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
     rownames(exprs) <- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
         to = geneID$SYMBOL, warn_missing = FALSE)
-    print(table(sapply(rownames(exprs), function(x) startsWith(x, "ENSG"))))
     exprs <- exprs[!sapply(rownames(exprs), function(x) startsWith(x, "ENSG")),
         ]
     # Identify duplicated row names
