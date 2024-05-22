@@ -1,3 +1,3 @@
 # Proteomics and Phosphoproteomics Pipeline
 
-https://zhenzuo2.github.io/PPP/docs/index.html
+[Home](https://zhenzuo2.github.io/PPP/docs/index.html)
