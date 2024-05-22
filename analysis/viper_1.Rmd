@@ -42,10 +42,10 @@ knitr::kable(df)
 Export network to adj files
 ```{r}
 for (item in items) {
-    if (!file.exists(paste("data/viper/regulon/", item, ".adj",
+    if (!file.exists(paste("output/viper/regulon/", item, ".adj",
             sep = ""))) {
         get(item)
-        write.regulon(get(item), file = paste("data/viper/regulon/", item, ".adj",
+        write.regulon(get(item), file = paste("output/viper/regulon/", item, ".adj",
             sep = ""))
     }
 }
@@ -54,8 +54,8 @@ for (item in items) {
 Convert Entrez Gene ids to SYMBOL.
 ```{r}
 for (item in items) {
-    if (!file.exists(paste("data/viper/regulon/", item, "_SYMBOL.adj", sep = ""))) {
-        df <- read.csv(paste("data/viper/regulon/", item, ".adj", sep = ""),
+    if (!file.exists(paste("output/viper/regulon/", item, "_SYMBOL.adj", sep = ""))) {
+        df <- read.csv(paste("output/viper/regulon/", item, ".adj", sep = ""),
             sep = "\t")
 
         geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Regulator),
@@ -74,7 +74,7 @@ for (item in items) {
         f1 <- !sapply(df$Regulator, can_be_integer)
         f2 <- !sapply(df$Target, can_be_integer)
         df <- df[f1 & f2, ]
-        write.table(df, file = paste("data/viper/regulon/", item, "_SYMBOL.adj",
+        write.table(df, file = paste("output/viper/regulon/", item, "_SYMBOL.adj",
             sep = ""),sep = "\t",quote = FALSE, row.names = FALSE)
     }
 }
@@ -90,7 +90,7 @@ knitr::kable(df)
 ```{r}
 for (i in 1:nrow(df)) {
     exprsFile <- df$RNA[i]
-    adjfile <- paste("data/viper/regulon/", df$regulon[1], "_SYMBOL.adj", sep = "")
+    adjfile <- paste("output/viper/regulon/", df$regulon[1], "_SYMBOL.adj", sep = "")
     exprs <- as.matrix(read.table(exprsFile, header = TRUE, sep = "\t",
         row.names = 1, as.is = TRUE))
     rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
@@ -105,6 +105,6 @@ for (i in 1:nrow(df)) {
     duplicated_rows <- duplicated(rownames(exprs))
     # Remove rows with duplicated row names
     cleaned_exprs <- exprs[!duplicated_rows, , drop = FALSE]
-    saveRDS(cleaned_exprs, paste("data/viper/exprs/", df$Lable[i], ".RDS", sep = ""))
+    saveRDS(cleaned_exprs, paste("output/viper/exprs/", df$Lable[i], ".RDS", sep = ""))
 }
 ```
