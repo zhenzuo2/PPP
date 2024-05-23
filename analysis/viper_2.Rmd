@@ -16,9 +16,10 @@ library(viper)
 ```
 
 # Generating the regulon object
-```{r}
+```{r eval=FALSE, include=TRUE}
 for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
-    adjfile <- paste("output/viper/regulon/regulon", ca, "_SYMBOL.adj",
+ca = "kirc"
+    adjfile <- paste("/Users/zhenzuo/PRO/PPP/output/viper/regulon/regulon", ca, "_SYMBOL.adj",
         sep = "")
     expr_normal <- readRDS(paste("output/viper/exprs/", ca, "_normal.RDS",
         sep = ""))
@@ -36,7 +37,7 @@ for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
     signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
     dset <- ExpressionSet(assayData = as.matrix(expr))
     dset$description <- signature
-    regul <- aracne2regulon(adjfile, dset, verbose = TRUE)
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
     saveRDS(regul, paste("output/viper/regul_object/", ca, ".RDS", sep = ""))
 }
 ```
