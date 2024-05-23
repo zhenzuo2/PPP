@@ -2,7 +2,7 @@
 title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)"
 output:
   workflowr::wflow_html:
-    toc: True
+    toc: true
     toc_float: true
     theme: cosmo
     highlight: textmate
@@ -41,7 +41,6 @@ knitr::kable(df)
 ```
 
 ## Process network and save as adj files
-
 Export network to adj files
 ```{r}
 for (item in items) {
@@ -83,13 +82,15 @@ for (item in items) {
 }
 ```
 
-# Define RNA-seq and network pairs
+# Extract and process gene expression signatures
+
+##  RNA-seq and network pairs
 ```{r}
 df <- read.csv("data/viper/RNA_regulon_pairs.csv")
 knitr::kable(df)
 ```
 
-# Extract and process gene expression signatures
+## Preprocess
 ```{r}
 for (i in 1:nrow(df)) {
     exprsFile <- df$RNA[i]
@@ -110,3 +111,31 @@ for (i in 1:nrow(df)) {
     saveRDS(cleaned_exprs, paste("output/viper/exprs/", df$Lable[i], ".RDS", sep = ""))
 }
 ```
+
+# Generating the regulon object
+```{r}
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("output/viper/regulon/regulon", ca, "_SYMBOL.adj",
+        sep = "")
+    expr_normal <- readRDS(paste("output/viper/exprs/", ca, "_normal.RDS",
+        sep = ""))
+    expr_tumor <- readRDS(paste("output/viper/exprs/", ca, "_tumor.RDS",
+        sep = ""))
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr) > 0, ]
+    pattern <- "[^A-Za-z0-9 ]"
+    # Use grepl() to check for the presence of special characters
+    expr <- expr[grepl(pattern, rownames(expr)), ]
+
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = TRUE)
+    saveRDS(regul, paste("output/viper/regul_object/", ca, ".RDS", sep = ""))
+}
+```
+
+
