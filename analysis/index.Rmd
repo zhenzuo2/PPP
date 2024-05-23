@@ -13,8 +13,8 @@ editor_options:
 # Virtual Inference of Protein-activity by Enriched Regulon analysis
 
 ## Preparing input
-
-[Generating the regulon object](viper_1.html)
+[Data Preparation](viper_1.html)
+[Generating the Regulon Object](viper_2.html)
 
 # Environment setup
 <details>
