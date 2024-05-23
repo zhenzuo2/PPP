@@ -14,7 +14,7 @@ editor_options:
 
 ## Preparing input
 
-[Preparing input](viper_1.html)
+[Generating the regulon object](viper_1.html)
 
 # Environment setup
 <details>
