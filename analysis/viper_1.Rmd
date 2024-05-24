@@ -44,7 +44,7 @@ knitr::kable(df)
 
 ## Process network and save as adj files
 Export network to adj files
-```{r}
+```{r message=FALSE, warning=FALSE}
 # Set up parallel backend
 registerDoParallel(10)
 
