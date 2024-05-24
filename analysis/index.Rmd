@@ -18,6 +18,7 @@ editor_options:
 
 [Generating the Regulon Object](viper_2.html)
 
+[Run Viper](viper3.html)
 # Environment setup
 <details>
   <summary>Set up python2.7</summary>

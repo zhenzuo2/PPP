@@ -1,0 +1,87 @@
+---
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+```
+
+# Generating the gene expression signatures
+```{r}
+dset <- readRDS("output/viper/expr_processed/kirc.RDS")
+signature <- rowTtest(dset, "description", "tumor", "normal")
+signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[, 1]
+```
+
+# NULL model by sample permutations
+```{r}
+nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000, repos = TRUE, verbose = FALSE)
+```
+
+# msVIPER
+```{r}
+regulon <- readRDS("output/viper/regul_object/kirc.RDS")
+regulon
+```
+
+## Normalized Enrichment Score (NES)
+```{r}
+mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+summary(mrs)
+```
+
+# Beyond msVIPER
+## Leading-edge analysis
+msVIPER infers the relative activity of a regulatory gene based on the enrichment of its most closely regulated targets on a given GES, but does not identify which are the target genes enriched in the GES. Subramanian et al. proposed a method called leading-edge analysis to identify the genes driving the enrichment of a gene-set on a GES based on Gene Set Enrichment Analysis (GSEA). We implemented the leading-edge analysis in the ledge function of the viper package. The function only has a `msviper' class object as argument and generates an updated `msviper' object that now includes a `ledge' slot.
+```{r}
+mrs <- ledge(mrs)
+summary(mrs)
+```
+
+## Bootstrap msVIPER
+```{r}
+signature <- bootstrapTtest(dset, "description", "tumor", "normal", per = 1000, verbose = FALSE)
+mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+```
+
+```{r}
+mrs <- bootstrapmsviper(mrs, "mode")
+summary(mrs)
+```
+
+## Shadow analysis
+```{r}
+mrshadow <- shadow(mrs, regulators = 25, verbose = FALSE)
+```
+
+```{r}
+summary(mrshadow)
+```
+
+## Synergy analysis
+```{r}
+mrs <- msviperCombinatorial(mrs, verbose = FALSE)
+mrs <- msviperSynergy(mrs, verbose = FALSE)
+summary(mrs)
+```
+
+# Virtual Inference of Protein-activity by Enriched Regulon analysis (VIPER)
+```{r}
+vpres <- viper(dset, regulon, verbose = FALSE)
+```
+
+```{r}
+tmp <- rowTtest(vpres, "description", "tumor", "normal")
+data.frame(Gene = rownames(tmp$p.value), t = round(tmp$statistic, 2), "p-value" = signif(tmp$p.value, 3))[order(tmp$p.value)[1:10], ]
+```
+
+

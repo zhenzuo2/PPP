@@ -17,8 +17,8 @@ library(viper)
 
 # Generating the regulon object
 ```{r eval=FALSE, include=TRUE}
+set.seed(0)
 for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
-ca = "kirc"
     adjfile <- paste("/Users/zhenzuo/PRO/PPP/output/viper/regulon/regulon", ca, "_SYMBOL.adj",
         sep = "")
     expr_normal <- readRDS(paste("output/viper/exprs/", ca, "_normal.RDS",
@@ -31,13 +31,14 @@ ca = "kirc"
 
     expr <- expr[rowSums(expr) > 0, ]
     pattern <- "[^A-Za-z0-9 ]"
-    # Use grepl() to check for the presence of special characters
-    expr <- expr[grepl(pattern, rownames(expr)), ]
 
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    expr <- expr[apply(expr, 1, var) >= 0.3, ]
     signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
     dset <- ExpressionSet(assayData = as.matrix(expr))
     dset$description <- signature
     regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/viper/expr_processed/", ca, ".RDS", sep = ""))
     saveRDS(regul, paste("output/viper/regul_object/", ca, ".RDS", sep = ""))
 }
 ```

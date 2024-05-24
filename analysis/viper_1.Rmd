@@ -24,6 +24,8 @@ library(plyr)
 library(stringr)
 library(Biobase)
 library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
 ```
 
 # Extract context-specific networks
@@ -43,14 +45,17 @@ knitr::kable(df)
 ## Process network and save as adj files
 Export network to adj files
 ```{r}
-for (item in items) {
-    if (!file.exists(paste("output/viper/regulon/", item, ".adj",
-            sep = ""))) {
-        get(item)
-        write.regulon(get(item), file = paste("output/viper/regulon/", item, ".adj",
-            sep = ""))
+# Set up parallel backend
+registerDoParallel(10)
+
+# Loop through items in parallel
+foreach(item = items) %dopar% {
+    if (!file.exists(paste("output/viper/regulon/", item, ".adj", sep = ""))) {
+        data <- get(item)
+        write.regulon(data, file = paste("output/viper/regulon/", item, ".adj", sep = ""))
     }
 }
+
 ```
 
 Convert Entrez Gene ids to SYMBOL.
@@ -76,8 +81,15 @@ for (item in items) {
         f1 <- !sapply(df$Regulator, can_be_integer)
         f2 <- !sapply(df$Target, can_be_integer)
         df <- df[f1 & f2, ]
-        write.table(df, file = paste("output/viper/regulon/", item, "_SYMBOL.adj",
-            sep = ""),sep = "\t",quote = FALSE, row.names = FALSE)
+        
+        # Group by Regulator and concatenate elements of each group into strings
+       df$temp <- paste(df$Target,df$MoA, sep="\t")
+      result <- aggregate(temp ~ Regulator, data = df, FUN = function(x) paste(x, collapse = "\t"))
+        # Print the result
+        file <- file(paste("output/viper/regulon/", item, "_SYMBOL.adj",
+            sep = ""))
+        writeLines(paste(result$Regulator,result$temp,sep = "\t"),file)
+        close(file)
     }
 }
 ```
@@ -111,3 +123,19 @@ for (i in 1:nrow(df)) {
     saveRDS(cleaned_exprs, paste("output/viper/exprs/", df$Lable[i], ".RDS", sep = ""))
 }
 ```
+
+
+```{r}
+# Sample dataframe
+df <- data.frame(column1 = c("A", "A", "B", "B", "B"),
+                 column2 = c(1, 2, 3, 4, 5))
+
+# Group by column1 and concatenate column2 values
+result <- aggregate(column2 ~ column1, data = df, FUN = function(x) paste(x, collapse = ","))
+
+# View the result
+print(result)
+
+
+```
+
