@@ -11,7 +11,7 @@
 
 
 
-<title>Proteomics and Phosphoproteomics Pipeline</title>
+<title>Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)</title>
 
 <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -357,8 +357,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Proteomics and Phosphoproteomics
-Pipeline</h1>
+<h1 class="title toc-ignore">Virtual Inference of Protein-activity by
+Enriched Regulon analysis (preparing input)</h1>
 
 </div>
 
@@ -391,7 +391,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span> 0
 </p>
@@ -428,6 +428,90 @@ class="panel-collapse collapse">
 <p>Great! Since the R Markdown file has been committed to the Git
 repository, you know the exact version of the code that produced these
 results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240521code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240521)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240521code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240521)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
@@ -529,10 +613,11 @@ have uncommitted changes.
 
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML
-(<code>docs/index.html</code>) files. If you’ve configured a remote Git
-repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
-in the table below to view the files as they were in that past version.
+made to the R Markdown (<code>analysis/viper_3.Rmd</code>) and HTML
+(<code>docs/viper_3.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -561,7 +646,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/zhenzuo2/PPP/blob/fe48b9faedf94f04f17e3fef08e1689b4349bdf3/analysis/index.Rmd" target="_blank">fe48b9f</a>
+<a href="https://github.com/zhenzuo2/PPP/blob/fe48b9faedf94f04f17e3fef08e1689b4349bdf3/analysis/viper_3.Rmd" target="_blank">fe48b9f</a>
 </td>
 <td>
 Zhen Zuo
@@ -573,312 +658,6 @@ Zhen Zuo
 Publish files
 </td>
 </tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/5f6c3b14362ac8c77016edeb5ccb7051ac0e290b/docs/index.html" target="_blank">5f6c3b1</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-23
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/da5b20553481ce288bb09bd6d9ee39764be9b482/analysis/index.Rmd" target="_blank">da5b205</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-23
-</td>
-<td>
-Publish files
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/37b072e9069cbe546db228e23d4fb9c032e2c43b/docs/index.html" target="_blank">37b072e</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-23
-</td>
-<td>
-Update index.html
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/f3640f4e606708df6b2759b4c5a446e21c2710f8/analysis/index.Rmd" target="_blank">f3640f4</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-23
-</td>
-<td>
-push
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/f3640f4e606708df6b2759b4c5a446e21c2710f8/docs/index.html" target="_blank">f3640f4</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-23
-</td>
-<td>
-push
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/bfe25878ae7eab96c40a51fb9666369ebfa7a9cf/docs/index.html" target="_blank">bfe2587</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-23
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/76d0a4e4ff4220713d0814e64108ea7e42c430ee/analysis/index.Rmd" target="_blank">76d0a4e</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-23
-</td>
-<td>
-wflow_git_commit(all = TRUE)
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/c2509b00c1aa670debadcce9e64a3ab5b9cd56b6/analysis/index.Rmd" target="_blank">c2509b0</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-23
-</td>
-<td>
-Publish files
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/a37c3dd25b34db21c3c0f47ad676931a80f223ae/docs/index.html" target="_blank">a37c3dd</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/df425d99b1420a6091f49a6941fe4dd19f1bcfb6/analysis/index.Rmd" target="_blank">df425d9</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-22
-</td>
-<td>
-wflow_publish(all = TRUE)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/df425d99b1420a6091f49a6941fe4dd19f1bcfb6/docs/index.html" target="_blank">df425d9</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-22
-</td>
-<td>
-wflow_publish(all = TRUE)
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/07f44d6c2f8d0b9b58577476fec1def5e243623b/analysis/index.Rmd" target="_blank">07f44d6</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-21
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/07f44d6c2f8d0b9b58577476fec1def5e243623b/docs/index.html" target="_blank">07f44d6</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-21
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/3e0915ca3a19ee36e8630a7af963b6c2122db8de/docs/index.html" target="_blank">3e0915c</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-21
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/b4440e6482dc8746dc1fb3bf740848298332a674/analysis/index.Rmd" target="_blank">b4440e6</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-21
-</td>
-<td>
-wflow_git_commit(all = TRUE)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/0fa724b1f800e3dfeee325fb25f6f95b440b8e51/docs/index.html" target="_blank">0fa724b</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-21
-</td>
-<td>
-Publish the initial files for myproject
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/4aa2e514459baccda9e5c6de0aaae6ba85b6d362/docs/index.html" target="_blank">4aa2e51</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-21
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/8aa49f1c062ac198c62b0c551a6df9a718952c51/analysis/index.Rmd" target="_blank">8aa49f1</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-05-21
-</td>
-<td>
-Start workflowr project.
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -886,48 +665,208 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<div
-id="virtual-inference-of-protein-activity-by-enriched-regulon-analysis"
-class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Virtual Inference of
-Protein-activity by Enriched Regulon Analysis</h1>
-<div id="preparing-input" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Preparing input</h2>
-<p><a href="viper_1.html">Data Preparation</a></p>
-<p><a href="viper_2.html">Generating the Regulon Object</a></p>
-<a href="viper3.html">Run Viper</a> # Environment setup
-<details>
-<summary>
-Set up python2.7
-</summary>
-<p>To set up python2.7 on MacOs</p>
-<ul>
-<li><p>Follow <a
-href="https://stackoverflow.com/questions/67380286/anaconda-channel-for-installing-python-2-7"
-class="uri">https://stackoverflow.com/questions/67380286/anaconda-channel-for-installing-python-2-7</a></p></li>
-<li><p>Install additional packages with <a
-href="https://github.com/zhenzuo2/Proteomics-and-Phosphoproteomics-Pipeline/blob/main/Env/py27.yml">Env/py27.yml</a></p></li>
-</ul>
-<p>Then run</p>
-<pre><code>conda create -n py27 --f py27.yml</code></pre>
-<p>To active it</p>
-<pre><code>source /opt/homebrew/Caskroom/mambaforge/base/etc/profile.d/conda.sh;  
-conda activate py27;  </code></pre>
-</details>
-<details>
-<summary>
-Set up Viper
-</summary>
-<ul>
-<li>Follow <a
-href="https://www.bioconductor.org/packages/release/bioc/html/viper.html"
-class="uri">https://www.bioconductor.org/packages/release/bioc/html/viper.html</a></li>
-</ul>
-<pre><code>if (!require(&quot;BiocManager&quot;, quietly = TRUE))
-    install.packages(&quot;BiocManager&quot;)
+<div id="load-packages" class="section level1">
+<h1>Load packages</h1>
+<pre class="r"><code>library(viper)</code></pre>
+</div>
+<div id="generating-the-gene-expression-signatures"
+class="section level1">
+<h1>Generating the gene expression signatures</h1>
+<pre class="r"><code>dset &lt;- readRDS(&quot;output/viper/expr_processed/kirc.RDS&quot;)
+signature &lt;- rowTtest(dset, &quot;description&quot;, &quot;tumor&quot;, &quot;normal&quot;)
+signature &lt;- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[, 1]</code></pre>
+</div>
+<div id="null-model-by-sample-permutations" class="section level1">
+<h1>NULL model by sample permutations</h1>
+<pre class="r"><code>nullmodel &lt;- ttestNull(dset, &quot;description&quot;, &quot;tumor&quot;, &quot;normal&quot;, per = 1000, repos = TRUE, verbose = FALSE)</code></pre>
+</div>
+<div id="msviper" class="section level1">
+<h1>msVIPER</h1>
+<pre class="r"><code>regulon &lt;- readRDS(&quot;output/viper/regul_object/kirc.RDS&quot;)
+regulon</code></pre>
+<pre><code>Object of class regulon with 3045 regulators, 9693 targets and 107201 interactions</code></pre>
+<div id="normalized-enrichment-score-nes" class="section level2">
+<h2>Normalized Enrichment Score (NES)</h2>
+<pre class="r"><code>mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
+summary(mrs)</code></pre>
+<pre><code>        Regulon Size   NES  p.value    FDR
+EGF         EGF   43 -3.66 2.48e-04 0.0307
+STAP1     STAP1   35 -3.67 2.39e-04 0.0307
+DMRT2     DMRT2  101 -3.68 2.33e-04 0.0307
+FGF9       FGF9   53 -3.69 2.26e-04 0.0307
+TMPRSS2 TMPRSS2   59 -3.74 1.85e-04 0.0307
+KNG1       KNG1   57 -3.82 1.33e-04 0.0307
+GCGR       GCGR   65 -3.84 1.23e-04 0.0307
+FOXI1     FOXI1   83 -3.92 8.99e-05 0.0307
+PIK3C2G PIK3C2G   32 -3.97 7.13e-05 0.0307
+OXGR1     OXGR1   89 -4.04 5.34e-05 0.0307</code></pre>
+</div>
+</div>
+<div id="beyond-msviper" class="section level1">
+<h1>Beyond msVIPER</h1>
+<div id="leading-edge-analysis" class="section level2">
+<h2>Leading-edge analysis</h2>
+<p>msVIPER infers the relative activity of a regulatory gene based on
+the enrichment of its most closely regulated targets on a given GES, but
+does not identify which are the target genes enriched in the GES.
+Subramanian et al. proposed a method called leading-edge analysis to
+identify the genes driving the enrichment of a gene-set on a GES based
+on Gene Set Enrichment Analysis (GSEA). We implemented the leading-edge
+analysis in the ledge function of the viper package. The function only
+has a
+<code>msviper' class object as argument and generates an updated</code>msviper’
+object that now includes a `ledge’ slot.</p>
+<pre class="r"><code>mrs &lt;- ledge(mrs)
+summary(mrs)</code></pre>
+<pre><code>        Regulon Size   NES  p.value    FDR
+EGF         EGF   43 -3.66 2.48e-04 0.0307
+STAP1     STAP1   35 -3.67 2.39e-04 0.0307
+DMRT2     DMRT2  101 -3.68 2.33e-04 0.0307
+FGF9       FGF9   53 -3.69 2.26e-04 0.0307
+TMPRSS2 TMPRSS2   59 -3.74 1.85e-04 0.0307
+KNG1       KNG1   57 -3.82 1.33e-04 0.0307
+GCGR       GCGR   65 -3.84 1.23e-04 0.0307
+FOXI1     FOXI1   83 -3.92 8.99e-05 0.0307
+PIK3C2G PIK3C2G   32 -3.97 7.13e-05 0.0307
+OXGR1     OXGR1   89 -4.04 5.34e-05 0.0307
+                                               Ledge
+EGF               DCLK1, SKA3, GNG7, TTR, + 34 genes
+STAP1             KCNE1, LY9, CHAC1, KIT, + 25 genes
+DMRT2     PART1, TPD52L1, CKMT2, C6orf52, + 88 genes
+FGF9    ADRB1, TUBB2A, PRR15L, LINC01587, + 44 genes
+TMPRSS2     C1orf168, GRHL1, WSCD2, RPF2, + 48 genes
+KNG1       TDRD5, SNX33, ZCCHC16, PTPN13, + 49 genes
+GCGR      HELZ2, NDRG2, TMSB15B, COL28A1, + 56 genes
+FOXI1    COQ3, PTPN3, APOBEC3F, C1orf168, + 61 genes
+PIK3C2G     ALDH1A2, CLUL1, STAP1, CEP55, + 27 genes
+OXGR1   C9orf84, LZTS1, ADRB1, LINC01587, + 77 genes</code></pre>
+</div>
+<div id="bootstrap-msviper" class="section level2">
+<h2>Bootstrap msVIPER</h2>
+<pre class="r"><code>signature &lt;- bootstrapTtest(dset, &quot;description&quot;, &quot;tumor&quot;, &quot;normal&quot;, per = 1000, verbose = FALSE)
+mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)</code></pre>
+<pre class="r"><code>mrs &lt;- bootstrapmsviper(mrs, &quot;mode&quot;)
+summary(mrs)</code></pre>
+<pre><code>        Regulon Size   NES  p.value    FDR
+STAP1     STAP1   35 -3.65 2.57e-04 0.0325
+DMRT2     DMRT2  101 -3.66 2.57e-04 0.0325
+EGF         EGF   43 -3.66 2.52e-04 0.0325
+FGF9       FGF9   53 -3.67 2.40e-04 0.0325
+TMPRSS2 TMPRSS2   59 -3.70 2.17e-04 0.0325
+KNG1       KNG1   57 -3.81 1.40e-04 0.0325
+GCGR       GCGR   65 -3.81 1.37e-04 0.0325
+FOXI1     FOXI1   83 -3.89 9.89e-05 0.0325
+PIK3C2G PIK3C2G   32 -3.96 7.39e-05 0.0325
+OXGR1     OXGR1   89 -4.02 5.75e-05 0.0325</code></pre>
+</div>
+<div id="shadow-analysis" class="section level2">
+<h2>Shadow analysis</h2>
+<pre class="r"><code>mrshadow &lt;- shadow(mrs, regulators = 25, verbose = FALSE)</code></pre>
+<pre class="r"><code>summary(mrshadow)</code></pre>
+<pre><code>$msviper.results
+        Regulon Size   NES  p.value    FDR
+EGF         EGF   36 -3.63 2.83e-04 0.0124
+NRL         NRL   63 -3.67 2.43e-04 0.0124
+STAP1     STAP1   28 -3.70 2.12e-04 0.0124
+ASB5       ASB5   30 -3.72 2.02e-04 0.0124
+KNG1       KNG1   39 -3.72 1.97e-04 0.0124
+TMPRSS2 TMPRSS2   45 -3.79 1.48e-04 0.0124
+OXGR1     OXGR1   70 -3.81 1.37e-04 0.0124
+GCGR       GCGR   53 -3.87 1.10e-04 0.0124
+FOXI1     FOXI1   67 -3.88 1.04e-04 0.0124
+PIK3C2G PIK3C2G   29 -3.98 7.02e-05 0.0124
 
-BiocManager::install(&quot;viper&quot;)</code></pre>
-</details>
+$Shadow.pairs
+[1] &quot;OXGR1 -&gt; FGF9&quot;    &quot;OXGR1 -&gt; DMRT2&quot;   &quot;OXGR1 -&gt; NR0B2&quot;   &quot;PIK3C2G -&gt; DMRT2&quot;
+[5] &quot;FOXI1 -&gt; KNG1&quot;    &quot;GCGR -&gt; DMRT2&quot;   </code></pre>
+</div>
+<div id="synergy-analysis" class="section level2">
+<h2>Synergy analysis</h2>
+<pre class="r"><code>mrs &lt;- msviperCombinatorial(mrs, verbose = FALSE)
+mrs &lt;- msviperSynergy(mrs, verbose = FALSE)
+summary(mrs)</code></pre>
+<pre><code>                      Regulon Size   NES  p.value      FDR  Synergy
+VGLL1--ABCG1     VGLL1--ABCG1   30 12.71 5.42e-37 7.39e-34 4.18e-25
+PDLIM1--SRGAP3 PDLIM1--SRGAP3   27 12.46 1.23e-35 8.39e-33 3.49e-07
+DMRT2--BMP7       DMRT2--BMP7   30  4.57 4.94e-06 2.24e-03 7.32e-04
+PAK6--VGLL1       PAK6--VGLL1   30  4.46 8.31e-06 2.83e-03 2.94e-04
+BMP7--VGLL1       BMP7--VGLL1   41  4.32 1.53e-05 3.82e-03 1.87e-06
+PRDM16--VGLL1   PRDM16--VGLL1   29  4.28 1.87e-05 3.82e-03 5.95e-04
+GPC3--VGLL1       GPC3--VGLL1   25  4.27 1.96e-05 3.82e-03 7.52e-04
+ADGRF1--SRGAP3 ADGRF1--SRGAP3   27  4.03 5.65e-05 8.37e-03 4.18e-05
+TFAP2B--VGLL1   TFAP2B--VGLL1   39  4.01 6.14e-05 8.37e-03 3.22e-06
+OXGR1                   OXGR1   89 -4.02 5.75e-05 8.37e-03       NA</code></pre>
+</div>
+</div>
+<div
+id="virtual-inference-of-protein-activity-by-enriched-regulon-analysis-viper"
+class="section level1">
+<h1>Virtual Inference of Protein-activity by Enriched Regulon analysis
+(VIPER)</h1>
+<pre class="r"><code>vpres &lt;- viper(dset, regulon, verbose = FALSE)</code></pre>
+<pre class="r"><code>tmp &lt;- rowTtest(vpres, &quot;description&quot;, &quot;tumor&quot;, &quot;normal&quot;)
+data.frame(Gene = rownames(tmp$p.value), t = round(tmp$statistic, 2), &quot;p-value&quot; = signif(tmp$p.value, 3))[order(tmp$p.value)[1:10], ]</code></pre>
+<pre><code>           Gene      t   p.value
+KNG1       KNG1 -60.76 1.25e-118
+FOXI1     FOXI1 -59.71 2.25e-117
+DMRT2     DMRT2 -59.57 3.28e-117
+TMPRSS2 TMPRSS2 -58.73 3.41e-116
+FGF9       FGF9 -58.31 1.12e-115
+GCGR       GCGR -57.31 1.91e-114
+OXGR1     OXGR1 -57.27 2.12e-114
+PIK3C2G PIK3C2G -56.97 5.15e-114
+EGF         EGF -56.94 5.62e-114
+PAK5       PAK5 -56.59 1.53e-113</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.0 (2024-04-24)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sonoma 14.5
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] viper_1.38.0        Biobase_2.64.0      BiocGenerics_0.50.0
+[4] workflowr_1.7.1    
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.5       xfun_0.44          bslib_0.7.0        ggplot2_3.5.1     
+ [5] htmlwidgets_1.6.4  processx_3.8.4     lattice_0.22-6     callr_3.7.6       
+ [9] vctrs_0.6.5        tools_4.4.0        ps_1.7.6           generics_0.1.3    
+[13] parallel_4.4.0     tibble_3.2.1       proxy_0.4-27       fansi_1.0.6       
+[17] pkgconfig_2.0.3    Matrix_1.7-0       KernSmooth_2.23-24 data.table_1.15.4 
+[21] lifecycle_1.0.4    compiler_4.4.0     stringr_1.5.1      git2r_0.33.0      
+[25] mixtools_2.0.0     munsell_0.5.1      getPass_0.2-4      httpuv_1.6.15     
+[29] htmltools_0.5.8.1  class_7.3-22       sass_0.4.9         yaml_2.3.8        
+[33] lazyeval_0.2.2     plotly_4.10.4      later_1.3.2        pillar_1.9.0      
+[37] jquerylib_0.1.4    whisker_0.4.1      tidyr_1.3.1        MASS_7.3-60.2     
+[41] cachem_1.1.0       nlme_3.1-164       tidyselect_1.2.1   digest_0.6.35     
+[45] stringi_1.8.4      kernlab_0.9-32     dplyr_1.1.4        purrr_1.0.2       
+[49] splines_4.4.0      rprojroot_2.0.4    fastmap_1.2.0      grid_4.4.0        
+[53] colorspace_2.1-0   cli_3.6.2          magrittr_2.0.3     survival_3.6-4    
+[57] utf8_1.2.4         e1071_1.7-14       scales_1.3.0       promises_1.3.0    
+[61] segmented_2.1-0    rmarkdown_2.27     httr_1.4.7         evaluate_0.23     
+[65] knitr_1.46         viridisLite_0.4.2  rlang_1.1.3        Rcpp_1.0.12       
+[69] glue_1.7.0         rstudioapi_0.16.0  jsonlite_1.8.8     R6_2.5.1          
+[73] fs_1.6.4          </code></pre>
 </div>
 </div>
 
