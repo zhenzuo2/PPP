@@ -518,15 +518,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreee46a5e193c8a2dbec98ecde7aee376781e6c71d7targetblanke46a5e1a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree4d3d64bcdc5adb636310a13a084381123e61bf35targetblank4d3d64ba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/e46a5e193c8a2dbec98ecde7aee376781e6c71d7" target="_blank">e46a5e1</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/4d3d64bcdc5adb636310a13a084381123e61bf35" target="_blank">4d3d64b</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreee46a5e193c8a2dbec98ecde7aee376781e6c71d7targetblanke46a5e1a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree4d3d64bcdc5adb636310a13a084381123e61bf35targetblank4d3d64ba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -536,7 +536,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/e46a5e193c8a2dbec98ecde7aee376781e6c71d7" target="_blank">e46a5e1</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/4d3d64bcdc5adb636310a13a084381123e61bf35" target="_blank">4d3d64b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -563,25 +563,6 @@ Ignored files:
     Ignored:    output/viper/.DS_Store
     Ignored:    output/viper/exprs/.DS_Store
     Ignored:    output/viper/regulon/.DS_Store
-
-Untracked files:
-    Untracked:  analysis/TieDIE_2.Rmd
-
-Unstaged changes:
-    Modified:   analysis/TieDIE_1.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   output/TieDIE/input/kirc/downstream.input
-    Modified:   output/TieDIE/input/kirc/pathway.sif
-    Modified:   output/TieDIE/input/kirc/upstream.input
-    Modified:   output/TieDIE/input/luad/downstream.input
-    Modified:   output/TieDIE/input/luad/pathway.sif
-    Modified:   output/TieDIE/input/luad/upstream.input
-    Modified:   output/TieDIE/input/lusc/downstream.input
-    Modified:   output/TieDIE/input/lusc/pathway.sif
-    Modified:   output/TieDIE/input/lusc/upstream.input
-    Modified:   output/TieDIE/input/paad/downstream.input
-    Modified:   output/TieDIE/input/paad/pathway.sif
-    Modified:   output/TieDIE/input/paad/upstream.input
 
 </code></pre>
 <p>
@@ -627,6 +608,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/4d3d64bcdc5adb636310a13a084381123e61bf35/analysis/viper_3.Rmd" target="_blank">4d3d64b</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/05bbe7cb70b3a997ec92a063eb6d51c40dfa049f/docs/viper_3.html" target="_blank">05bbe7c</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -788,7 +803,7 @@ foreach(name = c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;lua
     mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    temp &lt;- temp[(temp$p.value &lt; 0.05), ]
+    temp &lt;- temp[(temp$FDR &lt; 0.1), ]
     temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
     temp$NES &lt;- abs(temp$NES)
 
