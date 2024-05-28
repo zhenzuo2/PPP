@@ -1,0 +1,53 @@
+---
+title: "TieDIE: Tied Diffusion for Subnetwork Discovery"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# TieDIE Results
+```{r}
+library(igraph)
+```
+
+# KIRC
+```{r}
+sif_data <- read.table("output/TieDIE/input/kirc/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
+sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
+plot(sif_graph, layout = layout_with_fr)
+```
+
+# HNSC
+```{r}
+sif_data <- read.table("output/TieDIE/input/hnsc/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
+sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
+plot(sif_graph, layout = layout_with_fr)
+```
+
+# LUSC
+```{r}
+sif_data <- read.table("output/TieDIE/input/lusc/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
+sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
+plot(sif_graph, layout = layout_with_fr)
+```
+
+# LUAD
+```{r}
+sif_data <- read.table("output/TieDIE/input/luad/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
+sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
+plot(sif_graph, layout = layout_with_fr)
+```
+
+# PAAD
+```{r}
+sif_data <- read.table("output/TieDIE/input/paad/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
+sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
+plot(sif_graph, layout = layout_with_fr)
+```
+
+

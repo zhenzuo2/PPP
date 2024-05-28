@@ -12,14 +12,26 @@ editor_options:
 
 # Virtual Inference of Protein-activity by Enriched Regulon Analysis
 
-## Preparing input
+## Preparing Input
 
 [Data Preparation](viper_1.html)
 
 [Generating the Regulon Object](viper_2.html)
 
+## Run Analysis
 [Run Viper](viper_3.html)
-  
+
+# TieDIE: Tied Diffusion for Subnetwork Discovery.
+
+## Preparing Input
+
+## Run Analysis
+[Run Viper](TieDIE_1.html)
+
+## Plot Network
+[Run Viper](TieDIE_2.html)
+
+## 
 # Environment setup
 <details>
   <summary>Set up python2.7</summary>
