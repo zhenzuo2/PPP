@@ -45,7 +45,7 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    temp <- temp[(temp$p.value < 0.05), ]
+    temp <- temp[(temp$FDR < 0.1), ]
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
 
