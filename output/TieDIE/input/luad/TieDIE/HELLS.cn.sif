@@ -1,9 +1,1 @@
-HELLS	interacts-with	RHOF
-HELLS	interacts-with	P2RY6
-QKI	interacts-with	RBPMS
-HELLS	interacts-with	UHRF1
-RBPMS	interacts-with	TRIP13
-HELLS	interacts-with	QKI
-RBPMS	interacts-with	TSFM
-P2RY6	interacts-with	TRIP13
 HELLS	in-complex-with	PYGO2

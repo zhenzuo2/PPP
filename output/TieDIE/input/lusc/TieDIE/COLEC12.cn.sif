@@ -1,16 +1,1 @@
-IGF1	controls-state-change-of	ESR1
-IGF1	controls-state-change-of	GNAQ
-IGF1	controls-state-change-of	SPATA13
-IGF1	controls-state-change-of	CLU
-IGF1	controls-state-change-of	ICAM1
-IGF1	controls-state-change-of	KHDRBS2
-IGF1	controls-state-change-of	TSC22D3
-IGF1	controls-state-change-of	SORBS1
-S1PR1	controls-expression-of	IGF1
-IGF1	controls-state-change-of	EDN1
-IGF1	controls-expression-of	MYH11
 COLEC12	interacts-with	S1PR1
-IGF1	controls-state-change-of	AGER
-IGF1	controls-state-change-of	NR0B2
-IGF1	controls-state-change-of	JUND
-IGF1	controls-state-change-of	NKD1

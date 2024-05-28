@@ -1,8 +1,0 @@
-PTTG1	in-complex-with	UBE2C
-UBE2C	controls-state-change-of	PTTG1
-UBE2C	controls-state-change-of	GMNN
-GMNN	interacts-with	MCM6
-SPSB1	interacts-with	SPSB4
-GMNN	interacts-with	HOXA11
-SPSB1	in-complex-with	UBE2C
-SPSB4	in-complex-with	UBE2C

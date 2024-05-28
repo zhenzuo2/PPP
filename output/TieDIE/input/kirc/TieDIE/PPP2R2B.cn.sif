@@ -1,8 +1,0 @@
-VAV1	controls-state-change-of	PLCG2
-VAV1	controls-state-change-of	FGF1
-PPP2R2B	interacts-with	RAB25
-VAV1	controls-state-change-of	FGF9
-PPP2R2B	interacts-with	PRDX4
-PRDX4	interacts-with	RNF43
-PRDX4	interacts-with	VAV1
-VAV1	controls-state-change-of	SRGAP3

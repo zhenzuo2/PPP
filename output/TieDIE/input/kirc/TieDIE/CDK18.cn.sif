@@ -1,7 +1,0 @@
-GNAI2	interacts-with	GPSM3
-CDK18	interacts-with	EYA2
-EYA4	interacts-with	GNAI2
-EYA2	interacts-with	GNAI2
-GNAI2	controls-state-change-of	ELMO1
-EYA2	interacts-with	EYA4
-GNAI2	controls-phosphorylation-of	ELMO1

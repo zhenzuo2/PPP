@@ -1,5 +1,1 @@
-KHDRBS2	interacts-with	KHDRBS3
-BMP7	interacts-with	KHDRBS2
 BMP7	in-complex-with	GDF2
-KHDRBS3	interacts-with	ZNF575
-BMP7	controls-state-change-of	ZNF423

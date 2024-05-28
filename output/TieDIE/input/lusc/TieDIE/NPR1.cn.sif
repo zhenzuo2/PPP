@@ -1,5 +1,1 @@
-GMPS	interacts-with	LRRK2
 NPR1	catalysis-precedes	PDE5A
-PDE1B	catalysis-precedes	GMPS
-PDE5A	catalysis-precedes	GMPS
-NPR1	catalysis-precedes	PDE1B

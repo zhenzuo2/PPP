@@ -1,8 +1,0 @@
-SMARCD3	controls-expression-of	NPAS2
-NPAS2	interacts-with	RORC
-CRY2	interacts-with	NPAS2
-NPAS2	controls-expression-of	KLF15
-RORC	controls-expression-of	IL22
-NPAS2	in-complex-with	RORC
-NPAS2	controls-expression-of	CRY2
-CRY2	in-complex-with	NPAS2

@@ -1,4 +1,0 @@
-WNK1	interacts-with	WNK3
-WNK3	controls-state-change-of	WNK1
-WNK3	controls-phosphorylation-of	WNK1
-WNK1	interacts-with	WNK4

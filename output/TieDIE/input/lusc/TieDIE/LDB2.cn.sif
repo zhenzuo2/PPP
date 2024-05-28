@@ -1,5 +1,1 @@
-MBIP	interacts-with	NFIX
-MBIP	interacts-with	PECAM1
-LMO3	interacts-with	MBIP
-MBIP	interacts-with	PPARG
 LDB2	interacts-with	LMO3

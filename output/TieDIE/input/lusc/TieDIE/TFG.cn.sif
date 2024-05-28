@@ -1,4 +1,1 @@
 TFG	interacts-with	TOP2A
-TOP2A	interacts-with	UHRF1
-UHRF1	controls-state-change-of	SFN
-UHRF1	controls-state-change-of	DNMT1

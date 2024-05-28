@@ -1,4 +1,3 @@
 BID	interacts-with	CASP1
-CASP1	interacts-with	RBCK1
 ANGPTL4	controls-state-change-of	BID
 CASP1	interacts-with	IFI16

@@ -1,3 +1,0 @@
-RASGRP2	controls-state-change-of	RRAS
-KLF2	interacts-with	RASGRP2
-RRAS	controls-state-change-of	PLCL1
