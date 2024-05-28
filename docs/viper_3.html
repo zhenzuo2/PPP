@@ -518,15 +518,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreeab5880cd8bee9448b4c027bc35acdc071107bd09targetblankab5880ca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreed7edae021fc6479ea53b197fc660aa61c9f4140dtargetblankd7edae0a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/ab5880cd8bee9448b4c027bc35acdc071107bd09" target="_blank">ab5880c</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/d7edae021fc6479ea53b197fc660aa61c9f4140d" target="_blank">d7edae0</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreeab5880cd8bee9448b4c027bc35acdc071107bd09targetblankab5880ca"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreed7edae021fc6479ea53b197fc660aa61c9f4140dtargetblankd7edae0a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -536,7 +536,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/ab5880cd8bee9448b4c027bc35acdc071107bd09" target="_blank">ab5880c</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/d7edae021fc6479ea53b197fc660aa61c9f4140d" target="_blank">d7edae0</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -557,13 +557,12 @@ Ignored files:
     Ignored:    data/.DS_Store
     Ignored:    data/viper/.DS_Store
     Ignored:    output/.DS_Store
-    Ignored:    output/TieDIE/
+    Ignored:    output/TieDIE/.DS_Store
+    Ignored:    output/TieDIE/input/.DS_Store
+    Ignored:    output/TieDIE/input/kirc/.DS_Store
     Ignored:    output/viper/.DS_Store
     Ignored:    output/viper/exprs/.DS_Store
     Ignored:    output/viper/regulon/.DS_Store
-
-Untracked files:
-    Untracked:  data/pc-hgnc.sif
 
 </code></pre>
 <p>
@@ -609,6 +608,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/d7edae021fc6479ea53b197fc660aa61c9f4140d/analysis/viper_3.Rmd" target="_blank">d7edae0</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/896cebd42a7676ffa56248ef5f2428792f033c61/docs/viper_3.html" target="_blank">896cebd</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -697,7 +730,7 @@ class="section level1">
     mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    temp &lt;- temp[temp$FDR &lt; 0.05, ]
+    temp &lt;- temp[temp$FDR &lt; 0.1, ]
     temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
     temp$NES &lt;- abs(temp$NES)
 
