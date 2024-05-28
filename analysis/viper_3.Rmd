@@ -13,11 +13,16 @@ editor_options:
 # Load packages
 ```{r message=FALSE, warning=FALSE}
 library(viper)
+library(foreach)
+library(doParallel)
 ```
 
 # Generating the gene expression signatures
 ```{r}
-for (name in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+# Set up parallel backend
+registerDoParallel(10)
+# Loop through items in parallel
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     dset <- readRDS(paste("output/viper/expr_processed/", name, ".RDS",
         sep = ""))
     signature <- rowTtest(dset, "description", "tumor", "normal")
@@ -40,7 +45,7 @@ for (name in c("kirc", "hnsc", "lusc", "luad", "paad")) {
     mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    temp <- temp[temp$FDR < 0.1, ]
+    temp <- temp[(temp$p.value < 0.05), ]
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
 
