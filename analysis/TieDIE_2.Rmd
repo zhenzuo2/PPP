@@ -67,6 +67,7 @@ p <- simpleNetwork(data, height="100px", width="100px",
         opacity = 0.9,              # opacity of nodes. 0=transparent. 1=no transparency
         zoom = T                    # Can you zoom on the figure?
         )
+p
 ```
 
 
