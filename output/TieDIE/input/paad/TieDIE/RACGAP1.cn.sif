@@ -1,0 +1,9 @@
+RACGAP1	interacts-with	RND2
+RND2	interacts-with	SLC9A1
+RACGAP1	interacts-with	SFN
+SLC9A1	controls-state-change-of	CHEK1
+SLC9A1	controls-state-change-of	TOP2A
+SLC9A1	controls-state-change-of	E2F1
+SFN	interacts-with	TRAK1
+SLC9A1	controls-state-change-of	TP73
+SLC9A1	controls-state-change-of	CCNA2

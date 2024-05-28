@@ -1,0 +1,6 @@
+RBPMS	interacts-with	TNS2
+HEYL	interacts-with	RBPMS
+TFG	interacts-with	TGM2
+RBPMS	interacts-with	TIE1
+RBPMS	interacts-with	TFG
+RBPMS	interacts-with	VGLL3

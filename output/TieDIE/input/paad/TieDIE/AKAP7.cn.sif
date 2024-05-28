@@ -1,0 +1,15 @@
+PRKAR2B	controls-state-change-of	AJUBA
+PRKAR2B	controls-state-change-of	AURKA
+AURKA	interacts-with	DACH1
+AURKA	interacts-with	SCML2
+AURKA	interacts-with	TCEAL2
+AKAP7	interacts-with	ROPN1L
+AJUBA	in-complex-with	PRKAR2B
+AURKA	in-complex-with	PRKAR2B
+AJUBA	in-complex-with	EZH2
+AURKA	interacts-with	PAK5
+AURKA	interacts-with	CCND2
+PRKAR2B	interacts-with	RET
+AJUBA	interacts-with	SLC1A2
+AURKA	interacts-with	RET
+AKAP7	interacts-with	PRKAR2B

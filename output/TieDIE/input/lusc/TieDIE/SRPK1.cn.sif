@@ -1,0 +1,5 @@
+TOP2A	interacts-with	UHRF1
+UHRF1	controls-state-change-of	SFN
+UHRF1	controls-state-change-of	DNMT1
+SRPK1	in-complex-with	TOP2A
+SRPK1	interacts-with	TOP2A

@@ -1,0 +1,15 @@
+PGR	controls-expression-of	ETS1
+PGR	controls-expression-of	RTKN
+HMGB2	interacts-with	STMN1
+ETS1	interacts-with	HTATIP2
+ETS1	controls-expression-of	RGS3
+PGR	controls-expression-of	PXN
+PGR	controls-expression-of	OPN3
+ETS1	interacts-with	SP100
+HMGB2	interacts-with	PGR
+HMGB2	interacts-with	SP100
+TOP2A	interacts-with	UHRF1
+PGR	controls-expression-of	HOXC5
+PGR	controls-expression-of	RGS3
+ETS1	controls-expression-of	ITPR3
+HMGB2	in-complex-with	TOP2A

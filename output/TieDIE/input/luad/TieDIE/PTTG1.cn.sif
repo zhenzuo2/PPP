@@ -1,0 +1,5 @@
+GMNN	interacts-with	HOXA11
+PTTG1	in-complex-with	UBE2C
+GMNN	interacts-with	MCM6
+UBE2C	controls-state-change-of	GMNN
+UBE2C	controls-state-change-of	PTTG1

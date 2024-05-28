@@ -1,0 +1,5 @@
+PAK6	interacts-with	TPD52L1
+NEK6	interacts-with	PRDM16
+HOXB6	interacts-with	TCF21
+NEK6	interacts-with	PAK6
+HOXB6	interacts-with	NEK6

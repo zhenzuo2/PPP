@@ -1,0 +1,17 @@
+RHOJ	interacts-with	TMPO
+RACGAP1	interacts-with	SFN
+TMPO	interacts-with	ZWINT
+RHOJ	interacts-with	SPTBN1
+RAC3	interacts-with	SLC7A1
+JAG1	interacts-with	RHOJ
+RACGAP1	controls-state-change-of	RAC3
+RAC3	interacts-with	RACGAP1
+RAC3	interacts-with	SPTBN1
+SPTBN1	interacts-with	TMPO
+RAC3	in-complex-with	TMPO
+RHOJ	in-complex-with	TMPO
+JAG1	interacts-with	RAC3
+RAC3	interacts-with	TMPO
+SPTBN1	interacts-with	TFG
+RHOJ	interacts-with	SLC7A1
+JAG1	in-complex-with	RAC3

@@ -1,0 +1,11 @@
+MKI67	interacts-with	NFIC
+NDN	interacts-with	PPARGC1A
+MKI67	interacts-with	UHRF1
+MKI67	interacts-with	RPS6KA6
+RPS6KA6	interacts-with	TOP2A
+MKI67	interacts-with	NDN
+TOP2A	interacts-with	UHRF1
+PPARGC1A	interacts-with	TNFAIP3
+MKI67	interacts-with	TOP2A
+NFIC	interacts-with	ZHX1
+NDN	interacts-with	TOP2A

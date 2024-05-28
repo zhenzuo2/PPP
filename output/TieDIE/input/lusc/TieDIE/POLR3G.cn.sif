@@ -1,0 +1,8 @@
+POLR3G	interacts-with	POLR3K
+POLR3G	in-complex-with	POLR3K
+TFAP2A	controls-expression-of	PLP2
+POLR3K	interacts-with	TFAP2A
+TFAP2A	controls-expression-of	MYBL2
+TFAP2A	controls-expression-of	TFAP4
+TFAP2A	controls-expression-of	HSPD1
+TFAP2A	controls-expression-of	PITX2

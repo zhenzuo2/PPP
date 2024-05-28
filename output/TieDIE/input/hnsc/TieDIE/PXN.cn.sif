@@ -1,0 +1,7 @@
+ITPR3	interacts-with	RAB29
+ITPR3	interacts-with	P2RY6
+ITPR3	controls-state-change-of	PXN
+TEC	controls-state-change-of	ITPR3
+ITPR3	interacts-with	RAC2
+PXN	interacts-with	TEC
+ITPR3	interacts-with	MYH9

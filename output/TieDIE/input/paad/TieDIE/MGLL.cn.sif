@@ -1,0 +1,6 @@
+VIPR2	catalysis-precedes	CGB3
+MGLL	controls-state-change-of	FABP4
+VIPR2	catalysis-precedes	CGB5
+VIPR2	catalysis-precedes	CGB8
+FABP4	catalysis-precedes	MGLL
+FABP4	interacts-with	VIPR2

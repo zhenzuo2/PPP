@@ -1,0 +1,11 @@
+PTPN14	interacts-with	PXN
+PTPN14	interacts-with	RHOB
+PXN	in-complex-with	SORBS1
+PXN	interacts-with	TEC
+PXN	interacts-with	SORBS1
+RHOB	interacts-with	UACA
+PXN	in-complex-with	TNXB
+MAGI3	interacts-with	PTPN14
+RHOB	interacts-with	ROBO2
+RHOB	interacts-with	RTKN2
+RHOB	controls-state-change-of	PPP1R12B

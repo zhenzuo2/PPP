@@ -1,0 +1,4 @@
+THRA	controls-expression-of	CYCS
+THRA	interacts-with	TNFSF18
+RXRG	interacts-with	THRA
+CYCS	interacts-with	LRRK2

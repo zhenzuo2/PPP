@@ -1,0 +1,6 @@
+RASGRP2	controls-state-change-of	RRAS
+RRAS	controls-state-change-of	PLCL1
+PLCZ1	controls-state-change-of	PRKCE
+PLCL1	controls-state-change-of	PRKCE
+RRAS	controls-state-change-of	PLCZ1
+PLCZ1	controls-state-change-of	RASGRP2

@@ -1,0 +1,16 @@
+CDK5	controls-state-change-of	FOXO1
+CDK5	interacts-with	PPARG
+PTGIR	controls-state-change-of	CDK5R1
+CDK5	controls-state-change-of	DLC1
+CDK5	in-complex-with	DPYSL2
+CDK5	interacts-with	RHOJ
+CDK5	controls-phosphorylation-of	FOXO1
+CDK5	controls-state-change-of	DPYSL2
+CDK5	controls-phosphorylation-of	DPYSL2
+CDK5R1	controls-state-change-of	CDK5
+CDK5	controls-state-change-of	PPARG
+CDK5R1	in-complex-with	DPYSL2
+CDK5	controls-phosphorylation-of	PPARG
+DPYSL2	interacts-with	FGD5
+CDK5R1	controls-state-change-of	DPYSL2
+CDK5	controls-phosphorylation-of	DLC1

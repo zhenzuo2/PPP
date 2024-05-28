@@ -1,0 +1,4 @@
+LMO3	interacts-with	MN1
+LMO3	interacts-with	PXN
+LHX5	interacts-with	LMO3
+MN1	interacts-with	TOP2A

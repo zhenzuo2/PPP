@@ -1,0 +1,5 @@
+RARB	interacts-with	RXRG
+RXRG	interacts-with	THRA
+RARB	in-complex-with	THRA
+RARB	interacts-with	ZNF423
+RARB	in-complex-with	RXRG

@@ -1,0 +1,15 @@
+LRRK2	interacts-with	STK3
+LRRK2	interacts-with	MKI67
+THBS1	interacts-with	TNFAIP6
+LRRK2	interacts-with	UHRF1
+LRRK2	interacts-with	MYH9
+LRRK2	interacts-with	NEK6
+LRRK2	controls-state-change-of	APP
+LRRK2	controls-state-change-of	MSN
+LRRK2	interacts-with	MSN
+LRRK2	controls-phosphorylation-of	MSN
+LRRK2	interacts-with	SP100
+LRRK2	controls-phosphorylation-of	APP
+TNFAIP6	controls-expression-of	LRRK2
+LRRK2	interacts-with	TTK
+LRRK2	interacts-with	RAB29

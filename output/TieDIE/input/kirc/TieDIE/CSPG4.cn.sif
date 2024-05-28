@@ -1,0 +1,10 @@
+ITGA4	interacts-with	TYMS
+ITGA5	interacts-with	LGALS1
+ITGA4	interacts-with	LGALS1
+BID	interacts-with	CASP1
+CSPG4	in-complex-with	ITGA4
+ITGA5	interacts-with	RHOG
+ITGA4	in-complex-with	ITGA5
+LGALS1	controls-state-change-of	BID
+ITGA5	interacts-with	NR3C1
+CSPG4	interacts-with	LGALS1

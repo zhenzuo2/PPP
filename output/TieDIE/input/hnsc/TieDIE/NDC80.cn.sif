@@ -1,0 +1,14 @@
+TTK	controls-state-change-of	BUB1B
+BUB1B	interacts-with	CCNA2
+BUB1B	in-complex-with	CENPF
+BUB1B	interacts-with	NDC80
+NDC80	interacts-with	TTK
+BUB1B	interacts-with	PTTG1
+PLEKHG1	interacts-with	PXN
+NDC80	interacts-with	PLEKHG1
+BUB1B	in-complex-with	CCNA2
+BUB1B	interacts-with	P2RY6
+TTK	controls-phosphorylation-of	BUB1B
+BUB1B	in-complex-with	NDC80
+BUB1B	interacts-with	CENPF
+BUB1B	interacts-with	MKI67

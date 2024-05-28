@@ -1,0 +1,15 @@
+CASP1	interacts-with	RBCK1
+RBCK1	interacts-with	TLR3
+IFI16	interacts-with	PRDX4
+PML	interacts-with	RBCK1
+MKI67	interacts-with	PARP14
+TLR3	controls-state-change-of	IRF7
+IFI16	interacts-with	PML
+PML	interacts-with	SPI1
+PML	controls-expression-of	SPI1
+PML	interacts-with	RUNX2
+PML	in-complex-with	SPI1
+PML	interacts-with	RAD51
+PRDX4	interacts-with	VAV1
+CASP1	interacts-with	IFI16
+IFI16	interacts-with	MKI67

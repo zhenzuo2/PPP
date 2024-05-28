@@ -1,0 +1,6 @@
+PTTG1	in-complex-with	UBE2C
+UBE2C	controls-state-change-of	PTTG1
+UBE2C	controls-state-change-of	GMNN
+GMNN	interacts-with	MCM6
+GMNN	interacts-with	HOXA11
+TYMS	interacts-with	UBE2C

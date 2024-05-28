@@ -1,0 +1,8 @@
+RPS6KA6	in-complex-with	SH3GL2
+RPS6KA6	interacts-with	WNK1
+EPHA1	interacts-with	MKI67
+MKI67	interacts-with	PPP2R2B
+MKI67	interacts-with	RPS6KA6
+PPP2R2B	interacts-with	RAB25
+MKI67	interacts-with	RNF43
+RPS6KA6	controls-state-change-of	L1CAM

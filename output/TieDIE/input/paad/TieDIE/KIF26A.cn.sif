@@ -1,0 +1,5 @@
+KIF26A	interacts-with	MAPK10
+MAPK10	controls-state-change-of	SFN
+MAPK10	controls-phosphorylation-of	SFN
+SFN	interacts-with	TIAM1
+SFN	interacts-with	ZBTB16

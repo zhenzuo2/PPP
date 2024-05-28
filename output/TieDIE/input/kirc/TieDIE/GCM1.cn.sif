@@ -1,0 +1,7 @@
+GCM1	controls-expression-of	OVOL2
+CHD5	interacts-with	RNF43
+GCM1	interacts-with	ZNF536
+GCM1	controls-expression-of	CHD5
+GCM1	controls-expression-of	PRDM1
+GCM1	interacts-with	ZNF503
+PRDM1	interacts-with	ZNF503

@@ -1,0 +1,4 @@
+LGALS1	controls-state-change-of	BID
+BID	interacts-with	CASP1
+CASP1	interacts-with	IFI16
+CASP1	interacts-with	RBCK1

@@ -1,0 +1,14 @@
+MKI67	interacts-with	NFIC
+LIMK1	interacts-with	MMP14
+MMP14	interacts-with	TSPAN12
+LIMK1	interacts-with	MKI67
+PXN	interacts-with	TEC
+PXN	interacts-with	SORBS1
+PLXNA2	interacts-with	TMPRSS2
+MKI67	interacts-with	RPS6KA6
+PXN	in-complex-with	TNXB
+MKI67	interacts-with	NDN
+PLXNA2	controls-state-change-of	LIMK1
+PXN	in-complex-with	SORBS1
+PLXNA2	controls-phosphorylation-of	LIMK1
+LIMK1	interacts-with	PXN

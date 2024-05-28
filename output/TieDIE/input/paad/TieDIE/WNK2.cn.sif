@@ -1,0 +1,4 @@
+WNK2	controls-state-change-of	STK39
+WNK2	interacts-with	WNK3
+WNK2	controls-phosphorylation-of	STK39
+STK39	interacts-with	WNK3

@@ -1,0 +1,5 @@
+KNG1	controls-state-change-of	CASR
+GRM1	in-complex-with	NRXN1
+GRM1	in-complex-with	IL11
+GDF7	in-complex-with	GRM1
+GRM1	in-complex-with	KNG1

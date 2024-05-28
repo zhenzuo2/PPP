@@ -1,0 +1,8 @@
+PTHLH	controls-expression-of	ICAM1
+PTHLH	controls-state-change-of	ESR1
+HHIP	in-complex-with	IHH
+FOXF1	interacts-with	FOXP1
+HHIP	interacts-with	IHH
+IHH	controls-expression-of	FOXF1
+FOXF1	interacts-with	ICAM1
+IHH	controls-expression-of	PTHLH

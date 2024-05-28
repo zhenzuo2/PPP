@@ -1,0 +1,7 @@
+RBCK1	interacts-with	TLR3
+IRF7	controls-expression-of	RBCK1
+IRF7	interacts-with	PML
+IRF7	in-complex-with	TLR3
+TLR3	controls-state-change-of	IRF7
+IRF7	controls-expression-of	FLI1
+IRF7	controls-expression-of	ANGPTL4

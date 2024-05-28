@@ -1,0 +1,11 @@
+ITPR3	controls-state-change-of	PXN
+ITPR3	interacts-with	RAB29
+ITPR3	interacts-with	P2RY6
+MYH9	controls-state-change-of	PXN
+MYH9	interacts-with	THBS1
+RAC2	interacts-with	RTKN
+ITPR3	interacts-with	RAC2
+MYH9	interacts-with	PXN
+ITPR3	interacts-with	MYH9
+PDPN	controls-state-change-of	ITPR3
+RAC2	controls-state-change-of	RHOB

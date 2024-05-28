@@ -1,0 +1,16 @@
+SLC9A1	controls-state-change-of	TOP2A
+TP73	controls-expression-of	BRCA2
+DKK1	interacts-with	MDFI
+SLC9A1	controls-state-change-of	E2F1
+TP73	controls-expression-of	RAD51
+MDFI	interacts-with	TP73
+SLC9A1	controls-state-change-of	CHEK1
+MDFI	interacts-with	PITX1
+MDFI	interacts-with	SLC9A1
+MDFI	interacts-with	RIPPLY1
+TP73	controls-expression-of	SFN
+SLC9A1	controls-state-change-of	TP73
+PITX1	interacts-with	RASAL1
+TP73	controls-expression-of	VDR
+RIPPLY1	interacts-with	VGLL1
+SLC9A1	controls-state-change-of	CCNA2

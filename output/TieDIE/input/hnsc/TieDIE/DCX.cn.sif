@@ -1,0 +1,15 @@
+MEOX2	interacts-with	NEK6
+NEK6	interacts-with	SPRY3
+SPRY1	controls-state-change-of	ERBB4
+DCX	interacts-with	MEOX2
+MEOX2	interacts-with	ZNF404
+MEOX2	interacts-with	PAX1
+MEOX2	interacts-with	SPRY3
+MEOX2	interacts-with	OR5K2
+MEOX2	interacts-with	SIRPB1
+MEOX2	interacts-with	ZBTB16
+SPRY3	controls-state-change-of	ERBB2
+SPRY1	controls-state-change-of	ERBB2
+NEK6	interacts-with	PTN
+SPRY3	controls-state-change-of	ERBB4
+MEOX2	interacts-with	SPRY1

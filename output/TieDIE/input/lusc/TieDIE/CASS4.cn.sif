@@ -1,0 +1,11 @@
+SORBS1	interacts-with	SPTBN1
+SPTBN1	controls-state-change-of	ACTN2
+CASS4	interacts-with	SORBS1
+TFG	interacts-with	TGM2
+SPTBN1	controls-state-change-of	UNC13B
+SPTBN1	controls-state-change-of	SORBS1
+SORBS1	interacts-with	TFG
+SPTBN1	controls-state-change-of	TNNI2
+SPTBN1	catalysis-precedes	GNAI2
+SPTBN1	interacts-with	TAL1
+SPTBN1	controls-state-change-of	MYH11

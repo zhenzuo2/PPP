@@ -1,0 +1,12 @@
+NEO1	interacts-with	RHOJ
+SPTBN1	controls-state-change-of	DMD
+SPTBN1	controls-state-change-of	ACTN2
+RHOJ	interacts-with	SPTBN1
+RHOJ	interacts-with	ZFYVE9
+SPTBN1	catalysis-precedes	CAMK2A
+SPTBN1	controls-state-change-of	SORBS3
+SPTBN1	controls-state-change-of	ANXA1
+SPTBN1	interacts-with	TBC1D2
+SPTBN1	interacts-with	TAL1
+SPTBN1	controls-state-change-of	RASGRP2
+SPTBN1	controls-state-change-of	MYH11

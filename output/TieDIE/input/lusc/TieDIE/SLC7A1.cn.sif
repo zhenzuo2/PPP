@@ -1,0 +1,7 @@
+TSC22D1	interacts-with	UNC119
+TGFBR2	controls-state-change-of	SPTBN1
+SLC7A1	interacts-with	TGFBR2
+SPTBN1	interacts-with	TMPO
+SPTBN1	interacts-with	TFG
+TGFBR2	interacts-with	TSC22D1
+TGFBR2	controls-phosphorylation-of	SPTBN1

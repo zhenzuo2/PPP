@@ -1,0 +1,5 @@
+NET1	interacts-with	RACGAP1
+RND2	interacts-with	SLC9A1
+RACGAP1	interacts-with	SFN
+SFN	interacts-with	TRAK1
+RACGAP1	interacts-with	RND2

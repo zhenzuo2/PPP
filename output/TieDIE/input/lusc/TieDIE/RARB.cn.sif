@@ -1,0 +1,9 @@
+THRA	controls-expression-of	CYCS
+CYCS	interacts-with	RBL1
+RARB	in-complex-with	RXRG
+CYCS	interacts-with	EZH2
+RXRG	interacts-with	THRA
+CYCS	interacts-with	MYC
+CYCS	interacts-with	MED20
+RARB	in-complex-with	THRA
+RARB	interacts-with	RXRG

@@ -1,0 +1,11 @@
+NFIX	interacts-with	ZNF536
+SMARCD3	controls-expression-of	NPAS2
+NPAS2	interacts-with	RORC
+NFIX	interacts-with	SOX10
+NPAS2	controls-expression-of	KLF15
+NFIX	interacts-with	PAX9
+NPAS2	controls-expression-of	CRY2
+PAX9	interacts-with	TLE2
+PAX9	interacts-with	ZNF536
+NPAS2	in-complex-with	RORC
+NFIX	interacts-with	SMARCD3

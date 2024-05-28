@@ -1,0 +1,3 @@
+INSIG2	in-complex-with	SCAP
+AMFR	interacts-with	INSIG2
+INSIG2	interacts-with	SCAP

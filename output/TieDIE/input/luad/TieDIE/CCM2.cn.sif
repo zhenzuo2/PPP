@@ -1,0 +1,9 @@
+MCC	interacts-with	MCM6
+MCC	interacts-with	MSH2
+MCC	interacts-with	MCM3
+CCM2	in-complex-with	MAP3K3
+MCC	interacts-with	MCM7
+CCM2	interacts-with	RHOF
+MAP3K3	interacts-with	MCC
+MCC	interacts-with	TSFM
+CCM2	interacts-with	MAP3K3

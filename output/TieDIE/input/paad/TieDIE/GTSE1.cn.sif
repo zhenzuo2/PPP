@@ -1,0 +1,7 @@
+TP73	controls-expression-of	VDR
+PPP1R13L	in-complex-with	TP73
+TP73	controls-expression-of	RAD51
+PPP1R13L	interacts-with	TP73
+TP73	controls-expression-of	SFN
+TP73	controls-expression-of	BRCA2
+GTSE1	interacts-with	PPP1R13L

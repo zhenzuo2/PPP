@@ -1,0 +1,8 @@
+ARHGEF6	interacts-with	CBFA2T3
+PRKG1	controls-phosphorylation-of	PDE5A
+PDE5A	interacts-with	PRKG1
+PRKG1	controls-state-change-of	ARHGEF6
+PRKG1	controls-phosphorylation-of	ARHGEF6
+PRKG1	controls-state-change-of	PDE5A
+ARHGEF15	interacts-with	PRKG1
+ARHGEF6	interacts-with	RHOJ

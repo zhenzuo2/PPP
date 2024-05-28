@@ -1,0 +1,13 @@
+GNG7	controls-state-change-of	ITPR3
+NTRK3	controls-state-change-of	GNG7
+GNG7	in-complex-with	P2RY6
+GNG7	catalysis-precedes	MYH9
+GNG7	in-complex-with	MC1R
+GNG7	catalysis-precedes	MSN
+TEC	controls-state-change-of	ITPR3
+LGALS3BP	interacts-with	NTRK3
+GNG7	in-complex-with	GPR68
+LGALS3BP	interacts-with	P2RY6
+NTRK3	controls-state-change-of	TEC
+GNG7	in-complex-with	OPN3
+GNG7	in-complex-with	PTHLH

@@ -1,0 +1,6 @@
+PTGDR2	controls-state-change-of	TNFAIP6
+LRRK2	interacts-with	TAS2R60
+LRRK2	interacts-with	PLP1
+LRRK2	interacts-with	MAP2K6
+TNFAIP6	controls-expression-of	LRRK2
+LRRK2	interacts-with	PDCD4

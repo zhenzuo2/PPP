@@ -1,0 +1,10 @@
+RUVBL1	interacts-with	TMPO
+RAMP2	interacts-with	YEATS4
+RAMP2	interacts-with	RUVBL1
+RUVBL1	interacts-with	STMN1
+RUVBL1	controls-state-change-of	CCNA2
+RUVBL1	interacts-with	YEATS4
+PDK1	interacts-with	RAMP2
+RUVBL1	controls-expression-of	CAD
+RUVBL1	in-complex-with	YEATS4
+RUVBL1	controls-expression-of	HSPD1

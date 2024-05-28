@@ -1,0 +1,5 @@
+VENTX	controls-expression-of	CCND1
+CCND1	interacts-with	CDH1
+PLEKHB1	interacts-with	VENTX
+CCND1	interacts-with	HOXB9
+CCND1	interacts-with	THRB

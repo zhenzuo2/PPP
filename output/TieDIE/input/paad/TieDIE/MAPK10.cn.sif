@@ -1,0 +1,4 @@
+MAPK10	controls-state-change-of	SFN
+SFN	interacts-with	ZBTB16
+MAPK10	controls-phosphorylation-of	SFN
+SFN	interacts-with	TIAM1
