@@ -518,15 +518,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree3592dd6da6d11f56a332ae039772da870ee84f44targetblank3592dd6a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree8f5fff748f53638a1fb868d1828985ebfd782001targetblank8f5fff7a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/3592dd6da6d11f56a332ae039772da870ee84f44" target="_blank">3592dd6</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/8f5fff748f53638a1fb868d1828985ebfd782001" target="_blank">8f5fff7</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree3592dd6da6d11f56a332ae039772da870ee84f44targetblank3592dd6a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree8f5fff748f53638a1fb868d1828985ebfd782001targetblank8f5fff7a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -536,7 +536,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/3592dd6da6d11f56a332ae039772da870ee84f44" target="_blank">3592dd6</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/8f5fff748f53638a1fb868d1828985ebfd782001" target="_blank">8f5fff7</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -610,6 +610,40 @@ Message
 <tbody>
 <tr>
 <td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/8f5fff748f53638a1fb868d1828985ebfd782001/analysis/TieDIE_2.Rmd" target="_blank">8f5fff7</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/da0867ecf14446d445917531b0d9525e5355aa17/docs/TieDIE_2.html" target="_blank">da0867e</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 html
 </td>
 <td>
@@ -660,13 +694,14 @@ Attaching package: &#39;igraph&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:base&#39;:
 
     union</code></pre>
+<pre class="r"><code>knitr::opts_chunk$set(fig.width=12, fig.height=8) </code></pre>
 </div>
 <div id="kirc" class="section level1">
 <h1>KIRC</h1>
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/kirc/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
 plot(sif_graph, layout = layout_with_fr)</code></pre>
-<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-2-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
 Past versions of unnamed-chunk-2-1.png
@@ -710,7 +745,7 @@ Zhen Zuo
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/hnsc/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
 plot(sif_graph, layout = layout_with_fr)</code></pre>
-<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-3-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
 Past versions of unnamed-chunk-3-1.png
@@ -754,7 +789,7 @@ Zhen Zuo
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/lusc/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
 plot(sif_graph, layout = layout_with_fr)</code></pre>
-<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-4-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
 Past versions of unnamed-chunk-4-1.png
@@ -798,7 +833,7 @@ Zhen Zuo
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/luad/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
 plot(sif_graph, layout = layout_with_fr)</code></pre>
-<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-5-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
 Past versions of unnamed-chunk-5-1.png
@@ -842,7 +877,7 @@ Zhen Zuo
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/paad/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
 plot(sif_graph, layout = layout_with_fr)</code></pre>
-<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-6-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
 Past versions of unnamed-chunk-6-1.png
