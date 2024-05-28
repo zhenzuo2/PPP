@@ -23,13 +23,6 @@ sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
 plot(sif_graph, layout = layout_with_fr)
 ```
 
-# HNSC
-```{r}
-sif_data <- read.table("output/TieDIE/input/hnsc/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
-sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)
-```
-
 # LUSC
 ```{r}
 sif_data <- read.table("output/TieDIE/input/lusc/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
