@@ -23,13 +23,12 @@ editor_options:
 
 # TieDIE: Tied Diffusion for Subnetwork Discovery.
 
-## Preparing Input
+## Preparing Input and Run Analysis
 
-## Run Analysis
-[Run Viper](TieDIE_1.html)
+[Preparing Input and Run Analysis](TieDIE_1.html)
 
 ## Plot Network
-[Run Viper](TieDIE_2.html)
+[Plot Network](TieDIE_2.html)
 
 ## 
 # Environment setup
