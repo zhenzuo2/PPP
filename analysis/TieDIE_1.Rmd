@@ -1,0 +1,16 @@
+---
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (Master Regulator Analysis)"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{bash eval=FALSE, include=TRUE}
+
+```
