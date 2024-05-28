@@ -518,15 +518,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreed7edae021fc6479ea53b197fc660aa61c9f4140dtargetblankd7edae0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreee46a5e193c8a2dbec98ecde7aee376781e6c71d7targetblanke46a5e1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/d7edae021fc6479ea53b197fc660aa61c9f4140d" target="_blank">d7edae0</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/e46a5e193c8a2dbec98ecde7aee376781e6c71d7" target="_blank">e46a5e1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreed7edae021fc6479ea53b197fc660aa61c9f4140dtargetblankd7edae0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreee46a5e193c8a2dbec98ecde7aee376781e6c71d7targetblanke46a5e1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -536,7 +536,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/d7edae021fc6479ea53b197fc660aa61c9f4140d" target="_blank">d7edae0</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/e46a5e193c8a2dbec98ecde7aee376781e6c71d7" target="_blank">e46a5e1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -563,6 +563,25 @@ Ignored files:
     Ignored:    output/viper/.DS_Store
     Ignored:    output/viper/exprs/.DS_Store
     Ignored:    output/viper/regulon/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/TieDIE_2.Rmd
+
+Unstaged changes:
+    Modified:   analysis/TieDIE_1.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   output/TieDIE/input/kirc/downstream.input
+    Modified:   output/TieDIE/input/kirc/pathway.sif
+    Modified:   output/TieDIE/input/kirc/upstream.input
+    Modified:   output/TieDIE/input/luad/downstream.input
+    Modified:   output/TieDIE/input/luad/pathway.sif
+    Modified:   output/TieDIE/input/luad/upstream.input
+    Modified:   output/TieDIE/input/lusc/downstream.input
+    Modified:   output/TieDIE/input/lusc/pathway.sif
+    Modified:   output/TieDIE/input/lusc/upstream.input
+    Modified:   output/TieDIE/input/paad/downstream.input
+    Modified:   output/TieDIE/input/paad/pathway.sif
+    Modified:   output/TieDIE/input/paad/upstream.input
 
 </code></pre>
 <p>
@@ -608,6 +627,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/e46a5e193c8a2dbec98ecde7aee376781e6c71d7/analysis/viper_3.Rmd" target="_blank">e46a5e1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/4759b56dd89b42e269547e3ce3641357c2304b73/docs/viper_3.html" target="_blank">4759b56</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -702,12 +755,17 @@ Publish files
 </div>
 <div id="load-packages" class="section level1">
 <h1>Load packages</h1>
-<pre class="r"><code>library(viper)</code></pre>
+<pre class="r"><code>library(viper)
+library(foreach)
+library(doParallel)</code></pre>
 </div>
 <div id="generating-the-gene-expression-signatures"
 class="section level1">
 <h1>Generating the gene expression signatures</h1>
-<pre class="r"><code>for (name in c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;paad&quot;)) {
+<pre class="r"><code># Set up parallel backend
+registerDoParallel(10)
+# Loop through items in parallel
+foreach(name = c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;paad&quot;)) %dopar% {
     dset &lt;- readRDS(paste(&quot;output/viper/expr_processed/&quot;, name, &quot;.RDS&quot;,
         sep = &quot;&quot;))
     signature &lt;- rowTtest(dset, &quot;description&quot;, &quot;tumor&quot;, &quot;normal&quot;)
@@ -730,7 +788,7 @@ class="section level1">
     mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    temp &lt;- temp[temp$FDR &lt; 0.1, ]
+    temp &lt;- temp[(temp$p.value &lt; 0.05), ]
     temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
     temp$NES &lt;- abs(temp$NES)
 
@@ -750,6 +808,20 @@ class="section level1">
     write.table(pathways, paste(&quot;output/TieDIE/input/&quot;, name, &quot;/pathway.sif&quot;,
         sep = &quot;&quot;), quote = F, sep = &quot;\t&quot;, row.names = F, col.names = F)
 }</code></pre>
+<pre><code>[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL
+
+[[4]]
+NULL
+
+[[5]]
+NULL</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -774,20 +846,22 @@ time zone: America/New_York
 tzcode source: internal
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] parallel  stats     graphics  grDevices utils     datasets  methods  
+[8] base     
 
 other attached packages:
-[1] viper_1.38.0        Biobase_2.64.0      BiocGenerics_0.50.0
-[4] workflowr_1.7.1    
+[1] doParallel_1.0.17   iterators_1.0.14    foreach_1.5.2      
+[4] viper_1.38.0        Biobase_2.64.0      BiocGenerics_0.50.0
+[7] workflowr_1.7.1    
 
 loaded via a namespace (and not attached):
  [1] gtable_0.3.5       xfun_0.44          bslib_0.7.0        ggplot2_3.5.1     
  [5] htmlwidgets_1.6.4  processx_3.8.4     lattice_0.22-6     callr_3.7.6       
  [9] vctrs_0.6.5        tools_4.4.0        ps_1.7.6           generics_0.1.3    
-[13] parallel_4.4.0     tibble_3.2.1       proxy_0.4-27       fansi_1.0.6       
-[17] pkgconfig_2.0.3    Matrix_1.7-0       KernSmooth_2.23-24 data.table_1.15.4 
-[21] lifecycle_1.0.4    compiler_4.4.0     stringr_1.5.1      git2r_0.33.0      
-[25] mixtools_2.0.0     munsell_0.5.1      getPass_0.2-4      httpuv_1.6.15     
+[13] tibble_3.2.1       proxy_0.4-27       fansi_1.0.6        pkgconfig_2.0.3   
+[17] Matrix_1.7-0       KernSmooth_2.23-24 data.table_1.15.4  lifecycle_1.0.4   
+[21] compiler_4.4.0     stringr_1.5.1      git2r_0.33.0       mixtools_2.0.0    
+[25] munsell_0.5.1      codetools_0.2-20   getPass_0.2-4      httpuv_1.6.15     
 [29] htmltools_0.5.8.1  class_7.3-22       sass_0.4.9         yaml_2.3.8        
 [33] lazyeval_0.2.2     plotly_4.10.4      later_1.3.2        pillar_1.9.0      
 [37] jquerylib_0.1.4    whisker_0.4.1      tidyr_1.3.1        MASS_7.3-60.2     
