@@ -20,28 +20,28 @@ knitr::opts_chunk$set(fig.width=20, fig.height=20)
 ```{r}
 sif_data <- read.table("output/TieDIE/input/kirc/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
 sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)
+plot(sif_graph, layout = layout.fruchterman.reingold, vertex.size = 5,vertex.frame.color= "white")
 ```
 
 # LUSC
 ```{r}
 sif_data <- read.table("output/TieDIE/input/lusc/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
 sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)
+plot(sif_graph, layout = layout.fruchterman.reingold, vertex.size = 5,vertex.frame.color= "white")
 ```
 
 # LUAD
 ```{r}
 sif_data <- read.table("output/TieDIE/input/luad/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
 sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)
+plot(sif_graph, layout = layout.fruchterman.reingold, vertex.size = 5,vertex.frame.color= "white")
 ```
 
 # PAAD
 ```{r}
 sif_data <- read.table("output/TieDIE/input/paad/TieDIE/tiedie.cn.sif", header = FALSE, stringsAsFactors = FALSE)
 sif_graph <- graph_from_data_frame(sif_data[,c("V1","V3")], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)
+plot(sif_graph, layout = layout.fruchterman.reingold, vertex.size = 5,vertex.frame.color= "white")
 ```
 
 
