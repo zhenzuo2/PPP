@@ -518,15 +518,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree201930994f3f902bdd88a436f3511332ebaefbb9targetblank2019309a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree039689cb6f5461cc2336ec00569d881a90d96a25targetblank039689ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/201930994f3f902bdd88a436f3511332ebaefbb9" target="_blank">2019309</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/039689cb6f5461cc2336ec00569d881a90d96a25" target="_blank">039689c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree201930994f3f902bdd88a436f3511332ebaefbb9targetblank2019309a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree039689cb6f5461cc2336ec00569d881a90d96a25targetblank039689ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -536,7 +536,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/201930994f3f902bdd88a436f3511332ebaefbb9" target="_blank">2019309</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/039689cb6f5461cc2336ec00569d881a90d96a25" target="_blank">039689c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -2655,6 +2655,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/039689cb6f5461cc2336ec00569d881a90d96a25/analysis/TieDIE_2.Rmd" target="_blank">039689c</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/5135d76461bade5415501dc49b6063c14c220b2e/docs/TieDIE_2.html" target="_blank">5135d76</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/201930994f3f902bdd88a436f3511332ebaefbb9/analysis/TieDIE_2.Rmd" target="_blank">2019309</a>
 </td>
 <td>
@@ -2827,7 +2861,7 @@ Attaching package: &#39;igraph&#39;</code></pre>
 <h1>KIRC</h1>
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/kirc/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)</code></pre>
+plot(sif_graph, layout = layout.fruchterman.reingold, vertex.size = 5,vertex.frame.color= &quot;white&quot;)</code></pre>
 <p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-2-1.png" width="1920" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
@@ -2851,6 +2885,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/5135d76461bade5415501dc49b6063c14c220b2e/docs/figure/TieDIE_2.Rmd/unnamed-chunk-2-1.png" target="_blank">5135d76</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/acc1d734591f29c40a5ca19eb749685623656d1e/docs/figure/TieDIE_2.Rmd/unnamed-chunk-2-1.png" target="_blank">acc1d73</a>
@@ -2893,7 +2938,7 @@ Zhen Zuo
 <h1>LUSC</h1>
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/lusc/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)</code></pre>
+plot(sif_graph, layout = layout.fruchterman.reingold, vertex.size = 5,vertex.frame.color= &quot;white&quot;)</code></pre>
 <p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-3-1.png" width="1920" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
@@ -2917,6 +2962,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/5135d76461bade5415501dc49b6063c14c220b2e/docs/figure/TieDIE_2.Rmd/unnamed-chunk-3-1.png" target="_blank">5135d76</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/acc1d734591f29c40a5ca19eb749685623656d1e/docs/figure/TieDIE_2.Rmd/unnamed-chunk-3-1.png" target="_blank">acc1d73</a>
@@ -2959,7 +3015,7 @@ Zhen Zuo
 <h1>LUAD</h1>
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/luad/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)</code></pre>
+plot(sif_graph, layout = layout.fruchterman.reingold, vertex.size = 5,vertex.frame.color= &quot;white&quot;)</code></pre>
 <p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-4-1.png" width="1920" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
@@ -2983,6 +3039,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/5135d76461bade5415501dc49b6063c14c220b2e/docs/figure/TieDIE_2.Rmd/unnamed-chunk-4-1.png" target="_blank">5135d76</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/acc1d734591f29c40a5ca19eb749685623656d1e/docs/figure/TieDIE_2.Rmd/unnamed-chunk-4-1.png" target="_blank">acc1d73</a>
@@ -3025,7 +3092,7 @@ Zhen Zuo
 <h1>PAAD</h1>
 <pre class="r"><code>sif_data &lt;- read.table(&quot;output/TieDIE/input/paad/TieDIE/tiedie.cn.sif&quot;, header = FALSE, stringsAsFactors = FALSE)
 sif_graph &lt;- graph_from_data_frame(sif_data[,c(&quot;V1&quot;,&quot;V3&quot;)], directed = FALSE)
-plot(sif_graph, layout = layout_with_fr)</code></pre>
+plot(sif_graph, layout = layout.fruchterman.reingold, vertex.size = 5,vertex.frame.color= &quot;white&quot;)</code></pre>
 <p><img src="figure/TieDIE_2.Rmd/unnamed-chunk-5-1.png" width="1920" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
@@ -3049,6 +3116,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/5135d76461bade5415501dc49b6063c14c220b2e/docs/figure/TieDIE_2.Rmd/unnamed-chunk-5-1.png" target="_blank">5135d76</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/acc1d734591f29c40a5ca19eb749685623656d1e/docs/figure/TieDIE_2.Rmd/unnamed-chunk-5-1.png" target="_blank">acc1d73</a>
