@@ -1,2 +1,0 @@
-Gene1 Target1	Target3	Target4	MoA1	MoA3	MoA4
-Gene2 Target2	MoA2

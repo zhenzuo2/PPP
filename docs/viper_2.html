@@ -11,7 +11,7 @@
 
 
 
-<title>Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)</title>
+<title>Virtual Inference of Protein-activity by Enriched Regulon analysis (Preparing Gene Expression Data)</title>
 
 <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -358,7 +358,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Virtual Inference of Protein-activity by
-Enriched Regulon analysis (preparing input)</h1>
+Enriched Regulon analysis (Preparing Gene Expression Data)</h1>
 
 </div>
 
@@ -387,7 +387,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-05-24
+<strong>Last updated:</strong> 2024-05-31
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -416,18 +416,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has staged changes. To know which version of the
+R Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -503,56 +506,30 @@ run.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>
-Using absolute paths to the files within your workflowr project makes it
-difficult for you and others to run your code on a different machine.
-Change the absolute path(s) below to the suggested relative path(s) to
-make your code more reproducible.
-</p>
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th style="text-align:left;">
-absolute
-</th>
-<th style="text-align:left;">
-relative
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-/Users/zhenzuo/PRO/PPP/output/viper/regulon/regulon
-</td>
-<td style="text-align:left;">
-output/viper/regulon/regulon
-</td>
-</tr>
-</tbody>
-</table>
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreefe48b9faedf94f04f17e3fef08e1689b4349bdf3targetblankfe48b9fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree419a240c36e966c6260be03e607a616286718208targetblank419a240a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/fe48b9faedf94f04f17e3fef08e1689b4349bdf3" target="_blank">fe48b9f</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/419a240c36e966c6260be03e607a616286718208" target="_blank">419a240</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreefe48b9faedf94f04f17e3fef08e1689b4349bdf3targetblankfe48b9fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree419a240c36e966c6260be03e607a616286718208targetblank419a240a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -562,7 +539,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/fe48b9faedf94f04f17e3fef08e1689b4349bdf3" target="_blank">fe48b9f</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/419a240c36e966c6260be03e607a616286718208" target="_blank">419a240</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -583,45 +560,1673 @@ Ignored files:
     Ignored:    data/.DS_Store
     Ignored:    data/viper/.DS_Store
     Ignored:    output/.DS_Store
+    Ignored:    output/TieDIE/.DS_Store
+    Ignored:    output/TieDIE/input/.DS_Store
     Ignored:    output/viper/.DS_Store
-    Ignored:    output/viper/exprs/.DS_Store
-    Ignored:    output/viper/regulon/.DS_Store
 
 Untracked files:
-    Untracked:  formatted_data.txt
-    Untracked:  output/viper/expr_processed/
+    Untracked:  data/CNV_BCM_v1/
+    Untracked:  data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/
+    Untracked:  data/viper/omics_regulon_pairs.csv
+    Untracked:  output/viper/phos/
 
 Unstaged changes:
-    Modified:   output/viper/regul_object/hnsc.RDS
-    Modified:   output/viper/regul_object/kirc.RDS
-    Modified:   output/viper/regul_object/luad.RDS
-    Modified:   output/viper/regul_object/lusc.RDS
-    Modified:   output/viper/regul_object/paad.RDS
-    Modified:   output/viper/regulon/regulonblca_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonbrca_SYMBOL.adj
-    Modified:   output/viper/regulon/reguloncesc_SYMBOL.adj
-    Modified:   output/viper/regulon/reguloncoad_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonesca_SYMBOL.adj
-    Modified:   output/viper/regulon/regulongbm_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonhnsc_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonkirc_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonkirp_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonlaml_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonlihc_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonluad_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonlusc_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonnet_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonov_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonpaad_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonpcpg_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonprad_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonread_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonsarc_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonstad_SYMBOL.adj
-    Modified:   output/viper/regulon/regulontgct_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonthca_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonthym_SYMBOL.adj
-    Modified:   output/viper/regulon/regulonucec_SYMBOL.adj
+    Modified:   analysis/viper_1.Rmd
+    Modified:   analysis/viper_2.Rmd
+    Deleted:    data/viper/RNA_regulon_pairs.csv
+    Deleted:    data/viper/exprs/hnsc_normal.RDS
+    Deleted:    data/viper/exprs/hnsc_tumor.RDS
+    Deleted:    data/viper/exprs/kirc_normal.RDS
+    Deleted:    data/viper/exprs/kirc_tumor.RDS
+    Deleted:    data/viper/exprs/luad_normal.RDS
+    Deleted:    data/viper/exprs/luad_tumor.RDS
+    Deleted:    data/viper/exprs/lusc_normal.RDS
+    Deleted:    data/viper/exprs/lusc_tumor.RDS
+    Deleted:    data/viper/exprs/paad_normal.RDS
+    Deleted:    data/viper/exprs/paad_tumor.RDS
+    Deleted:    formatted_data.txt
+    Deleted:    output/TieDIE/input/hnsc/downstream.input
+    Deleted:    output/TieDIE/input/hnsc/pathway.sif
+    Deleted:    output/TieDIE/input/hnsc/upstream.input
+    Deleted:    output/TieDIE/input/kirc/TieDIE/AFP.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/AFP.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ALDH1A2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ALDH1A2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/AMFR.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/AMFR.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ANGPTL4.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ANGPTL4.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/AVPR2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/AVPR2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BAG1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BAG1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BID.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BID.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BMP7.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BMP7.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BRCA2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BRCA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BTK.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/BTK.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CALCA.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CALCA.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CASP1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CASP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CASR.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CASR.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CAV2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CAV2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CBLC.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CBLC.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CHD5.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CHD5.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CHRNA4.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CHRNA4.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CLIC1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CLIC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CNTN1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CNTN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CRABP1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/CRABP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/DACH1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/DACH1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/DACH2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/DACH2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/DNMT3L.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/DNMT3L.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/DUSP9.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/DUSP9.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/EGF.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/EGF.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/EHF.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/EHF.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/EIF4EBP1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/EIF4EBP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ELF5.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ELF5.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ELMO1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ELMO1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ENO1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ENO1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ERBB4.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ERBB4.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ESRRB.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ESRRB.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ESRRG.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ESRRG.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ETV7.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/ETV7.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/EYA2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/EYA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FCER1G.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FCER1G.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FGF1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FGF1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FGF9.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FGF9.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FLRT1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FLRT1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FOXI1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FOXI1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FOXI2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FOXI2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FOXJ3.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/FOXJ3.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GATA3.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GATA3.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GNAI2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GNAI2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GPC3.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GPC3.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GPRC6A.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GPRC6A.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GRHL2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GRHL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GRIK5.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GRIK5.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GRM1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/GRM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/HACD3.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/HACD3.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/HCLS1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/HCLS1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/IDH2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/IDH2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/IFI16.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/IFI16.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/IL15RA.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/IL15RA.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/INSIG2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/INSIG2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/IRF7.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/IRF7.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/KHDRBS2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/KHDRBS2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/KIT.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/KIT.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/KNG1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/KNG1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/L1CAM.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/L1CAM.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/LHX1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/LHX1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/LMO3.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/LMO3.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/LMX1B.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/LMX1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/LRP1B.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/LRP1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/MAGI3.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/MAGI3.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/MAP3K9.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/MAP3K9.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/MECOM.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/MECOM.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/MTNR1A.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/MTNR1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NEK6.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NEK6.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NPHS1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NPHS1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NR0B2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NR0B2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NR1I3.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NR1I3.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NR3C1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NR3C1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NR6A1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NR6A1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NRXN1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/NRXN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/OXGR1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/OXGR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PAK5.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PAK5.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PAK6.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PAK6.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PDE1A.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PDE1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PIK3C2G.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PIK3C2G.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PLCG2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PLCG2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PML.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PML.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/POU3F4.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/POU3F4.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PRDM1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PRDM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PRDM16.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PRDM16.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PRDX4.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PRDX4.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PREX1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PREX1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PTGER1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PTGER1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PTPRO.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/PTPRO.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RHOG.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RHOG.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RIPPLY1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RIPPLY1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RNF43.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RNF43.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RORB.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RORB.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RPS6KA6.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/RPS6KA6.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/SH3GL2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/SH3GL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/SORT1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/SORT1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/SRGAP3.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/SRGAP3.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/STAC2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/STAC2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/STAP1.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/STAP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TFAP2B.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TFAP2B.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TMPRSS2.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TMPRSS2.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TNFAIP6.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TNFAIP6.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TYMS.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TYMS.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TYROBP.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/TYROBP.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/WLS.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/WLS.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/heats.NA
+    Deleted:    output/TieDIE/input/kirc/TieDIE/node.stats
+    Deleted:    output/TieDIE/input/kirc/TieDIE/node_types.NA
+    Deleted:    output/TieDIE/input/kirc/TieDIE/permuted_scores.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/report.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/score.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/tiedie.cn.sif
+    Deleted:    output/TieDIE/input/kirc/TieDIE/tiedie.cn.sif.txt
+    Deleted:    output/TieDIE/input/kirc/TieDIE/tiedie.sif
+    Deleted:    output/TieDIE/input/kirc/downstream.input
+    Deleted:    output/TieDIE/input/kirc/pathway.sif
+    Deleted:    output/TieDIE/input/kirc/upstream.input
+    Deleted:    output/TieDIE/input/luad/TieDIE/ACTN2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ACTN2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ADH1A.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ADH1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/AGER.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/AGER.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/AJUBA.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/AJUBA.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/AKAP12.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/AKAP12.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ANKRD1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ANKRD1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/APBB2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/APBB2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ARHGAP44.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ARHGAP44.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ATAD2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ATAD2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/BCL6B.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/BCL6B.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/BMP7.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/BMP7.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CALCRL.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CALCRL.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CAMK2A.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CAMK2A.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CAV1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CAV1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBFA2T3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBFA2T3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX4.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX4.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX6.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX6.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX7.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX7.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX8.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CBX8.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CCNA2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CCNA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CDK5.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CDK5.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CDKN2B.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CDKN2B.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CENPF.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CENPF.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CHAF1A.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CHAF1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CHEK1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CHEK1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CHEK2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CHEK2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CRABP2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CRABP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/CRYAB.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/CRYAB.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/DACH1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/DACH1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/DCC.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/DCC.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/DEPDC1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/DEPDC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/E2F2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/E2F2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/E2F3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/E2F3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/E2F7.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/E2F7.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/E2F8.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/E2F8.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/EDNRB.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/EDNRB.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/EPAS1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/EPAS1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ERG.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ERG.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ERO1A.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ERO1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/FABP4.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/FABP4.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/FGD5.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/FGD5.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/FGF2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/FGF2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/FHL5.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/FHL5.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/FLI1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/FLI1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/FOXM1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/FOXM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/FOXO1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/FOXO1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/FRY.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/FRY.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/GDF2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/GDF2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/GFI1B.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/GFI1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/GHR.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/GHR.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/GPC3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/GPC3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/GRIA1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/GRIA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/GTSE1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/GTSE1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/HELLS.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/HELLS.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/HMGA1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/HMGA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/IL11.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/IL11.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/IL22.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/IL22.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ILF2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ILF2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/IQGAP3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/IQGAP3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ITGA8.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ITGA8.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/KHDRBS3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/KHDRBS3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/KLF2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/KLF2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/LATS2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/LATS2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/LDB2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/LDB2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/LHX6.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/LHX6.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/LMO2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/LMO2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/LRRN3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/LRRN3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/MCC.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/MCC.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/MCM2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/MCM2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/MCM6.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/MCM6.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/MCM7.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/MCM7.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/MEIS2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/MEIS2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/MIF.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/MIF.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/MYBL2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/MYBL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/NDC80.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/NDC80.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/NDRG2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/NDRG2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/NDST1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/NDST1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/NFIB.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/NFIB.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/NME2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/NME2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/NPR2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/NPR2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/NR3C2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/NR3C2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/NRXN1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/NRXN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ONECUT1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ONECUT1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/PADI4.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/PADI4.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/PDE5A.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/PDE5A.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/PECAM1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/PECAM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/PKIA.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/PKIA.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/POLR3G.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/POLR3G.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/PRDM5.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/PRDM5.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/PSMC3IP.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/PSMC3IP.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/PTH1R.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/PTH1R.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/PYGO2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/PYGO2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/RAD51.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/RAD51.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/RAMP2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/RAMP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/RAMP3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/RAMP3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/RASL12.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/RASL12.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/RASSF2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/RASSF2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/RCAN1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/RCAN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/RHOJ.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/RHOJ.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/RUNX1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/RUNX1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/S1PR1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/S1PR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SH2D3C.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SH2D3C.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SHOX2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SHOX2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SLIT2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SLIT2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SMARCA2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SMARCA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SORBS3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SORBS3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SOX17.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SOX17.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SOX7.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SOX7.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SPARCL1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SPARCL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/SPTBN1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/SPTBN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/STARD13.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/STARD13.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TAF4.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TAF4.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TAL1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TAL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TBC1D2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TBC1D2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TBX2.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TBX2.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TCF21.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TCF21.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TCF7L1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TCF7L1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TEK.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TEK.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TFAP4.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TFAP4.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TGFBR3.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TGFBR3.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TIE1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TIE1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TNXB.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TNXB.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TONSL.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TONSL.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TOP1.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TOP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TSFM.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TSFM.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/TTK.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/TTK.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/WNT3A.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/WNT3A.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ZFYVE9.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ZFYVE9.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ZNF366.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ZNF366.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ZNF575.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ZNF575.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/ZNF593.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/ZNF593.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/heats.NA
+    Deleted:    output/TieDIE/input/luad/TieDIE/node.stats
+    Deleted:    output/TieDIE/input/luad/TieDIE/node_types.NA
+    Deleted:    output/TieDIE/input/luad/TieDIE/permuted_scores.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/report.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/score.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/tiedie.cn.sif
+    Deleted:    output/TieDIE/input/luad/TieDIE/tiedie.cn.sif.txt
+    Deleted:    output/TieDIE/input/luad/TieDIE/tiedie.sif
+    Deleted:    output/TieDIE/input/luad/downstream.input
+    Deleted:    output/TieDIE/input/luad/pathway.sif
+    Deleted:    output/TieDIE/input/luad/upstream.input
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ACTL6A.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ACTL6A.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ACTN2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ACTN2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ACVRL1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ACVRL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ADGRL2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ADGRL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ADRA1B.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ADRA1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/AFF3.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/AFF3.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/AGER.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/AGER.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ANK2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ANK2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ARHGAP11A.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ARHGAP11A.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ARHGAP44.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ARHGAP44.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ARHGAP6.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ARHGAP6.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ASF1B.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ASF1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ATAD2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ATAD2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ATOH8.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ATOH8.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/AURKA.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/AURKA.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/AURKB.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/AURKB.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/BCL6B.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/BCL6B.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/BUB1B.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/BUB1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CAD.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CAD.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CBLC.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CBLC.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CCNA2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CCNA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CENPF.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CENPF.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CENPI.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CENPI.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CERS6.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CERS6.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CHRDL1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CHRDL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CKS1B.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CKS1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CLU.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CLU.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/COLEC12.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/COLEC12.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CRY2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CRY2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CSRNP1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/CSRNP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DAPK2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DAPK2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DDAH1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DDAH1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DEPDC1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DEPDC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DEPDC1B.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DEPDC1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DLC1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DLC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DNMT3B.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DNMT3B.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DPYSL2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/DPYSL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/E2F1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/E2F1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/E2F8.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/E2F8.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/EBF1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/EBF1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/EDNRB.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/EDNRB.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ELN.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ELN.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ENO1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ENO1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FABP4.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FABP4.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FEN1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FEN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FGF14.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FGF14.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FGF18.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FGF18.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FHL5.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FHL5.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FLT4.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FLT4.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FOXF1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FOXF1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FOXM1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FOXM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FOXP1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FOXP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FRY.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/FRY.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/GMPS.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/GMPS.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/GNAQ.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/GNAQ.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/GTSE1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/GTSE1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HDAC1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HDAC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HDGF.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HDGF.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HIF3A.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HIF3A.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HMGA1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HMGA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HMGB2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HMGB2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HOXA1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HOXA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HSPD1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/HSPD1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ID4.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ID4.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/IHH.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/IHH.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/IQGAP3.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/IQGAP3.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/IQSEC1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/IQSEC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ITGA8.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ITGA8.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ITGA9.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ITGA9.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/KHDRBS2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/KHDRBS2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/KIF13B.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/KIF13B.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/KLF2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/KLF2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/LDB2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/LDB2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/LHX2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/LHX2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/LMO3.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/LMO3.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MAPK4.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MAPK4.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MARCO.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MARCO.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MAZ.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MAZ.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MCM3.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MCM3.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MED10.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MED10.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MKI67.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MKI67.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MXD4.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MXD4.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MYBL2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MYBL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MYC.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MYC.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MYH11.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MYH11.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MYOCD.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/MYOCD.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NDC80.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NDC80.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NFIX.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NFIX.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NMUR1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NMUR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NPR1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NPR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NR2F2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NR2F2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NR5A2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/NR5A2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PA2G4.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PA2G4.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PDE5A.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PDE5A.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/POLE.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/POLE.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PPARG.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PPARG.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PRDM5.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PRDM5.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PSRC1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PSRC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PTH1R.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PTH1R.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PTPRB.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/PTPRB.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RACGAP1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RACGAP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RAD51.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RAD51.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RAMP2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RAMP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RANGAP1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RANGAP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RASL12.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RASL12.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RBL1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RBL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RGN.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RGN.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RHOBTB2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RHOBTB2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RHOJ.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RHOJ.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RUVBL1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RUVBL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RXRG.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/RXRG.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/S1PR1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/S1PR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SOX17.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SOX17.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SPAG5.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SPAG5.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SPATA13.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SPATA13.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SPRY1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SPRY1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SRPK1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/SRPK1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/STARD8.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/STARD8.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/STMN1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/STMN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TAL1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TAL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TBC1D31.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TBC1D31.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TCEAL2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TCEAL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TCF21.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TCF21.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TEK.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TEK.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TFAP4.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TFAP4.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TFG.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TFG.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TGFBR2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TGFBR2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/THOP1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/THOP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/THRA.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/THRA.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TIE1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TIE1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TIMELESS.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TIMELESS.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TLE6.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TLE6.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TNNI2.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TNNI2.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TNXB.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TNXB.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TONSL.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TONSL.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TOP2A.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TOP2A.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TRAF7.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TRAF7.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TRAIP.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TRAIP.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TRIP13.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TRIP13.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TSC22D1.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/TSC22D1.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/UBE2C.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/UBE2C.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ZNF217.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ZNF217.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ZNF366.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ZNF366.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ZWINT.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/ZWINT.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/heats.NA
+    Deleted:    output/TieDIE/input/lusc/TieDIE/node.stats
+    Deleted:    output/TieDIE/input/lusc/TieDIE/node_types.NA
+    Deleted:    output/TieDIE/input/lusc/TieDIE/permuted_scores.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/report.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/score.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/tiedie.cn.sif
+    Deleted:    output/TieDIE/input/lusc/TieDIE/tiedie.cn.sif.txt
+    Deleted:    output/TieDIE/input/lusc/TieDIE/tiedie.sif
+    Deleted:    output/TieDIE/input/lusc/downstream.input
+    Deleted:    output/TieDIE/input/lusc/pathway.sif
+    Deleted:    output/TieDIE/input/lusc/upstream.input
+    Deleted:    output/TieDIE/input/paad/TieDIE/ABLIM3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ABLIM3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ACKR1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ACKR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ACTN2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ACTN2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADAMTS1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADAMTS1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADAP1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADAP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADCY5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADCY5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADGRB3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADGRB3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADGRF1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADGRF1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADH1A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADH1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADIPOQ.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADIPOQ.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADORA1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADORA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADORA2B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADORA2B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADRA2C.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ADRA2C.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/AFAP1L2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/AFAP1L2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/AGRN.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/AGRN.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/AGTR2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/AGTR2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/AJUBA.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/AJUBA.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/AKAP7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/AKAP7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/AMHR2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/AMHR2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ANGPTL4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ANGPTL4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ANXA1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ANXA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ANXA3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ANXA3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ARHGAP11A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ARHGAP11A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ARHGEF15.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ARHGEF15.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ARHGEF16.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ARHGEF16.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ARL14.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ARL14.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ASB5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ASB5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ASCL1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ASCL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ASF1B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ASF1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ASXL3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ASXL3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ATOH8.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ATOH8.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/AURKA.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/AURKA.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BAIAP2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BAIAP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BAIAP2L1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BAIAP2L1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BCAR3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BCAR3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BCL9L.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BCL9L.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BHLHE40.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BHLHE40.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BIRC7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BIRC7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BNIP3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BNIP3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BRCA2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BRCA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/BUB1B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/BUB1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CABP4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CABP4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CAND2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CAND2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CBFA2T3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CBFA2T3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CBX2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CBX2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CBX6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CBX6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CBX7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CBX7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CCKBR.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CCKBR.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CCL16.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CCL16.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CCNA2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CCNA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CCND2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CCND2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CDA.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CDA.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CDK18.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CDK18.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CDKL2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CDKL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CEACAM6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CEACAM6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CELSR2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CELSR2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CENPF.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CENPF.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CENPK.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CENPK.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CERS3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CERS3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CERS4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CERS4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CGB3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CGB3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CGB5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CGB5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CGB8.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CGB8.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CHEK1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CHEK1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CHRDL1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CHRDL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CIDEA.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CIDEA.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CKS1B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CKS1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CLDN4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CLDN4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CLEC1A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CLEC1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CLIC3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CLIC3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CLU.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CLU.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CNGB3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CNGB3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CNTNAP3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CNTNAP3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CORO2A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CORO2A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CRABP2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CRABP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CTNND2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CTNND2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/CX3CR1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/CX3CR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DACH1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DACH1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DAPP1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DAPP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DCLK1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DCLK1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DEPDC1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DEPDC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DEPDC1B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DEPDC1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DIRAS1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DIRAS1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DIRAS2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DIRAS2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DIRAS3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DIRAS3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DKK1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DKK1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DMD.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DMD.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DNMT3B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DNMT3B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DOK4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DOK4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DTNA.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DTNA.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/DUSP4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/DUSP4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/E2F1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/E2F1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/E2F2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/E2F2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/E2F7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/E2F7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/E2F8.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/E2F8.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ECT2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ECT2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/EDA.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/EDA.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/EDAR.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/EDAR.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/EGF.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/EGF.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ENPP2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ENPP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/EPHA2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/EPHA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/EPO.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/EPO.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ERBB2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ERBB2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ERBB4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ERBB4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/EREG.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/EREG.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ERO1A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ERO1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ESRRG.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ESRRG.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ETS2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ETS2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ETV4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ETV4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ETV7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ETV7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/EYA2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/EYA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/EZH2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/EZH2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/F3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/F3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FABP4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FABP4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FEN1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FEN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FGF12.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FGF12.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FGFBP1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FGFBP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FHL2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FHL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FLRT2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FLRT2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FLT3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FLT3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXA1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXD1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXD1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXL1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXM1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXP2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXQ1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FOXQ1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/FZD9.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/FZD9.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GABRB3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GABRB3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GABRG1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GABRG1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GATA2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GATA2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GDF7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GDF7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GFRA3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GFRA3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GHR.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GHR.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GHRL.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GHRL.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GIPC1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GIPC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GLIS3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GLIS3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GLRB.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GLRB.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GNA15.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GNA15.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GNAZ.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GNAZ.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GNG11.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GNG11.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GNG7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GNG7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GPR20.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GPR20.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GPR27.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GPR27.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRB10.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRB10.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRB14.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRB14.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRIA4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRIA4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRIK5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRIK5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRIN1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRIN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRPR.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GRPR.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/GTSE1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/GTSE1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HCAR1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HCAR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HCRTR1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HCRTR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HELLS.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HELLS.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HELZ2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HELZ2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HEYL.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HEYL.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HHEX.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HHEX.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HLF.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HLF.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HMGA1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HMGA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXA11.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXA11.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXA13.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXA13.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXA6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXA6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB13.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB13.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB8.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB8.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB9.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXB9.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXC11.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXC11.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXC4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXC4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXD10.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXD10.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXD11.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HOXD11.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HRH1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HRH1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HSD3B1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HSD3B1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/HUNK.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/HUNK.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ID1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ID1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/IFI27.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/IFI27.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/IL11.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/IL11.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/IL20RB.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/IL20RB.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/IL2RG.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/IL2RG.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/INPP4B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/INPP4B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/INS.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/INS.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/IQGAP3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/IQGAP3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/IRAK2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/IRAK2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/IRX5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/IRX5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/IRX6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/IRX6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ITGA6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ITGA6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ITGB4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ITGB4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ITGB6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ITGB6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/JUP.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/JUP.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/KCNIP2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/KCNIP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/KIF26A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/KIF26A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/KL.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/KL.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/KLF15.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/KLF15.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/KLF5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/KLF5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/KLK6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/KLK6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/KSR1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/KSR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/LBP.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/LBP.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/LGR6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/LGR6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/LHX6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/LHX6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/LIF.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/LIF.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/LMO3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/LMO3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/LMO4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/LMO4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/LMX1B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/LMX1B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/LRP8.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/LRP8.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MAFF.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MAFF.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MAPK10.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MAPK10.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MAPK4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MAPK4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MAPK8IP1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MAPK8IP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MARK1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MARK1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MCF2L.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MCF2L.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MCM2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MCM2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MCM4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MCM4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MCM7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MCM7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MDFI.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MDFI.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MECOM.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MECOM.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MEIS1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MEIS1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MEIS2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MEIS2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MGLL.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MGLL.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MKI67.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MKI67.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MLXIPL.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MLXIPL.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MPP7.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MPP7.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MS4A3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MS4A3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MST1R.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MST1R.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MXD1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MXD1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MYBL2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MYBL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/MYLK2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/MYLK2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NCAM1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NCAM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NET1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NET1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NFIA.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NFIA.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NFIB.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NFIB.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NGFR.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NGFR.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NMUR2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NMUR2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NPHS1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NPHS1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NPY1R.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NPY1R.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NR1I2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NR1I2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NR2E1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NR2E1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NR5A2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NR5A2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NTRK1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NTRK1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NTRK2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NTRK2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/NTSR1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/NTSR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/OLIG1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/OLIG1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/OR8B8.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/OR8B8.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/OVOL1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/OVOL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/OXER1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/OXER1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/P2RX1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/P2RX1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/P2RY1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/P2RY1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/P2RY2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/P2RY2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/P2RY6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/P2RY6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAK3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAK3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAK4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAK4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAK5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAK5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAX2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAX2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAX8.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAX8.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAX9.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PAX9.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PBX1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PBX1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PCSK6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PCSK6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PCSK9.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PCSK9.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDCD4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDCD4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDE3A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDE3A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDE4C.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDE4C.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDE8B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDE8B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDK4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PDK4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PHOX2A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PHOX2A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PHOX2B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PHOX2B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PITX1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PITX1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PKNOX2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PKNOX2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLAGL1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLAGL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLAT.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLAT.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLCZ1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLCZ1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLEK2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLEK2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLXNA1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PLXNA1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/POMC.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/POMC.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/POU5F1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/POU5F1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/POU6F2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/POU6F2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PPARG.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PPARG.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PPP1R13L.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PPP1R13L.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PPP1R1C.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PPP1R1C.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PRDM8.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PRDM8.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PRKAR2B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PRKAR2B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PROX1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PROX1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PSMC3IP.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PSMC3IP.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PSRC1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PSRC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTF1A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTF1A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTGFR.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTGFR.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTH2R.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTH2R.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTPRR.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTPRR.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTPRU.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTPRU.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTTG1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/PTTG1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RAB25.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RAB25.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RAB39B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RAB39B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RAB3C.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RAB3C.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RACGAP1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RACGAP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RAD51.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RAD51.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RADIL.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RADIL.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RARG.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RARG.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RASAL1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RASAL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RASD1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RASD1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RASL10B.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RASL10B.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RBPJL.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RBPJL.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RELN.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RELN.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RERG.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RERG.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RET.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RET.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RFX4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RFX4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RHOF.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RHOF.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RIPPLY1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RIPPLY1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RND2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RND2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ROPN1L.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ROPN1L.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RTKN2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RTKN2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/RTN1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/RTN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/S100A10.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/S100A10.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/S100A6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/S100A6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SALL2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SALL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SCML2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SCML2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SDCBP2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SDCBP2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SEMA6A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SEMA6A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SFN.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SFN.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SGSM1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SGSM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SHH.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SHH.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SIM2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SIM2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SIRT4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SIRT4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SIX3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SIX3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SLC1A2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SLC1A2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SLC9A1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SLC9A1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SMAD6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SMAD6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SMARCD3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SMARCD3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SMOC1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SMOC1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SOX17.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SOX17.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SOX21.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SOX21.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SOX4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SOX4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SOX6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SOX6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SPAG5.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SPAG5.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SPDEF.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SPDEF.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SPRY4.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SPRY4.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SRC.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SRC.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/SSTR3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/SSTR3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ST18.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ST18.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/STK26.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/STK26.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/STK39.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/STK39.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TACR1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TACR1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TACSTD2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TACSTD2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TAL1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TAL1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TBC1D2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TBC1D2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TBX6.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TBX6.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TCEAL2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TCEAL2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TCF19.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TCF19.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TEF.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TEF.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TFAP2A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TFAP2A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TGFBR3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TGFBR3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TIAM1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TIAM1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TLE2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TLE2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TNNI2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TNNI2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TNXB.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TNXB.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TONSL.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TONSL.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TOP2A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TOP2A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TP73.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TP73.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRAK1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRAK1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRIM16.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRIM16.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRIM29.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRIM29.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRIM63.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRIM63.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRIP13.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TRIP13.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TSPO.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TSPO.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/TTK.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/TTK.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/UBE2C.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/UBE2C.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/UHRF1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/UHRF1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/VDR.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/VDR.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/VIP.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/VIP.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/VIPR2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/VIPR2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/WNK2.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/WNK2.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/WNK3.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/WNK3.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/XBP1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/XBP1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZBTB16.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZBTB16.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZC3H12A.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZC3H12A.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZNF185.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZNF185.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZSCAN1.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZSCAN1.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZWINT.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/ZWINT.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/heats.NA
+    Deleted:    output/TieDIE/input/paad/TieDIE/node.stats
+    Deleted:    output/TieDIE/input/paad/TieDIE/node_types.NA
+    Deleted:    output/TieDIE/input/paad/TieDIE/permuted_scores.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/report.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/score.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/tiedie.cn.sif
+    Deleted:    output/TieDIE/input/paad/TieDIE/tiedie.cn.sif.txt
+    Deleted:    output/TieDIE/input/paad/TieDIE/tiedie.sif
+    Deleted:    output/TieDIE/input/paad/downstream.input
+    Deleted:    output/TieDIE/input/paad/pathway.sif
+    Deleted:    output/TieDIE/input/paad/upstream.input
+    Deleted:    output/viper/expr_processed/hnsc.RDS
+    Deleted:    output/viper/expr_processed/kirc.RDS
+    Deleted:    output/viper/expr_processed/luad.RDS
+    Deleted:    output/viper/expr_processed/lusc.RDS
+    Deleted:    output/viper/expr_processed/paad.RDS
+    Deleted:    output/viper/exprs/hnsc_normal.RDS
+    Deleted:    output/viper/exprs/hnsc_tumor.RDS
+    Deleted:    output/viper/exprs/kirc_normal.RDS
+    Deleted:    output/viper/exprs/kirc_tumor.RDS
+    Deleted:    output/viper/exprs/luad_normal.RDS
+    Deleted:    output/viper/exprs/luad_tumor.RDS
+    Deleted:    output/viper/exprs/lusc_normal.RDS
+    Deleted:    output/viper/exprs/lusc_tumor.RDS
+    Deleted:    output/viper/exprs/paad_normal.RDS
+    Deleted:    output/viper/exprs/paad_tumor.RDS
+    Deleted:    output/viper/regul_object/hnsc.RDS
+    Deleted:    output/viper/regul_object/kirc.RDS
+    Deleted:    output/viper/regul_object/luad.RDS
+    Deleted:    output/viper/regul_object/lusc.RDS
+    Deleted:    output/viper/regul_object/paad.RDS
+    Deleted:    output/viper/regulon/regulonblca.adj
+    Deleted:    output/viper/regulon/regulonblca_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonbrca.adj
+    Deleted:    output/viper/regulon/regulonbrca_SYMBOL.adj
+    Deleted:    output/viper/regulon/reguloncesc.adj
+    Deleted:    output/viper/regulon/reguloncesc_SYMBOL.adj
+    Deleted:    output/viper/regulon/reguloncoad.adj
+    Deleted:    output/viper/regulon/reguloncoad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonesca.adj
+    Deleted:    output/viper/regulon/regulonesca_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulongbm.adj
+    Deleted:    output/viper/regulon/regulongbm_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonhnsc.adj
+    Deleted:    output/viper/regulon/regulonhnsc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonkirc.adj
+    Deleted:    output/viper/regulon/regulonkirc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonkirp.adj
+    Deleted:    output/viper/regulon/regulonkirp_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonlaml.adj
+    Deleted:    output/viper/regulon/regulonlaml_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonlihc.adj
+    Deleted:    output/viper/regulon/regulonlihc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonluad.adj
+    Deleted:    output/viper/regulon/regulonluad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonlusc.adj
+    Deleted:    output/viper/regulon/regulonlusc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonnet.adj
+    Deleted:    output/viper/regulon/regulonnet_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonov.adj
+    Deleted:    output/viper/regulon/regulonov_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonpaad.adj
+    Deleted:    output/viper/regulon/regulonpaad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonpcpg.adj
+    Deleted:    output/viper/regulon/regulonpcpg_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonprad.adj
+    Deleted:    output/viper/regulon/regulonprad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonread.adj
+    Deleted:    output/viper/regulon/regulonread_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonsarc.adj
+    Deleted:    output/viper/regulon/regulonsarc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonstad.adj
+    Deleted:    output/viper/regulon/regulonstad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulontgct.adj
+    Deleted:    output/viper/regulon/regulontgct_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonthca.adj
+    Deleted:    output/viper/regulon/regulonthca_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonthym.adj
+    Deleted:    output/viper/regulon/regulonthym_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonucec.adj
+    Deleted:    output/viper/regulon/regulonucec_SYMBOL.adj
+
+Staged changes:
+    Modified:   analysis/viper_1.Rmd
+    Modified:   analysis/viper_2.Rmd
+    Modified:   analysis/viper_3.Rmd
+    New:        analysis/viper_4.Rmd
+    New:        analysis/viper_5.Rmd
 
 </code></pre>
 <p>
@@ -667,6 +2272,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/6df58df18db9e967fcca20b4144e77689485fbb4/docs/viper_2.html" target="_blank">6df58df</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-24
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -778,33 +2400,163 @@ Publish files
 </div>
 <div id="load-packages" class="section level1">
 <h1>Load packages</h1>
-<pre class="r"><code>library(viper)</code></pre>
+<pre class="r"><code>library(viper)
+library(aracne.networks)
+library(dplyr)
+library(plyr)
+library(stringr)
+library(Biobase)
+library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
+dir.create(&quot;output/viper/exprs/&quot;,showWarnings = F)</code></pre>
 </div>
-<div id="generating-the-regulon-object" class="section level1">
-<h1>Generating the regulon object</h1>
-<pre class="r"><code>set.seed(0)
-for (ca in c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;paad&quot;)) {
-    adjfile &lt;- paste(&quot;/Users/zhenzuo/PRO/PPP/output/viper/regulon/regulon&quot;, ca, &quot;_SYMBOL.adj&quot;,
-        sep = &quot;&quot;)
-    expr_normal &lt;- readRDS(paste(&quot;output/viper/exprs/&quot;, ca, &quot;_normal.RDS&quot;,
-        sep = &quot;&quot;))
-    expr_tumor &lt;- readRDS(paste(&quot;output/viper/exprs/&quot;, ca, &quot;_tumor.RDS&quot;,
-        sep = &quot;&quot;))
-    expr &lt;- merge(expr_normal, expr_tumor, by = &quot;row.names&quot;, all = FALSE)
-    rownames(expr) &lt;- expr$Row.names
-    expr$Row.names &lt;- NULL
-
-    expr &lt;- expr[rowSums(expr) &gt; 0, ]
-    pattern &lt;- &quot;[^A-Za-z0-9 ]&quot;
-
-    expr &lt;- expr[!grepl(pattern, rownames(expr)), ]
-    expr &lt;- expr[apply(expr, 1, var) &gt;= 0.3, ]
-    signature &lt;- c(rep(&quot;normal&quot;, dim(expr_normal)[2]), rep(&quot;tumor&quot;, dim(expr_tumor)[2]))
-    dset &lt;- ExpressionSet(assayData = as.matrix(expr))
-    dset$description &lt;- signature
-    regul &lt;- aracne2regulon(adjfile, dset, verbose = FALSE)
-    saveRDS(dset, paste(&quot;output/viper/expr_processed/&quot;, ca, &quot;.RDS&quot;, sep = &quot;&quot;))
-    saveRDS(regul, paste(&quot;output/viper/regul_object/&quot;, ca, &quot;.RDS&quot;, sep = &quot;&quot;))
+<div id="extract-and-process-gene-expression-signatures"
+class="section level1">
+<h1>Extract and process gene expression signatures</h1>
+<div id="rna-seq-and-network-pairs" class="section level2">
+<h2>RNA-seq and network pairs</h2>
+<pre class="r"><code>df &lt;- read.csv(&quot;data/viper/omics_regulon_pairs.csv&quot;)
+knitr::kable(df)</code></pre>
+<table>
+<colgroup>
+<col width="3%" />
+<col width="22%" />
+<col width="46%" />
+<col width="3%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Lable</th>
+<th align="left">RNA</th>
+<th align="left">phos</th>
+<th align="left">regulon</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">kirc_normal</td>
+<td
+align="left">data/viper/RNA_BCM_v1/ccRCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/CCRCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt</td>
+<td align="left">regulonkirc</td>
+<td align="left">Human Kidney Renal Clear Cell Carcinoma
+context-specific ARACNe interactome</td>
+</tr>
+<tr class="even">
+<td align="left">kirc_tumor</td>
+<td
+align="left">data/viper/RNA_BCM_v1/ccRCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/CCRCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt</td>
+<td align="left">regulonkirc</td>
+<td align="left">Human Kidney Renal Clear Cell Carcinoma
+context-specific ARACNe interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">hnsc_normal</td>
+<td
+align="left">data/viper/RNA_BCM_v1/HNSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/HNSCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt</td>
+<td align="left">regulonhnsc</td>
+<td align="left">Human Head and Neck Squamous Carcinoma context-specific
+ARACNe interactome</td>
+</tr>
+<tr class="even">
+<td align="left">hnsc_tumor</td>
+<td
+align="left">data/viper/RNA_BCM_v1/HNSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/HNSCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt</td>
+<td align="left">regulonhnsc</td>
+<td align="left">Human Head and Neck Squamous Carcinoma context-specific
+ARACNe interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">lusc_normal</td>
+<td
+align="left">data/viper/RNA_BCM_v1/LSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LSCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt</td>
+<td align="left">regulonlusc</td>
+<td align="left">Human Lung Squamous Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">lusc_tumor</td>
+<td
+align="left">data/viper/RNA_BCM_v1/LSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LSCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt</td>
+<td align="left">regulonlusc</td>
+<td align="left">Human Lung Squamous Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">luad_normal</td>
+<td
+align="left">data/viper/RNA_BCM_v1/LUAD_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LUAD_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt</td>
+<td align="left">regulonluad</td>
+<td align="left">Human Lung Adenocarcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">luad_tumor</td>
+<td
+align="left">data/viper/RNA_BCM_v1/LUAD_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LUAD_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt</td>
+<td align="left">regulonluad</td>
+<td align="left">Human Lung Adenocarcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="odd">
+<td align="left">paad_normal</td>
+<td
+align="left">data/viper/RNA_BCM_v1/PDAC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/PDAC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt</td>
+<td align="left">regulonpaad</td>
+<td align="left">Human Pancreas Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+<tr class="even">
+<td align="left">paad_tumor</td>
+<td
+align="left">data/viper/RNA_BCM_v1/PDAC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt</td>
+<td
+align="left">/Users/zhenzuo/PRO/PPP/data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/PDAC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt</td>
+<td align="left">regulonpaad</td>
+<td align="left">Human Pancreas Carcinoma context-specific ARACNe
+interactome</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="preprocess" class="section level2">
+<h2>Preprocess</h2>
+<pre class="r"><code>for (i in 1:nrow(df)) {
+    exprsFile &lt;- df$RNA[i]
+    exprs &lt;- as.matrix(read.table(exprsFile, header = TRUE, sep = &quot;\t&quot;,
+        row.names = 1, as.is = TRUE))
+    rownames(exprs) &lt;- sub(&quot;\\..*$&quot;, &quot;&quot;, rownames(exprs))
+    geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
+        keytype = &quot;GENEID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
+    rownames(exprs) &lt;- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+    exprs &lt;- exprs[!sapply(rownames(exprs), function(x) startsWith(x, &quot;ENSG&quot;)),
+        ]
+    # Identify duplicated row names
+    duplicated_rows &lt;- duplicated(rownames(exprs))
+    # Remove rows with duplicated row names
+    cleaned_exprs &lt;- exprs[!duplicated_rows, , drop = FALSE]
+    saveRDS(cleaned_exprs, paste(&quot;output/viper/exprs/&quot;, df$Lable[i], &quot;.RDS&quot;, sep = &quot;&quot;))
 }</code></pre>
 <br>
 <p>
@@ -830,32 +2582,74 @@ time zone: America/New_York
 tzcode source: internal
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
 
 other attached packages:
-[1] viper_1.38.0        Biobase_2.64.0      BiocGenerics_0.50.0
-[4] workflowr_1.7.1    
+ [1] doParallel_1.0.17         iterators_1.0.14         
+ [3] foreach_1.5.2             EnsDb.Hsapiens.v86_2.99.0
+ [5] ensembldb_2.28.0          AnnotationFilter_1.28.0  
+ [7] GenomicFeatures_1.56.0    AnnotationDbi_1.66.0     
+ [9] GenomicRanges_1.56.0      GenomeInfoDb_1.40.0      
+[11] IRanges_2.38.0            S4Vectors_0.42.0         
+[13] stringr_1.5.1             plyr_1.8.9               
+[15] dplyr_1.1.4               aracne.networks_1.30.0   
+[17] viper_1.38.0              Biobase_2.64.0           
+[19] BiocGenerics_0.50.0      
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.5       xfun_0.44          bslib_0.7.0        ggplot2_3.5.1     
- [5] htmlwidgets_1.6.4  processx_3.8.4     lattice_0.22-6     callr_3.7.6       
- [9] vctrs_0.6.5        tools_4.4.0        ps_1.7.6           generics_0.1.3    
-[13] parallel_4.4.0     tibble_3.2.1       proxy_0.4-27       fansi_1.0.6       
-[17] highr_0.10         pkgconfig_2.0.3    Matrix_1.7-0       KernSmooth_2.23-24
-[21] data.table_1.15.4  lifecycle_1.0.4    compiler_4.4.0     stringr_1.5.1     
-[25] git2r_0.33.0       mixtools_2.0.0     munsell_0.5.1      getPass_0.2-4     
-[29] httpuv_1.6.15      htmltools_0.5.8.1  class_7.3-22       sass_0.4.9        
-[33] yaml_2.3.8         lazyeval_0.2.2     plotly_4.10.4      later_1.3.2       
-[37] pillar_1.9.0       jquerylib_0.1.4    whisker_0.4.1      tidyr_1.3.1       
-[41] MASS_7.3-60.2      cachem_1.1.0       nlme_3.1-164       tidyselect_1.2.1  
-[45] digest_0.6.35      stringi_1.8.4      kernlab_0.9-32     dplyr_1.1.4       
-[49] purrr_1.0.2        splines_4.4.0      rprojroot_2.0.4    fastmap_1.2.0     
-[53] grid_4.4.0         colorspace_2.1-0   cli_3.6.2          magrittr_2.0.3    
-[57] survival_3.6-4     utf8_1.2.4         e1071_1.7-14       scales_1.3.0      
-[61] promises_1.3.0     segmented_2.1-0    rmarkdown_2.27     httr_1.4.7        
-[65] evaluate_0.23      knitr_1.46         viridisLite_0.4.2  rlang_1.1.3       
-[69] Rcpp_1.0.12        glue_1.7.0         rstudioapi_0.16.0  jsonlite_1.8.8    
-[73] R6_2.5.1           fs_1.6.4          </code></pre>
+  [1] bitops_1.0-7                DBI_1.2.2                  
+  [3] rlang_1.1.3                 magrittr_2.0.3             
+  [5] git2r_0.33.0                matrixStats_1.3.0          
+  [7] e1071_1.7-14                compiler_4.4.0             
+  [9] RSQLite_2.3.6               png_0.1-8                  
+ [11] vctrs_0.6.5                 ProtGenerics_1.36.0        
+ [13] pkgconfig_2.0.3             crayon_1.5.2               
+ [15] fastmap_1.2.0               XVector_0.44.0             
+ [17] utf8_1.2.4                  Rsamtools_2.20.0           
+ [19] promises_1.3.0              rmarkdown_2.27             
+ [21] UCSC.utils_1.0.0            purrr_1.0.2                
+ [23] bit_4.0.5                   xfun_0.44                  
+ [25] zlibbioc_1.50.0             cachem_1.1.0               
+ [27] jsonlite_1.8.8              blob_1.2.4                 
+ [29] later_1.3.2                 DelayedArray_0.30.0        
+ [31] BiocParallel_1.38.0         R6_2.5.1                   
+ [33] bslib_0.7.0                 stringi_1.8.4              
+ [35] rtracklayer_1.64.0          jquerylib_0.1.4            
+ [37] SummarizedExperiment_1.34.0 Rcpp_1.0.12                
+ [39] knitr_1.46                  mixtools_2.0.0             
+ [41] httpuv_1.6.15               Matrix_1.7-0               
+ [43] splines_4.4.0               tidyselect_1.2.1           
+ [45] abind_1.4-5                 rstudioapi_0.16.0          
+ [47] yaml_2.3.8                  codetools_0.2-20           
+ [49] curl_5.2.1                  lattice_0.22-6             
+ [51] tibble_3.2.1                KEGGREST_1.44.0            
+ [53] evaluate_0.23               survival_3.6-4             
+ [55] proxy_0.4-27                kernlab_0.9-32             
+ [57] Biostrings_2.72.0           pillar_1.9.0               
+ [59] MatrixGenerics_1.16.0       whisker_0.4.1              
+ [61] KernSmooth_2.23-24          plotly_4.10.4              
+ [63] generics_0.1.3              rprojroot_2.0.4            
+ [65] RCurl_1.98-1.14             ggplot2_3.5.1              
+ [67] munsell_0.5.1               scales_1.3.0               
+ [69] class_7.3-22                glue_1.7.0                 
+ [71] lazyeval_0.2.2              tools_4.4.0                
+ [73] BiocIO_1.14.0               data.table_1.15.4          
+ [75] GenomicAlignments_1.40.0    fs_1.6.4                   
+ [77] XML_3.99-0.16.1             grid_4.4.0                 
+ [79] tidyr_1.3.1                 colorspace_2.1-0           
+ [81] nlme_3.1-164                GenomeInfoDbData_1.2.12    
+ [83] restfulr_0.0.15             cli_3.6.2                  
+ [85] workflowr_1.7.1             fansi_1.0.6                
+ [87] S4Arrays_1.4.1              segmented_2.1-0            
+ [89] viridisLite_0.4.2           gtable_0.3.5               
+ [91] sass_0.4.9                  digest_0.6.35              
+ [93] SparseArray_1.4.1           rjson_0.2.21               
+ [95] htmlwidgets_1.6.4           memoise_2.0.1              
+ [97] htmltools_0.5.8.1           lifecycle_1.0.4            
+ [99] httr_1.4.7                  bit64_4.0.5                
+[101] MASS_7.3-60.2              </code></pre>
+</div>
 </div>
 </div>
 

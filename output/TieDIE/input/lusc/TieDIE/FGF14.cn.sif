@@ -1,9 +1,0 @@
-FGF14	controls-state-change-of	ACTN2
-ITGA9	in-complex-with	TNXB
-ITGA8	in-complex-with	TNXB
-FGF14	in-complex-with	FGF18
-ACTN2	in-complex-with	ITGA8
-ITGA8	in-complex-with	ITGA9
-ACTN2	in-complex-with	ITGA9
-ACTN2	controls-state-change-of	MYH11
-ACTN2	in-complex-with	TNNI2

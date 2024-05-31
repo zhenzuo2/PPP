@@ -1,6 +1,0 @@
-RND2	interacts-with	SLC9A1
-SLC9A1	controls-state-change-of	GRIN1
-SLC9A1	controls-state-change-of	RELN
-SLC9A1	controls-state-change-of	ACTN2
-PDE3A	interacts-with	RND2
-SLC9A1	catalysis-precedes	SLC1A2

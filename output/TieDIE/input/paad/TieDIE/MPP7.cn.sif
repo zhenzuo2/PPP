@@ -1,9 +1,0 @@
-SLC9A1	controls-state-change-of	TOP2A
-RHOF	interacts-with	SLC9A1
-SLC9A1	controls-state-change-of	CHEK1
-RND2	interacts-with	SLC9A1
-SLC9A1	controls-state-change-of	E2F1
-MPP7	interacts-with	RHOF
-MPP7	interacts-with	RND2
-SLC9A1	controls-state-change-of	TP73
-SLC9A1	controls-state-change-of	CCNA2

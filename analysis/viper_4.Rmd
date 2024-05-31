@@ -1,0 +1,76 @@
+---
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+```
+
+# Generating the regulon object for exprs
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+dir.create("output/viper/expr_processed/",showWarnings = F)
+dir.create("output/viper/expr_regul_object/",showWarnings = F)
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("/Users/zhenzuo/PRO/PPP/output/viper/regulon/regulon", ca, "_SYMBOL.adj",
+        sep = "")
+    expr_normal <- readRDS(paste("output/viper/exprs/", ca, "_normal.RDS",
+        sep = ""))
+    expr_tumor <- readRDS(paste("output/viper/exprs/", ca, "_tumor.RDS",
+        sep = ""))
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr) > 0, ]
+    pattern <- "[^A-Za-z0-9 ]"
+
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    expr <- expr[apply(expr, 1, var) >= 0.2, ]
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/viper/expr_processed/", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/viper/expr_regul_object/", ca, ".RDS", sep = ""))
+}
+```
+
+# Generating the regulon object for phos
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+dir.create("output/viper/phos_processed/",showWarnings = F)
+dir.create("output/viper/phos_regul_object/",showWarnings = F)
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("/Users/zhenzuo/PRO/PPP/output/viper/regulon/regulon", ca, "_SYMBOL.adj",
+        sep = "")
+    expr_normal <- readRDS(paste("output/viper/phos/", ca, "_normal.RDS",
+        sep = ""))
+    expr_tumor <- readRDS(paste("output/viper/phos/", ca, "_tumor.RDS",
+        sep = ""))
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr) > 0, ]
+    pattern <- "[^A-Za-z0-9 ]"
+
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    expr <- expr[apply(expr, 1, var) >= 0.3, ]
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/viper/phos_processed/", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/viper/phos_regul_object/", ca, ".RDS", sep = ""))
+}
+```

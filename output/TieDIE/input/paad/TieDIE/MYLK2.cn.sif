@@ -1,6 +1,0 @@
-SFN	interacts-with	TIAM1
-MYLK2	interacts-with	SFN
-TRIM63	in-complex-with	UBE2C
-MYLK2	interacts-with	TRIM63
-SFN	interacts-with	ZBTB16
-UBE2C	in-complex-with	ZBTB16

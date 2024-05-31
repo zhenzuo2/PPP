@@ -1,7 +1,0 @@
-MCC	interacts-with	MCM6
-MIF	controls-expression-of	CBX6
-MCC	interacts-with	MCM7
-MIF	controls-expression-of	GPC3
-MCM7	interacts-with	MIF
-MIF	controls-expression-of	LHX6
-MCM6	interacts-with	MIF

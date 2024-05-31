@@ -1,9 +1,0 @@
-EPHA2	interacts-with	TIAM1
-EDA	in-complex-with	EDAR
-EDAR	interacts-with	EPHA2
-EPHA2	interacts-with	RND2
-EPHA2	interacts-with	NTRK1
-EPHA2	in-complex-with	TIAM1
-EDA	interacts-with	EDAR
-EPHA2	interacts-with	NTRK2
-EPHA2	in-complex-with	RND2

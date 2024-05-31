@@ -1,5 +1,5 @@
 ---
-title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)"
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (Preparing Phosphopeptides Data)"
 output:
   workflowr::wflow_html:
     toc: true
@@ -26,89 +26,29 @@ library(Biobase)
 library(EnsDb.Hsapiens.v86)
 library(foreach)
 library(doParallel)
+dir.create("output/viper/",showWarnings = F)
+dir.create("output/viper/regulon/",showWarnings = F)
+dir.create("output/viper/phos/",showWarnings = F)
 ```
 
-# Extract context-specific networks
-ARACNe-AP was run on RNA-Seq datasets normalized using Variance-Stabilizing Transformation. The raw data was downloaded on April 15th, 2015 from the TCGA official website.
-
-## Extract ARACNe-inferred gene networks from TCGA tumor datasets.
-```{r}
-items <- data(package="aracne.networks")$results[, "Item"]
-print(items)
-```
-
-```{r}
-df <- read.csv("data/viper/aracne.networks.csv")
-knitr::kable(df)
-```
-
-## Process network and save as adj files
-Export network to adj files
-```{r message=FALSE, warning=FALSE}
-# Set up parallel backend
-registerDoParallel(10)
-
-# Loop through items in parallel
-foreach(item = items) %dopar% {
-    if (!file.exists(paste("output/viper/regulon/", item, ".adj", sep = ""))) {
-        data <- get(item)
-        write.regulon(data, file = paste("output/viper/regulon/", item, ".adj", sep = ""))
-    }
-}
-
-```
-
-Convert Entrez Gene ids to SYMBOL.
-```{r}
-for (item in items) {
-    if (!file.exists(paste("output/viper/regulon/", item, "_SYMBOL.adj", sep = ""))) {
-        df <- read.csv(paste("output/viper/regulon/", item, ".adj", sep = ""),
-            sep = "\t")
-
-        geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Regulator),
-            keytype = "ENTREZID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
-        df$Regulator <- plyr::mapvalues(df$Regulator, from = geneID$ENTREZID,
-            to = geneID$SYMBOL, warn_missing = FALSE)
-
-        geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Target),
-            keytype = "ENTREZID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
-        df$Target <- plyr::mapvalues(df$Target, from = geneID$ENTREZID,
-            to = geneID$SYMBOL, warn_missing = FALSE)
-
-        can_be_integer <- function(x) {
-            suppressWarnings(!is.na(as.integer(x)))
-        }
-        f1 <- !sapply(df$Regulator, can_be_integer)
-        f2 <- !sapply(df$Target, can_be_integer)
-        df <- df[f1 & f2, ]
-        
-        # Group by Regulator and concatenate elements of each group into strings
-       df$temp <- paste(df$Target,df$MoA, sep="\t")
-      result <- aggregate(temp ~ Regulator, data = df, FUN = function(x) paste(x, collapse = "\t"))
-        # Print the result
-        file <- file(paste("output/viper/regulon/", item, "_SYMBOL.adj",
-            sep = ""))
-        writeLines(paste(result$Regulator,result$temp,sep = "\t"),file)
-        close(file)
-    }
-}
-```
-
-# Extract and process gene expression signatures
+# Extract and process phosphopeptides data
 
 ##  RNA-seq and network pairs
 ```{r}
-df <- read.csv("data/viper/RNA_regulon_pairs.csv")
+df <- read.csv("data/viper/omics_regulon_pairs.csv")
 knitr::kable(df)
 ```
 
 ## Preprocess
 ```{r}
 for (i in 1:nrow(df)) {
-    exprsFile <- df$RNA[i]
-    adjfile <- paste("output/viper/regulon/", df$regulon[1], "_SYMBOL.adj", sep = "")
-    exprs <- as.matrix(read.table(exprsFile, header = TRUE, sep = "\t",
-        row.names = 1, as.is = TRUE))
+    exprsFile <- df$phos[i]
+    exprs <- read.table(exprsFile, header = TRUE, sep = "\t",
+        row.names = 1, as.is = TRUE)
+    split_rownames <- strsplit(rownames(exprs), "\\|")
+    split_rownames_df <- data.frame(t(data.frame(split_rownames)))
+    colnames(split_rownames_df) <- c("ENSG", "ENSP", "S","Seq","Index")
+    exprs <- exprs[!duplicated(split_rownames_df$ENSG),]
     rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
     geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
         keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
@@ -120,22 +60,6 @@ for (i in 1:nrow(df)) {
     duplicated_rows <- duplicated(rownames(exprs))
     # Remove rows with duplicated row names
     cleaned_exprs <- exprs[!duplicated_rows, , drop = FALSE]
-    saveRDS(cleaned_exprs, paste("output/viper/exprs/", df$Lable[i], ".RDS", sep = ""))
+    saveRDS(cleaned_exprs, paste("output/viper/phos/", df$Lable[i], ".RDS", sep = ""))
 }
 ```
-
-
-```{r}
-# Sample dataframe
-df <- data.frame(column1 = c("A", "A", "B", "B", "B"),
-                 column2 = c(1, 2, 3, 4, 5))
-
-# Group by column1 and concatenate column2 values
-result <- aggregate(column2 ~ column1, data = df, FUN = function(x) paste(x, collapse = ","))
-
-# View the result
-print(result)
-
-
-```
-

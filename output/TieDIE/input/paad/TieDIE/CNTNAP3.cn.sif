@@ -1,7 +1,0 @@
-RHOF	interacts-with	SLC9A1
-CNTNAP3	interacts-with	PLXNA1
-PAK3	in-complex-with	SRC
-PLXNA1	interacts-with	RHOF
-PAK3	controls-state-change-of	JUP
-PLXNA1	controls-state-change-of	PAK3
-PAK3	in-complex-with	PLXNA1

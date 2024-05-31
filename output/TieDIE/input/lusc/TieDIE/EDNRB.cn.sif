@@ -1,5 +1,0 @@
-EDNRB	in-complex-with	GNAQ
-GNAQ	interacts-with	S1PR1
-GNAQ	interacts-with	IQSEC1
-EDNRB	controls-state-change-of	GNAQ
-GNAQ	in-complex-with	NMUR1

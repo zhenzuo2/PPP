@@ -1,4 +1,0 @@
-DIRAS1	interacts-with	UNC13A
-RIPPLY1	interacts-with	TLE2
-DIRAS2	interacts-with	RIPPLY1
-DIRAS1	interacts-with	DIRAS2

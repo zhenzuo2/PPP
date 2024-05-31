@@ -1,5 +1,0 @@
-POLE	in-complex-with	TOP2A
-POLE	interacts-with	TOP2A
-POLE	interacts-with	TRAIP
-POLE	controls-state-change-of	RAD51
-TRAIP	in-complex-with	UBE2C

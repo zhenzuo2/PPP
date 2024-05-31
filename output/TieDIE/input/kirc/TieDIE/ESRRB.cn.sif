@@ -1,7 +1,0 @@
-ESRRG	interacts-with	NR0B2
-ESRRB	interacts-with	ESRRG
-NEK6	interacts-with	PRDM16
-ESRRB	interacts-with	HACD3
-HACD3	interacts-with	RNF43
-HACD3	interacts-with	NEK6
-NEK6	interacts-with	PAK6

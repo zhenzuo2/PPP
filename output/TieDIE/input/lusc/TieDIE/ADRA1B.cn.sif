@@ -1,7 +1,0 @@
-ADRA1B	interacts-with	TSC22D1
-GNAQ	in-complex-with	NMUR1
-ADRA1B	controls-state-change-of	MARCO
-ADRA1B	in-complex-with	GNAQ
-GNAQ	interacts-with	IQSEC1
-ADRA1B	interacts-with	GNAQ
-GNAQ	interacts-with	S1PR1

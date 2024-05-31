@@ -1,4 +1,0 @@
-BID	interacts-with	CASP1
-IRF7	controls-expression-of	ANGPTL4
-ANGPTL4	controls-state-change-of	BID
-IRF7	interacts-with	PML

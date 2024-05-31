@@ -1,7 +1,0 @@
-TTK	controls-state-change-of	CHEK2
-NDC80	interacts-with	RUNX1
-RUNX1	controls-expression-of	SHOX2
-TTK	controls-phosphorylation-of	CHEK2
-CENPF	in-complex-with	NDC80
-NDC80	interacts-with	TOP1
-NDC80	interacts-with	TTK

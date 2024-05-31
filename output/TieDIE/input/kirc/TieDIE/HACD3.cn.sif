@@ -1,9 +1,0 @@
-IFI16	interacts-with	PRDX4
-PML	in-complex-with	TFAP2B
-NEK6	interacts-with	PRDM16
-IFI16	interacts-with	PML
-HACD3	interacts-with	RNF43
-HACD3	interacts-with	IFI16
-HACD3	interacts-with	NEK6
-PRDX4	interacts-with	RNF43
-NEK6	interacts-with	PAK6

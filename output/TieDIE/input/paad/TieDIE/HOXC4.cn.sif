@@ -1,7 +1,0 @@
-LMO3	interacts-with	MDFI
-MDFI	interacts-with	SLC9A1
-MDFI	interacts-with	TP73
-MDFI	interacts-with	PITX1
-POU6F2	interacts-with	TBX6
-LMO3	interacts-with	POU6F2
-HOXC4	interacts-with	LMO3

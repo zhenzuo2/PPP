@@ -1,5 +1,0 @@
-0.980952380952	of source nodes103 out of 105
-0.981481481481	of target nodes106 out of 108
-And 0 connecting nodes
-Compactness Score:0.981216931217
-P-value: 1.0 (with 1000 random permutations)

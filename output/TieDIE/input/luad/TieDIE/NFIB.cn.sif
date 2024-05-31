@@ -1,8 +1,0 @@
-SMARCA2	interacts-with	SOX17
-SMARCA2	in-complex-with	TCF7L1
-NFIB	controls-state-change-of	POLR3G
-SOX17	in-complex-with	TCF7L1
-NFIB	interacts-with	SOX7
-SMARCA2	interacts-with	SOX7
-NFIB	interacts-with	SOX17
-NFIB	interacts-with	SMARCA2

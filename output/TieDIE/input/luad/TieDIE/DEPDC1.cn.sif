@@ -1,9 +1,0 @@
-FOXM1	interacts-with	MYBL2
-FOXM1	controls-expression-of	CENPF
-FOXM1	in-complex-with	ONECUT1
-CENPF	in-complex-with	NDC80
-FOXM1	controls-expression-of	ONECUT1
-ONECUT1	controls-expression-of	CBX3
-FOXM1	in-complex-with	MYBL2
-DEPDC1	interacts-with	FOXM1
-ONECUT1	controls-expression-of	RUNX1

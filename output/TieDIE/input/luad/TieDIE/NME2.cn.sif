@@ -1,5 +1,0 @@
-ADH1A	catalysis-precedes	NME2
-ONECUT1	controls-expression-of	RUNX1
-NME2	catalysis-precedes	ADH1A
-ONECUT1	controls-expression-of	CBX3
-ADH1A	interacts-with	ONECUT1

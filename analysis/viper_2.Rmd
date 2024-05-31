@@ -1,5 +1,5 @@
 ---
-title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)"
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (Preparing Gene Expression Data)"
 output:
   workflowr::wflow_html:
     toc: true
@@ -13,32 +13,42 @@ editor_options:
 # Load packages
 ```{r message=FALSE, warning=FALSE}
 library(viper)
+library(aracne.networks)
+library(dplyr)
+library(plyr)
+library(stringr)
+library(Biobase)
+library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
+dir.create("output/viper/exprs/",showWarnings = F)
 ```
 
-# Generating the regulon object
-```{r eval=FALSE, include=TRUE}
-set.seed(0)
-for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
-    adjfile <- paste("/Users/zhenzuo/PRO/PPP/output/viper/regulon/regulon", ca, "_SYMBOL.adj",
-        sep = "")
-    expr_normal <- readRDS(paste("output/viper/exprs/", ca, "_normal.RDS",
-        sep = ""))
-    expr_tumor <- readRDS(paste("output/viper/exprs/", ca, "_tumor.RDS",
-        sep = ""))
-    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
-    rownames(expr) <- expr$Row.names
-    expr$Row.names <- NULL
+# Extract and process gene expression signatures
 
-    expr <- expr[rowSums(expr) > 0, ]
-    pattern <- "[^A-Za-z0-9 ]"
+##  RNA-seq and network pairs
+```{r}
+df <- read.csv("data/viper/omics_regulon_pairs.csv")
+knitr::kable(df)
+```
 
-    expr <- expr[!grepl(pattern, rownames(expr)), ]
-    expr <- expr[apply(expr, 1, var) >= 0.3, ]
-    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
-    dset <- ExpressionSet(assayData = as.matrix(expr))
-    dset$description <- signature
-    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
-    saveRDS(dset, paste("output/viper/expr_processed/", ca, ".RDS", sep = ""))
-    saveRDS(regul, paste("output/viper/regul_object/", ca, ".RDS", sep = ""))
+## Preprocess
+```{r}
+for (i in 1:nrow(df)) {
+    exprsFile <- df$RNA[i]
+    exprs <- as.matrix(read.table(exprsFile, header = TRUE, sep = "\t",
+        row.names = 1, as.is = TRUE))
+    rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
+    geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
+        keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+    rownames(exprs) <- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+    exprs <- exprs[!sapply(rownames(exprs), function(x) startsWith(x, "ENSG")),
+        ]
+    # Identify duplicated row names
+    duplicated_rows <- duplicated(rownames(exprs))
+    # Remove rows with duplicated row names
+    cleaned_exprs <- exprs[!duplicated_rows, , drop = FALSE]
+    saveRDS(cleaned_exprs, paste("output/viper/exprs/", df$Lable[i], ".RDS", sep = ""))
 }
 ```
