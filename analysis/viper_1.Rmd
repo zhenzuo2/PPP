@@ -1,19 +1,14 @@
 ---
-title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (Preparing Phosphopeptides Data)"
+title: "Copy Number Variation"
 output:
   workflowr::wflow_html:
     toc: true
     toc_float: true
-    theme: cosmo
+    theme: united
     highlight: textmate
 editor_options:
   chunk_output_type: console
 ---
-
-# Introduction
-The VIPER (Virtual Inference of Protein-activity by Enriched Regulon analysis) algorithm allows computational inference of protein activity, on an individual sample basis, from gene expression profile data. It uses the expression of genes that are most directly regulated by a given protein, such as the targets of a transcription factor (TF), as an accurate reporter of its activity.  
-
-We have shown that analysis of TF targets inferred by the ARACNe algorithm, using the Master Regulator Inference algorithm (MARINA), is effective in identifying drivers of specific cellular phenotype which could be experimentally validated.
 
 # Load packages
 ```{r message=FALSE, warning=FALSE}
@@ -26,29 +21,35 @@ library(Biobase)
 library(EnsDb.Hsapiens.v86)
 library(foreach)
 library(doParallel)
-dir.create("output/viper/",showWarnings = F)
-dir.create("output/viper/regulon/",showWarnings = F)
-dir.create("output/viper/phos/",showWarnings = F)
+dir.create("output/cnv/",showWarnings = F)
 ```
 
-# Extract and process phosphopeptides data
-
-##  RNA-seq and network pairs
+# Define functions
 ```{r}
-df <- read.csv("data/viper/omics_regulon_pairs.csv")
-knitr::kable(df)
+contains_special_characters <- function(strings) {
+    # Define a regular expression pattern to match special characters
+    pattern <- "[^A-Za-z0-9 ]"
+    # Check if any string in the input vector contains special
+    # characters
+    contains_special <- grepl(pattern, strings)
+    return(contains_special)
+}
 ```
 
-## Preprocess
+
+# Extract and process CNV data
+
 ```{r}
-for (i in 1:nrow(df)) {
-    exprsFile <- df$phos[i]
-    exprs <- read.table(exprsFile, header = TRUE, sep = "\t",
-        row.names = 1, as.is = TRUE)
-    split_rownames <- strsplit(rownames(exprs), "\\|")
-    split_rownames_df <- data.frame(t(data.frame(split_rownames)))
-    colnames(split_rownames_df) <- c("ENSG", "ENSP", "S","Seq","Index")
-    exprs <- exprs[!duplicated(split_rownames_df$ENSG),]
+df <- read.csv("data/omics_regulon_pairs.csv")
+knitr::kable(df[,c('Lable','description')])
+```
+
+```{r}
+Lable <- unique(substr(df$Lable, 1, 4))
+CNV <- unique(df$CNV)
+for (i in 1:length(CNV)) {
+    exprs <- as.matrix(read.table(CNV[i], header = TRUE, sep = "\t",
+        row.names = 1, as.is = TRUE))
     rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
     geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
         keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
@@ -59,7 +60,10 @@ for (i in 1:nrow(df)) {
     # Identify duplicated row names
     duplicated_rows <- duplicated(rownames(exprs))
     # Remove rows with duplicated row names
-    cleaned_exprs <- exprs[!duplicated_rows, , drop = FALSE]
-    saveRDS(cleaned_exprs, paste("output/viper/phos/", df$Lable[i], ".RDS", sep = ""))
+    cleaned_exprs <- exprs[!duplicated_rows,]
+    cleaned_exprs <- cleaned_exprs[!contains_special_characters(rownames(cleaned_exprs)),]
+    saveRDS(cleaned_exprs, paste("output/cnv/count_matrix_", Lable[i], "_tumor.RDS", sep = ""))
+    cleaned_exprs[] <- 0
+    saveRDS(cleaned_exprs, paste("output/cnv/count_matrix_", Lable[i], "_normal.RDS", sep = ""))
 }
 ```

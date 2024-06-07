@@ -1,10 +1,10 @@
 ---
-title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (Master Regulator Analysis)"
+title: "Gene Expression"
 output:
   workflowr::wflow_html:
     toc: true
     toc_float: true
-    theme: cosmo
+    theme: united
     highlight: textmate
 editor_options:
   chunk_output_type: console
@@ -13,94 +13,54 @@ editor_options:
 # Load packages
 ```{r message=FALSE, warning=FALSE}
 library(viper)
+library(aracne.networks)
+library(dplyr)
+library(plyr)
+library(stringr)
+library(Biobase)
+library(EnsDb.Hsapiens.v86)
 library(foreach)
 library(doParallel)
+dir.create("output/exprs/",showWarnings = F)
 ```
 
-# Run Viper on Gene Expression Data
+# Define functions
 ```{r}
-# Set up parallel backend
-registerDoParallel(10)
-# Loop through items in parallel
-foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
-    dset <- readRDS(paste("output/viper/expr_processed/", name, ".RDS",
-        sep = ""))
-    signature <- rowTtest(dset, "description", "tumor", "normal")
-    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
-        1]
+contains_special_characters <- function(strings) {
+    # Define a regular expression pattern to match special characters
+    pattern <- "[^A-Za-z0-9 ]"
 
-    # NULL model by sample permutations
+    # Check if any string in the input vector contains special
+    # characters
+    contains_special <- grepl(pattern, strings)
 
-    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
-        repos = TRUE, verbose = FALSE)
-
-    # msVIPER
-
-    regulon <- readRDS(paste("output/viper/expr_regul_object/", name, ".RDS",
-        sep = ""))
-    regulon
-
-    ## Normalized Enrichment Score (NES)
-    dir.create(paste("output/TieDIE/input/exprs_", name, "/", sep = ""), showWarnings = FALSE)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
-    temp <- summary(mrs, length(mrs$regulon))
-    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    temp <- temp[(temp$FDR < 0.1), ]
-    temp <- temp[, c("Regulon", "NES", "Sign")]
-    temp$NES <- abs(temp$NES)
-    
-    pathways <- read.csv("data/pc-hgnc.sif", sep = "\t", header = F)
-    write.table(temp, paste("output/TieDIE/input/exprs_",
-        name, "/downstream.input", sep = ""), quote = F, sep = "\t", row.names = F,
-        col.names = F)
-    
-    pathways <- pathways[(pathways$V1 %in% temp$Regulon) | (pathways$V3 %in%
-        temp$Regulon), ]
-    write.table(pathways, paste("output/TieDIE/input/exprs_", name, "/pathway.sif",
-        sep = ""), quote = F, sep = "\t", row.names = F, col.names = F)
+    return(contains_special)
 }
 ```
 
-# Run Viper on Phosphoproteome Data
+# Extract and process gene expression signatures
+
 ```{r}
-# Set up parallel backend
-registerDoParallel(10)
-# Loop through items in parallel
-foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
-    dset <- readRDS(paste("output/viper/phos_processed/", name, ".RDS",
-        sep = ""))
-    signature <- rowTtest(dset, "description", "tumor", "normal")
-    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
-        1]
+df <- read.csv("data/omics_regulon_pairs.csv")
+```
 
-    # NULL model by sample permutations
-
-    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
-        repos = TRUE, verbose = FALSE)
-
-    # msVIPER
-
-    regulon <- readRDS(paste("output/viper/phos_regul_object/", name, ".RDS",
-        sep = ""))
-    regulon
-
-    ## Normalized Enrichment Score (NES)
-    dir.create(paste("output/TieDIE/input/phos_", name, "/", sep = ""), showWarnings = FALSE)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
-    temp <- summary(mrs, length(mrs$regulon))
-    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    temp <- temp[(temp$FDR < 0.1), ]
-    temp <- temp[, c("Regulon", "NES", "Sign")]
-    temp$NES <- abs(temp$NES)
-
-    pathways <- read.csv("data/pc-hgnc.sif", sep = "\t", header = F)
-    write.table(temp, paste("output/TieDIE/input/phos_",
-        name, "/downstream.input", sep = ""), quote = F, sep = "\t", row.names = F,
-        col.names = F)
-
-    pathways <- pathways[(pathways$V1 %in% temp$Regulon) | (pathways$V3 %in%
-        temp$Regulon), ]
-    write.table(pathways, paste("output/TieDIE/input/phos_", name, "/pathway.sif",
-        sep = ""), quote = F, sep = "\t", row.names = F, col.names = F)
+```{r}
+for (i in 1:nrow(df)) {
+    exprsFile <- df$RNA[i]
+    exprs <- as.matrix(read.table(exprsFile, header = TRUE, sep = "\t",
+        row.names = 1, as.is = TRUE))
+    rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
+    geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
+        keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+    rownames(exprs) <- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+    exprs <- exprs[!sapply(rownames(exprs), function(x) startsWith(x, "ENSG")),
+        ]
+    # Identify duplicated row names
+    duplicated_rows <- duplicated(rownames(exprs))
+    # Remove rows with duplicated row names
+    cleaned_exprs <- exprs[!duplicated_rows,]
+    cleaned_exprs <- cleaned_exprs[!contains_special_characters(rownames(cleaned_exprs)),]
+    saveRDS(cleaned_exprs, paste("output/exprs/count_matrix_", df$Lable[i], ".RDS", sep = ""))
 }
 ```

@@ -1,0 +1,109 @@
+---
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (Master Regulator Analysis)"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(foreach)
+library(doParallel)
+```
+
+# Run Viper on Gene Expression Data
+```{r}
+# Set up parallel backend
+registerDoParallel(10)
+# Loop through items in parallel
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+    dset <- readRDS(paste("output/viper/expr_processed/", name, ".RDS",
+        sep = ""))
+    signature <- rowTtest(dset, "description", "tumor", "normal")
+    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
+        1]
+
+    # NULL model by sample permutations
+
+    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
+        repos = TRUE, verbose = FALSE)
+
+    # msVIPER
+
+    regulon <- aracne2regulon(paste("output/viper/regulon/regulon", name, "_SYMBOL.adj",
+            sep = ""), dset, verbose = FALSE)
+    regulon
+
+    ## Normalized Enrichment Score (NES)
+    dir.create(paste("output/TieDIE/input/", name, "/", sep = ""), showWarnings = FALSE)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+    temp <- summary(mrs, length(mrs$regulon))
+    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
+    if (length(mrs$regulon) >200){
+      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
+    }
+    temp <- temp[, c("Regulon", "NES", "Sign")]
+    temp$NES <- abs(temp$NES)
+    write.table(temp, paste("output/TieDIE/input/",
+        name, "/exprs.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+        col.names = F)
+```
+
+# Run Viper on Phosphoproteome Data
+```{r}
+# Set up parallel backend
+registerDoParallel(10)
+# Loop through items in parallel
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+    dset <- readRDS(paste("output/viper/phos_processed/", name, ".RDS",
+        sep = ""))
+    signature <- rowTtest(dset, "description", "tumor", "normal")
+    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
+        1]
+
+    # NULL model by sample permutations
+
+    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
+        repos = TRUE, verbose = FALSE)
+
+    # msVIPER
+
+    regulon <- aracne2regulon(paste("output/viper/regulon/regulon", name, "_SYMBOL.adj",
+            sep = ""), dset, verbose = FALSE)
+    regulon
+
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+    temp <- summary(mrs, length(mrs$regulon))
+    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
+    if (length(mrs$regulon) >200){
+      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
+    }
+    temp <- temp[, c("Regulon", "NES", "Sign")]
+    temp$NES <- abs(temp$NES)
+
+    write.table(temp, paste("output/TieDIE/input/",
+        name, "/phos.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+        col.names = F)
+}
+```
+
+```{r}
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+  exprs <- read.table(paste("output/TieDIE/input/",
+        name, "/exprs.txt", sep = ""))
+  phos <- read.table(paste("output/TieDIE/input/",
+        name, "/phos.txt", sep = ""))
+  
+pathways <- read.csv("data/pc-hgnc.sif", sep = "\t", header = F)
+pathways <- pathways[(pathways$V1 %in% c(exprs$V1,phos$V1))&(pathways$V3 %in% c(exprs$V1,phos$V1)),]
+    write.table(pathways, paste("output/TieDIE/input/", name, "/pathway.sif",
+        sep = ""), quote = F, sep = "\t", row.names = F, col.names = F)
+}
+```
+

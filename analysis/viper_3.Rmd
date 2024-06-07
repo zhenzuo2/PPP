@@ -1,10 +1,10 @@
 ---
-title: "Extract context-specific networks"
+title: "Phosphopeptides"
 output:
   workflowr::wflow_html:
     toc: true
     toc_float: true
-    theme: cosmo
+    theme: united
     highlight: textmate
 editor_options:
   chunk_output_type: console
@@ -21,70 +21,50 @@ library(Biobase)
 library(EnsDb.Hsapiens.v86)
 library(foreach)
 library(doParallel)
+dir.create("output/phos/",showWarnings = F)
 ```
 
-# Extract context-specific networks
-ARACNe-AP was run on RNA-Seq datasets normalized using Variance-Stabilizing Transformation. The raw data was downloaded on April 15th, 2015 from the TCGA official website.
-
-## Extract ARACNe-inferred gene networks from TCGA tumor datasets.
+# Define functions
 ```{r}
-items <- data(package="aracne.networks")$results[, "Item"]
-print(items)
-```
+contains_special_characters <- function(strings) {
+    # Define a regular expression pattern to match special characters
+    pattern <- "[^A-Za-z0-9 ]"
 
-```{r}
-df <- read.csv("data/viper/aracne.networks.csv")
-knitr::kable(df)
-```
+    # Check if any string in the input vector contains special
+    # characters
+    contains_special <- grepl(pattern, strings)
 
-## Process network and save as adj files
-Export network to adj files
-```{r message=FALSE, warning=FALSE}
-# Set up parallel backend
-registerDoParallel(10)
-
-# Loop through items in parallel
-foreach(item = items) %dopar% {
-    if (!file.exists(paste("output/viper/regulon/", item, ".adj", sep = ""))) {
-        data <- get(item)
-        write.regulon(data, file = paste("output/viper/regulon/", item, ".adj", sep = ""))
-    }
+    return(contains_special)
 }
-
 ```
 
-Convert Entrez Gene ids to SYMBOL.
+# Extract and process phosphopeptides data
+
 ```{r}
-for (item in items) {
-    if (!file.exists(paste("output/viper/regulon/", item, "_SYMBOL.adj", sep = ""))) {
-        df <- read.csv(paste("output/viper/regulon/", item, ".adj", sep = ""),
-            sep = "\t")
+df <- read.csv("data/omics_regulon_pairs.csv")
+```
 
-        geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Regulator),
-            keytype = "ENTREZID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
-        df$Regulator <- plyr::mapvalues(df$Regulator, from = geneID$ENTREZID,
-            to = geneID$SYMBOL, warn_missing = FALSE)
-
-        geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Target),
-            keytype = "ENTREZID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
-        df$Target <- plyr::mapvalues(df$Target, from = geneID$ENTREZID,
-            to = geneID$SYMBOL, warn_missing = FALSE)
-
-        can_be_integer <- function(x) {
-            suppressWarnings(!is.na(as.integer(x)))
-        }
-        f1 <- !sapply(df$Regulator, can_be_integer)
-        f2 <- !sapply(df$Target, can_be_integer)
-        df <- df[f1 & f2, ]
-        
-        # Group by Regulator and concatenate elements of each group into strings
-       df$temp <- paste(df$Target,df$MoA, sep="\t")
-      result <- aggregate(temp ~ Regulator, data = df, FUN = function(x) paste(x, collapse = "\t"))
-        # Print the result
-        file <- file(paste("output/viper/regulon/", item, "_SYMBOL.adj",
-            sep = ""))
-        writeLines(paste(result$Regulator,result$temp,sep = "\t"),file)
-        close(file)
-    }
+```{r}
+for (i in 1:nrow(df)) {
+    exprsFile <- df$phos[i]
+    exprs <- read.table(exprsFile, header = TRUE, sep = "\t",
+        row.names = 1, as.is = TRUE)
+    split_rownames <- strsplit(rownames(exprs), "\\|")
+    split_rownames_df <- data.frame(t(data.frame(split_rownames)))
+    colnames(split_rownames_df) <- c("ENSG", "ENSP", "S","Seq","Index")
+    exprs <- exprs[!duplicated(split_rownames_df$ENSG),]
+    rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
+    geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
+        keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+    rownames(exprs) <- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+    exprs <- exprs[!sapply(rownames(exprs), function(x) startsWith(x, "ENSG")),
+        ]
+    # Identify duplicated row names
+    duplicated_rows <- duplicated(rownames(exprs))
+    # Remove rows with duplicated row names
+    cleaned_exprs <- exprs[!duplicated_rows,]
+    cleaned_exprs <- cleaned_exprs[!contains_special_characters(rownames(cleaned_exprs)),]
+    saveRDS(cleaned_exprs, paste("output/phos/count_matrix_", df$Lable[i], ".RDS", sep = ""))
 }
 ```

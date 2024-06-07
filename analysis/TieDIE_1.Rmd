@@ -15,6 +15,6 @@ TieDIE was first featured in the 2013 Nature paper "Comprehensive molecular char
 # Run TieDIE
 ```{bash eval=FALSE, include=TRUE}
 result:
-	python ../../bin/tiedie -u upstream.input -d downstream.input -n pathway.sif -s 1.0
+	../../bin/tiedie.MULTI de_1.tab de_2.tab de_3.tab de_4.tab de_5.tab de_6.tab de_7.tab 
 
 ```

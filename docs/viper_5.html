@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Context-specific networks</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Proteomics and Phosphoproteomics Pipeline</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/zhenzuo2/PPP">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Context-specific networks</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-06-03
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>PPP/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240521code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240521)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240521code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240521)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree97292dd8e8e70b77428027f4d2d18a9aeb3c493atargetblank97292dda">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/zhenzuo2/PPP/tree/97292dd8e8e70b77428027f4d2d18a9aeb3c493a" target="_blank">97292dd</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree97292dd8e8e70b77428027f4d2d18a9aeb3c493atargetblank97292dda"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/zhenzuo2/PPP/tree/97292dd8e8e70b77428027f4d2d18a9aeb3c493a" target="_blank">97292dd</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .RData
+    Ignored:    .Rhistory
+    Ignored:    code/.DS_Store
+    Ignored:    data/.DS_Store
+    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/viper_6.Rmd
+    Untracked:  analysis/viper_7.Rmd
+    Untracked:  code/TieDIE-devel/
+    Untracked:  code/TieDIE-tiedie2/
+    Untracked:  data/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/
+    Untracked:  data/Proteome_BCM_GENCODE_v34_harmonized_v1/
+    Untracked:  data/RNA_BCM_v1/
+    Untracked:  data/aracne.networks.csv
+    Untracked:  data/omics_regulon_pairs.csv
+    Untracked:  output/cnv/
+    Untracked:  output/exprs/
+    Untracked:  output/phos/
+    Untracked:  output/prot/
+
+Unstaged changes:
+    Modified:   analysis/TieDIE_1.Rmd
+    Modified:   analysis/_site.yml
+    Modified:   analysis/viper_1.Rmd
+    Modified:   analysis/viper_2.Rmd
+    Modified:   analysis/viper_3.Rmd
+    Modified:   analysis/viper_4.Rmd
+    Modified:   analysis/viper_5.Rmd
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/BRCA_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/CCRCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/CCRCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/COAD_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/COAD_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/GBM_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/HNSCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/HNSCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LSCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LSCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LUAD_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LUAD_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/OV_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/OV_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/PDAC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/PDAC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/BRCA_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CCRCC_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/COAD_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CPTAC_GENCODE_V34_harmonized_meta_table_README.docx
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CPTAC_GENCODE_V34_harmonized_proteomics_README.docx
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CPTAC_pancancer_data_freeze_cohort_size.xlsx
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CPTAC_pancancer_data_freeze_file_description.xlsx
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/GBM_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/Gene_annotation_and_representable_isoform_mapping_table.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/HNSCC_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/LSCC_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/LUAD_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/OV_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/PDAC_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/UCEC_meta.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/UCEC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
+    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/UCEC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/BRCA_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/BRCA_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/COAD_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/COAD_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/GBM_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/GBM_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/GBM_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/HGSC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/HGSC_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_isoform_FPKM_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_isoform_FPKM_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_isoform_FPKM_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_isoform_FPKM_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/UCEC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/UCEC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/UCEC_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
+    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_isoform_FPKM_log2_Normal.txt
+    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_isoform_FPKM_log2_Tumor.txt
+    Deleted:    data/viper/aracne.networks.csv
+    Deleted:    data/viper/omics_regulon_pairs.csv
+    Deleted:    output/TieDIE/input/exprs_hnsc/downstream.input
+    Deleted:    output/TieDIE/input/exprs_hnsc/pathway.sif
+    Deleted:    output/TieDIE/input/exprs_kirc/downstream.input
+    Deleted:    output/TieDIE/input/exprs_kirc/pathway.sif
+    Deleted:    output/TieDIE/input/exprs_luad/downstream.input
+    Deleted:    output/TieDIE/input/exprs_luad/pathway.sif
+    Deleted:    output/TieDIE/input/exprs_lusc/downstream.input
+    Deleted:    output/TieDIE/input/exprs_lusc/pathway.sif
+    Deleted:    output/TieDIE/input/exprs_paad/downstream.input
+    Deleted:    output/TieDIE/input/exprs_paad/pathway.sif
+    Deleted:    output/TieDIE/input/phos_hnsc/downstream.input
+    Deleted:    output/TieDIE/input/phos_hnsc/pathway.sif
+    Deleted:    output/TieDIE/input/phos_kirc/downstream.input
+    Deleted:    output/TieDIE/input/phos_kirc/pathway.sif
+    Deleted:    output/TieDIE/input/phos_luad/downstream.input
+    Deleted:    output/TieDIE/input/phos_luad/pathway.sif
+    Deleted:    output/TieDIE/input/phos_lusc/downstream.input
+    Deleted:    output/TieDIE/input/phos_lusc/pathway.sif
+    Deleted:    output/TieDIE/input/phos_paad/downstream.input
+    Deleted:    output/TieDIE/input/phos_paad/pathway.sif
+    Deleted:    output/viper/expr_processed/hnsc.RDS
+    Deleted:    output/viper/expr_processed/kirc.RDS
+    Deleted:    output/viper/expr_processed/luad.RDS
+    Deleted:    output/viper/expr_processed/lusc.RDS
+    Deleted:    output/viper/expr_processed/paad.RDS
+    Deleted:    output/viper/expr_regul_object/hnsc.RDS
+    Deleted:    output/viper/expr_regul_object/kirc.RDS
+    Deleted:    output/viper/expr_regul_object/luad.RDS
+    Deleted:    output/viper/expr_regul_object/lusc.RDS
+    Deleted:    output/viper/expr_regul_object/paad.RDS
+    Deleted:    output/viper/exprs/hnsc_normal.RDS
+    Deleted:    output/viper/exprs/hnsc_tumor.RDS
+    Deleted:    output/viper/exprs/kirc_normal.RDS
+    Deleted:    output/viper/exprs/kirc_tumor.RDS
+    Deleted:    output/viper/exprs/luad_normal.RDS
+    Deleted:    output/viper/exprs/luad_tumor.RDS
+    Deleted:    output/viper/exprs/lusc_normal.RDS
+    Deleted:    output/viper/exprs/lusc_tumor.RDS
+    Deleted:    output/viper/exprs/paad_normal.RDS
+    Deleted:    output/viper/exprs/paad_tumor.RDS
+    Deleted:    output/viper/phos/hnsc_normal.RDS
+    Deleted:    output/viper/phos/hnsc_tumor.RDS
+    Deleted:    output/viper/phos/kirc_normal.RDS
+    Deleted:    output/viper/phos/kirc_tumor.RDS
+    Deleted:    output/viper/phos/luad_normal.RDS
+    Deleted:    output/viper/phos/luad_tumor.RDS
+    Deleted:    output/viper/phos/lusc_normal.RDS
+    Deleted:    output/viper/phos/lusc_tumor.RDS
+    Deleted:    output/viper/phos/paad_normal.RDS
+    Deleted:    output/viper/phos/paad_tumor.RDS
+    Deleted:    output/viper/phos_processed/hnsc.RDS
+    Deleted:    output/viper/phos_processed/kirc.RDS
+    Deleted:    output/viper/phos_processed/luad.RDS
+    Deleted:    output/viper/phos_processed/lusc.RDS
+    Deleted:    output/viper/phos_processed/paad.RDS
+    Deleted:    output/viper/phos_regul_object/hnsc.RDS
+    Deleted:    output/viper/phos_regul_object/kirc.RDS
+    Deleted:    output/viper/phos_regul_object/luad.RDS
+    Deleted:    output/viper/phos_regul_object/lusc.RDS
+    Deleted:    output/viper/phos_regul_object/paad.RDS
+    Deleted:    output/viper/regulon/regulonblca.adj
+    Deleted:    output/viper/regulon/regulonblca_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonbrca.adj
+    Deleted:    output/viper/regulon/regulonbrca_SYMBOL.adj
+    Deleted:    output/viper/regulon/reguloncesc.adj
+    Deleted:    output/viper/regulon/reguloncesc_SYMBOL.adj
+    Deleted:    output/viper/regulon/reguloncoad.adj
+    Deleted:    output/viper/regulon/reguloncoad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonesca.adj
+    Deleted:    output/viper/regulon/regulonesca_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulongbm.adj
+    Deleted:    output/viper/regulon/regulongbm_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonhnsc.adj
+    Deleted:    output/viper/regulon/regulonhnsc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonkirc.adj
+    Deleted:    output/viper/regulon/regulonkirc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonkirp.adj
+    Deleted:    output/viper/regulon/regulonkirp_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonlaml.adj
+    Deleted:    output/viper/regulon/regulonlaml_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonlihc.adj
+    Deleted:    output/viper/regulon/regulonlihc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonluad.adj
+    Deleted:    output/viper/regulon/regulonluad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonlusc.adj
+    Deleted:    output/viper/regulon/regulonlusc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonnet.adj
+    Deleted:    output/viper/regulon/regulonnet_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonov.adj
+    Deleted:    output/viper/regulon/regulonov_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonpaad.adj
+    Deleted:    output/viper/regulon/regulonpaad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonpcpg.adj
+    Deleted:    output/viper/regulon/regulonpcpg_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonprad.adj
+    Deleted:    output/viper/regulon/regulonprad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonread.adj
+    Deleted:    output/viper/regulon/regulonread_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonsarc.adj
+    Deleted:    output/viper/regulon/regulonsarc_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonstad.adj
+    Deleted:    output/viper/regulon/regulonstad_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulontgct.adj
+    Deleted:    output/viper/regulon/regulontgct_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonthca.adj
+    Deleted:    output/viper/regulon/regulonthca_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonthym.adj
+    Deleted:    output/viper/regulon/regulonthym_SYMBOL.adj
+    Deleted:    output/viper/regulon/regulonucec.adj
+    Deleted:    output/viper/regulon/regulonucec_SYMBOL.adj
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/viper_5.Rmd</code>) and HTML
+(<code>docs/viper_5.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/97292dd8e8e70b77428027f4d2d18a9aeb3c493a/analysis/viper_5.Rmd" target="_blank">97292dd</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-31
+</td>
+<td>
+update rds
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="load-packages" class="section level1">
+<h1>Load packages</h1>
+<pre class="r"><code>library(viper)
+library(aracne.networks)
+library(dplyr)
+library(plyr)
+library(stringr)
+library(Biobase)
+library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
+dir.create(&quot;output/regulon/&quot;,showWarnings = F)
+dir.create(&quot;output/regulon/raw/&quot;,showWarnings = F)</code></pre>
+</div>
+<div id="extract-context-specific-networks" class="section level1">
+<h1>Extract context-specific networks</h1>
+<p>ARACNe-AP was run on RNA-Seq datasets normalized using
+Variance-Stabilizing Transformation. The raw data was downloaded on
+April 15th, 2015 from the TCGA official website.</p>
+<div
+id="extract-aracne-inferred-gene-networks-from-tcga-tumor-datasets."
+class="section level2">
+<h2>Extract ARACNe-inferred gene networks from TCGA tumor datasets.</h2>
+<pre class="r"><code>items &lt;- data(package=&quot;aracne.networks&quot;)$results[, &quot;Item&quot;]
+print(items)</code></pre>
+<pre><code> [1] &quot;regulonblca&quot; &quot;regulonbrca&quot; &quot;reguloncesc&quot; &quot;reguloncoad&quot; &quot;regulonesca&quot;
+ [6] &quot;regulongbm&quot;  &quot;regulonhnsc&quot; &quot;regulonkirc&quot; &quot;regulonkirp&quot; &quot;regulonlaml&quot;
+[11] &quot;regulonlihc&quot; &quot;regulonluad&quot; &quot;regulonlusc&quot; &quot;regulonnet&quot;  &quot;regulonov&quot;  
+[16] &quot;regulonpaad&quot; &quot;regulonpcpg&quot; &quot;regulonprad&quot; &quot;regulonread&quot; &quot;regulonsarc&quot;
+[21] &quot;regulonstad&quot; &quot;regulontgct&quot; &quot;regulonthca&quot; &quot;regulonthym&quot; &quot;regulonucec&quot;</code></pre>
+<pre class="r"><code>df &lt;- read.csv(&quot;data/omics_regulon_pairs.csv&quot;)</code></pre>
+</div>
+<div id="process-network-and-save-as-adj-files" class="section level2">
+<h2>Process network and save as adj files</h2>
+<p>Export network to adj files</p>
+<pre class="r"><code># Set up parallel backend
+registerDoParallel(10)
+
+# Loop through items in parallel
+foreach(item = items) %dopar% {
+    if (!file.exists(paste(&quot;output/regulon/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;))) {
+        data &lt;- get(item)
+        write.regulon(data, file = paste(&quot;output/regulon/raw/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;))
+    }
+}</code></pre>
+<pre><code>[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL
+
+[[4]]
+NULL
+
+[[5]]
+NULL
+
+[[6]]
+NULL
+
+[[7]]
+NULL
+
+[[8]]
+NULL
+
+[[9]]
+NULL
+
+[[10]]
+NULL
+
+[[11]]
+NULL
+
+[[12]]
+NULL
+
+[[13]]
+NULL
+
+[[14]]
+NULL
+
+[[15]]
+NULL
+
+[[16]]
+NULL
+
+[[17]]
+NULL
+
+[[18]]
+NULL
+
+[[19]]
+NULL
+
+[[20]]
+NULL
+
+[[21]]
+NULL
+
+[[22]]
+NULL
+
+[[23]]
+NULL
+
+[[24]]
+NULL
+
+[[25]]
+NULL</code></pre>
+<p>Convert Entrez Gene ids to SYMBOL.</p>
+<pre class="r"><code>for (item in items) {
+    if (!file.exists(paste(&quot;output/regulon/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;))) {
+        df &lt;- read.csv(paste(&quot;output/regulon/raw/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;),
+            sep = &quot;\t&quot;)
+
+        geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Regulator),
+            keytype = &quot;ENTREZID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
+        df$Regulator &lt;- plyr::mapvalues(df$Regulator, from = geneID$ENTREZID,
+            to = geneID$SYMBOL, warn_missing = FALSE)
+
+        geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Target),
+            keytype = &quot;ENTREZID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
+        df$Target &lt;- plyr::mapvalues(df$Target, from = geneID$ENTREZID,
+            to = geneID$SYMBOL, warn_missing = FALSE)
+
+        can_be_integer &lt;- function(x) {
+            suppressWarnings(!is.na(as.integer(x)))
+        }
+        f1 &lt;- !sapply(df$Regulator, can_be_integer)
+        f2 &lt;- !sapply(df$Target, can_be_integer)
+        df &lt;- df[f1 &amp; f2, ]
+        
+        # Group by Regulator and concatenate elements of each group into strings
+       df$temp &lt;- paste(df$Target,df$MoA, sep=&quot;\t&quot;)
+      result &lt;- aggregate(temp ~ Regulator, data = df, FUN = function(x) paste(x, collapse = &quot;\t&quot;))
+        # Print the result
+        file &lt;- file(paste(&quot;output/regulon/&quot;, item, &quot;.adj&quot;,
+            sep = &quot;&quot;))
+        writeLines(paste(result$Regulator,result$temp,sep = &quot;\t&quot;),file)
+        close(file)
+    }
+}</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.0 (2024-04-24)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sonoma 14.5
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] doParallel_1.0.17         iterators_1.0.14         
+ [3] foreach_1.5.2             EnsDb.Hsapiens.v86_2.99.0
+ [5] ensembldb_2.28.0          AnnotationFilter_1.28.0  
+ [7] GenomicFeatures_1.56.0    AnnotationDbi_1.66.0     
+ [9] GenomicRanges_1.56.0      GenomeInfoDb_1.40.0      
+[11] IRanges_2.38.0            S4Vectors_0.42.0         
+[13] stringr_1.5.1             plyr_1.8.9               
+[15] dplyr_1.1.4               aracne.networks_1.30.0   
+[17] viper_1.38.0              Biobase_2.64.0           
+[19] BiocGenerics_0.50.0      
+
+loaded via a namespace (and not attached):
+  [1] bitops_1.0-7                DBI_1.2.2                  
+  [3] rlang_1.1.3                 magrittr_2.0.3             
+  [5] git2r_0.33.0                matrixStats_1.3.0          
+  [7] e1071_1.7-14                compiler_4.4.0             
+  [9] RSQLite_2.3.6               png_0.1-8                  
+ [11] vctrs_0.6.5                 ProtGenerics_1.36.0        
+ [13] pkgconfig_2.0.3             crayon_1.5.2               
+ [15] fastmap_1.2.0               XVector_0.44.0             
+ [17] utf8_1.2.4                  Rsamtools_2.20.0           
+ [19] promises_1.3.0              rmarkdown_2.27             
+ [21] UCSC.utils_1.0.0            purrr_1.0.2                
+ [23] bit_4.0.5                   xfun_0.44                  
+ [25] zlibbioc_1.50.0             cachem_1.1.0               
+ [27] jsonlite_1.8.8              blob_1.2.4                 
+ [29] later_1.3.2                 DelayedArray_0.30.0        
+ [31] BiocParallel_1.38.0         R6_2.5.1                   
+ [33] bslib_0.7.0                 stringi_1.8.4              
+ [35] rtracklayer_1.64.0          jquerylib_0.1.4            
+ [37] SummarizedExperiment_1.34.0 Rcpp_1.0.12                
+ [39] knitr_1.46                  mixtools_2.0.0             
+ [41] httpuv_1.6.15               Matrix_1.7-0               
+ [43] splines_4.4.0               tidyselect_1.2.1           
+ [45] abind_1.4-5                 rstudioapi_0.16.0          
+ [47] yaml_2.3.8                  codetools_0.2-20           
+ [49] curl_5.2.1                  lattice_0.22-6             
+ [51] tibble_3.2.1                KEGGREST_1.44.0            
+ [53] evaluate_0.23               survival_3.6-4             
+ [55] proxy_0.4-27                kernlab_0.9-32             
+ [57] Biostrings_2.72.0           pillar_1.9.0               
+ [59] MatrixGenerics_1.16.0       whisker_0.4.1              
+ [61] KernSmooth_2.23-24          plotly_4.10.4              
+ [63] generics_0.1.3              rprojroot_2.0.4            
+ [65] RCurl_1.98-1.14             ggplot2_3.5.1              
+ [67] munsell_0.5.1               scales_1.3.0               
+ [69] class_7.3-22                glue_1.7.0                 
+ [71] lazyeval_0.2.2              tools_4.4.0                
+ [73] BiocIO_1.14.0               data.table_1.15.4          
+ [75] GenomicAlignments_1.40.0    fs_1.6.4                   
+ [77] XML_3.99-0.16.1             grid_4.4.0                 
+ [79] tidyr_1.3.1                 colorspace_2.1-0           
+ [81] nlme_3.1-164                GenomeInfoDbData_1.2.12    
+ [83] restfulr_0.0.15             cli_3.6.2                  
+ [85] workflowr_1.7.1             fansi_1.0.6                
+ [87] S4Arrays_1.4.1              segmented_2.1-0            
+ [89] viridisLite_0.4.2           gtable_0.3.5               
+ [91] sass_0.4.9                  digest_0.6.35              
+ [93] SparseArray_1.4.1           rjson_0.2.21               
+ [95] htmlwidgets_1.6.4           memoise_2.0.1              
+ [97] htmltools_0.5.8.1           lifecycle_1.0.4            
+ [99] httr_1.4.7                  bit64_4.0.5                
+[101] MASS_7.3-60.2              </code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
