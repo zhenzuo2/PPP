@@ -17,13 +17,13 @@ library(foreach)
 library(doParallel)
 ```
 
-# Run Viper on Gene Expression Data
+# Run Viper on CNV
 ```{r}
 # Set up parallel backend
-registerDoParallel(10)
+registerDoParallel(5)
 # Loop through items in parallel
 foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
-    dset <- readRDS(paste("output/viper/expr_processed/", name, ".RDS",
+    dset <- readRDS(paste("output/cnv/dset_", name, ".RDS",
         sep = ""))
     signature <- rowTtest(dset, "description", "tumor", "normal")
     signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
@@ -36,13 +36,12 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
 
     # msVIPER
 
-    regulon <- aracne2regulon(paste("output/viper/regulon/regulon", name, "_SYMBOL.adj",
+    regulon <- aracne2regulon(paste("output/regulon/regulon", name, ".adj",
             sep = ""), dset, verbose = FALSE)
     regulon
 
     ## Normalized Enrichment Score (NES)
-    dir.create(paste("output/TieDIE/input/", name, "/", sep = ""), showWarnings = FALSE)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 5)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
     if (length(mrs$regulon) >200){
@@ -50,18 +49,18 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     }
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
-    write.table(temp, paste("output/TieDIE/input/",
-        name, "/exprs.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+    dir.create(paste("output/cnv/",
+        name, "/", sep = ""),showWarnings = F)
+    write.table(temp, paste("output/cnv/",
+        name, "/cnv.txt", sep = ""), quote = F, sep = "\t", row.names = F,
         col.names = F)
+}
 ```
 
-# Run Viper on Phosphoproteome Data
+# Run Viper on Proteomics Data
 ```{r}
-# Set up parallel backend
-registerDoParallel(10)
-# Loop through items in parallel
 foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
-    dset <- readRDS(paste("output/viper/phos_processed/", name, ".RDS",
+    dset <- readRDS(paste("output/prot/dset_", name, ".RDS",
         sep = ""))
     signature <- rowTtest(dset, "description", "tumor", "normal")
     signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
@@ -74,11 +73,12 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
 
     # msVIPER
 
-    regulon <- aracne2regulon(paste("output/viper/regulon/regulon", name, "_SYMBOL.adj",
+    regulon <- aracne2regulon(paste("output/regulon/regulon", name, ".adj",
             sep = ""), dset, verbose = FALSE)
     regulon
 
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+    ## Normalized Enrichment Score (NES)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 5)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
     if (length(mrs$regulon) >200){
@@ -86,23 +86,141 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     }
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
+    dir.create(paste("output/prot/",
+        name, "/", sep = ""),showWarnings = F)
+    write.table(temp, paste("output/prot/",
+        name, "/prot.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+        col.names = F)
+}
+```
 
-    write.table(temp, paste("output/TieDIE/input/",
+# Run Viper on Phosphoproteome Data
+```{r}
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+    dset <- readRDS(paste("output/phos/dset_", name, ".RDS",
+        sep = ""))
+    signature <- rowTtest(dset, "description", "tumor", "normal")
+    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
+        1]
+
+    # NULL model by sample permutations
+
+    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
+        repos = TRUE, verbose = FALSE)
+
+    # msVIPER
+
+    regulon <- aracne2regulon(paste("output/regulon/regulon", name, ".adj",
+            sep = ""), dset, verbose = FALSE)
+    regulon
+
+    ## Normalized Enrichment Score (NES)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 5)
+    temp <- summary(mrs, length(mrs$regulon))
+    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
+    if (length(mrs$regulon) >200){
+      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
+    }
+    temp <- temp[, c("Regulon", "NES", "Sign")]
+    temp$NES <- abs(temp$NES)
+    dir.create(paste("output/phos/",
+        name, "/", sep = ""),showWarnings = F)
+    write.table(temp, paste("output/phos/",
         name, "/phos.txt", sep = ""), quote = F, sep = "\t", row.names = F,
         col.names = F)
 }
 ```
 
+# Run Viper on Methylation Data
 ```{r}
 foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
-  exprs <- read.table(paste("output/TieDIE/input/",
+    dset <- readRDS(paste("output/methy/dset_", name, ".RDS",
+        sep = ""))
+    signature <- rowTtest(dset, "description", "tumor", "normal")
+    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
+        1]
+
+    # NULL model by sample permutations
+
+    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
+        repos = TRUE, verbose = FALSE)
+
+    # msVIPER
+
+    regulon <- aracne2regulon(paste("output/regulon/regulon", name, ".adj",
+            sep = ""), dset, verbose = FALSE)
+    regulon
+
+    ## Normalized Enrichment Score (NES)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 1)
+    temp <- summary(mrs, length(mrs$regulon))
+    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
+    if (length(mrs$regulon) >200){
+      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
+    }
+    temp <- temp[, c("Regulon", "NES", "Sign")]
+    temp$NES <- abs(temp$NES)
+    dir.create(paste("output/methy/",
+        name, "/", sep = ""),showWarnings = F)
+    write.table(temp, paste("output/methy/",
+        name, "/methy.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+        col.names = F)
+}
+```
+
+# Run Viper on Gene Expression Data
+```{r}
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+    dset <- readRDS(paste("output/exprs/dset_", name, ".RDS",
+        sep = ""))
+    signature <- rowTtest(dset, "description", "tumor", "normal")
+    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
+        1]
+
+    # NULL model by sample permutations
+
+    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
+        repos = TRUE, verbose = FALSE)
+
+    regulon <- aracne2regulon(paste("output/regulon/regulon", name, ".adj",
+            sep = ""), dset, verbose = FALSE)
+    regulon
+
+    ## Normalized Enrichment Score (NES)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 5)
+    temp <- summary(mrs, length(mrs$regulon))
+    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
+    if (length(mrs$regulon) >200){
+      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
+    }
+    temp <- temp[, c("Regulon", "NES", "Sign")]
+    temp$NES <- abs(temp$NES)
+    dir.create(paste("output/exprs/",
+        name, "/", sep = ""),showWarnings = F)
+    write.table(temp, paste("output/exprs/",
+        name, "/exprs.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+        col.names = F)
+}
+```
+
+
+# Subset Pathways
+```{r}
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+  exprs <- read.table(paste("output/exprs/",
         name, "/exprs.txt", sep = ""))
-  phos <- read.table(paste("output/TieDIE/input/",
+  phos <- read.table(paste("output/phos/",
         name, "/phos.txt", sep = ""))
+  cnv <- read.table(paste("output/cnv/",
+        name, "/cnv.txt", sep = ""))
+  prot <- read.table(paste("output/prot/",
+        name, "/prot.txt", sep = ""))
+  methy <- read.table(paste("output/methy/",
+        name, "/methy.txt", sep = ""))
   
 pathways <- read.csv("data/pc-hgnc.sif", sep = "\t", header = F)
-pathways <- pathways[(pathways$V1 %in% c(exprs$V1,phos$V1))&(pathways$V3 %in% c(exprs$V1,phos$V1)),]
-    write.table(pathways, paste("output/TieDIE/input/", name, "/pathway.sif",
+pathways <- pathways[(pathways$V1 %in% c(exprs$V1,phos$V1,cnv$V1,prot$V1,phos$V1))|(pathways$V3 %in% c(exprs$V1,phos$V1,cnv$V1,prot$V1,phos$V1)),]
+    write.table(pathways, paste("output/pathways/", name, ".sif",
         sep = ""), quote = F, sep = "\t", row.names = F, col.names = F)
 }
 ```

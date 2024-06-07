@@ -21,7 +21,7 @@ library(Biobase)
 library(EnsDb.Hsapiens.v86)
 library(foreach)
 library(doParallel)
-dir.create("output/phos/",showWarnings = F)
+dir.create("output/methy/",showWarnings = F)
 ```
 
 # Define functions
@@ -46,14 +46,11 @@ df <- read.csv("data/omics_regulon_pairs.csv")
 
 ```{r}
 for (i in 1:nrow(df)) {
-    exprsFile <- df$phos[i]
-    exprs <- read.table(exprsFile, header = TRUE, sep = "\t",
-        row.names = 1, as.is = TRUE)
-    split_rownames <- strsplit(rownames(exprs), "\\|")
-    split_rownames_df <- data.frame(t(data.frame(split_rownames)))
-    colnames(split_rownames_df) <- c("ENSG", "ENSP", "S","Seq","Index")
-    exprs <- exprs[!duplicated(split_rownames_df$ENSG),]
+    exprsFile <- df$methy[i]
+    exprs <- as.matrix(read.table(exprsFile, header = TRUE, sep = "\t",
+        row.names = 1, as.is = TRUE))
     rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
+    exprs <- exprs[!duplicated(rownames(exprs)),]
     geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
         keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
     rownames(exprs) <- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
@@ -65,6 +62,6 @@ for (i in 1:nrow(df)) {
     # Remove rows with duplicated row names
     cleaned_exprs <- exprs[!duplicated_rows,]
     cleaned_exprs <- cleaned_exprs[!contains_special_characters(rownames(cleaned_exprs)),]
-    saveRDS(cleaned_exprs, paste("output/phos/count_matrix_", df$Lable[i], ".RDS", sep = ""))
+    saveRDS(cleaned_exprs, paste("output/methy/count_matrix_", df$Lable[i], ".RDS", sep = ""))
 }
 ```
