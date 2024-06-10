@@ -41,12 +41,10 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    if (length(mrs$regulon) >200){
-      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
-    }
+    temp <- temp[temp$FDR < 0.1, ]
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
     dir.create(paste("output/cnv/",
@@ -78,12 +76,10 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    if (length(mrs$regulon) >200){
-      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
-    }
+    temp <- temp[temp$FDR < 0.1, ]
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
     dir.create(paste("output/prot/",
@@ -115,12 +111,10 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    if (length(mrs$regulon) >200){
-      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
-    }
+    temp <- temp[temp$FDR < 0.1, ]
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
     dir.create(paste("output/phos/",
@@ -155,9 +149,7 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 1)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    if (length(mrs$regulon) >200){
-      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
-    }
+    temp <- temp[temp$FDR < 0.1, ]
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
     dir.create(paste("output/methy/",
@@ -187,12 +179,10 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
-    if (length(mrs$regulon) >200){
-      temp <- temp[(temp$FDR < sort(temp$FDR)[200]), ]
-    }
+    temp <- temp[temp$FDR < 0.1, ]
     temp <- temp[, c("Regulon", "NES", "Sign")]
     temp$NES <- abs(temp$NES)
     dir.create(paste("output/exprs/",

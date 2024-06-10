@@ -521,15 +521,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree69df7f02973d313bf6739a57ed93b2a0504984d8targetblank69df7f0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree332030b61e183f3c843b13fd87c69e5b2957e8cctargetblank332030ba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/69df7f02973d313bf6739a57ed93b2a0504984d8" target="_blank">69df7f0</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/332030b61e183f3c843b13fd87c69e5b2957e8cc" target="_blank">332030b</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree69df7f02973d313bf6739a57ed93b2a0504984d8targetblank69df7f0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree332030b61e183f3c843b13fd87c69e5b2957e8cctargetblank332030ba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -539,7 +539,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/69df7f02973d313bf6739a57ed93b2a0504984d8" target="_blank">69df7f0</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/332030b61e183f3c843b13fd87c69e5b2957e8cc" target="_blank">332030b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -560,6 +560,7 @@ Ignored files:
     Ignored:    code/.DS_Store
     Ignored:    code/TieDIE-devel/.DS_Store
     Ignored:    code/TieDIE-devel/examples/.DS_Store
+    Ignored:    code/TieDIE-devel/examples/hnsc/TieDIE/
     Ignored:    code/TieDIE-tiedie2/.DS_Store
     Ignored:    code/TieDIE-tiedie2/examples/.DS_Store
     Ignored:    data/.DS_Store
@@ -573,34 +574,8 @@ Ignored files:
     Ignored:    output/phos_regul_object/
     Ignored:    output/regulon/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/viper_9.Rmd
-    Untracked:  output/pathways/lusc.sif
-
 Unstaged changes:
     Modified:   analysis/viper_8.Rmd
-    Modified:   output/cnv/hnsc/cnv.txt
-    Modified:   output/cnv/kirc/cnv.txt
-    Modified:   output/cnv/luad/cnv.txt
-    Modified:   output/cnv/paad/cnv.txt
-    Modified:   output/exprs/hnsc/exprs.txt
-    Modified:   output/exprs/kirc/exprs.txt
-    Modified:   output/exprs/luad/exprs.txt
-    Modified:   output/exprs/lusc/exprs.txt
-    Modified:   output/exprs/paad/exprs.txt
-    Modified:   output/pathways/hnsc.sif
-    Modified:   output/pathways/kirc.sif
-    Modified:   output/pathways/paad.sif
-    Modified:   output/phos/hnsc/phos.txt
-    Modified:   output/phos/kirc/phos.txt
-    Modified:   output/phos/luad/phos.txt
-    Modified:   output/phos/lusc/phos.txt
-    Modified:   output/phos/paad/phos.txt
-    Modified:   output/prot/hnsc/prot.txt
-    Modified:   output/prot/kirc/prot.txt
-    Modified:   output/prot/luad/prot.txt
-    Modified:   output/prot/lusc/prot.txt
-    Modified:   output/prot/paad/prot.txt
 
 </code></pre>
 <p>
@@ -646,6 +621,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/332030b61e183f3c843b13fd87c69e5b2957e8cc/analysis/viper_8.Rmd" target="_blank">332030b</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-09
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/332030b61e183f3c843b13fd87c69e5b2957e8cc/docs/viper_8.html" target="_blank">332030b</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-09
+</td>
+<td>
+.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -717,12 +726,10 @@ foreach(name = c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;lua
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
+    mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    if (length(mrs$regulon) &gt;200){
-      temp &lt;- temp[(temp$FDR &lt; sort(temp$FDR)[200]), ]
-    }
+    temp &lt;- temp[temp$FDR &lt; 0.1, ]
     temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
     temp$NES &lt;- abs(temp$NES)
     dir.create(paste(&quot;output/cnv/&quot;,
@@ -767,12 +774,10 @@ NULL</code></pre>
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
+    mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    if (length(mrs$regulon) &gt;200){
-      temp &lt;- temp[(temp$FDR &lt; sort(temp$FDR)[200]), ]
-    }
+    temp &lt;- temp[temp$FDR &lt; 0.1, ]
     temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
     temp$NES &lt;- abs(temp$NES)
     dir.create(paste(&quot;output/prot/&quot;,
@@ -817,12 +822,10 @@ NULL</code></pre>
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
+    mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    if (length(mrs$regulon) &gt;200){
-      temp &lt;- temp[(temp$FDR &lt; sort(temp$FDR)[200]), ]
-    }
+    temp &lt;- temp[temp$FDR &lt; 0.1, ]
     temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
     temp$NES &lt;- abs(temp$NES)
     dir.create(paste(&quot;output/phos/&quot;,
@@ -870,9 +873,7 @@ NULL</code></pre>
     mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 1)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    if (length(mrs$regulon) &gt;200){
-      temp &lt;- temp[(temp$FDR &lt; sort(temp$FDR)[200]), ]
-    }
+    temp &lt;- temp[temp$FDR &lt; 0.1, ]
     temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
     temp$NES &lt;- abs(temp$NES)
     dir.create(paste(&quot;output/methy/&quot;,
@@ -915,12 +916,10 @@ NULL</code></pre>
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
+    mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    if (length(mrs$regulon) &gt;200){
-      temp &lt;- temp[(temp$FDR &lt; sort(temp$FDR)[200]), ]
-    }
+    temp &lt;- temp[temp$FDR &lt; 0.1, ]
     temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
     temp$NES &lt;- abs(temp$NES)
     dir.create(paste(&quot;output/exprs/&quot;,
