@@ -41,7 +41,7 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 5)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
     if (length(mrs$regulon) >200){
@@ -78,7 +78,7 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 5)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
     if (length(mrs$regulon) >200){
@@ -115,7 +115,7 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 5)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
     if (length(mrs$regulon) >200){
@@ -187,7 +187,7 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
     regulon
 
     ## Normalized Enrichment Score (NES)
-    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 5)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE, minsize = 10)
     temp <- summary(mrs, length(mrs$regulon))
     temp$Sign <- ifelse(temp$NES > 0, "+", "-")
     if (length(mrs$regulon) >200){
@@ -202,26 +202,3 @@ foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
         col.names = F)
 }
 ```
-
-
-# Subset Pathways
-```{r}
-foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
-  exprs <- read.table(paste("output/exprs/",
-        name, "/exprs.txt", sep = ""))
-  phos <- read.table(paste("output/phos/",
-        name, "/phos.txt", sep = ""))
-  cnv <- read.table(paste("output/cnv/",
-        name, "/cnv.txt", sep = ""))
-  prot <- read.table(paste("output/prot/",
-        name, "/prot.txt", sep = ""))
-  methy <- read.table(paste("output/methy/",
-        name, "/methy.txt", sep = ""))
-  
-pathways <- read.csv("data/pc-hgnc.sif", sep = "\t", header = F)
-pathways <- pathways[(pathways$V1 %in% c(exprs$V1,phos$V1,cnv$V1,prot$V1,phos$V1))|(pathways$V3 %in% c(exprs$V1,phos$V1,cnv$V1,prot$V1,phos$V1)),]
-    write.table(pathways, paste("output/pathways/", name, ".sif",
-        sep = ""), quote = F, sep = "\t", row.names = F, col.names = F)
-}
-```
-

@@ -1,3 +1,2 @@
-
 result:
-	../../bin/tiedie --d_expr CNV.txt exprs.txt phos.txt -n pathway.sif
+	../../bin/tiedie exprs.txt methy.txt phos.txt prot.txt -n pathway.sif

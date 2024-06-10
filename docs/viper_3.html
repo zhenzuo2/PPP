@@ -365,7 +365,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -376,8 +376,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -386,13 +386,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-03
+<strong>Last updated:</strong> 2024-06-07
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -415,21 +415,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -520,15 +517,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree97292dd8e8e70b77428027f4d2d18a9aeb3c493atargetblank97292dda">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree69df7f02973d313bf6739a57ed93b2a0504984d8targetblank69df7f0a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/97292dd8e8e70b77428027f4d2d18a9aeb3c493a" target="_blank">97292dd</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/69df7f02973d313bf6739a57ed93b2a0504984d8" target="_blank">69df7f0</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree97292dd8e8e70b77428027f4d2d18a9aeb3c493atargetblank97292dda"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree69df7f02973d313bf6739a57ed93b2a0504984d8targetblank69df7f0a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -538,7 +535,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/97292dd8e8e70b77428027f4d2d18a9aeb3c493a" target="_blank">97292dd</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/69df7f02973d313bf6739a57ed93b2a0504984d8" target="_blank">69df7f0</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -557,217 +554,27 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    code/.DS_Store
+    Ignored:    code/TieDIE-devel/.DS_Store
+    Ignored:    code/TieDIE-devel/examples/.DS_Store
+    Ignored:    code/TieDIE-tiedie2/.DS_Store
+    Ignored:    code/TieDIE-tiedie2/examples/.DS_Store
     Ignored:    data/.DS_Store
+    Ignored:    data/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
+    Ignored:    data/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
+    Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
+    Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
     Ignored:    output/.DS_Store
-
-Untracked files:
-    Untracked:  analysis/viper_6.Rmd
-    Untracked:  analysis/viper_7.Rmd
-    Untracked:  code/TieDIE-devel/
-    Untracked:  code/TieDIE-tiedie2/
-    Untracked:  data/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/
-    Untracked:  data/Proteome_BCM_GENCODE_v34_harmonized_v1/
-    Untracked:  data/RNA_BCM_v1/
-    Untracked:  data/aracne.networks.csv
-    Untracked:  data/omics_regulon_pairs.csv
-    Untracked:  output/cnv/
-    Untracked:  output/prot/
+    Ignored:    output/cnv/.DS_Store
+    Ignored:    output/phos_processed/
+    Ignored:    output/phos_regul_object/
+    Ignored:    output/regulon/.DS_Store
 
 Unstaged changes:
-    Modified:   analysis/TieDIE_1.Rmd
-    Modified:   analysis/_site.yml
-    Modified:   analysis/viper_1.Rmd
-    Modified:   analysis/viper_2.Rmd
-    Modified:   analysis/viper_3.Rmd
-    Modified:   analysis/viper_4.Rmd
-    Modified:   analysis/viper_5.Rmd
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/BRCA_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/CCRCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/CCRCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/COAD_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/COAD_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/GBM_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/HNSCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/HNSCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LSCC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LSCC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LUAD_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/LUAD_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/OV_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/OV_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/PDAC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/PDAC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/BRCA_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CCRCC_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/COAD_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CPTAC_GENCODE_V34_harmonized_meta_table_README.docx
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CPTAC_GENCODE_V34_harmonized_proteomics_README.docx
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CPTAC_pancancer_data_freeze_cohort_size.xlsx
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/CPTAC_pancancer_data_freeze_file_description.xlsx
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/GBM_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/Gene_annotation_and_representable_isoform_mapping_table.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/HNSCC_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/LSCC_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/LUAD_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/OV_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/PDAC_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/UCEC_meta.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/UCEC_phospho_site_abundance_log2_reference_intensity_normalized_Normal.txt
-    Deleted:    data/viper/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/UCEC_phospho_site_abundance_log2_reference_intensity_normalized_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/BRCA_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/BRCA_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/COAD_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/COAD_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/GBM_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/GBM_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/GBM_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/HGSC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/HGSC_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_isoform_FPKM_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/HNSCC_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_isoform_FPKM_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/LSCC_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_isoform_FPKM_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/LUAD_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_isoform_FPKM_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/PDAC_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/UCEC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/UCEC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/UCEC_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_circRNA_RSEM_UQ_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_circRNA_RSEM_UQ_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_gene_RSEM_coding_UQ_1500_log2_Tumor.txt
-    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_isoform_FPKM_log2_Normal.txt
-    Deleted:    data/viper/RNA_BCM_v1/ccRCC_RNAseq_isoform_FPKM_log2_Tumor.txt
-    Deleted:    data/viper/aracne.networks.csv
-    Deleted:    data/viper/omics_regulon_pairs.csv
-    Deleted:    output/TieDIE/input/exprs_hnsc/downstream.input
-    Deleted:    output/TieDIE/input/exprs_hnsc/pathway.sif
-    Deleted:    output/TieDIE/input/exprs_kirc/downstream.input
-    Deleted:    output/TieDIE/input/exprs_kirc/pathway.sif
-    Deleted:    output/TieDIE/input/exprs_luad/downstream.input
-    Deleted:    output/TieDIE/input/exprs_luad/pathway.sif
-    Deleted:    output/TieDIE/input/exprs_lusc/downstream.input
-    Deleted:    output/TieDIE/input/exprs_lusc/pathway.sif
-    Deleted:    output/TieDIE/input/exprs_paad/downstream.input
-    Deleted:    output/TieDIE/input/exprs_paad/pathway.sif
-    Deleted:    output/TieDIE/input/phos_hnsc/downstream.input
-    Deleted:    output/TieDIE/input/phos_hnsc/pathway.sif
-    Deleted:    output/TieDIE/input/phos_kirc/downstream.input
-    Deleted:    output/TieDIE/input/phos_kirc/pathway.sif
-    Deleted:    output/TieDIE/input/phos_luad/downstream.input
-    Deleted:    output/TieDIE/input/phos_luad/pathway.sif
-    Deleted:    output/TieDIE/input/phos_lusc/downstream.input
-    Deleted:    output/TieDIE/input/phos_lusc/pathway.sif
-    Deleted:    output/TieDIE/input/phos_paad/downstream.input
-    Deleted:    output/TieDIE/input/phos_paad/pathway.sif
-    Deleted:    output/viper/expr_processed/hnsc.RDS
-    Deleted:    output/viper/expr_processed/kirc.RDS
-    Deleted:    output/viper/expr_processed/luad.RDS
-    Deleted:    output/viper/expr_processed/lusc.RDS
-    Deleted:    output/viper/expr_processed/paad.RDS
-    Deleted:    output/viper/expr_regul_object/hnsc.RDS
-    Deleted:    output/viper/expr_regul_object/kirc.RDS
-    Deleted:    output/viper/expr_regul_object/luad.RDS
-    Deleted:    output/viper/expr_regul_object/lusc.RDS
-    Deleted:    output/viper/expr_regul_object/paad.RDS
-    Deleted:    output/viper/exprs/hnsc_normal.RDS
-    Deleted:    output/viper/exprs/hnsc_tumor.RDS
-    Deleted:    output/viper/exprs/kirc_normal.RDS
-    Deleted:    output/viper/exprs/kirc_tumor.RDS
-    Deleted:    output/viper/exprs/luad_normal.RDS
-    Deleted:    output/viper/exprs/luad_tumor.RDS
-    Deleted:    output/viper/exprs/lusc_normal.RDS
-    Deleted:    output/viper/exprs/lusc_tumor.RDS
-    Deleted:    output/viper/exprs/paad_normal.RDS
-    Deleted:    output/viper/exprs/paad_tumor.RDS
-    Deleted:    output/viper/phos/hnsc_normal.RDS
-    Deleted:    output/viper/phos/hnsc_tumor.RDS
-    Deleted:    output/viper/phos/kirc_normal.RDS
-    Deleted:    output/viper/phos/kirc_tumor.RDS
-    Deleted:    output/viper/phos/luad_normal.RDS
-    Deleted:    output/viper/phos/luad_tumor.RDS
-    Deleted:    output/viper/phos/lusc_normal.RDS
-    Deleted:    output/viper/phos/lusc_tumor.RDS
-    Deleted:    output/viper/phos/paad_normal.RDS
-    Deleted:    output/viper/phos/paad_tumor.RDS
-    Deleted:    output/viper/phos_processed/hnsc.RDS
-    Deleted:    output/viper/phos_processed/kirc.RDS
-    Deleted:    output/viper/phos_processed/luad.RDS
-    Deleted:    output/viper/phos_processed/lusc.RDS
-    Deleted:    output/viper/phos_processed/paad.RDS
-    Deleted:    output/viper/phos_regul_object/hnsc.RDS
-    Deleted:    output/viper/phos_regul_object/kirc.RDS
-    Deleted:    output/viper/phos_regul_object/luad.RDS
-    Deleted:    output/viper/phos_regul_object/lusc.RDS
-    Deleted:    output/viper/phos_regul_object/paad.RDS
-    Deleted:    output/viper/regulon/regulonblca.adj
-    Deleted:    output/viper/regulon/regulonblca_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonbrca.adj
-    Deleted:    output/viper/regulon/regulonbrca_SYMBOL.adj
-    Deleted:    output/viper/regulon/reguloncesc.adj
-    Deleted:    output/viper/regulon/reguloncesc_SYMBOL.adj
-    Deleted:    output/viper/regulon/reguloncoad.adj
-    Deleted:    output/viper/regulon/reguloncoad_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonesca.adj
-    Deleted:    output/viper/regulon/regulonesca_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulongbm.adj
-    Deleted:    output/viper/regulon/regulongbm_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonhnsc.adj
-    Deleted:    output/viper/regulon/regulonhnsc_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonkirc.adj
-    Deleted:    output/viper/regulon/regulonkirc_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonkirp.adj
-    Deleted:    output/viper/regulon/regulonkirp_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonlaml.adj
-    Deleted:    output/viper/regulon/regulonlaml_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonlihc.adj
-    Deleted:    output/viper/regulon/regulonlihc_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonluad.adj
-    Deleted:    output/viper/regulon/regulonluad_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonlusc.adj
-    Deleted:    output/viper/regulon/regulonlusc_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonnet.adj
-    Deleted:    output/viper/regulon/regulonnet_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonov.adj
-    Deleted:    output/viper/regulon/regulonov_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonpaad.adj
-    Deleted:    output/viper/regulon/regulonpaad_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonpcpg.adj
-    Deleted:    output/viper/regulon/regulonpcpg_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonprad.adj
-    Deleted:    output/viper/regulon/regulonprad_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonread.adj
-    Deleted:    output/viper/regulon/regulonread_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonsarc.adj
-    Deleted:    output/viper/regulon/regulonsarc_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonstad.adj
-    Deleted:    output/viper/regulon/regulonstad_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulontgct.adj
-    Deleted:    output/viper/regulon/regulontgct_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonthca.adj
-    Deleted:    output/viper/regulon/regulonthca_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonthym.adj
-    Deleted:    output/viper/regulon/regulonthym_SYMBOL.adj
-    Deleted:    output/viper/regulon/regulonucec.adj
-    Deleted:    output/viper/regulon/regulonucec_SYMBOL.adj
+    Modified:   output/phos/hnsc/phos.txt
+    Modified:   output/phos/kirc/phos.txt
+    Modified:   output/phos/luad/phos.txt
+    Modified:   output/phos/lusc/phos.txt
+    Modified:   output/phos/paad/phos.txt
 
 </code></pre>
 <p>
@@ -813,6 +620,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/52f24e589517d9e6d50a8ab61a601db890bb5856/analysis/viper_3.Rmd" target="_blank">52f24e5</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-07
+</td>
+<td>
+add more omics
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/52f24e589517d9e6d50a8ab61a601db890bb5856/docs/viper_3.html" target="_blank">52f24e5</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-07
+</td>
+<td>
+add more omics
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1070,12 +911,7 @@ dir.create(&quot;output/phos/&quot;,showWarnings = F)</code></pre>
 <div id="extract-and-process-phosphopeptides-data"
 class="section level1">
 <h1>Extract and process phosphopeptides data</h1>
-<div id="rna-seq-and-network-pairs" class="section level2">
-<h2>RNA-seq and network pairs</h2>
 <pre class="r"><code>df &lt;- read.csv(&quot;data/omics_regulon_pairs.csv&quot;)</code></pre>
-</div>
-<div id="preprocess" class="section level2">
-<h2>Preprocess</h2>
 <pre class="r"><code>for (i in 1:nrow(df)) {
     exprsFile &lt;- df$phos[i]
     exprs &lt;- read.table(exprsFile, header = TRUE, sep = &quot;\t&quot;,
@@ -1135,61 +971,61 @@ other attached packages:
 [13] stringr_1.5.1             plyr_1.8.9               
 [15] dplyr_1.1.4               aracne.networks_1.30.0   
 [17] viper_1.38.0              Biobase_2.64.0           
-[19] BiocGenerics_0.50.0      
+[19] BiocGenerics_0.50.0       workflowr_1.7.1          
 
 loaded via a namespace (and not attached):
-  [1] bitops_1.0-7                DBI_1.2.2                  
-  [3] rlang_1.1.3                 magrittr_2.0.3             
-  [5] git2r_0.33.0                matrixStats_1.3.0          
-  [7] e1071_1.7-14                compiler_4.4.0             
-  [9] RSQLite_2.3.6               png_0.1-8                  
- [11] vctrs_0.6.5                 ProtGenerics_1.36.0        
- [13] pkgconfig_2.0.3             crayon_1.5.2               
- [15] fastmap_1.2.0               XVector_0.44.0             
- [17] utf8_1.2.4                  Rsamtools_2.20.0           
- [19] promises_1.3.0              rmarkdown_2.27             
- [21] UCSC.utils_1.0.0            purrr_1.0.2                
- [23] bit_4.0.5                   xfun_0.44                  
- [25] zlibbioc_1.50.0             cachem_1.1.0               
- [27] jsonlite_1.8.8              blob_1.2.4                 
- [29] later_1.3.2                 DelayedArray_0.30.0        
- [31] BiocParallel_1.38.0         R6_2.5.1                   
- [33] bslib_0.7.0                 stringi_1.8.4              
- [35] rtracklayer_1.64.0          jquerylib_0.1.4            
- [37] SummarizedExperiment_1.34.0 Rcpp_1.0.12                
- [39] knitr_1.46                  mixtools_2.0.0             
- [41] httpuv_1.6.15               Matrix_1.7-0               
- [43] splines_4.4.0               tidyselect_1.2.1           
- [45] abind_1.4-5                 rstudioapi_0.16.0          
- [47] yaml_2.3.8                  codetools_0.2-20           
- [49] curl_5.2.1                  lattice_0.22-6             
- [51] tibble_3.2.1                KEGGREST_1.44.0            
- [53] evaluate_0.23               survival_3.6-4             
- [55] proxy_0.4-27                kernlab_0.9-32             
- [57] Biostrings_2.72.0           pillar_1.9.0               
- [59] MatrixGenerics_1.16.0       whisker_0.4.1              
- [61] KernSmooth_2.23-24          plotly_4.10.4              
- [63] generics_0.1.3              rprojroot_2.0.4            
- [65] RCurl_1.98-1.14             ggplot2_3.5.1              
- [67] munsell_0.5.1               scales_1.3.0               
- [69] class_7.3-22                glue_1.7.0                 
- [71] lazyeval_0.2.2              tools_4.4.0                
- [73] BiocIO_1.14.0               data.table_1.15.4          
- [75] GenomicAlignments_1.40.0    fs_1.6.4                   
- [77] XML_3.99-0.16.1             grid_4.4.0                 
- [79] tidyr_1.3.1                 colorspace_2.1-0           
- [81] nlme_3.1-164                GenomeInfoDbData_1.2.12    
- [83] restfulr_0.0.15             cli_3.6.2                  
- [85] workflowr_1.7.1             fansi_1.0.6                
- [87] S4Arrays_1.4.1              segmented_2.1-0            
- [89] viridisLite_0.4.2           gtable_0.3.5               
- [91] sass_0.4.9                  digest_0.6.35              
- [93] SparseArray_1.4.1           rjson_0.2.21               
- [95] htmlwidgets_1.6.4           memoise_2.0.1              
- [97] htmltools_0.5.8.1           lifecycle_1.0.4            
- [99] httr_1.4.7                  bit64_4.0.5                
-[101] MASS_7.3-60.2              </code></pre>
-</div>
+  [1] rstudioapi_0.16.0           jsonlite_1.8.8             
+  [3] magrittr_2.0.3              rmarkdown_2.27             
+  [5] fs_1.6.4                    BiocIO_1.14.0              
+  [7] zlibbioc_1.50.0             vctrs_0.6.5                
+  [9] memoise_2.0.1               Rsamtools_2.20.0           
+ [11] RCurl_1.98-1.14             htmltools_0.5.8.1          
+ [13] S4Arrays_1.4.1              curl_5.2.1                 
+ [15] SparseArray_1.4.1           sass_0.4.9                 
+ [17] KernSmooth_2.23-24          bslib_0.7.0                
+ [19] htmlwidgets_1.6.4           plotly_4.10.4              
+ [21] cachem_1.1.0                GenomicAlignments_1.40.0   
+ [23] whisker_0.4.1               lifecycle_1.0.4            
+ [25] pkgconfig_2.0.3             Matrix_1.7-0               
+ [27] R6_2.5.1                    fastmap_1.2.0              
+ [29] GenomeInfoDbData_1.2.12     MatrixGenerics_1.16.0      
+ [31] digest_0.6.35               colorspace_2.1-0           
+ [33] ps_1.7.6                    rprojroot_2.0.4            
+ [35] RSQLite_2.3.6               fansi_1.0.6                
+ [37] httr_1.4.7                  abind_1.4-5                
+ [39] compiler_4.4.0              proxy_0.4-27               
+ [41] bit64_4.0.5                 BiocParallel_1.38.0        
+ [43] DBI_1.2.2                   MASS_7.3-60.2              
+ [45] DelayedArray_0.30.0         rjson_0.2.21               
+ [47] tools_4.4.0                 httpuv_1.6.15              
+ [49] glue_1.7.0                  restfulr_0.0.15            
+ [51] callr_3.7.6                 nlme_3.1-164               
+ [53] promises_1.3.0              grid_4.4.0                 
+ [55] getPass_0.2-4               generics_0.1.3             
+ [57] gtable_0.3.5                class_7.3-22               
+ [59] tidyr_1.3.1                 data.table_1.15.4          
+ [61] utf8_1.2.4                  XVector_0.44.0             
+ [63] pillar_1.9.0                later_1.3.2                
+ [65] splines_4.4.0               lattice_0.22-6             
+ [67] survival_3.6-4              rtracklayer_1.64.0         
+ [69] bit_4.0.5                   tidyselect_1.2.1           
+ [71] Biostrings_2.72.0           knitr_1.46                 
+ [73] git2r_0.33.0                ProtGenerics_1.36.0        
+ [75] SummarizedExperiment_1.34.0 xfun_0.44                  
+ [77] mixtools_2.0.0              matrixStats_1.3.0          
+ [79] stringi_1.8.4               UCSC.utils_1.0.0           
+ [81] lazyeval_0.2.2              yaml_2.3.8                 
+ [83] evaluate_0.23               codetools_0.2-20           
+ [85] kernlab_0.9-32              tibble_3.2.1               
+ [87] cli_3.6.2                   segmented_2.1-0            
+ [89] munsell_0.5.1               processx_3.8.4             
+ [91] jquerylib_0.1.4             Rcpp_1.0.12                
+ [93] png_0.1-8                   XML_3.99-0.16.1            
+ [95] ggplot2_3.5.1               blob_1.2.4                 
+ [97] bitops_1.0-7                viridisLite_0.4.2          
+ [99] scales_1.3.0                e1071_1.7-14               
+[101] purrr_1.0.2                 crayon_1.5.2               
+[103] rlang_1.1.3                 KEGGREST_1.44.0            </code></pre>
 </div>
 </div>
 

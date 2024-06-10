@@ -1,0 +1,54 @@
+---
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (Master Regulator Analysis)"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+```
+
+# Define Functions
+```{r}
+read_csv <- function(input_file){
+    if (file.size(input_file) > 0){
+      df <- read.table(input_file)
+    }
+  else{
+    df <- data.frame(matrix(ncol = 1, nrow = 0))
+    x <- c("V1")
+    colnames(df) <- x
+  }
+  return(df)
+}
+```
+
+
+# Subset Pathways
+```{r}
+for (name in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+  exprs <- read_csv(paste("output/exprs/",
+        name, "/exprs.txt", sep = ""))
+  phos <- read_csv(paste("output/phos/",
+        name, "/phos.txt", sep = ""))
+  cnv <- read_csv(paste("output/cnv/",
+        name, "/cnv.txt", sep = ""))
+  prot <- read_csv(paste("output/prot/",
+        name, "/prot.txt", sep = ""))
+  methy <- read_csv(paste("output/methy/",
+        name, "/methy.txt", sep = ""))
+  
+pathways <- read.csv("data/pc-hgnc.sif", sep = "\t", header = F)
+pathways <- pathways[(pathways$V1 %in% c(exprs$V1,phos$V1,cnv$V1,prot$V1,phos$V1))|(pathways$V3 %in% c(exprs$V1,phos$V1,cnv$V1,prot$V1,phos$V1)),]
+    write.table(pathways, paste("output/pathways/", name, ".sif",
+        sep = ""), quote = F, sep = "\t", row.names = F, col.names = F)
+}
+```
+
