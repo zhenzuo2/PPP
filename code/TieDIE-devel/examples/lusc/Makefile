@@ -1,2 +1,2 @@
 result:
-	../../bin/tiedie exprs.txt methy.txt phos.txt prot.txt -n pathway.sif
+	../../bin/tiedie phos.txt -n pathway.sif

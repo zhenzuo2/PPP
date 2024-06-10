@@ -1,0 +1,50 @@
+---
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (Patient-Specific)"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+```
+
+# Sample Similarity
+Heatmap showing the similarity between the samples (red indicated highly-similar samples) as measured by viperSimilarity between the VIPER-inferred regulatory protein activity pro les.
+```{r}
+name = "kirc"
+dset <- readRDS(paste("output/exprs/dset_", name, ".RDS",
+        sep = ""))
+
+tmp <- rowTtest(dset, "description", "tumor", "normal")
+data.frame(Gene = rownames(tmp$p.value), t = round(tmp$statistic, 2), "p-value" = signif(tmp$p.value, 3))[order(tmp$p.value)[1:10], ]
+```
+
+```{r}
+heatmap(as.matrix(dset@assayData$exprs[c("TMEM213", "ATP6V1G3", "BSND", "GGT6", "NUPR2", "TMEM207", 
+"ATP6V1C2", "CA9", "NDUFA4L2", "LINC01230"),]))
+```
+
+
+```{r}
+regulon <- aracne2regulon(paste("output/regulon/regulon", name, ".adj",
+            sep = ""), dset, verbose = FALSE)
+vpres <- viper(dset, regulon, verbose = FALSE)
+vpsig <- viperSignature(eset = dset@assayData$exprs[,dset$description=="tumor"],ref = dset@assayData$exprs[,dset$description=="normal"], method = "mean",verbose = T)
+vpsig
+vpres <- viper(vpsig, regulon, verbose = FALSE)
+
+pos <- dset$description %in% c("tumor")
+d1 <- dset@assayData$exprs[, pos]
+colnames(d1) <- dset$description[pos]
+dd <- dist(t(d1), method = "euclidean")
+heatmap(as.matrix(dd), Rowv = as.dendrogram(hclust(dd, method = "average")), symm = T)
+```
+
+
