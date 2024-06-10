@@ -45,7 +45,6 @@ editor_options:
 ## Plot Network
 [Plot Network](TieDIE_2.html)
 
-
 # Environment setup
 <details>
   <summary>Set up python2.7</summary>
