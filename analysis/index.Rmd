@@ -12,14 +12,29 @@ editor_options:
 
 # Virtual Inference of Protein-activity by Enriched Regulon Analysis
 
-## Preparing Input
+## Input
 
-[Data Preparation](viper_1.html)
+[Copy Number Variation](viper_1.html)
 
-[Generating the Regulon Object](viper_2.html)
+[Proteomics](viper_2.html)
 
-## Run Analysis
-[Run Viper](viper_3.html)
+[Phosphopeptides](viper_3.html)
+
+[Methylation](viper_4.html)
+
+[Gene Expression](viper_5.html)
+
+## Context-specific Networks
+[Extract Context-Specific Networks](viper_6.html)
+
+## Build Regulon Object
+[Build Regulon Object](viper_7.html)
+
+
+## Run Virtual Inference of Protein-activity by Enriched Regulon Analysis
+[Run Viper](viper_8.html)
+
+[Export Viper Results](viper_9.html)
 
 # TieDIE: Tied Diffusion for Subnetwork Discovery.
 
