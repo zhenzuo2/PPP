@@ -1,0 +1,93 @@
+---
+title: "GSEA and kinase/substrate enrichment analysis (KSEA)"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(aracne.networks)
+library(dplyr)
+library(plyr)
+library(stringr)
+library(Biobase)
+library(EnsDb.Hsapiens.v86)
+dir.create("output/phos/",showWarnings = F)
+```
+
+# Define functions
+```{r}
+calculate_fold_change <- function(data_matrix, group) {
+  # Check if the length of the group variable matches the number of columns in the data matrix
+  if (length(group) != ncol(data_matrix)) {
+    stop("The length of the group variable must match the number of columns in the data matrix.")
+  }
+  
+  # Ensure the group variable contains only "normal" and "tumor"
+  if (!all(group %in% c("normal", "tumor"))) {
+    stop("The group variable must only contain 'normal' and 'tumor' values.")
+  }
+  
+  # Calculate the mean for each row in the tumor and normal groups
+  mean_tumor <- rowMeans(data_matrix[, group == "tumor"])
+  mean_normal <- rowMeans(data_matrix[, group == "normal"])
+  
+  # Calculate the fold change
+  fold_change <- mean_tumor / mean_normal
+  
+  # Return the fold change
+  return(fold_change)
+}
+```
+
+# Extract and process phosphopeptides data
+
+```{r}
+df <- read.csv("data/omics_regulon_pairs.csv")
+```
+
+```{r}
+i = 1
+exprsFile <- df$phos[i]
+exprs <- read.table(exprsFile, header = TRUE, sep = "\t",
+    row.names = 1, as.is = TRUE)
+split_rownames <- strsplit(rownames(exprs), "\\|")
+split_rownames_df <- data.frame(t(data.frame(split_rownames)))
+colnames(split_rownames_df) <- c("ENSG", "ENSP", "S","Seq","Index")
+split_rownames_df$ENSG <- sub("\\..*$", "", split_rownames_df$ENSG)
+geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = split_rownames_df$ENSG,
+    keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+split_rownames_df$SYMBOL <- plyr::mapvalues(split_rownames_df$ENSG, from = geneID$GENEID,
+    to = geneID$SYMBOL, warn_missing = FALSE)
+nrow(split_rownames_df)
+```
+
+
+```{r}
+i = 2
+exprsFile <- df$phos[i]
+exprs <- read.table(exprsFile, header = TRUE, sep = "\t",
+    row.names = 1, as.is = TRUE)
+split_rownames <- strsplit(rownames(exprs), "\\|")
+split_rownames_df <- data.frame(t(data.frame(split_rownames)))
+colnames(split_rownames_df) <- c("ENSG", "ENSP", "S","Seq","Index")
+split_rownames_df$ENSG <- sub("\\..*$", "", split_rownames_df$ENSG)
+geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = split_rownames_df$ENSG,
+    keytype = "GENEID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+split_rownames_df$SYMBOL <- plyr::mapvalues(split_rownames_df$ENSG, from = geneID$GENEID,
+    to = geneID$SYMBOL, warn_missing = FALSE)
+nrow(split_rownames_df)
+```
+
+
+```{r}
+calculate_fold_change
+```
+

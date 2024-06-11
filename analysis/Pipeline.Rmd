@@ -2,6 +2,7 @@
 title: "Pipeline"
 output:
   workflowr::wflow_html:
+    number_sections: true
     toc: true
     toc_float: true
     theme: united
@@ -10,5 +11,51 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r}
+library(png)
+img <- readPNG("data/Figure2.png")
+grid::grid.raster(img)
+```
 
-![](/Users/zhenzuo/PRO/PPP/data/Figure2.png)
+# Pipeline for Omic Dataset Integration
+
+## Find Differentially Phosphorylated Peptides
+- Get phosphorylation data. 
+- Replicates were averaged. 
+- Run t-test on naive and benign samples to identify differentially phosphorylated peptide (FDA < 0.1). 
+- Map differentially phosphorylated peptide to known kinases. Save it and pass to the next step.  
+<span style="color:red">Please double check. I cannot find details about how this map works, I think it uses the predicted kinase-substrate interactions you shared with me and map sep_15 to kinase. </span>.
+
+## Integration of Transcriptomic and Phosphoproteomic Datasets Using TieDIE
+
+### Apply the master regulator inference algorithm (MARINa)
+*We first applied the master regulator inference algorithm (MARINa) (Alvarez et al., 2015), a method to infer the activity of a given protein based on the differential expression/phosphorylation of the targets it regulates.*
+
+<span style="color:red">I am confused about this part. Can you infer the activity of a given protein based on protein abundance? I do not understand why people infer protein activity based on expression/phosphorylation data instead of protein data itself</span>.
+
+#### Input
+- Known kinases from mapped differentially phosphorylated peptide (from last step)
+- Gene Expression data for normal and tumor
+- Gene level pathway network (Object of class regulon with XXX regulators, XXX targets and XXX interactions)
+- Phosphorylation data for normal and tumor
+- Phosphorylation level pathway network (Object of class regulon with XXX regulators, XXX targets and XXX interactions)
+
+#### Output
+- Transcription factors with differential activity (repression/activation). 
+- Differentially activated kinase regulator (only higher in tumor, based on the predicted upstream kinases for each phosphopeptide). 
+
+<span style="color:red">I think it dependents on the pathway network we give as input, it does not have to be transcription factors based on my observation. It can be a regulator in general</span>.
+
+*This allowed us to identify transcription factors with differential activity (repression/activation) as well as differentially activated kinase regulators (based on the predicted upstream kinases for each phosphopeptide) in metastatic CRPC samples as compared with treatment naive prostate cancers (Data S1G and S1H).*. 
+
+*In addition, kinases directly identified by the mass spectrometer in our phosphoproteomic dataset (phosphorylated kinases) were merged with the kinase regulators before input to TieDIE.*
+
+#### Mechanisms and details
+Given a data matrix and a regulon, by running  `vpres <- viper(dset, regulon, verbose = FALSE)`, it will generate regulator's activity matrix for each sample and regulator. This is running for each sample,   
+but it can also run on multiple samples together (similar to MARINa), `mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)` to get top regulators with Normalized Enrichment Score (NES) and p-value.  
+In this section, `msviper` was used to get the output.  
+*In other words, it performs a KS test for each regulator using as input the differential activity (in metastatic CRPC vs treatment naïve prostate cancer) of its targets.  It applies a test based on the Kolmogorov-Smirnov test to assess whether the differential activity of activated targets have higher levels, and/or the differential activity of inhibited targets have lower levels, than expected by chance based on a uniform distribution. In the case of TF regulators, the expression levels of the targets are used for this inference; in the case of kinase regulators, the phosphorylation levels are used for the target levels. To facilitate this analysis, we combined multiple databases of predicted kinase-substrate predicted interactions to produce a comprehensive ‘regulome’ of candidate regulator kinases that are predicted to phosphorylate at least 25 proteins on at least one site (Drake et al., 2012; Lachmann and Ma’ayan, 2009). We ran the MARINa algorithm (Alvarez et al., 2015), to find ‘kinase regulators’ with significantly higher activity--as inferred from the peptides they are predicted to phosphorylate--in CRPC samples compared to the control primary and benign tumor samples. For the TF targets we used a predetermined interactome of transcription factor-to-target regulatory edges, inferred using a diverse sample of normal, primary and metastatic prostate cancer samples as well as cell lines (Aytes et al., 2014a).*
+
+
+
+

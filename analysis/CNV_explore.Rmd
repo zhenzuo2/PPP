@@ -1,0 +1,55 @@
+---
+title: "Summarization and Quantitative Trait Analysis of CNV ranges"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(EnsDb.Hsapiens.v86)
+library(CNVRanger)
+```
+
+# Define functions
+```{r}
+contains_special_characters <- function(strings) {
+    # Define a regular expression pattern to match special characters
+    pattern <- "[^A-Za-z0-9 ]"
+    # Check if any string in the input vector contains special
+    # characters
+    contains_special <- grepl(pattern, strings)
+    return(contains_special)
+}
+```
+
+# Encode
+-2: homozygous deletion (2-copy loss). 
+-1: heterozygous deletion (1-copy loss). 
+0: normal diploid state. 
+1: 1-copy gain. 
+2: amplification (>= 2-copy gain). 
+
+```{r}
+exprs <- as.matrix(read.table("data/CNV_BCM_v1/ccRCC_WES_CNV_gene_gistic_level.txt", header = TRUE, sep = "\t",
+    row.names = 1, as.is = TRUE))
+rownames(exprs) <- sub("\\..*$", "", rownames(exprs))
+geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = rownames(exprs),
+    keytype = "GENEID", columns = c("SYMBOL", "GENEID","SEQNAME","SEQSTRAND","GENESEQEND","GENESEQSTART"))
+rownames(exprs) <- plyr::mapvalues(rownames(exprs), from = geneID$GENEID,
+    to = geneID$SYMBOL, warn_missing = FALSE)
+exprs <- exprs[!sapply(rownames(exprs), function(x) startsWith(x, "ENSG")),
+    ]
+# Identify duplicated row names
+duplicated_rows <- duplicated(rownames(exprs))
+# Remove rows with duplicated row names
+cleaned_exprs <- exprs[!duplicated_rows,]
+cleaned_exprs <- cleaned_exprs[!contains_special_characters(rownames(cleaned_exprs)),]
+nrow(cleaned_exprs)
+ncol(cleaned_exprs)
+```

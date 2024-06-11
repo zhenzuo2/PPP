@@ -38,11 +38,16 @@ contains_special_characters <- function(strings) {
 
 
 # Extract and process CNV data
-
 ```{r}
 df <- read.csv("data/omics_regulon_pairs.csv")
 knitr::kable(df[,c('Lable','description')])
 ```
+
+-2: homozygous deletion (2-copy loss). 
+-1: heterozygous deletion (1-copy loss). 
+0: normal diploid state. 
+1: 1-copy gain. 
+2: amplification (>= 2-copy gain). 
 
 ```{r}
 Lable <- unique(substr(df$Lable, 1, 4))
