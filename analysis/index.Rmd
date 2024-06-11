@@ -10,6 +10,9 @@ editor_options:
   
 ---
 
+# Pipeline
+[Pipeline](Pipeline.html)
+
 # Virtual Inference of Protein-activity by Enriched Regulon Analysis
 
 ## Input
