@@ -1,0 +1,14 @@
+---
+title: "Pipeline"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+
+![](data/Figure2.png)
