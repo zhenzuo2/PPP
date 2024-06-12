@@ -386,7 +386,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-11
+<strong>Last updated:</strong> 2024-06-12
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -517,15 +517,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree589e25d53438e788e4404fa06337e1641798e241targetblank589e25da">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree36b3c2a83e4aa31653ff47dfa037e553eaceea3dtargetblank36b3c2aa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/589e25d53438e788e4404fa06337e1641798e241" target="_blank">589e25d</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/36b3c2a83e4aa31653ff47dfa037e553eaceea3d" target="_blank">36b3c2a</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree589e25d53438e788e4404fa06337e1641798e241targetblank589e25da"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree36b3c2a83e4aa31653ff47dfa037e553eaceea3dtargetblank36b3c2aa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -535,7 +535,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/589e25d53438e788e4404fa06337e1641798e241" target="_blank">589e25d</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/36b3c2a83e4aa31653ff47dfa037e553eaceea3d" target="_blank">36b3c2a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -553,6 +553,8 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .RData
     Ignored:    .Rhistory
+    Ignored:    analysis/.RData
+    Ignored:    analysis/.Rhistory
     Ignored:    code/.DS_Store
     Ignored:    code/TieDIE-devel/.DS_Store
     Ignored:    code/TieDIE-devel/examples/.DS_Store
@@ -614,6 +616,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/36b3c2a83e4aa31653ff47dfa037e553eaceea3d/analysis/Pipeline.Rmd" target="_blank">36b3c2a</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/b1c864488ed251edc3a74943b90ec477d8bb0224/docs/Pipeline.html" target="_blank">b1c8644</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -812,54 +848,46 @@ Phosphorylated Peptides</h2>
 <li>Run t-test on naive and benign samples to identify differentially
 phosphorylated peptide (FDA &lt; 0.1).</li>
 <li>Map differentially phosphorylated peptide to known kinases. Save it
-and pass to the next step.<br />
-<span style="color:red">Please double check. I cannot find details about
-how this map works, I think it uses the predicted kinase-substrate
-interactions you shared with me and map sep_15 to kinase. </span>.</li>
+and pass to the next step.</li>
+</ul>
+<div id="output" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Output</h3>
+<ul>
+<li>Known kinases from mapped differentially phosphorylated
+peptide.</li>
 </ul>
 </div>
-<div
-id="integration-of-transcriptomic-and-phosphoproteomic-datasets-using-tiedie"
-class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Integration of
-Transcriptomic and Phosphoproteomic Datasets Using TieDIE</h2>
+</div>
 <div id="apply-the-master-regulator-inference-algorithm-marina"
-class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Apply the master
-regulator inference algorithm (MARINa)</h3>
+class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Apply the Master
+Regulator Inference Algorithm (MARINa)</h2>
 <p><em>We first applied the master regulator inference algorithm
 (MARINa) (Alvarez et al., 2015), a method to infer the activity of a
 given protein based on the differential expression/phosphorylation of
 the targets it regulates.</em></p>
-<p><span style="color:red">I am confused about this part. Can you infer
-the activity of a given protein based on protein abundance? I do not
-understand why people infer protein activity based on
-expression/phosphorylation data instead of protein data
-itself</span>.</p>
-<div id="input" class="section level4" number="1.2.1.1">
-<h4><span class="header-section-number">1.2.1.1</span> Input</h4>
+<div id="input" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Input</h3>
 <ul>
-<li>Known kinases from mapped differentially phosphorylated peptide
-(from last step)</li>
+<li>Known kinases from mapped differentially phosphorylated peptide</li>
 <li>Gene Expression data for normal and tumor</li>
 <li>Gene level pathway network (Object of class regulon with XXX
-regulators, XXX targets and XXX interactions)</li>
-<li>Phosphorylation data for normal and tumor</li>
+regulators, XXX targets and XXX interactions). The paper used
+Genome-wide cross-species interrogation of disease-specific regulatory
+networks from 10.1016/j.ccr.2014.03.017.</li>
+<li>Phosphorylation data for normal and tumor.</li>
 <li>Phosphorylation level pathway network (Object of class regulon with
-XXX regulators, XXX targets and XXX interactions)</li>
+XXX regulators, XXX targets and XXX interactions).</li>
 </ul>
 </div>
-<div id="output" class="section level4" number="1.2.1.2">
-<h4><span class="header-section-number">1.2.1.2</span> Output</h4>
+<div id="output-1" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Output</h3>
 <ul>
 <li>Transcription factors with differential activity
 (repression/activation).</li>
 <li>Differentially activated kinase regulator (only higher in tumor,
 based on the predicted upstream kinases for each phosphopeptide).</li>
 </ul>
-<p><span style="color:red">I think it dependents on the pathway network
-we give as input, it does not have to be transcription factors based on
-my observation. It can be a regulator in general</span>.</p>
 <p><em>This allowed us to identify transcription factors with
 differential activity (repression/activation) as well as differentially
 activated kinase regulators (based on the predicted upstream kinases for
@@ -869,21 +897,17 @@ treatment naive prostate cancers (Data S1G and S1H).</em>.</p>
 in our phosphoproteomic dataset (phosphorylated kinases) were merged
 with the kinase regulators before input to TieDIE.</em></p>
 </div>
-<div id="mechanisms-and-details" class="section level4"
-number="1.2.1.3">
-<h4><span class="header-section-number">1.2.1.3</span> Mechanisms and
-details</h4>
-<p>Given a data matrix and a regulon, by running
-<code>vpres &lt;- viper(dset, regulon, verbose = FALSE)</code>, it will
-generate regulator’s activity matrix for each sample and regulator. This
-is running for each sample,<br />
-but it can also run on multiple samples together (similar to MARINa),
+<div id="mechanisms-and-details" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Mechanisms and
+Details</h3>
+<p>Given a data matrix and a regulon, by running multiple samples
+together (similar to MARINa),
 <code>mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)</code>
 to get top regulators with Normalized Enrichment Score (NES) and
 p-value.<br />
 In this section, <code>msviper</code> was used to get the output.<br />
 <em>In other words, it performs a KS test for each regulator using as
-input the differential activity (in metastatic CRPC vs treatment naïve
+input the differential activity (in metastatic CRPC vs treatment naive
 prostate cancer) of its targets. It applies a test based on the
 Kolmogorov-Smirnov test to assess whether the differential activity of
 activated targets have higher levels, and/or the differential activity
@@ -903,6 +927,129 @@ tumor samples. For the TF targets we used a predetermined interactome of
 transcription factor-to-target regulatory edges, inferred using a
 diverse sample of normal, primary and metastatic prostate cancer samples
 as well as cell lines (Aytes et al., 2014a).</em></p>
+</div>
+</div>
+<div id="copy-number-and-mutation-analysis" class="section level2"
+number="1.3">
+<h2><span class="header-section-number">1.3</span> Copy Number and
+Mutation Analysis</h2>
+<div id="output-2" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Output</h3>
+<p>The output will a gene list including all putative cancer driver
+genes. - Identify predicted driver genes with MutSig 2.0 (Lawrence et
+al., 2013), and filtered these genes by intersecting with the most
+recent COSMIC census, representing 572 cancer-related genes according to
+our prior knowledge.<br />
+- Significant focal amplifications and significant focal deletion events
+with driver potential, identified by the GISTIC algorithm (Mermel et
+al., 2011).<br />
+<em>When combined with the genes found in the CNV analysis of metastatic
+samples, this resulted in 96 candidate genes with significant copy
+number alteration and 112 genes with either mutation or copy number
+events with driver potential. Of these, 108 had at least one copy-number
+or mutation event in the 49 metastatic samples.</em></p>
+<p><span style="color:red">Copy number and mutation analysis result was
+used for cancer-specific network but not copy number and mutation
+analysis.</span>.</p>
+</div>
+</div>
+<div id="tiedie-pathway-analysis-of-clinical-prostate-cancer-samples"
+class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> TieDIE Pathway
+Analysis of Clinical Prostate Cancer Samples</h2>
+<div id="input-1" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> INPUT</h3>
+<ul>
+<li>Known kinases from mapped differentially phosphorylated peptide</li>
+<li>Kinase Regulators.</li>
+<li>Putative cancer driver genes.</li>
+<li>Transcription factors.</li>
+<li>pre-defined pathway interactions, such as ‘Multinet’ (Khurana et
+al., 2013), which can be accessed at <a
+href="http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/"
+class="uri">http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/</a>.</li>
+</ul>
+</div>
+<div id="parameters-and-trimming" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Parameters and
+Trimming</h3>
+<p><em>A scaffold network was selected by identifying the smallest
+network with high precision in terms of capturing the input genes.
+TieDIE computes a ratio of overlap (ROO) that reflects the proximity of
+genes to one another in the given input set in a given network. One can
+control the size of TieDIE’s resulting network via the method’s alpha
+parameter. Thus, we chose the alpha corresponding to the smallest
+network in which slightly larger and smaller networks resulted in ROO
+values that were less distinguishable from a random background that used
+permuted networks. The network producing the first significant local
+maximum in the ROO between the observed and background was selected for
+use in all subsequent analysis (Fig. S2b). Our intuition was that this
+procedure would provide smaller, interpretable networks that maintain a
+high level of specificity. The final scaffold network was derived by
+further restricting to protein-protein edges with at least one pair of
+quantified phosphopeptides with at least a modest correlation (+/- 0.3,
+Spearman Rho), resulting in a final ‘scaffold’ network of 122 nodes and
+256 edges (190 protein-protein interaction; 131 phosphorylation). The
+robustness of this network was quantified by removing both proteomic and
+geneexpression data for each patient with a complete dataset and
+recomputing the “scaffold” using the same procedure described above
+(Fig. S4l).</em></p>
+</div>
+</div>
+<div id="sample-specific-activity-and-network-generation"
+class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Sample-Specific
+Activity and Network Generation</h2>
+<p><em>For each sample, we searched all paths connecting any active
+kinase, mutation or high-level copy number gain or deletion to any
+active TF over edges contained in the scaffold network, using the
+NetworkX python package (Schult and Swart, 2008) and up to an edge-depth
+of 4;</em></p>
+<div id="input-2" class="section level3" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Input</h3>
+<ul>
+<li>Known kinases from mapped differentially phosphorylated peptide</li>
+<li>Kinase Regulators.</li>
+<li>Transcription factors.</li>
+<li>pre-defined pathway interactions, such as ‘Multinet’ (Khurana et
+al., 2013), which can be accessed at <a
+href="http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/"
+class="uri">http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/</a>.</li>
+</ul>
+<p><code>vpres &lt;- viper(dset, regulon, verbose = FALSE)</code>, the
+viper function generates a matrix or “ExpressionSet” object in case an
+“ExpressionSet” object is given as input of regulator’s activity,
+containing 621 regulators samples in our example.</p>
+</div>
+<div id="mechanisms-and-details-1" class="section level3"
+number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Mechanisms and
+Details</h3>
+<p><em>We used the VIPER package (Alvarez et al., 2015) to infer
+sample-specific activity (pseudo z-scores) of each of each of the 14
+kinase regulators that were found to have significantly higher average
+activity in CRPC samples, using the 11 treatment naive or benign samples
+to compute the reference distribution of activity scores. Similarly, we
+used VIPER to generate inferences for each of the 74 TFs, for each
+sample, using the same microarray data, regulon and reference samples
+used in the MARINa analysis on the Grasso dataset. Briefly, VIPER infers
+the activity of a regulator in a sample by inspecting the degree to
+which the regulator’s targets are activated or inactivated in that
+sample. It applies a test based on the Kolmogorov-Smirnov test to assess
+whether the predicted activated targets have higher levels, and/or the
+predicted inhibited targets have lower levels, than expected by chance
+based on a uniform distribution. In the case of TF regulators, the
+expression levels of the targets are used for this inference; in the
+case of kinase regulators, the phosphorylation levels are used for the
+targets. Importantly, we observed a strong correspondence between
+inferred and observed differentially phosphorylated kinases, with a
+greater than 3-fold improvement in the overlap compared to what was
+expected by chance. However, the direct overlap between TF and kinase
+targets was coincidental as 21 of the 74 TF regulators were found to be
+directly phosphorylated by one of the 14 kinase regulators, which equals
+chance expectation (p&lt;0.5, permutation test). Importantly, the TF and
+kinase sets were found to be significantly associated in pathway space
+by longer paths in the network as described below.</em></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -930,21 +1077,21 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] png_0.1-8
+[1] png_0.1-8       workflowr_1.7.1
 
 loaded via a namespace (and not attached):
- [1] vctrs_0.6.5       cli_3.6.2         knitr_1.47        rlang_1.1.4      
- [5] xfun_0.44         highr_0.11        stringi_1.8.4     promises_1.3.0   
- [9] jsonlite_1.8.8    workflowr_1.7.1   glue_1.7.0        rprojroot_2.0.4  
-[13] git2r_0.33.0      htmltools_0.5.8.1 httpuv_1.6.15     sass_0.4.9       
-[17] fansi_1.0.6       rmarkdown_2.27    grid_4.4.0        jquerylib_0.1.4  
-[21] evaluate_0.24.0   tibble_3.2.1      fastmap_1.2.0     yaml_2.3.8       
-[25] lifecycle_1.0.4   whisker_0.4.1     stringr_1.5.1     compiler_4.4.0   
-[29] fs_1.6.4          Rcpp_1.0.12       pkgconfig_2.0.3   rstudioapi_0.16.0
-[33] later_1.3.2       digest_0.6.35     R6_2.5.1          utf8_1.2.4       
-[37] pillar_1.9.0      magrittr_2.0.3    bslib_0.7.0       tools_4.4.0      
-[41] cachem_1.1.0     </code></pre>
-</div>
+ [1] jsonlite_1.8.8    highr_0.11        compiler_4.4.0    promises_1.3.0   
+ [5] Rcpp_1.0.12       stringr_1.5.1     git2r_0.33.0      callr_3.7.6      
+ [9] later_1.3.2       jquerylib_0.1.4   yaml_2.3.8        fastmap_1.2.0    
+[13] R6_2.5.1          knitr_1.47        tibble_3.2.1      rprojroot_2.0.4  
+[17] bslib_0.7.0       pillar_1.9.0      rlang_1.1.4       utf8_1.2.4       
+[21] cachem_1.1.0      stringi_1.8.4     httpuv_1.6.15     xfun_0.44        
+[25] getPass_0.2-4     fs_1.6.4          sass_0.4.9        cli_3.6.2        
+[29] magrittr_2.0.3    ps_1.7.6          grid_4.4.0        digest_0.6.35    
+[33] processx_3.8.4    rstudioapi_0.16.0 lifecycle_1.0.4   vctrs_0.6.5      
+[37] evaluate_0.24.0   glue_1.7.0        whisker_0.4.1     fansi_1.0.6      
+[41] rmarkdown_2.27    httr_1.4.7        tools_4.4.0       pkgconfig_2.0.3  
+[45] htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 </div>
