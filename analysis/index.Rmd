@@ -21,7 +21,7 @@ editor_options:
 
 [Proteomics](viper_2.html)
 
-[Phosphopeptides](viper_3.html)
+[Tumor Enriched Phosphopeptides](GSEA_KSEA.html)
 
 [Methylation](viper_4.html)
 
