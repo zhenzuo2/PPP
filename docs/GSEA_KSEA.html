@@ -387,7 +387,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-11
+<strong>Last updated:</strong> 2024-06-12
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -518,15 +518,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree589e25d53438e788e4404fa06337e1641798e241targetblank589e25da">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreef432ac9d24befd62cf543439bafee3add63f35b9targetblankf432ac9a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/589e25d53438e788e4404fa06337e1641798e241" target="_blank">589e25d</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/f432ac9d24befd62cf543439bafee3add63f35b9" target="_blank">f432ac9</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree589e25d53438e788e4404fa06337e1641798e241targetblank589e25da"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreef432ac9d24befd62cf543439bafee3add63f35b9targetblankf432ac9a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -536,7 +536,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/589e25d53438e788e4404fa06337e1641798e241" target="_blank">589e25d</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/f432ac9d24befd62cf543439bafee3add63f35b9" target="_blank">f432ac9</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -554,6 +554,8 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .RData
     Ignored:    .Rhistory
+    Ignored:    analysis/.RData
+    Ignored:    analysis/.Rhistory
     Ignored:    code/.DS_Store
     Ignored:    code/TieDIE-devel/.DS_Store
     Ignored:    code/TieDIE-devel/examples/.DS_Store
@@ -570,6 +572,10 @@ Ignored files:
     Ignored:    output/phos_processed/
     Ignored:    output/phos_regul_object/
     Ignored:    output/regulon/.DS_Store
+
+Untracked files:
+    Untracked:  data/KSA_gold_standard.csv
+    Untracked:  output/DPP/
 
 </code></pre>
 <p>
@@ -620,6 +626,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f432ac9d24befd62cf543439bafee3add63f35b9/analysis/GSEA_KSEA.Rmd" target="_blank">f432ac9</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/b1c864488ed251edc3a74943b90ec477d8bb0224/docs/GSEA_KSEA.html" target="_blank">b1c8644</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/81703bb5c0bd3a11f842f79b6f057a918aec2f9f/analysis/GSEA_KSEA.Rmd" target="_blank">81703bb</a>
 </td>
 <td>
@@ -648,11 +688,11 @@ library(plyr)
 library(stringr)
 library(Biobase)
 library(EnsDb.Hsapiens.v86)
-dir.create(&quot;output/phos/&quot;,showWarnings = F)</code></pre>
+dir.create(&quot;output/DPP/&quot;,showWarnings = F)</code></pre>
 </div>
 <div id="define-functions" class="section level1">
 <h1>Define functions</h1>
-<pre class="r"><code>calculate_fold_change &lt;- function(data_matrix, group) {
+<pre class="r"><code>calculate_fold_change_and_pvalue &lt;- function(data_matrix, group, adjust_method = &quot;BH&quot;) {
   # Check if the length of the group variable matches the number of columns in the data matrix
   if (length(group) != ncol(data_matrix)) {
     stop(&quot;The length of the group variable must match the number of columns in the data matrix.&quot;)
@@ -664,69 +704,86 @@ dir.create(&quot;output/phos/&quot;,showWarnings = F)</code></pre>
   }
   
   # Calculate the mean for each row in the tumor and normal groups
-  mean_tumor &lt;- rowMeans(data_matrix[, group == &quot;tumor&quot;])
-  mean_normal &lt;- rowMeans(data_matrix[, group == &quot;normal&quot;])
+  mean_tumor &lt;- rowMeans(data_matrix[, group == &quot;tumor&quot;], na.rm = TRUE)
+  mean_normal &lt;- rowMeans(data_matrix[, group == &quot;normal&quot;], na.rm = TRUE)
   
   # Calculate the fold change
   fold_change &lt;- mean_tumor / mean_normal
   
-  # Return the fold change
-  return(fold_change)
+  # Initialize a vector to store p-values
+  p_values &lt;- numeric(nrow(data_matrix))
+  
+  # Perform t-test for each row
+  for (i in 1:nrow(data_matrix)) {
+    normal_values &lt;- data_matrix[i, group == &quot;normal&quot;]
+    tumor_values &lt;- data_matrix[i, group == &quot;tumor&quot;]
+    t_test_result &lt;- t.test(normal_values, tumor_values)
+    p_values[i] &lt;- t_test_result$p.value
+  }
+  
+  # Adjust the p-values
+  adjusted_p_values &lt;- p.adjust(p_values, method = adjust_method)
+  
+  # Create a data frame with fold change, p-values, and adjusted p-values
+  results &lt;- data.frame(
+    Fold_Change = fold_change,
+    P_Value = p_values,
+    Adjusted_P_Value = adjusted_p_values
+  )
+  
+  # Return the results data frame
+  return(results)
 }</code></pre>
 </div>
 <div id="extract-and-process-phosphopeptides-data"
 class="section level1">
 <h1>Extract and process phosphopeptides data</h1>
 <pre class="r"><code>df &lt;- read.csv(&quot;data/omics_regulon_pairs.csv&quot;)</code></pre>
-<pre class="r"><code>i = 1
-exprsFile &lt;- df$phos[i]
-exprs &lt;- read.table(exprsFile, header = TRUE, sep = &quot;\t&quot;,
-    row.names = 1, as.is = TRUE)
-split_rownames &lt;- strsplit(rownames(exprs), &quot;\\|&quot;)
-split_rownames_df &lt;- data.frame(t(data.frame(split_rownames)))
-colnames(split_rownames_df) &lt;- c(&quot;ENSG&quot;, &quot;ENSP&quot;, &quot;S&quot;,&quot;Seq&quot;,&quot;Index&quot;)
-split_rownames_df$ENSG &lt;- sub(&quot;\\..*$&quot;, &quot;&quot;, split_rownames_df$ENSG)
-geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = split_rownames_df$ENSG,
-    keytype = &quot;GENEID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
-split_rownames_df$SYMBOL &lt;- plyr::mapvalues(split_rownames_df$ENSG, from = geneID$GENEID,
-    to = geneID$SYMBOL, warn_missing = FALSE)
-nrow(split_rownames_df)</code></pre>
-<pre><code>[1] 53152</code></pre>
-<pre class="r"><code>i = 2
-exprsFile &lt;- df$phos[i]
-exprs &lt;- read.table(exprsFile, header = TRUE, sep = &quot;\t&quot;,
-    row.names = 1, as.is = TRUE)
-split_rownames &lt;- strsplit(rownames(exprs), &quot;\\|&quot;)
-split_rownames_df &lt;- data.frame(t(data.frame(split_rownames)))
-colnames(split_rownames_df) &lt;- c(&quot;ENSG&quot;, &quot;ENSP&quot;, &quot;S&quot;,&quot;Seq&quot;,&quot;Index&quot;)
-split_rownames_df$ENSG &lt;- sub(&quot;\\..*$&quot;, &quot;&quot;, split_rownames_df$ENSG)
-geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = split_rownames_df$ENSG,
-    keytype = &quot;GENEID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
-split_rownames_df$SYMBOL &lt;- plyr::mapvalues(split_rownames_df$ENSG, from = geneID$GENEID,
-    to = geneID$SYMBOL, warn_missing = FALSE)
-nrow(split_rownames_df)</code></pre>
-<pre><code>[1] 54238</code></pre>
-<pre class="r"><code>calculate_fold_change</code></pre>
-<pre><code>function(data_matrix, group) {
-  # Check if the length of the group variable matches the number of columns in the data matrix
-  if (length(group) != ncol(data_matrix)) {
-    stop(&quot;The length of the group variable must match the number of columns in the data matrix.&quot;)
-  }
-  
-  # Ensure the group variable contains only &quot;normal&quot; and &quot;tumor&quot;
-  if (!all(group %in% c(&quot;normal&quot;, &quot;tumor&quot;))) {
-    stop(&quot;The group variable must only contain &#39;normal&#39; and &#39;tumor&#39; values.&quot;)
-  }
-  
-  # Calculate the mean for each row in the tumor and normal groups
-  mean_tumor &lt;- rowMeans(data_matrix[, group == &quot;tumor&quot;])
-  mean_normal &lt;- rowMeans(data_matrix[, group == &quot;normal&quot;])
-  
-  # Calculate the fold change
-  fold_change &lt;- mean_tumor / mean_normal
-  
-  # Return the fold change
-  return(fold_change)
+<pre class="r"><code>labels &lt;- c(&quot;kirc&quot;, &quot;kirc&quot;, &quot;hnsc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;luad&quot;, &quot;paad&quot;, &quot;paad&quot;)
+for (i in c(1, 3, 5, 7, 9)) {
+    exprsFile &lt;- df$phos[i]
+    exprs_n &lt;- read.table(exprsFile, header = TRUE, sep = &quot;\t&quot;, row.names = 1,
+        as.is = TRUE)
+    split_rownames &lt;- strsplit(rownames(exprs_n), &quot;\\|&quot;)
+    meta_normal &lt;- data.frame(t(data.frame(split_rownames)))
+    colnames(meta_normal) &lt;- c(&quot;ENSG&quot;, &quot;ENSP&quot;, &quot;S&quot;, &quot;Seq&quot;, &quot;Index&quot;)
+    meta_normal$ENSG &lt;- sub(&quot;\\..*$&quot;, &quot;&quot;, meta_normal$ENSG)
+    geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = meta_normal$ENSG,
+        keytype = &quot;GENEID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
+    meta_normal$SYMBOL &lt;- plyr::mapvalues(meta_normal$ENSG, from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+    rownames(meta_normal) &lt;- rownames(exprs_n)
+    i = i + 1
+    exprsFile &lt;- df$phos[i]
+    exprs_t &lt;- read.table(exprsFile, header = TRUE, sep = &quot;\t&quot;, row.names = 1,
+        as.is = TRUE)
+    split_rownames &lt;- strsplit(rownames(exprs_t), &quot;\\|&quot;)
+    meta_tumor &lt;- data.frame(t(data.frame(split_rownames)))
+    colnames(meta_tumor) &lt;- c(&quot;ENSG&quot;, &quot;ENSP&quot;, &quot;S&quot;, &quot;Seq&quot;, &quot;Index&quot;)
+    meta_tumor$ENSG &lt;- sub(&quot;\\..*$&quot;, &quot;&quot;, meta_tumor$ENSG)
+    geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = meta_tumor$ENSG,
+        keytype = &quot;GENEID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
+    meta_tumor$SYMBOL &lt;- plyr::mapvalues(meta_tumor$ENSG, from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+    rownames(meta_tumor) &lt;- rownames(exprs_t)
+
+    common_terms &lt;- intersect(rownames(meta_tumor), rownames(meta_normal))
+
+    expr &lt;- cbind(exprs_t[common_terms, ], exprs_n[common_terms, ])
+    expr[!is.finite(as.matrix(expr))] &lt;- 0
+    meta &lt;- meta_normal[common_terms, ]
+
+    fc &lt;- calculate_fold_change_and_pvalue(data_matrix = as.matrix(expr),
+        group = c(rep(&quot;tumor&quot;, ncol(exprs_t)), rep(&quot;normal&quot;, ncol(exprs_n))))
+    fc &lt;- cbind(meta,fc)[(fc &gt; 1) &amp; (fc$Adjusted_P_Value &lt; 0.1), ]
+
+    network &lt;- read.csv(&quot;data/KSA_gold_standard.csv&quot;)
+    network &lt;- network[network$seq_15 %in% fc$Seq, ]
+    unique(network$Gene.name)
+    write.csv(fc[fc$Seq %in% network$seq_15,], paste(&quot;output/DPP/&quot;, labels[i],
+        &quot;_fc.csv&quot;, sep = &quot;&quot;),row.names = F)
+    write.csv(network, paste(&quot;output/DPP/&quot;, labels[i], &quot;_KSA_gold_standard.csv&quot;,
+        sep = &quot;&quot;),row.names = F)
 }</code></pre>
 <br>
 <p>
@@ -764,59 +821,62 @@ other attached packages:
 [11] plyr_1.8.9                dplyr_1.1.4              
 [13] aracne.networks_1.30.0    viper_1.38.0             
 [15] Biobase_2.64.0            BiocGenerics_0.50.0      
+[17] workflowr_1.7.1          
 
 loaded via a namespace (and not attached):
   [1] bitops_1.0-7                DBI_1.2.3                  
   [3] rlang_1.1.4                 magrittr_2.0.3             
   [5] git2r_0.33.0                matrixStats_1.3.0          
   [7] e1071_1.7-14                compiler_4.4.0             
-  [9] RSQLite_2.3.7               png_0.1-8                  
- [11] vctrs_0.6.5                 ProtGenerics_1.36.0        
- [13] pkgconfig_2.0.3             crayon_1.5.2               
- [15] fastmap_1.2.0               XVector_0.44.0             
- [17] utf8_1.2.4                  Rsamtools_2.20.0           
- [19] promises_1.3.0              rmarkdown_2.27             
- [21] UCSC.utils_1.0.0            purrr_1.0.2                
- [23] bit_4.0.5                   xfun_0.44                  
- [25] zlibbioc_1.50.0             cachem_1.1.0               
- [27] jsonlite_1.8.8              blob_1.2.4                 
- [29] later_1.3.2                 DelayedArray_0.30.1        
- [31] BiocParallel_1.38.0         parallel_4.4.0             
- [33] R6_2.5.1                    bslib_0.7.0                
- [35] stringi_1.8.4               rtracklayer_1.64.0         
- [37] jquerylib_0.1.4             SummarizedExperiment_1.34.0
- [39] Rcpp_1.0.12                 knitr_1.47                 
- [41] mixtools_2.0.0              httpuv_1.6.15              
- [43] Matrix_1.7-0                splines_4.4.0              
- [45] tidyselect_1.2.1            abind_1.4-5                
- [47] rstudioapi_0.16.0           yaml_2.3.8                 
- [49] codetools_0.2-20            curl_5.2.1                 
- [51] lattice_0.22-6              tibble_3.2.1               
- [53] KEGGREST_1.44.0             evaluate_0.24.0            
- [55] survival_3.7-0              proxy_0.4-27               
- [57] kernlab_0.9-32              Biostrings_2.72.1          
- [59] pillar_1.9.0                MatrixGenerics_1.16.0      
- [61] whisker_0.4.1               KernSmooth_2.23-24         
- [63] plotly_4.10.4               generics_0.1.3             
- [65] rprojroot_2.0.4             RCurl_1.98-1.14            
- [67] ggplot2_3.5.1               munsell_0.5.1              
- [69] scales_1.3.0                class_7.3-22               
- [71] glue_1.7.0                  lazyeval_0.2.2             
- [73] tools_4.4.0                 BiocIO_1.14.0              
- [75] data.table_1.15.4           GenomicAlignments_1.40.0   
- [77] fs_1.6.4                    XML_3.99-0.16.1            
- [79] grid_4.4.0                  tidyr_1.3.1                
- [81] colorspace_2.1-0            nlme_3.1-165               
- [83] GenomeInfoDbData_1.2.12     restfulr_0.0.15            
- [85] cli_3.6.2                   workflowr_1.7.1            
- [87] fansi_1.0.6                 S4Arrays_1.4.1             
- [89] segmented_2.1-0             viridisLite_0.4.2          
- [91] gtable_0.3.5                sass_0.4.9                 
- [93] digest_0.6.35               SparseArray_1.4.8          
- [95] rjson_0.2.21                htmlwidgets_1.6.4          
- [97] memoise_2.0.1               htmltools_0.5.8.1          
- [99] lifecycle_1.0.4             httr_1.4.7                 
-[101] bit64_4.0.5                 MASS_7.3-60.2              </code></pre>
+  [9] RSQLite_2.3.7               getPass_0.2-4              
+ [11] png_0.1-8                   callr_3.7.6                
+ [13] vctrs_0.6.5                 ProtGenerics_1.36.0        
+ [15] pkgconfig_2.0.3             crayon_1.5.2               
+ [17] fastmap_1.2.0               XVector_0.44.0             
+ [19] utf8_1.2.4                  Rsamtools_2.20.0           
+ [21] promises_1.3.0              rmarkdown_2.27             
+ [23] UCSC.utils_1.0.0            ps_1.7.6                   
+ [25] purrr_1.0.2                 bit_4.0.5                  
+ [27] xfun_0.44                   zlibbioc_1.50.0            
+ [29] cachem_1.1.0                jsonlite_1.8.8             
+ [31] blob_1.2.4                  later_1.3.2                
+ [33] DelayedArray_0.30.1         BiocParallel_1.38.0        
+ [35] parallel_4.4.0              R6_2.5.1                   
+ [37] bslib_0.7.0                 stringi_1.8.4              
+ [39] rtracklayer_1.64.0          jquerylib_0.1.4            
+ [41] SummarizedExperiment_1.34.0 Rcpp_1.0.12                
+ [43] knitr_1.47                  mixtools_2.0.0             
+ [45] httpuv_1.6.15               Matrix_1.7-0               
+ [47] splines_4.4.0               tidyselect_1.2.1           
+ [49] abind_1.4-5                 rstudioapi_0.16.0          
+ [51] yaml_2.3.8                  codetools_0.2-20           
+ [53] curl_5.2.1                  processx_3.8.4             
+ [55] lattice_0.22-6              tibble_3.2.1               
+ [57] KEGGREST_1.44.0             evaluate_0.24.0            
+ [59] survival_3.7-0              proxy_0.4-27               
+ [61] kernlab_0.9-32              Biostrings_2.72.1          
+ [63] pillar_1.9.0                MatrixGenerics_1.16.0      
+ [65] whisker_0.4.1               KernSmooth_2.23-24         
+ [67] plotly_4.10.4               generics_0.1.3             
+ [69] RCurl_1.98-1.14             rprojroot_2.0.4            
+ [71] ggplot2_3.5.1               munsell_0.5.1              
+ [73] scales_1.3.0                class_7.3-22               
+ [75] glue_1.7.0                  lazyeval_0.2.2             
+ [77] tools_4.4.0                 BiocIO_1.14.0              
+ [79] data.table_1.15.4           GenomicAlignments_1.40.0   
+ [81] XML_3.99-0.16.1             fs_1.6.4                   
+ [83] grid_4.4.0                  tidyr_1.3.1                
+ [85] colorspace_2.1-0            nlme_3.1-165               
+ [87] GenomeInfoDbData_1.2.12     restfulr_0.0.15            
+ [89] cli_3.6.2                   fansi_1.0.6                
+ [91] S4Arrays_1.4.1              segmented_2.1-0            
+ [93] viridisLite_0.4.2           gtable_0.3.5               
+ [95] sass_0.4.9                  digest_0.6.35              
+ [97] SparseArray_1.4.8           rjson_0.2.21               
+ [99] htmlwidgets_1.6.4           memoise_2.0.1              
+[101] htmltools_0.5.8.1           lifecycle_1.0.4            
+[103] httr_1.4.7                  bit64_4.0.5                
+[105] MASS_7.3-60.2              </code></pre>
 </div>
 </div>
 
