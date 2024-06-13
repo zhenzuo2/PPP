@@ -17,16 +17,24 @@ img <- readPNG("data/Figure2.png")
 grid::grid.raster(img)
 ```
 
+## To do
+Fiter phosphorylated/proteomics peptide showing in at least 20 samples.   
+change Phosphorylated Peptides to gene name + amio acid + location to index.  
+
 # Pipeline for Omic Dataset Integration
 
 ## Find Differentially Phosphorylated Peptides
+- Get proteomics data (and process). 
 - Get phosphorylation data. 
 - Replicates were averaged. 
-- Run t-test on naive and benign samples to identify differentially phosphorylated peptide (FDA < 0.1). 
-- Map differentially phosphorylated peptide to known kinases. Save it and pass to the next step.  
+- Run t-test (use WC test) on naive and benign samples to identify differentially phosphorylated peptide and proteins (FDR < 0.1, or 0.05 ). 
+- Filter diffetingally phospho sites if p value < host protein level p value. 
+- Select Differentially expressed kinases from proteomics data.  
+- optional: kinases activation site overlapping with differentially phosphoal sites.  
+- Run Kinase substrate enrichment analysis (KSEA) to find significant kinases. Save it and pass to the next step.  ranked list and prior knowldege (gmt files) ->  kinase activity score.
 
 ### Output
-- Known kinases from mapped differentially phosphorylated peptide. 
+- Known kinases from mapped differentially kinase activity score. 
 
 ## Apply the Master Regulator Inference Algorithm (MARINa)
 *We first applied the master regulator inference algorithm (MARINa) (Alvarez et al., 2015), a method to infer the activity of a given protein based on the differential expression/phosphorylation of the targets it regulates.*
@@ -67,7 +75,7 @@ The output will a gene list including all putative cancer driver genes.
 - Kinase Regulators. 
 - Putative cancer driver genes. 
 - Transcription factors. 
-- pre-defined pathway interactions, such as ‘Multinet’ (Khurana et al., 2013), which can be accessed at http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/.  
+- Pre-defined pathway interactions, such as ‘Multinet’ (Khurana et al., 2013), which can be accessed at http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/.  
 
 ### Parameters and Trimming
 *A scaffold network was selected by identifying the smallest network with high precision in terms of capturing the input genes. TieDIE computes a ratio of overlap (ROO) that reflects the proximity of genes to one another in the given input set in a given network. One can control the size of TieDIE’s resulting network via the method’s alpha parameter. Thus, we chose the alpha corresponding to the smallest network in which slightly larger and smaller networks resulted in ROO values that were less distinguishable from a random background that used permuted networks. The network producing the first significant local maximum in the ROO between the observed and background was selected for use in all subsequent analysis (Fig. S2b). Our intuition was that this procedure would provide smaller, interpretable networks that maintain a high level of specificity. The final scaffold network was derived by further restricting to protein-protein edges with at least one pair of quantified phosphopeptides with at least a modest correlation (+/- 0.3, Spearman Rho), resulting in a final ‘scaffold’ network of 122 nodes and 256 edges (190 protein-protein interaction; 131 phosphorylation). The robustness of this network was quantified by removing both proteomic and geneexpression data for each patient with a complete dataset and recomputing the “scaffold” using the same procedure described above (Fig. S4l).*

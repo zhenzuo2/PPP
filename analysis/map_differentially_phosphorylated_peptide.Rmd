@@ -1,0 +1,136 @@
+---
+title: " Identify Known kinases from mapped differentially phosphorylated peptide"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(aracne.networks)
+library(dplyr)
+library(plyr)
+library(stringr)
+library(Biobase)
+library(EnsDb.Hsapiens.v86)
+dir.create("output/DPP/",showWarnings = F)
+```
+
+# Define functions
+```{r}
+calculate_fold_change_and_pvalue <- function(data_matrix, group, adjust_method = "BH") {
+  # Check if the length of the group variable matches the number of columns in the data matrix
+  if (length(group) != ncol(data_matrix)) {
+    stop("The length of the group variable must match the number of columns in the data matrix.")
+  }
+  
+  # Ensure the group variable contains only "normal" and "tumor"
+  if (!all(group %in% c("normal", "tumor"))) {
+    stop("The group variable must only contain 'normal' and 'tumor' values.")
+  }
+  
+  # Calculate the mean for each row in the tumor and normal groups
+  mean_tumor <- rowMeans(data_matrix[, group == "tumor"], na.rm = TRUE)
+  mean_normal <- rowMeans(data_matrix[, group == "normal"], na.rm = TRUE)
+  
+  # Calculate the fold change
+  fold_change <- mean_tumor - mean_normal
+  
+  # Initialize a vector to store p-values
+  p_values <- numeric(nrow(data_matrix))
+  
+  # Perform t-test for each row
+  for (i in 1:nrow(data_matrix)) {
+    normal_values <- data_matrix[i, group == "normal"]
+    tumor_values <- data_matrix[i, group == "tumor"]
+    t_test_result <- t.test(normal_values, tumor_values)
+    p_values[i] <- t_test_result$p.value
+  }
+  
+  # Adjust the p-values
+  adjusted_p_values <- p.adjust(p_values, method = adjust_method)
+  
+  # Create a data frame with fold change, p-values, and adjusted p-values
+  results <- data.frame(
+    Fold_Change = fold_change,
+    P_Value = p_values,
+    Adjusted_P_Value = adjusted_p_values
+  )
+  
+  # Return the results data frame
+  return(results)
+}
+
+```
+
+# Extract and process phosphopeptides data
+
+```{r}
+df <- read.csv("data/omics_regulon_pairs.csv")
+```
+
+```{r}
+labels <- c("kirc", "kirc", "hnsc", "hnsc", "lusc", "lusc", "luad", "luad", "paad", "paad")
+for (i in c(1, 3, 5, 7, 9)) {
+    exprsFile <- df$phos[i]
+    exprs_n <- read.table(exprsFile, header = TRUE, sep = "\t", row.names = 1,
+        as.is = TRUE)
+    split_rownames <- strsplit(rownames(exprs_n), "\\|")
+    meta_normal <- data.frame(t(data.frame(split_rownames)))
+
+    colnames(meta_normal) <- c("ENSG", "ENSP", "S", "Seq", "Index")
+
+    meta_normal$ENSG <- sub("\\..*$", "", meta_normal$ENSG)
+    geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = meta_normal$ENSG,
+        keytype = "GENEID", columns = c("SYMBOL", "UNIPROTID", "GENEID"))
+    meta_normal$UNIPROTID <- plyr::mapvalues(meta_normal$ENSG, from = geneID$GENEID,
+        to = geneID$UNIPROTID, warn_missing = FALSE)
+    rownames(meta_normal) <- rownames(exprs_n)
+    
+    
+    i = i + 1
+    exprsFile <- df$phos[i]
+    exprs_t <- read.table(exprsFile, header = TRUE, sep = "\t", row.names = 1,
+        as.is = TRUE)
+    split_rownames <- strsplit(rownames(exprs_t), "\\|")
+    meta_tumor <- data.frame(t(data.frame(split_rownames)))
+    colnames(meta_tumor) <- c("ENSG", "ENSP", "S", "Seq", "Index")
+    
+    meta_tumor$ENSG <- sub("\\..*$", "", meta_tumor$ENSG)
+    geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = meta_tumor$ENSG,
+        keytype = "UNIPROTID", columns = c("SYMBOL", "UNIPROTID", "GENEID"))
+    meta_tumor$UNIPROTID <- plyr::mapvalues(meta_tumor$ENSG, from = geneID$GENEID,
+        to = geneID$UNIPROTID, warn_missing = FALSE)
+    rownames(meta_tumor) <- rownames(exprs_t)
+    
+    common_terms <- intersect(rownames(meta_tumor), rownames(meta_normal))
+    
+    exprs_t[!is.finite(as.matrix(exprs_t))] <- 0
+    exprs_n[!is.finite(as.matrix(exprs_n))] <- 0
+    
+    expr <- cbind(exprs_t[common_terms, ], exprs_n[common_terms, ])
+    
+    saveRDS(exprs_n, paste("output/phos/count_matrix_",labels[i],"_normal.RDS",sep = ""))
+    saveRDS(exprs_t, paste("output/phos/count_matrix_",labels[i],"_tumor.RDS",sep = ""))
+    
+    meta <- meta_normal[common_terms, ]
+
+    fc <- calculate_fold_change_and_pvalue(data_matrix = as.matrix(expr),
+        group = c(rep("tumor", ncol(exprs_t)), rep("normal", ncol(exprs_n))))
+    fc <- cbind(meta,fc)[(fc >= 2) & (fc$Adjusted_P_Value < 0.1), ]
+
+    network <- read.csv("data/KSA_gold_standard.csv")
+    network <- network[network$seq_15 %in% fc$Seq, ]
+    unique(network$Gene.name)
+    write.csv(fc[fc$Seq %in% network$seq_15,], paste("output/DPP/", labels[i],
+        "_fc.csv", sep = ""),row.names = F)
+    write.csv(network, paste("output/DPP/", labels[i], "_KSA_gold_standard.csv",
+        sep = ""),row.names = F)
+}
+```

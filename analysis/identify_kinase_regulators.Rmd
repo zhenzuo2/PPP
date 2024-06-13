@@ -1,0 +1,60 @@
+---
+title: "Identify Kinase Regulators"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(EnsDb.Hsapiens.v86)
+```
+
+## Process network and save as adj files
+```{r}
+df <- read.csv("data/KSA_gold_standard.csv")
+geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = df$UniProt.ID.1,
+        keytype = "UNIPROTID", columns = c("SYMBOL", "ENTREZID", "GENEID","UNIPROTID"))
+df$UniProt.ID.2 <- plyr::mapvalues(df$UniProt.ID.1, from = geneID$UNIPROTID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+
+# Group by Regulator and concatenate elements of each group into strings
+result <- aggregate(seq_15 ~ Gene.name, data = df, FUN = function(x) paste(x, collapse = "\t"))
+# Print the result
+file <- file(paste("output/regulon/KSA_gold_standard.adj",
+    sep = ""))
+writeLines(paste(result$Gene.name,result$seq_15,sep = "\t"),file)
+close(file)
+```
+
+# Generating the regulon object for phos
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- "output/regulon/KSA_gold_standard.adj"
+    expr_normal <- readRDS(paste("output/phos/count_matrix_", ca, "_normal.RDS",
+        sep = ""))
+    expr_tumor <- readRDS(paste("output/phos/count_matrix_", ca, "_tumor.RDS",
+        sep = ""))
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr, na.rm = TRUE) > 0, ]
+    pattern <- "[^A-Za-z0-9 ]"
+
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/phos/dset_", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/phos/regul_", ca, ".RDS", sep = ""))
+}
+```

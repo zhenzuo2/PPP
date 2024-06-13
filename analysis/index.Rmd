@@ -16,16 +16,19 @@ editor_options:
 # Virtual Inference of Protein-activity by Enriched Regulon Analysis
 
 ## Input
+[Indentify Tumor Enriched Phosphopeptides and Map to Kinase](map_differentially_phosphorylated_peptide.html)
+
+[Identify Kinase Regulators](identify_kinase_regulators.html)
+
+[Identify Transcriptional Regulators](viper_5.html)
 
 [Copy Number Variation](viper_1.html)
 
 [Proteomics](viper_2.html)
 
-[Tumor Enriched Phosphopeptides](GSEA_KSEA.html)
-
 [Methylation](viper_4.html)
 
-[Gene Expression](viper_5.html)
+
 
 ## Context-specific Networks
 [Extract Context-Specific Networks](viper_6.html)
