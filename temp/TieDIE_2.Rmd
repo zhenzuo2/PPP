@@ -1,0 +1,36 @@
+---
+title: "TieDIE: Tied Diffusion for Subnetwork Discovery"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# TieDIE Results
+```{r}
+library(igraph)
+library(networkD3)
+knitr::opts_chunk$set(fig.width=10, fig.height=10) 
+```
+
+# HNSC
+```{r}
+sif_data <- read.table("code/TieDIE-devel/examples/hnsc/TieDIE/TieDIE.sif", header = FALSE, stringsAsFactors = FALSE)
+p <- simpleNetwork(sif_data[1:100,c("V1","V3")], height="100px", width="100px",        
+        Source = 1,                 # column number of source
+        Target = 2,                 # column number of target
+        linkDistance = 10,          # distance between node. Increase this value to have more space between nodes
+        charge = -900,                # numeric value indicating either the strength of the node repulsion (negative value) or attraction (positive value)
+        fontSize = 14,               # size of the node names
+        fontFamily = "serif",       # font og node names
+        linkColour = "#666",        # colour of edges, MUST be a common colour for the whole graph
+        nodeColour = "#69b3a2",     # colour of nodes, MUST be a common colour for the whole graph
+        opacity = 0.9,              # opacity of nodes. 0=transparent. 1=no transparency
+        zoom = T                    # Can you zoom on the figure?
+        )
+p
+```

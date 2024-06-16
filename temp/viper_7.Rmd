@@ -1,0 +1,156 @@
+---
+title: "Virtual Inference of Protein-activity by Enriched Regulon analysis (preparing input)"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+```
+
+# Generating the regulon object for cnv
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("output/regulon/regulon", ca, ".adj",
+        sep = "")
+    expr_normal <- readRDS(paste("output/cnv/count_matrix_", ca, "_normal.RDS",
+        sep = ""))
+    expr_tumor <- readRDS(paste("output/cnv/count_matrix_", ca, "_tumor.RDS",
+        sep = ""))
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr, na.rm = TRUE) > 0, ]
+    pattern <- "[^A-Za-z0-9 ]"
+
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/cnv/dset_", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/cnv/regul_", ca, ".RDS", sep = ""))
+}
+```
+
+# Generating the regulon object for prot
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("output/regulon/regulon", ca, ".adj",
+        sep = "")
+    expr_normal <- readRDS(paste("output/prot/count_matrix_", ca, "_normal.RDS",
+        sep = ""))
+    expr_tumor <- readRDS(paste("output/prot/count_matrix_", ca, "_tumor.RDS",
+        sep = ""))
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr, na.rm = TRUE) > 0, ]
+    pattern <- "[^A-Za-z0-9 ]"
+
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/prot/dset_", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/prot/regul_", ca, ".RDS", sep = ""))
+}
+```
+
+# Generating the regulon object for methy
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("output/regulon/regulon", ca, ".adj",
+        sep = "")
+    expr_normal <- readRDS(paste("output/methy/count_matrix_", ca, "_normal.RDS",
+        sep = ""))
+    expr_normal <- expr_normal[,apply(expr_normal, 2, function(x) var(x, na.rm = TRUE))>0.015]
+    expr_tumor <- readRDS(paste("output/methy/count_matrix_", ca, "_tumor.RDS",
+        sep = ""))
+    expr_tumor <- expr_tumor[,apply(expr_tumor, 2, function(x) var(x, na.rm = TRUE))>0.015]
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr, na.rm = TRUE) > 0, ]
+    expr <- expr[apply(expr, 1, function(x) var(x, na.rm = TRUE))>0.01, ]
+    pattern <- "[^A-Za-z0-9 ]"
+    
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/methy/dset_", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/methy/regul_", ca, ".RDS", sep = ""))
+}
+```
+
+# Generating the regulon object for exprs
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("output/regulon/regulon", ca, ".adj",
+        sep = "")
+    expr_normal <- readRDS(paste("output/exprs/count_matrix_", ca, "_normal.RDS",
+        sep = ""))
+    expr_tumor <- readRDS(paste("output/exprs/count_matrix_", ca, "_tumor.RDS",
+        sep = ""))
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr, na.rm = TRUE) > 0, ]
+    pattern <- "[^A-Za-z0-9 ]"
+
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/expr/dset_", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/expr/regul_", ca, ".RDS", sep = ""))
+}
+```
+
+# Generating the regulon object for phos
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+dir.create("output/phos_processed/",showWarnings = F)
+dir.create("output/phos_regul_object/",showWarnings = F)
+for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("output/regulon/regulon", ca, ".adj",
+        sep = "")
+    expr_normal <- readRDS(paste("output/phos/count_matrix_", ca, "_normal.RDS",
+        sep = ""))
+    expr_tumor <- readRDS(paste("output/phos/count_matrix_", ca, "_tumor.RDS",
+        sep = ""))
+    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
+    rownames(expr) <- expr$Row.names
+    expr$Row.names <- NULL
+
+    expr <- expr[rowSums(expr, na.rm = TRUE) > 0, ]
+    pattern <- "[^A-Za-z0-9 ]"
+
+    expr <- expr[!grepl(pattern, rownames(expr)), ]
+    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- signature
+    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
+    saveRDS(dset, paste("output/phos/dset_", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/phos/regul_", ca, ".RDS", sep = ""))
+}
+```
