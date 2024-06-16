@@ -11,7 +11,7 @@
 
 
 
-<title>Differentially Proteomics</title>
+<title>Context-specific networks</title>
 
 <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -357,7 +357,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Differentially Proteomics</h1>
+<h1 class="title toc-ignore">Context-specific networks</h1>
 
 </div>
 
@@ -570,34 +570,6 @@ Ignored files:
     Ignored:    output/.DS_Store
     Ignored:    temp/.DS_Store
 
-Untracked files:
-    Untracked:  output/regulon/raw/
-    Untracked:  output/regulon/regulonblca.adj
-    Untracked:  output/regulon/regulonbrca.adj
-    Untracked:  output/regulon/reguloncesc.adj
-    Untracked:  output/regulon/reguloncoad.adj
-    Untracked:  output/regulon/regulonesca.adj
-    Untracked:  output/regulon/regulongbm.adj
-    Untracked:  output/regulon/regulonhnsc.adj
-    Untracked:  output/regulon/regulonkirc.adj
-    Untracked:  output/regulon/regulonkirp.adj
-    Untracked:  output/regulon/regulonlaml.adj
-    Untracked:  output/regulon/regulonlihc.adj
-    Untracked:  output/regulon/regulonluad.adj
-    Untracked:  output/regulon/regulonlusc.adj
-    Untracked:  output/regulon/regulonnet.adj
-    Untracked:  output/regulon/regulonov.adj
-    Untracked:  output/regulon/regulonpaad.adj
-    Untracked:  output/regulon/regulonpcpg.adj
-    Untracked:  output/regulon/regulonprad.adj
-    Untracked:  output/regulon/regulonread.adj
-    Untracked:  output/regulon/regulonsarc.adj
-    Untracked:  output/regulon/regulonstad.adj
-    Untracked:  output/regulon/regulontgct.adj
-    Untracked:  output/regulon/regulonthca.adj
-    Untracked:  output/regulon/regulonthym.adj
-    Untracked:  output/regulon/regulonucec.adj
-
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -615,8 +587,8 @@ have uncommitted changes.
 <p>
 These are the previous versions of the repository in which changes were
 made to the R Markdown
-(<code>analysis/Differentially_Protein.Rmd</code>) and HTML
-(<code>docs/Differentially_Protein.html</code>) files. If you’ve
+(<code>analysis/ContextSpecificNetworks.Rmd</code>) and HTML
+(<code>docs/ContextSpecificNetworks.html</code>) files. If you’ve
 configured a remote Git repository (see <code>?wflow_git_remote</code>),
 click on the hyperlinks in the table below to view the files as they
 were in that past version.
@@ -645,27 +617,10 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/zhenzuo2/PPP/3477290c02f75750212201caf12830277b9a5211/docs/Differentially_Protein.html" target="_blank">3477290</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-06-16
-</td>
-<td>
-update workflow
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/zhenzuo2/PPP/blob/8c84adbee7d2e6738a0f811b7fc0c975d43972de/analysis/Differentially_Protein.Rmd" target="_blank">8c84adb</a>
+<a href="https://github.com/zhenzuo2/PPP/blob/f9811b1dc6a5e2bc47aab664d23cc392b7ef13eb/analysis/ContextSpecificNetworks.Rmd" target="_blank">f9811b1</a>
 </td>
 <td>
 Zhen Zuo
@@ -693,171 +648,149 @@ library(plyr)
 library(stringr)
 library(Biobase)
 library(EnsDb.Hsapiens.v86)
-dir.create(&quot;output/DAP/&quot;,showWarnings = FALSE)
-dir.create(&quot;output/prot/&quot;,showWarnings = FALSE)</code></pre>
+library(foreach)
+library(doParallel)
+dir.create(&quot;output/regulon/&quot;,showWarnings = F)
+dir.create(&quot;output/regulon/raw/&quot;,showWarnings = F)</code></pre>
 </div>
-<div id="define-functions" class="section level1">
-<h1>Define functions</h1>
-<pre class="r"><code>read_prot &lt;- function(file_name) {
-    expr &lt;- read.table(file_name, header = TRUE, sep = &quot;\t&quot;, row.names = 1,
-        as.is = TRUE)
-    expr[is.na(expr)] &lt;- 0
-    n_0 &lt;- count_zeros_in_rows(as.matrix(expr))
-    # Remove features with more 20% zero/missing values
-    expr &lt;- expr[n_0 &gt;= ncol(expr)/5, ]
-    # Split rownames by |
-    meta &lt;- data.frame(rownames(expr))
-    colnames(meta) &lt;- c(&quot;ENSG&quot;)
-    meta$ENSG &lt;- sub(&quot;\\..*$&quot;, &quot;&quot;, meta$ENSG)
-
-    geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = meta$ENSG, keytype = &quot;GENEID&quot;,
-        columns = c(&quot;SYMBOL&quot;, &quot;UNIPROTID&quot;, &quot;GENEID&quot;))
-    meta$UNIPROTID &lt;- plyr::mapvalues(meta$ENSG, from = geneID$GENEID,
-        to = geneID$UNIPROTID, warn_missing = FALSE)
-    meta$SYMBOL &lt;- plyr::mapvalues(meta$ENSG, from = geneID$GENEID, to = geneID$SYMBOL,
-        warn_missing = FALSE)
-
-    # Remove duplicated indexs
-    binary_unique_index &lt;- (!duplicated(meta$SYMBOL)) &amp; (!is.na(meta$SYMBOL) &amp;
-        (!sapply(meta$SYMBOL, function(x) startsWith(x, &quot;ENSG&quot;))))
-
-    print(table(binary_unique_index))
-
-    meta &lt;- meta[binary_unique_index, ]
-
-    expr &lt;- expr[binary_unique_index, ]
-    rownames(expr) &lt;- meta$SYMBOL
-
-    rownames(meta) &lt;- rownames(expr)
-    return(list(expr, meta))
-}
-
-calculate_log_fold_change_and_pvalue &lt;- function(data_matrix, group, adjust_method = &quot;BH&quot;) {
-    # Check if the length of the group variable matches the number of
-    # columns in the data matrix
-    if (length(group) != ncol(data_matrix)) {
-        stop(&quot;The length of the group variable must match the number of columns in the data matrix.&quot;)
-    }
-    # Ensure the group variable contains only &#39;normal&#39; and &#39;tumor&#39;
-    if (!all(group %in% c(&quot;normal&quot;, &quot;tumor&quot;))) {
-        stop(&quot;The group variable must only contain &#39;normal&#39; and &#39;tumor&#39; values.&quot;)
-    }
-
-    # Calculate the mean for each row in the tumor and normal groups
-    mean_tumor &lt;- rowMeans(data_matrix[, group == &quot;tumor&quot;], na.rm = TRUE)
-    mean_normal &lt;- rowMeans(data_matrix[, group == &quot;normal&quot;], na.rm = TRUE)
-
-    # Calculate the fold change
-    fold_change &lt;- mean_tumor - mean_normal
-
-    # Initialize a vector to store p-values
-    p_values &lt;- numeric(nrow(data_matrix))
-
-    # Perform t-test for each row
-    for (i in 1:nrow(data_matrix)) {
-        normal_values &lt;- data_matrix[i, group == &quot;normal&quot;]
-        tumor_values &lt;- data_matrix[i, group == &quot;tumor&quot;]
-        wilcox_test_result &lt;- wilcox.test(normal_values, tumor_values,
-            paired = FALSE)
-        p_values[i] &lt;- wilcox_test_result$p.value
-    }
-
-    # Adjust the p-values
-    adjusted_p_values &lt;- p.adjust(p_values, method = adjust_method)
-
-    # Create a data frame with fold change, p-values, and adjusted
-    # p-values
-    results &lt;- data.frame(Fold_Change = fold_change, P_Value = p_values,
-        Adjusted_P_Value = adjusted_p_values)
-    # Return the results data frame
-    return(results)
-}
-
-count_zeros_in_rows &lt;- function(mat) {
-    # Ensure the input is a matrix
-    if (!is.matrix(mat)) {
-        stop(&quot;Input must be a matrix.&quot;)
-    }
-
-    # Use rowSums to count zeros in each row
-    zero_counts &lt;- rowSums(mat != 0)
-
-    return(zero_counts)
-}</code></pre>
+<div id="extract-context-specific-networks" class="section level1">
+<h1>Extract context-specific networks</h1>
+<p>ARACNe-AP was run on RNA-Seq datasets normalized using
+Variance-Stabilizing Transformation. The raw data was downloaded on
+April 15th, 2015 from the TCGA official website.</p>
+<div
+id="extract-aracne-inferred-gene-networks-from-tcga-tumor-datasets."
+class="section level2">
+<h2>Extract ARACNe-inferred gene networks from TCGA tumor datasets.</h2>
+<pre class="r"><code>items &lt;- data(package=&quot;aracne.networks&quot;)$results[, &quot;Item&quot;]
+print(items)</code></pre>
+<pre><code> [1] &quot;regulonblca&quot; &quot;regulonbrca&quot; &quot;reguloncesc&quot; &quot;reguloncoad&quot; &quot;regulonesca&quot;
+ [6] &quot;regulongbm&quot;  &quot;regulonhnsc&quot; &quot;regulonkirc&quot; &quot;regulonkirp&quot; &quot;regulonlaml&quot;
+[11] &quot;regulonlihc&quot; &quot;regulonluad&quot; &quot;regulonlusc&quot; &quot;regulonnet&quot;  &quot;regulonov&quot;  
+[16] &quot;regulonpaad&quot; &quot;regulonpcpg&quot; &quot;regulonprad&quot; &quot;regulonread&quot; &quot;regulonsarc&quot;
+[21] &quot;regulonstad&quot; &quot;regulontgct&quot; &quot;regulonthca&quot; &quot;regulonthym&quot; &quot;regulonucec&quot;</code></pre>
+<pre class="r"><code>df &lt;- read.csv(&quot;data/omics_regulon_pairs.csv&quot;)</code></pre>
 </div>
-<div id="extract-and-process-protein-data" class="section level1">
-<h1>Extract and process Protein data</h1>
-<pre class="r"><code>df &lt;- read.csv(&quot;data/omics_regulon_pairs.csv&quot;)
-labels &lt;- c(&quot;kirc&quot;, &quot;kirc&quot;, &quot;hnsc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;luad&quot;,
-    &quot;paad&quot;, &quot;paad&quot;)
-for (i in c(1, 3, 5, 7, 9)) {
-    normal &lt;- read_prot(df$prot[i])
-    expr_n &lt;- normal[[1]]
-    meta_n &lt;- normal[[2]]
+<div id="process-network-and-save-as-adj-files" class="section level2">
+<h2>Process network and save as adj files</h2>
+<p>Export network to adj files</p>
+<pre class="r"><code># Set up parallel backend
+registerDoParallel(10)
 
-    tumor &lt;- read_prot(df$prot[i+1])
-    expr_t &lt;- tumor[[1]]
-    meta_t &lt;- tumor[[2]]
-
-    common_terms &lt;- intersect(rownames(expr_t), rownames(expr_n))
-
-    expr_t[!is.finite(as.matrix(expr_t))] &lt;- 0
-    expr_n[!is.finite(as.matrix(expr_n))] &lt;- 0
-
-    expr &lt;- cbind(expr_t[common_terms, ], expr_n[common_terms, ])
-
-    saveRDS(expr_n[common_terms, ], paste(&quot;output/prot/count_matrix_&quot;, labels[i], &quot;_normal.RDS&quot;,
-        sep = &quot;&quot;))
-    saveRDS(expr_t[common_terms, ], paste(&quot;output/prot/count_matrix_&quot;, labels[i], &quot;_tumor.RDS&quot;,
-        sep = &quot;&quot;))
-
-    meta &lt;- meta_n[common_terms, ]
-
-    fc &lt;- calculate_log_fold_change_and_pvalue(data_matrix = as.matrix(expr),
-        group = c(rep(&quot;tumor&quot;, ncol(expr_t)), rep(&quot;normal&quot;, ncol(expr_n))))
-    fc &lt;- cbind(meta, fc)
-    write.csv(fc, paste(&quot;output/DAP/&quot;, labels[i],
-        &quot;_fc.csv&quot;, sep = &quot;&quot;), row.names = F)
-    fc &lt;- fc[fc$Adjusted_P_Value &lt; 0.05, ]
-
-    network &lt;- read.csv(&quot;data/KSA_gold_standard.csv&quot;)
-    network &lt;- network[network$Gene.name %in% fc$SYMBOL, ]
-    unique(network$Gene.name)
-    write.csv(fc[fc$SYMBOL %in% network$Gene.name, ], paste(&quot;output/DAP/&quot;, labels[i],
-        &quot;_fc_0.05_kinases.csv&quot;, sep = &quot;&quot;), row.names = F)
-    write.csv(network, paste(&quot;output/DAP/&quot;, labels[i], &quot;_KSA_gold_standard_0.05.csv&quot;,
-        sep = &quot;&quot;), row.names = F)
+# Loop through items in parallel
+foreach(item = items) %dopar% {
+    if (!file.exists(paste(&quot;output/regulon/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;))) {
+        data &lt;- get(item)
+        write.regulon(data, file = paste(&quot;output/regulon/raw/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;))
+    }
 }</code></pre>
-<pre><code>binary_unique_index
-FALSE  TRUE 
-    8 10203 
-binary_unique_index
-FALSE  TRUE 
-    8 10076 
-binary_unique_index
-FALSE  TRUE 
-    8 10548 
-binary_unique_index
-FALSE  TRUE 
-    8 10575 
-binary_unique_index
-FALSE  TRUE 
-   11 11785 
-binary_unique_index
-FALSE  TRUE 
-   11 11778 
-binary_unique_index
-FALSE  TRUE 
-    9 11317 
-binary_unique_index
-FALSE  TRUE 
-    9 11346 
-binary_unique_index
-FALSE  TRUE 
-    7 10216 
-binary_unique_index
-FALSE  TRUE 
-    7 10196 </code></pre>
+<pre><code>[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL
+
+[[4]]
+NULL
+
+[[5]]
+NULL
+
+[[6]]
+NULL
+
+[[7]]
+NULL
+
+[[8]]
+NULL
+
+[[9]]
+NULL
+
+[[10]]
+NULL
+
+[[11]]
+NULL
+
+[[12]]
+NULL
+
+[[13]]
+NULL
+
+[[14]]
+NULL
+
+[[15]]
+NULL
+
+[[16]]
+NULL
+
+[[17]]
+NULL
+
+[[18]]
+NULL
+
+[[19]]
+NULL
+
+[[20]]
+NULL
+
+[[21]]
+NULL
+
+[[22]]
+NULL
+
+[[23]]
+NULL
+
+[[24]]
+NULL
+
+[[25]]
+NULL</code></pre>
+<p>Convert Entrez Gene ids to SYMBOL.</p>
+<pre class="r"><code>for (item in items) {
+    if (!file.exists(paste(&quot;output/regulon/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;))) {
+        df &lt;- read.csv(paste(&quot;output/regulon/raw/&quot;, item, &quot;.adj&quot;, sep = &quot;&quot;),
+            sep = &quot;\t&quot;)
+
+        geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Regulator),
+            keytype = &quot;ENTREZID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
+        df$Regulator &lt;- plyr::mapvalues(df$Regulator, from = geneID$ENTREZID,
+            to = geneID$SYMBOL, warn_missing = FALSE)
+
+        geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Target),
+            keytype = &quot;ENTREZID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;ENTREZID&quot;, &quot;GENEID&quot;))
+        df$Target &lt;- plyr::mapvalues(df$Target, from = geneID$ENTREZID,
+            to = geneID$SYMBOL, warn_missing = FALSE)
+
+        can_be_integer &lt;- function(x) {
+            suppressWarnings(!is.na(as.integer(x)))
+        }
+        f1 &lt;- !sapply(df$Regulator, can_be_integer)
+        f2 &lt;- !sapply(df$Target, can_be_integer)
+        df &lt;- df[f1 &amp; f2, ]
+        
+        # Group by Regulator and concatenate elements of each group into strings
+       df$temp &lt;- paste(df$Target,df$MoA, sep=&quot;\t&quot;)
+      result &lt;- aggregate(temp ~ Regulator, data = df, FUN = function(x) paste(x, collapse = &quot;\t&quot;))
+        # Print the result
+        file &lt;- file(paste(&quot;output/regulon/&quot;, item, &quot;.adj&quot;,
+            sep = &quot;&quot;))
+        writeLines(paste(result$Regulator,result$temp,sep = &quot;\t&quot;),file)
+        close(file)
+    }
+}</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -882,74 +815,75 @@ time zone: America/New_York
 tzcode source: internal
 
 attached base packages:
-[1] stats4    stats     graphics  grDevices utils     datasets  methods  
-[8] base     
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
 
 other attached packages:
- [1] EnsDb.Hsapiens.v86_2.99.0 ensembldb_2.28.0         
- [3] AnnotationFilter_1.28.0   GenomicFeatures_1.56.0   
- [5] AnnotationDbi_1.66.0      GenomicRanges_1.56.0     
- [7] GenomeInfoDb_1.40.0       IRanges_2.38.0           
- [9] S4Vectors_0.42.0          stringr_1.5.1            
-[11] plyr_1.8.9                dplyr_1.1.4              
-[13] aracne.networks_1.30.0    viper_1.38.0             
-[15] Biobase_2.64.0            BiocGenerics_0.50.0      
-[17] workflowr_1.7.1          
+ [1] doParallel_1.0.17         iterators_1.0.14         
+ [3] foreach_1.5.2             EnsDb.Hsapiens.v86_2.99.0
+ [5] ensembldb_2.28.0          AnnotationFilter_1.28.0  
+ [7] GenomicFeatures_1.56.0    AnnotationDbi_1.66.0     
+ [9] GenomicRanges_1.56.0      GenomeInfoDb_1.40.0      
+[11] IRanges_2.38.0            S4Vectors_0.42.0         
+[13] stringr_1.5.1             plyr_1.8.9               
+[15] dplyr_1.1.4               aracne.networks_1.30.0   
+[17] viper_1.38.0              Biobase_2.64.0           
+[19] BiocGenerics_0.50.0       workflowr_1.7.1          
 
 loaded via a namespace (and not attached):
-  [1] bitops_1.0-7                DBI_1.2.3                  
-  [3] rlang_1.1.4                 magrittr_2.0.3             
-  [5] git2r_0.33.0                matrixStats_1.3.0          
-  [7] e1071_1.7-14                compiler_4.4.0             
-  [9] RSQLite_2.3.7               getPass_0.2-4              
- [11] png_0.1-8                   callr_3.7.6                
- [13] vctrs_0.6.5                 ProtGenerics_1.36.0        
- [15] pkgconfig_2.0.3             crayon_1.5.2               
- [17] fastmap_1.2.0               XVector_0.44.0             
- [19] utf8_1.2.4                  Rsamtools_2.20.0           
- [21] promises_1.3.0              rmarkdown_2.27             
- [23] UCSC.utils_1.0.0            ps_1.7.6                   
- [25] purrr_1.0.2                 bit_4.0.5                  
- [27] xfun_0.44                   zlibbioc_1.50.0            
- [29] cachem_1.1.0                jsonlite_1.8.8             
- [31] blob_1.2.4                  later_1.3.2                
- [33] DelayedArray_0.30.1         BiocParallel_1.38.0        
- [35] parallel_4.4.0              R6_2.5.1                   
- [37] bslib_0.7.0                 stringi_1.8.4              
- [39] rtracklayer_1.64.0          jquerylib_0.1.4            
- [41] SummarizedExperiment_1.34.0 Rcpp_1.0.12                
- [43] knitr_1.47                  mixtools_2.0.0             
- [45] httpuv_1.6.15               Matrix_1.7-0               
- [47] splines_4.4.0               tidyselect_1.2.1           
- [49] abind_1.4-5                 rstudioapi_0.16.0          
- [51] yaml_2.3.8                  codetools_0.2-20           
- [53] curl_5.2.1                  processx_3.8.4             
- [55] lattice_0.22-6              tibble_3.2.1               
- [57] KEGGREST_1.44.0             evaluate_0.24.0            
- [59] survival_3.7-0              proxy_0.4-27               
- [61] kernlab_0.9-32              Biostrings_2.72.1          
- [63] pillar_1.9.0                MatrixGenerics_1.16.0      
- [65] whisker_0.4.1               KernSmooth_2.23-24         
- [67] plotly_4.10.4               generics_0.1.3             
- [69] RCurl_1.98-1.14             rprojroot_2.0.4            
- [71] ggplot2_3.5.1               munsell_0.5.1              
- [73] scales_1.3.0                class_7.3-22               
- [75] glue_1.7.0                  lazyeval_0.2.2             
- [77] tools_4.4.0                 BiocIO_1.14.0              
- [79] data.table_1.15.4           GenomicAlignments_1.40.0   
- [81] XML_3.99-0.16.1             fs_1.6.4                   
- [83] grid_4.4.0                  tidyr_1.3.1                
- [85] colorspace_2.1-0            nlme_3.1-165               
- [87] GenomeInfoDbData_1.2.12     restfulr_0.0.15            
- [89] cli_3.6.2                   fansi_1.0.6                
- [91] S4Arrays_1.4.1              segmented_2.1-0            
- [93] viridisLite_0.4.2           gtable_0.3.5               
- [95] sass_0.4.9                  digest_0.6.35              
- [97] SparseArray_1.4.8           rjson_0.2.21               
- [99] htmlwidgets_1.6.4           memoise_2.0.1              
-[101] htmltools_0.5.8.1           lifecycle_1.0.4            
-[103] httr_1.4.7                  bit64_4.0.5                
-[105] MASS_7.3-61                </code></pre>
+  [1] rstudioapi_0.16.0           jsonlite_1.8.8             
+  [3] magrittr_2.0.3              rmarkdown_2.27             
+  [5] fs_1.6.4                    BiocIO_1.14.0              
+  [7] zlibbioc_1.50.0             vctrs_0.6.5                
+  [9] memoise_2.0.1               Rsamtools_2.20.0           
+ [11] RCurl_1.98-1.14             htmltools_0.5.8.1          
+ [13] S4Arrays_1.4.1              curl_5.2.1                 
+ [15] SparseArray_1.4.8           sass_0.4.9                 
+ [17] KernSmooth_2.23-24          bslib_0.7.0                
+ [19] htmlwidgets_1.6.4           plotly_4.10.4              
+ [21] cachem_1.1.0                GenomicAlignments_1.40.0   
+ [23] whisker_0.4.1               lifecycle_1.0.4            
+ [25] pkgconfig_2.0.3             Matrix_1.7-0               
+ [27] R6_2.5.1                    fastmap_1.2.0              
+ [29] GenomeInfoDbData_1.2.12     MatrixGenerics_1.16.0      
+ [31] digest_0.6.35               colorspace_2.1-0           
+ [33] ps_1.7.6                    rprojroot_2.0.4            
+ [35] RSQLite_2.3.7               fansi_1.0.6                
+ [37] httr_1.4.7                  abind_1.4-5                
+ [39] compiler_4.4.0              proxy_0.4-27               
+ [41] bit64_4.0.5                 BiocParallel_1.38.0        
+ [43] DBI_1.2.3                   MASS_7.3-61                
+ [45] DelayedArray_0.30.1         rjson_0.2.21               
+ [47] tools_4.4.0                 httpuv_1.6.15              
+ [49] glue_1.7.0                  restfulr_0.0.15            
+ [51] callr_3.7.6                 nlme_3.1-165               
+ [53] promises_1.3.0              grid_4.4.0                 
+ [55] getPass_0.2-4               generics_0.1.3             
+ [57] gtable_0.3.5                class_7.3-22               
+ [59] tidyr_1.3.1                 data.table_1.15.4          
+ [61] utf8_1.2.4                  XVector_0.44.0             
+ [63] pillar_1.9.0                later_1.3.2                
+ [65] splines_4.4.0               lattice_0.22-6             
+ [67] survival_3.7-0              rtracklayer_1.64.0         
+ [69] bit_4.0.5                   tidyselect_1.2.1           
+ [71] Biostrings_2.72.1           knitr_1.47                 
+ [73] git2r_0.33.0                ProtGenerics_1.36.0        
+ [75] SummarizedExperiment_1.34.0 xfun_0.44                  
+ [77] mixtools_2.0.0              matrixStats_1.3.0          
+ [79] stringi_1.8.4               UCSC.utils_1.0.0           
+ [81] lazyeval_0.2.2              yaml_2.3.8                 
+ [83] evaluate_0.24.0             codetools_0.2-20           
+ [85] kernlab_0.9-32              tibble_3.2.1               
+ [87] cli_3.6.2                   segmented_2.1-0            
+ [89] munsell_0.5.1               processx_3.8.4             
+ [91] jquerylib_0.1.4             Rcpp_1.0.12                
+ [93] png_0.1-8                   XML_3.99-0.16.1            
+ [95] ggplot2_3.5.1               blob_1.2.4                 
+ [97] bitops_1.0-7                viridisLite_0.4.2          
+ [99] scales_1.3.0                e1071_1.7-14               
+[101] purrr_1.0.2                 crayon_1.5.2               
+[103] rlang_1.1.4                 KEGGREST_1.44.0            </code></pre>
+</div>
 </div>
 </div>
 
