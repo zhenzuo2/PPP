@@ -14,7 +14,7 @@ editor_options:
 ```{r message=FALSE, warning=FALSE}
 library(viper)
 library(EnsDb.Hsapiens.v86)
-dir.create("output/regulon/")
+dir.create("output/regulon/",showWarnings = FALSE)
 ```
 
 ## Process network and save as adj files
