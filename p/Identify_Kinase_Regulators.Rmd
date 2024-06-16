@@ -34,28 +34,24 @@ writeLines(paste(result$Gene.name,result$seq_15,sep = "\t"),file)
 close(file)
 ```
 
-# Generating the regulon object for phos
+# Generating the regulon object for pho
 ```{r eval=FALSE, include=TRUE}
 set.seed(0)
 for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
     adjfile <- "output/regulon/KSA_gold_standard.adj"
-    expr_normal <- readRDS(paste("output/phos/count_matrix_", ca, "_normal.RDS",
+    expr_normal <- readRDS(paste("output/pho/count_matrix_", ca, "_normal.RDS",
         sep = ""))
-    expr_tumor <- readRDS(paste("output/phos/count_matrix_", ca, "_tumor.RDS",
+    expr_tumor <- readRDS(paste("output/pho/count_matrix_", ca, "_tumor.RDS",
         sep = ""))
     expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
     rownames(expr) <- expr$Row.names
     expr$Row.names <- NULL
 
-    expr <- expr[rowSums(expr, na.rm = TRUE) > 0, ]
-    pattern <- "[^A-Za-z0-9 ]"
-
-    expr <- expr[!grepl(pattern, rownames(expr)), ]
     signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
     dset <- ExpressionSet(assayData = as.matrix(expr))
     dset$description <- signature
     regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
-    saveRDS(dset, paste("output/phos/dset_", ca, ".RDS", sep = ""))
-    saveRDS(regul, paste("output/phos/regul_", ca, ".RDS", sep = ""))
+    saveRDS(dset, paste("output/pho/dset_", ca, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/pho/regul_", ca, ".RDS", sep = ""))
 }
 ```
