@@ -1,0 +1,91 @@
+---
+title: "Context-specific networks"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(aracne.networks)
+library(dplyr)
+library(plyr)
+library(stringr)
+library(Biobase)
+library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
+dir.create("output/regulon/",showWarnings = F)
+dir.create("output/regulon/raw/",showWarnings = F)
+```
+
+# Extract context-specific networks
+ARACNe-AP was run on RNA-Seq datasets normalized using Variance-Stabilizing Transformation. The raw data was downloaded on April 15th, 2015 from the TCGA official website.
+
+## Extract ARACNe-inferred gene networks from TCGA tumor datasets.
+```{r}
+items <- data(package="aracne.networks")$results[, "Item"]
+print(items)
+```
+
+```{r}
+df <- read.csv("data/omics_regulon_pairs.csv")
+```
+
+## Process network and save as adj files
+Export network to adj files
+```{r message=FALSE, warning=FALSE}
+# Set up parallel backend
+registerDoParallel(10)
+
+# Loop through items in parallel
+foreach(item = items) %dopar% {
+    if (!file.exists(paste("output/regulon/", item, ".adj", sep = ""))) {
+        data <- get(item)
+        write.regulon(data, file = paste("output/regulon/raw/", item, ".adj", sep = ""))
+    }
+}
+
+```
+
+Convert Entrez Gene ids to SYMBOL.
+```{r}
+for (item in items) {
+    if (!file.exists(paste("output/regulon/", item, ".adj", sep = ""))) {
+        df <- read.csv(paste("output/regulon/raw/", item, ".adj", sep = ""),
+            sep = "\t")
+
+        geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Regulator),
+            keytype = "ENTREZID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+        df$Regulator <- plyr::mapvalues(df$Regulator, from = geneID$ENTREZID,
+            to = geneID$SYMBOL, warn_missing = FALSE)
+
+        geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = as.character(df$Target),
+            keytype = "ENTREZID", columns = c("SYMBOL", "ENTREZID", "GENEID"))
+        df$Target <- plyr::mapvalues(df$Target, from = geneID$ENTREZID,
+            to = geneID$SYMBOL, warn_missing = FALSE)
+
+        can_be_integer <- function(x) {
+            suppressWarnings(!is.na(as.integer(x)))
+        }
+        f1 <- !sapply(df$Regulator, can_be_integer)
+        f2 <- !sapply(df$Target, can_be_integer)
+        df <- df[f1 & f2, ]
+        
+        # Group by Regulator and concatenate elements of each group into strings
+       df$temp <- paste(df$Target,df$MoA, sep="\t")
+      result <- aggregate(temp ~ Regulator, data = df, FUN = function(x) paste(x, collapse = "\t"))
+        # Print the result
+        file <- file(paste("output/regulon/", item, ".adj",
+            sep = ""))
+        writeLines(paste(result$Regulator,result$temp,sep = "\t"),file)
+        close(file)
+    }
+}
+```

@@ -61,7 +61,7 @@ grid::grid.raster(img,width = 0.4, height = 1)
 ## Differential Abundance Analysis in Proteomics
 - Get proteomics data from <a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer"> CPTAC </a>.  
   + Remove features with more 20% zero/missing values. 
-- Define Differentially Proteins by two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini & Hochberg correction (adjusted p values < 0.05)[See more](Differentially_Protein.html). 
+- Define Differentially Proteins by two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini & Hochberg correction (adjusted p values < 0.05) [See more](Differentially_Protein.html). 
 
 ## Master Regulator Inference Algorithm (MARINa)
 *MARINa, a method to infer the activity of a given protein based on the differential expression/phosphorylation of the targets it regulates.*
@@ -69,9 +69,9 @@ grid::grid.raster(img,width = 0.4, height = 1)
 ### Input
 - Known kinases from KESA differentially phosphorylated peptide [See more](KSEA.html). 
 - Gene Expression data for normal and tumor [See more](Differentially_Gene.html).  
-- Gene level pathway network (Object of class regulon with XXX regulators, XXX targets and XXX interactions). The paper used Genome-wide cross-species interrogation of disease-specific regulatory networks from 10.1016/j.ccr.2014.03.017.
-- Phosphorylation data for normal and tumor.
-- Phosphorylation level pathway network (Object of class regulon with XXX regulators, XXX targets and XXX interactions).
+- Gene level pathway network: ARACNe-inferred gene networks from TCGA tumor datasets [See more](ContextSpecificNetworks.html). 
+- Phosphorylation data for normal and tumor [See more](Differentially_Phosphorylated_Site.html). 
+- Phosphorylation level pathway network (In house shared by Faye).
 
 ### Output
 - Transcription factors with differential activity (repression/activation). 
