@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Proteomics and Phosphoproteomics Pipeline</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Proteomics and Phosphoproteomics Pipeline</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/zhenzuo2/PPP">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Proteomics and Phosphoproteomics
+Pipeline</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-06-16
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>PPP/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240521code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240521)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240521code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240521)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree8c84adbee7d2e6738a0f811b7fc0c975d43972detargetblank8c84adba">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/zhenzuo2/PPP/tree/8c84adbee7d2e6738a0f811b7fc0c975d43972de" target="_blank">8c84adb</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree8c84adbee7d2e6738a0f811b7fc0c975d43972detargetblank8c84adba"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/zhenzuo2/PPP/tree/8c84adbee7d2e6738a0f811b7fc0c975d43972de" target="_blank">8c84adb</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .RData
+    Ignored:    .Rhistory
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/.RData
+    Ignored:    analysis/.Rhistory
+    Ignored:    code/.DS_Store
+    Ignored:    code/TieDIE-devel/.DS_Store
+    Ignored:    code/TieDIE-devel/examples/.DS_Store
+    Ignored:    code/TieDIE-devel/examples/hnsc/.DS_Store
+    Ignored:    code/TieDIE-tiedie2/.DS_Store
+    Ignored:    code/TieDIE-tiedie2/examples/.DS_Store
+    Ignored:    data/.DS_Store
+    Ignored:    data/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
+    Ignored:    data/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
+    Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
+    Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
+    Ignored:    output/.DS_Store
+    Ignored:    temp/.DS_Store
+
+Untracked files:
+    Untracked:  output/regulon/
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML
+(<code>docs/index.html</code>) files. If you’ve configured a remote Git
+repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
+in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/8c84adbee7d2e6738a0f811b7fc0c975d43972de/analysis/index.Rmd" target="_blank">8c84adb</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-16
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/8c84adbee7d2e6738a0f811b7fc0c975d43972de/docs/index.html" target="_blank">8c84adb</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-16
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/411d1f30a8314e735602392ddda0661ef0b90eea/analysis/index.Rmd" target="_blank">411d1f3</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-13
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/d7a98b6b8de51f8ef591a235191252b9fcb99e23/docs/index.html" target="_blank">d7a98b6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f432ac9d24befd62cf543439bafee3add63f35b9/analysis/index.Rmd" target="_blank">f432ac9</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/2c9fa0bf2f48b91dc5bf28bc7eda50babe9ec358/docs/index.html" target="_blank">2c9fa0b</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/b1c864488ed251edc3a74943b90ec477d8bb0224/docs/index.html" target="_blank">b1c8644</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/589e25d53438e788e4404fa06337e1641798e241/docs/index.html" target="_blank">589e25d</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+wflow_publish("*", all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/420e740ea5e5836224ecbf98229360d927ac6e96/docs/index.html" target="_blank">420e740</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/04e3443ff4b0052e86ccf4f3df18998f502de290/docs/index.html" target="_blank">04e3443</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/334dcce44f6c63fd15c196675fff7736c8233eba/analysis/index.Rmd" target="_blank">334dcce</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/bec31d516b5b454046f9c4b3ccf75b5d31789146/analysis/index.Rmd" target="_blank">bec31d5</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-10
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/7c1057bb2f9d5370c601823376c9aa68a4f53891/docs/index.html" target="_blank">7c1057b</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/363425850acfca9bf73d48efacefd392551ee3d0/analysis/index.Rmd" target="_blank">3634258</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-10
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/713554a1c7037f53c86dff79d3aa2703d667e22a/docs/index.html" target="_blank">713554a</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/92519a0472609f0c623a96ef1abdbf0eb08d94b0/analysis/index.Rmd" target="_blank">92519a0</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-09
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/7f39b67d4d7efc0d3de04e412cbeeb49b1bc0c8d/docs/index.html" target="_blank">7f39b67</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f913cbc5d7633df3eb698c6f40ec7fcdeb98cebe/analysis/index.Rmd" target="_blank">f913cbc</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-09
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/3a26fb0c294eed59c52ef2a499b5186c5fc3e95d/docs/index.html" target="_blank">3a26fb0</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/da0867ecf14446d445917531b0d9525e5355aa17/docs/index.html" target="_blank">da0867e</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/3592dd6da6d11f56a332ae039772da870ee84f44/analysis/index.Rmd" target="_blank">3592dd6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/5de8ce96310fdb74ef3f354ea5b30ec5fef1e484/docs/index.html" target="_blank">5de8ce9</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/3d1adadb338d281ad7061f720960d6a1a4587fbd/analysis/index.Rmd" target="_blank">3d1adad</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-28
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/7e476e7888132106f14feb81caecb3ad34a303ce/docs/index.html" target="_blank">7e476e7</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-24
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/17401c9d541032974bc45bc8d41be89c80a6edd2/analysis/index.Rmd" target="_blank">17401c9</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-24
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/6df58df18db9e967fcca20b4144e77689485fbb4/docs/index.html" target="_blank">6df58df</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-24
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/fe48b9faedf94f04f17e3fef08e1689b4349bdf3/analysis/index.Rmd" target="_blank">fe48b9f</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-24
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/5f6c3b14362ac8c77016edeb5ccb7051ac0e290b/docs/index.html" target="_blank">5f6c3b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/da5b20553481ce288bb09bd6d9ee39764be9b482/analysis/index.Rmd" target="_blank">da5b205</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/37b072e9069cbe546db228e23d4fb9c032e2c43b/docs/index.html" target="_blank">37b072e</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+Update index.html
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f3640f4e606708df6b2759b4c5a446e21c2710f8/analysis/index.Rmd" target="_blank">f3640f4</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+push
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/f3640f4e606708df6b2759b4c5a446e21c2710f8/docs/index.html" target="_blank">f3640f4</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+push
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/bfe25878ae7eab96c40a51fb9666369ebfa7a9cf/docs/index.html" target="_blank">bfe2587</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/76d0a4e4ff4220713d0814e64108ea7e42c430ee/analysis/index.Rmd" target="_blank">76d0a4e</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+wflow_git_commit(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/c2509b00c1aa670debadcce9e64a3ab5b9cd56b6/analysis/index.Rmd" target="_blank">c2509b0</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+Publish files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/a37c3dd25b34db21c3c0f47ad676931a80f223ae/docs/index.html" target="_blank">a37c3dd</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/df425d99b1420a6091f49a6941fe4dd19f1bcfb6/analysis/index.Rmd" target="_blank">df425d9</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-22
+</td>
+<td>
+wflow_publish(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/df425d99b1420a6091f49a6941fe4dd19f1bcfb6/docs/index.html" target="_blank">df425d9</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-22
+</td>
+<td>
+wflow_publish(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/07f44d6c2f8d0b9b58577476fec1def5e243623b/analysis/index.Rmd" target="_blank">07f44d6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/07f44d6c2f8d0b9b58577476fec1def5e243623b/docs/index.html" target="_blank">07f44d6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/3e0915ca3a19ee36e8630a7af963b6c2122db8de/docs/index.html" target="_blank">3e0915c</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/b4440e6482dc8746dc1fb3bf740848298332a674/analysis/index.Rmd" target="_blank">b4440e6</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+wflow_git_commit(all = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/0fa724b1f800e3dfeee325fb25f6f95b440b8e51/docs/index.html" target="_blank">0fa724b</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/4aa2e514459baccda9e5c6de0aaae6ba85b6d362/docs/index.html" target="_blank">4aa2e51</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/8aa49f1c062ac198c62b0c551a6df9a718952c51/analysis/index.Rmd" target="_blank">8aa49f1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-05-21
+</td>
+<td>
+Start workflowr project.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<style type="text/css">
+  body{
+  font-size: 12pt;
+}
+</style>
+<div id="data" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Data</h1>
+<table style="width:100%;">
+<colgroup>
+<col width="8%" />
+<col width="9%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">CNV (Tumor)</th>
+<th align="center">Methylation (Tumor)</th>
+<th align="center">Methylation (Normal)</th>
+<th align="center">Proteomics (Tumor)</th>
+<th align="center">Proteomics (Normal)</th>
+<th align="center">Phosphoproteome (Tumor)</th>
+<th align="center">Phosphoproteome (Normal)</th>
+<th align="center">Transcriptome (Tumor)</th>
+<th align="center">Transcriptome (Normal)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Breast (BRCA)</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+</tr>
+<tr class="even">
+<td align="center">Kidney (ccRCC)</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr class="odd">
+<td align="center">Colon (COAD)</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+</tr>
+<tr class="even">
+<td align="center">Brain (GBM)</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+</tr>
+<tr class="odd">
+<td align="center">Head &amp; Neck (HNSCC)</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr class="even">
+<td align="center">Lung (LSCC)</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr class="odd">
+<td align="center">Lung (LUAD)</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr class="even">
+<td align="center">Ovaries (OV)</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+</tr>
+<tr class="odd">
+<td align="center">Pancreas (PDAC)</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr class="even">
+<td align="center">Uterine (UCEC)</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+</tr>
+</tbody>
+</table>
+<p>Dat to Collect:</p>
+<ol style="list-style-type: decimal">
+<li><p><span style="color:red"> Kidney(ccRCC)</span>: Human Kidney Renal
+Clear Cell Carcinoma.</p></li>
+<li><p><span style="color:red"> Head &amp; Neck (HNSCC)</span>: Human
+Head and Neck Squamous Carcinoma.</p></li>
+<li><p><span style="color:red"> Lung (LSCC)</span>: Human Lung Squamous
+Carcinoma.</p></li>
+<li><p><span style="color:red"> Lung (LUAD)</span>: Human Lung
+Adenocarcinoma.</p></li>
+<li><p><span style="color:red"> Pancreas (PDAC)</span>: Human Pancreas
+Carcinoma.</p></li>
+</ol>
+</div>
+<div id="pipeline-for-omic-dataset-integration" class="section level1"
+number="2">
+<h1><span class="header-section-number">2</span> Pipeline for Omic
+Dataset Integration</h1>
+<p><img src="figure/index.Rmd/unnamed-chunk-1-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
+<div id="differentially-phosphorylated-sites-analysis"
+class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Differentially
+Phosphorylated Sites Analysis</h2>
+<ul>
+<li>Get phosphorylation data from
+<a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer">
+CPTAC </a>.
+<ul>
+<li>Remove features with more 20% zero/missing values.</li>
+</ul></li>
+<li>Define Differentially Phosphorylated Sites by two-side Wilcoxon Rank
+Sum and Signed Rank Tests with Benjamini &amp; Hochberg correction
+(adjusted p values &lt; 0.05) <a
+href="Differentially_Phosphorylated_Site.html">See more</a>.</li>
+<li>Run Kinase substrate enrichment analysis (KSEA) to find significant
+kinases <a href="KSEA.html">See more</a>.</li>
+</ul>
+</div>
+<div id="differential-abundance-analysis-in-proteomics"
+class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Differential
+Abundance Analysis in Proteomics</h2>
+<ul>
+<li>Get proteomics data from
+<a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer">
+CPTAC </a>.
+<ul>
+<li>Remove features with more 20% zero/missing values.</li>
+</ul></li>
+<li>Define Differentially Proteins by two-side Wilcoxon Rank Sum and
+Signed Rank Tests with Benjamini &amp; Hochberg correction (adjusted p
+values &lt; 0.05)<a href="Differentially_Protein.html">See
+more</a>.</li>
+</ul>
+</div>
+<div id="master-regulator-inference-algorithm-marina"
+class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Master Regulator
+Inference Algorithm (MARINa)</h2>
+<p><em>MARINa, a method to infer the activity of a given protein based
+on the differential expression/phosphorylation of the targets it
+regulates.</em></p>
+<div id="input" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Input</h3>
+<ul>
+<li>Known kinases from KESA differentially phosphorylated peptide <a
+href="KSEA.html">See more</a>.</li>
+<li>Gene Expression data for normal and tumor <a
+href="Differentially_Gene.html">See more</a>.<br />
+</li>
+<li>Gene level pathway network (Object of class regulon with XXX
+regulators, XXX targets and XXX interactions). The paper used
+Genome-wide cross-species interrogation of disease-specific regulatory
+networks from 10.1016/j.ccr.2014.03.017.</li>
+<li>Phosphorylation data for normal and tumor.</li>
+<li>Phosphorylation level pathway network (Object of class regulon with
+XXX regulators, XXX targets and XXX interactions).</li>
+</ul>
+</div>
+<div id="output" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Output</h3>
+<ul>
+<li>Transcription factors with differential activity
+(repression/activation).</li>
+<li>Differentially activated kinase regulator (only higher in tumor,
+based on the predicted upstream kinases for each phosphopeptide).</li>
+</ul>
+<p><em>This allowed us to identify transcription factors with
+differential activity (repression/activation) as well as differentially
+activated kinase regulators (based on the predicted upstream kinases for
+each phosphopeptide) in metastatic CRPC samples as compared with
+treatment naive prostate cancers (Data S1G and S1H).</em>.</p>
+<p><em>In addition, kinases directly identified by the mass spectrometer
+in our phosphoproteomic dataset (phosphorylated kinases) were merged
+with the kinase regulators before input to TieDIE.</em></p>
+</div>
+<div id="mechanisms-and-details" class="section level3" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Mechanisms and
+Details</h3>
+<p>Given a data matrix and a regulon, by running multiple samples
+together (similar to MARINa),
+<code>mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)</code>
+to get top regulators with Normalized Enrichment Score (NES) and
+p-value.<br />
+In this section, <code>msviper</code> was used to get the output.<br />
+<em>In other words, it performs a KS test for each regulator using as
+input the differential activity (in metastatic CRPC vs treatment naive
+prostate cancer) of its targets. It applies a test based on the
+Kolmogorov-Smirnov test to assess whether the differential activity of
+activated targets have higher levels, and/or the differential activity
+of inhibited targets have lower levels, than expected by chance based on
+a uniform distribution. In the case of TF regulators, the expression
+levels of the targets are used for this inference; in the case of kinase
+regulators, the phosphorylation levels are used for the target levels.
+To facilitate this analysis, we combined multiple databases of predicted
+kinase-substrate predicted interactions to produce a comprehensive
+‘regulome’ of candidate regulator kinases that are predicted to
+phosphorylate at least 25 proteins on at least one site (Drake et al.,
+2012; Lachmann and Ma’ayan, 2009). We ran the MARINa algorithm (Alvarez
+et al., 2015), to find ‘kinase regulators’ with significantly higher
+activity–as inferred from the peptides they are predicted to
+phosphorylate–in CRPC samples compared to the control primary and benign
+tumor samples. For the TF targets we used a predetermined interactome of
+transcription factor-to-target regulatory edges, inferred using a
+diverse sample of normal, primary and metastatic prostate cancer samples
+as well as cell lines (Aytes et al., 2014a).</em></p>
+</div>
+</div>
+<div id="copy-number-and-mutation-analysis" class="section level2"
+number="2.4">
+<h2><span class="header-section-number">2.4</span> Copy Number and
+Mutation Analysis</h2>
+<div id="output-1" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Output</h3>
+<p>The output will a gene list including all putative cancer driver
+genes. - Identify predicted driver genes with MutSig 2.0 (Lawrence et
+al., 2013), and filtered these genes by intersecting with the most
+recent COSMIC census, representing 572 cancer-related genes according to
+our prior knowledge.<br />
+- Significant focal amplifications and significant focal deletion events
+with driver potential, identified by the GISTIC algorithm (Mermel et
+al., 2011).<br />
+<em>When combined with the genes found in the CNV analysis of metastatic
+samples, this resulted in 96 candidate genes with significant copy
+number alteration and 112 genes with either mutation or copy number
+events with driver potential. Of these, 108 had at least one copy-number
+or mutation event in the 49 metastatic samples.</em></p>
+<p><span style="color:red">Copy number and mutation analysis result was
+used for cancer-specific network but not copy number and mutation
+analysis.</span>.</p>
+</div>
+</div>
+<div id="tiedie-pathway-analysis-of-clinical-prostate-cancer-samples"
+class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> TieDIE Pathway
+Analysis of Clinical Prostate Cancer Samples</h2>
+<div id="input-1" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> INPUT</h3>
+<ul>
+<li>Known kinases from mapped differentially phosphorylated peptide</li>
+<li>Kinase Regulators.</li>
+<li>Putative cancer driver genes.</li>
+<li>Transcription factors.</li>
+<li>Pre-defined pathway interactions, such as ‘Multinet’ (Khurana et
+al., 2013), which can be accessed at <a
+href="http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/"
+class="uri">http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/</a>.</li>
+</ul>
+</div>
+<div id="parameters-and-trimming" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Parameters and
+Trimming</h3>
+<p><em>A scaffold network was selected by identifying the smallest
+network with high precision in terms of capturing the input genes.
+TieDIE computes a ratio of overlap (ROO) that reflects the proximity of
+genes to one another in the given input set in a given network. One can
+control the size of TieDIE’s resulting network via the method’s alpha
+parameter. Thus, we chose the alpha corresponding to the smallest
+network in which slightly larger and smaller networks resulted in ROO
+values that were less distinguishable from a random background that used
+permuted networks. The network producing the first significant local
+maximum in the ROO between the observed and background was selected for
+use in all subsequent analysis (Fig. S2b). Our intuition was that this
+procedure would provide smaller, interpretable networks that maintain a
+high level of specificity. The final scaffold network was derived by
+further restricting to protein-protein edges with at least one pair of
+quantified phosphopeptides with at least a modest correlation (+/- 0.3,
+Spearman Rho), resulting in a final ‘scaffold’ network of 122 nodes and
+256 edges (190 protein-protein interaction; 131 phosphorylation). The
+robustness of this network was quantified by removing both proteomic and
+geneexpression data for each patient with a complete dataset and
+recomputing the “scaffold” using the same procedure described above
+(Fig. S4l).</em></p>
+</div>
+</div>
+<div id="sample-specific-activity-and-network-generation"
+class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Sample-Specific
+Activity and Network Generation</h2>
+<p><em>For each sample, we searched all paths connecting any active
+kinase, mutation or high-level copy number gain or deletion to any
+active TF over edges contained in the scaffold network, using the
+NetworkX python package (Schult and Swart, 2008) and up to an edge-depth
+of 4;</em></p>
+<div id="input-2" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Input</h3>
+<ul>
+<li>Known kinases from mapped differentially phosphorylated peptide</li>
+<li>Kinase Regulators.</li>
+<li>Transcription factors.</li>
+<li>pre-defined pathway interactions, such as ‘Multinet’ (Khurana et
+al., 2013), which can be accessed at <a
+href="http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/"
+class="uri">http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/</a>.</li>
+</ul>
+<p><code>vpres &lt;- viper(dset, regulon, verbose = FALSE)</code>, the
+viper function generates a matrix or “ExpressionSet” object in case an
+“ExpressionSet” object is given as input of regulator’s activity,
+containing 621 regulators samples in our example.</p>
+</div>
+<div id="mechanisms-and-details-1" class="section level3"
+number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Mechanisms and
+Details</h3>
+<p><em>We used the VIPER package (Alvarez et al., 2015) to infer
+sample-specific activity (pseudo z-scores) of each of each of the 14
+kinase regulators that were found to have significantly higher average
+activity in CRPC samples, using the 11 treatment naive or benign samples
+to compute the reference distribution of activity scores. Similarly, we
+used VIPER to generate inferences for each of the 74 TFs, for each
+sample, using the same microarray data, regulon and reference samples
+used in the MARINa analysis on the Grasso dataset. Briefly, VIPER infers
+the activity of a regulator in a sample by inspecting the degree to
+which the regulator’s targets are activated or inactivated in that
+sample. It applies a test based on the Kolmogorov-Smirnov test to assess
+whether the predicted activated targets have higher levels, and/or the
+predicted inhibited targets have lower levels, than expected by chance
+based on a uniform distribution. In the case of TF regulators, the
+expression levels of the targets are used for this inference; in the
+case of kinase regulators, the phosphorylation levels are used for the
+targets. Importantly, we observed a strong correspondence between
+inferred and observed differentially phosphorylated kinases, with a
+greater than 3-fold improvement in the overlap compared to what was
+expected by chance. However, the direct overlap between TF and kinase
+targets was coincidental as 21 of the 74 TF regulators were found to be
+directly phosphorylated by one of the 14 kinase regulators, which equals
+chance expectation (p&lt;0.5, permutation test). Importantly, the TF and
+kinase sets were found to be significantly associated in pathway space
+by longer paths in the network as described below.</em></p>
+</div>
+</div>
+</div>
+<div id="environment-setup" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Environment setup</h1>
+<details>
+<summary>
+Set up python2.7
+</summary>
+<p>To set up python2.7 on MacOs</p>
+<ul>
+<li><p>Follow <a
+href="https://stackoverflow.com/questions/67380286/anaconda-channel-for-installing-python-2-7"
+class="uri">https://stackoverflow.com/questions/67380286/anaconda-channel-for-installing-python-2-7</a></p></li>
+<li><p>Install additional packages with <a
+href="https://github.com/zhenzuo2/Proteomics-and-Phosphoproteomics-Pipeline/blob/main/Env/py27.yml">Env/py27.yml</a></p></li>
+</ul>
+<p>Then run</p>
+<pre><code>conda create -n py27 --f py27.yml</code></pre>
+<p>To active it</p>
+<pre><code>source /opt/homebrew/Caskroom/mambaforge/base/etc/profile.d/conda.sh;  
+conda activate py27;  </code></pre>
+</details>
+<details>
+<summary>
+Set up Viper
+</summary>
+<ul>
+<li>Follow <a
+href="https://www.bioconductor.org/packages/release/bioc/html/viper.html"
+class="uri">https://www.bioconductor.org/packages/release/bioc/html/viper.html</a></li>
+</ul>
+<pre><code>if (!require(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)
+
+BiocManager::install(&quot;viper&quot;)</code></pre>
+</details>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.0 (2024-04-24)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sonoma 14.5
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] kableExtra_1.4.0 png_0.1-8        workflowr_1.7.1 
+
+loaded via a namespace (and not attached):
+ [1] jsonlite_1.8.8    highr_0.11        compiler_4.4.0    promises_1.3.0   
+ [5] Rcpp_1.0.12       xml2_1.3.6        stringr_1.5.1     git2r_0.33.0     
+ [9] callr_3.7.6       later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0
+[13] scales_1.3.0      yaml_2.3.8        fastmap_1.2.0     R6_2.5.1         
+[17] knitr_1.47        tibble_3.2.1      munsell_0.5.1     rprojroot_2.0.4  
+[21] svglite_2.1.3     bslib_0.7.0       pillar_1.9.0      rlang_1.1.4      
+[25] utf8_1.2.4        cachem_1.1.0      stringi_1.8.4     httpuv_1.6.15    
+[29] xfun_0.44         getPass_0.2-4     fs_1.6.4          sass_0.4.9       
+[33] viridisLite_0.4.2 cli_3.6.2         magrittr_2.0.3    ps_1.7.6         
+[37] grid_4.4.0        digest_0.6.35     processx_3.8.4    rstudioapi_0.16.0
+[41] lifecycle_1.0.4   vctrs_0.6.5       evaluate_0.24.0   glue_1.7.0       
+[45] whisker_0.4.1     colorspace_2.1-0  fansi_1.0.6       rmarkdown_2.27   
+[49] httr_1.4.7        tools_4.4.0       pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

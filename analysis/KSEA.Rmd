@@ -28,7 +28,7 @@ for (name in names){
   cat('# ', full_name[i], sep = "")
   cat('\n\n')
   i = i+1
-  dps <- read.csv(paste("output/DPS/",name,"_fc_0.05.csv",sep=""))
+  dps <- read.csv(paste("output/DPS/",name,"_fc_0.05_kinases.csv",sep=""))
   dps <- dps[order(dps$Adjusted_P_Value, decreasing = TRUE),]
   gse <- enricher(gene=dps$Seq, TERM2GENE = ksa)
   
