@@ -81,7 +81,7 @@ grid::grid.raster(img,width = 0.4, height = 1)
 
 ### Output
 - Transcription factors with differential activity [See more](Identify_Transcription_Regulators.html). 
-- Differentially activated kinase regulator (only higher in tumor, based on the predicted upstream kinases for each phosphopeptide). 
+- Differentially activated kinase regulator [See more](Identify_Kinase_Regulators.html).  
 
 *This allowed us to identify transcription factors with differential activity (repression/activation) as well as differentially activated kinase regulators (based on the predicted upstream kinases for each phosphopeptide) in metastatic CRPC samples as compared with treatment naive prostate cancers (Data S1G and S1H).*. 
 
