@@ -71,10 +71,10 @@ grid::grid.raster(img,width = 0.4, height = 1)
 - Gene Expression data for normal and tumor [See more](Differentially_Gene.html).  
 - Gene level pathway network: ARACNe-inferred gene networks from TCGA tumor datasets [See more](ContextSpecificNetworks.html). 
 - Phosphorylation data for normal and tumor [See more](Differentially_Phosphorylated_Site.html). 
-- Phosphorylation level pathway network (In house shared by Faye).
+- Phosphorylation level pathway network from <a href="https://doi.org/10.1101/2024.03.19.585786)"> Illuminating the Dark Cancer Phosphoproteome Through a Machine-Learned Co-Regulation Map of 26,280 Phosphosites </a>.
 
 ### Output
-- Transcription factors with differential activity (repression/activation). 
+- Transcription factors with differential activity [See more](Identify_Transcription_Regulators.html). 
 - Differentially activated kinase regulator (only higher in tumor, based on the predicted upstream kinases for each phosphopeptide). 
 
 *This allowed us to identify transcription factors with differential activity (repression/activation) as well as differentially activated kinase regulators (based on the predicted upstream kinases for each phosphopeptide) in metastatic CRPC samples as compared with treatment naive prostate cancers (Data S1G and S1H).*. 
