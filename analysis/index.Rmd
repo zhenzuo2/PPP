@@ -64,6 +64,12 @@ grid::grid.raster(img,width = 0.4, height = 1)
 - Define Differentially Proteins by two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini & Hochberg correction (adjusted p values < 0.05) [See more](Differentially_Protein.html). 
 
 ## Master Regulator Inference Algorithm (MARINa)
+```{r echo=FALSE, out.width="100%", out.height="100%"}
+library(png)
+library(kableExtra)
+img <- readPNG("data/Figure3.png")
+grid::grid.raster(img,width = 0.4, height = 1)
+```
 *MARINa, a method to infer the activity of a given protein based on the differential expression/phosphorylation of the targets it regulates.*
 
 ### Input
