@@ -365,7 +365,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -376,8 +376,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -386,13 +386,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-16
+<strong>Last updated:</strong> 2024-06-17
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -415,21 +415,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -520,15 +517,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree15464ce073ae911fec987f4758f0f33b07d8cee8targetblank15464cea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree564acc453647f4af6d49b0d5608c7a0638d0ad5btargetblank564acc4a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/15464ce073ae911fec987f4758f0f33b07d8cee8" target="_blank">15464ce</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/564acc453647f4af6d49b0d5608c7a0638d0ad5b" target="_blank">564acc4</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree15464ce073ae911fec987f4758f0f33b07d8cee8targetblank15464cea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree564acc453647f4af6d49b0d5608c7a0638d0ad5btargetblank564acc4a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -538,7 +535,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/15464ce073ae911fec987f4758f0f33b07d8cee8" target="_blank">15464ce</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/564acc453647f4af6d49b0d5608c7a0638d0ad5b" target="_blank">564acc4</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -571,91 +568,10 @@ Ignored files:
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
     Ignored:    output/.DS_Store
+    Ignored:    output/expr/.DS_Store
     Ignored:    output/pho/.DS_Store
+    Ignored:    output/regulon/.DS_Store
     Ignored:    temp/.DS_Store
-
-Untracked files:
-    Untracked:  analysis/Identify_Transcription_Regulators.Rmd
-    Untracked:  output/pho/dset_hnsc.RDS
-    Untracked:  output/pho/dset_kirc.RDS
-    Untracked:  output/pho/dset_luad.RDS
-    Untracked:  output/pho/dset_lusc.RDS
-    Untracked:  output/pho/dset_paad.RDS
-    Untracked:  output/pho/hnsc/
-    Untracked:  output/pho/kirc/
-    Untracked:  output/pho/luad/
-    Untracked:  output/pho/lusc/
-    Untracked:  output/pho/paad/
-    Untracked:  output/pho/regul_hnsc.RDS
-    Untracked:  output/pho/regul_kirc.RDS
-    Untracked:  output/pho/regul_luad.RDS
-    Untracked:  output/pho/regul_lusc.RDS
-    Untracked:  output/pho/regul_paad.RDS
-
-Unstaged changes:
-    Modified:   analysis/ContextSpecificNetworks.Rmd
-    Modified:   analysis/Identify_Kinase_Regulators.Rmd
-    Modified:   analysis/KSEA.Rmd
-    Deleted:    output/regulon/KSA_gold_standard.adj
-    Deleted:    output/regulon/raw/regulonblca.adj
-    Deleted:    output/regulon/raw/regulonbrca.adj
-    Deleted:    output/regulon/raw/reguloncesc.adj
-    Deleted:    output/regulon/raw/reguloncoad.adj
-    Deleted:    output/regulon/raw/regulonesca.adj
-    Deleted:    output/regulon/raw/regulongbm.adj
-    Deleted:    output/regulon/raw/regulonhnsc.adj
-    Deleted:    output/regulon/raw/regulonkirc.adj
-    Deleted:    output/regulon/raw/regulonkirp.adj
-    Deleted:    output/regulon/raw/regulonlaml.adj
-    Deleted:    output/regulon/raw/regulonlihc.adj
-    Deleted:    output/regulon/raw/regulonluad.adj
-    Deleted:    output/regulon/raw/regulonlusc.adj
-    Deleted:    output/regulon/raw/regulonnet.adj
-    Deleted:    output/regulon/raw/regulonov.adj
-    Deleted:    output/regulon/raw/regulonpaad.adj
-    Deleted:    output/regulon/raw/regulonpcpg.adj
-    Deleted:    output/regulon/raw/regulonprad.adj
-    Deleted:    output/regulon/raw/regulonread.adj
-    Deleted:    output/regulon/raw/regulonsarc.adj
-    Deleted:    output/regulon/raw/regulonstad.adj
-    Deleted:    output/regulon/raw/regulontgct.adj
-    Deleted:    output/regulon/raw/regulonthca.adj
-    Deleted:    output/regulon/raw/regulonthym.adj
-    Deleted:    output/regulon/raw/regulonucec.adj
-    Deleted:    output/regulon/regulonblca.adj
-    Deleted:    output/regulon/regulonbrca.adj
-    Deleted:    output/regulon/reguloncesc.adj
-    Deleted:    output/regulon/reguloncoad.adj
-    Deleted:    output/regulon/regulonesca.adj
-    Deleted:    output/regulon/regulongbm.adj
-    Deleted:    output/regulon/regulonhnsc.adj
-    Deleted:    output/regulon/regulonkirc.adj
-    Deleted:    output/regulon/regulonkirp.adj
-    Deleted:    output/regulon/regulonlaml.adj
-    Deleted:    output/regulon/regulonlihc.adj
-    Deleted:    output/regulon/regulonluad.adj
-    Deleted:    output/regulon/regulonlusc.adj
-    Deleted:    output/regulon/regulonnet.adj
-    Deleted:    output/regulon/regulonov.adj
-    Deleted:    output/regulon/regulonpaad.adj
-    Deleted:    output/regulon/regulonpcpg.adj
-    Deleted:    output/regulon/regulonprad.adj
-    Deleted:    output/regulon/regulonread.adj
-    Deleted:    output/regulon/regulonsarc.adj
-    Deleted:    output/regulon/regulonstad.adj
-    Deleted:    output/regulon/regulontgct.adj
-    Deleted:    output/regulon/regulonthca.adj
-    Deleted:    output/regulon/regulonthym.adj
-    Deleted:    output/regulon/regulonucec.adj
-    Deleted:    p/ContextSpecificNetworks.Rmd
-    Deleted:    p/Differentially_Gene.Rmd
-    Deleted:    p/Differentially_Phosphorylated_Site.Rmd
-    Deleted:    p/Differentially_Protein.Rmd
-    Deleted:    p/Identify_Kinase_Regulators.Rmd
-    Deleted:    p/KSEA.Rmd
-    Deleted:    p/about.Rmd
-    Deleted:    p/index.Rmd
-    Deleted:    p/license.Rmd
 
 </code></pre>
 <p>
@@ -702,6 +618,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/9d7bb61f98d1737770704f83de445b00a04a32be/analysis/ContextSpecificNetworks.Rmd" target="_blank">9d7bb61</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-16
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/9d7bb61f98d1737770704f83de445b00a04a32be/docs/ContextSpecificNetworks.html" target="_blank">9d7bb61</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-16
+</td>
+<td>
+.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -879,60 +829,61 @@ other attached packages:
 [13] stringr_1.5.1             plyr_1.8.9               
 [15] dplyr_1.1.4               aracne.networks_1.30.0   
 [17] viper_1.38.0              Biobase_2.64.0           
-[19] BiocGenerics_0.50.0      
+[19] BiocGenerics_0.50.0       workflowr_1.7.1          
 
 loaded via a namespace (and not attached):
-  [1] bitops_1.0-7                DBI_1.2.3                  
-  [3] rlang_1.1.4                 magrittr_2.0.3             
-  [5] git2r_0.33.0                matrixStats_1.3.0          
-  [7] e1071_1.7-14                compiler_4.4.0             
-  [9] RSQLite_2.3.7               png_0.1-8                  
- [11] vctrs_0.6.5                 ProtGenerics_1.36.0        
- [13] pkgconfig_2.0.3             crayon_1.5.2               
- [15] fastmap_1.2.0               XVector_0.44.0             
- [17] utf8_1.2.4                  Rsamtools_2.20.0           
- [19] promises_1.3.0              rmarkdown_2.27             
- [21] UCSC.utils_1.0.0            purrr_1.0.2                
- [23] bit_4.0.5                   xfun_0.44                  
- [25] zlibbioc_1.50.0             cachem_1.1.0               
- [27] jsonlite_1.8.8              blob_1.2.4                 
- [29] later_1.3.2                 DelayedArray_0.30.1        
- [31] BiocParallel_1.38.0         R6_2.5.1                   
- [33] bslib_0.7.0                 stringi_1.8.4              
- [35] rtracklayer_1.64.0          jquerylib_0.1.4            
- [37] SummarizedExperiment_1.34.0 Rcpp_1.0.12                
- [39] knitr_1.47                  mixtools_2.0.0             
- [41] httpuv_1.6.15               Matrix_1.7-0               
- [43] splines_4.4.0               tidyselect_1.2.1           
- [45] abind_1.4-5                 rstudioapi_0.16.0          
- [47] yaml_2.3.8                  codetools_0.2-20           
- [49] curl_5.2.1                  lattice_0.22-6             
- [51] tibble_3.2.1                KEGGREST_1.44.0            
- [53] evaluate_0.24.0             survival_3.7-0             
- [55] proxy_0.4-27                kernlab_0.9-32             
- [57] Biostrings_2.72.1           pillar_1.9.0               
- [59] MatrixGenerics_1.16.0       whisker_0.4.1              
- [61] KernSmooth_2.23-24          plotly_4.10.4              
- [63] generics_0.1.3              rprojroot_2.0.4            
- [65] RCurl_1.98-1.14             ggplot2_3.5.1              
- [67] munsell_0.5.1               scales_1.3.0               
- [69] class_7.3-22                glue_1.7.0                 
- [71] lazyeval_0.2.2              tools_4.4.0                
- [73] BiocIO_1.14.0               data.table_1.15.4          
- [75] GenomicAlignments_1.40.0    fs_1.6.4                   
- [77] XML_3.99-0.16.1             grid_4.4.0                 
- [79] tidyr_1.3.1                 colorspace_2.1-0           
- [81] nlme_3.1-165                GenomeInfoDbData_1.2.12    
- [83] restfulr_0.0.15             cli_3.6.2                  
- [85] workflowr_1.7.1             fansi_1.0.6                
- [87] S4Arrays_1.4.1              segmented_2.1-0            
- [89] viridisLite_0.4.2           gtable_0.3.5               
- [91] sass_0.4.9                  digest_0.6.35              
- [93] SparseArray_1.4.8           rjson_0.2.21               
- [95] htmlwidgets_1.6.4           memoise_2.0.1              
- [97] htmltools_0.5.8.1           lifecycle_1.0.4            
- [99] httr_1.4.7                  bit64_4.0.5                
-[101] MASS_7.3-61                </code></pre>
+  [1] rstudioapi_0.16.0           jsonlite_1.8.8             
+  [3] magrittr_2.0.3              rmarkdown_2.27             
+  [5] fs_1.6.4                    BiocIO_1.14.0              
+  [7] zlibbioc_1.50.0             vctrs_0.6.5                
+  [9] memoise_2.0.1               Rsamtools_2.20.0           
+ [11] RCurl_1.98-1.14             htmltools_0.5.8.1          
+ [13] S4Arrays_1.4.1              curl_5.2.1                 
+ [15] SparseArray_1.4.8           sass_0.4.9                 
+ [17] KernSmooth_2.23-24          bslib_0.7.0                
+ [19] htmlwidgets_1.6.4           plotly_4.10.4              
+ [21] cachem_1.1.0                GenomicAlignments_1.40.0   
+ [23] whisker_0.4.1               lifecycle_1.0.4            
+ [25] pkgconfig_2.0.3             Matrix_1.7-0               
+ [27] R6_2.5.1                    fastmap_1.2.0              
+ [29] GenomeInfoDbData_1.2.12     MatrixGenerics_1.16.0      
+ [31] digest_0.6.35               colorspace_2.1-0           
+ [33] ps_1.7.6                    rprojroot_2.0.4            
+ [35] RSQLite_2.3.7               fansi_1.0.6                
+ [37] httr_1.4.7                  abind_1.4-5                
+ [39] compiler_4.4.0              proxy_0.4-27               
+ [41] bit64_4.0.5                 BiocParallel_1.38.0        
+ [43] DBI_1.2.3                   MASS_7.3-61                
+ [45] DelayedArray_0.30.1         rjson_0.2.21               
+ [47] tools_4.4.0                 httpuv_1.6.15              
+ [49] glue_1.7.0                  restfulr_0.0.15            
+ [51] callr_3.7.6                 nlme_3.1-165               
+ [53] promises_1.3.0              grid_4.4.0                 
+ [55] getPass_0.2-4               generics_0.1.3             
+ [57] gtable_0.3.5                class_7.3-22               
+ [59] tidyr_1.3.1                 data.table_1.15.4          
+ [61] utf8_1.2.4                  XVector_0.44.0             
+ [63] pillar_1.9.0                later_1.3.2                
+ [65] splines_4.4.0               lattice_0.22-6             
+ [67] survival_3.7-0              rtracklayer_1.64.0         
+ [69] bit_4.0.5                   tidyselect_1.2.1           
+ [71] Biostrings_2.72.1           knitr_1.47                 
+ [73] git2r_0.33.0                ProtGenerics_1.36.0        
+ [75] SummarizedExperiment_1.34.0 xfun_0.44                  
+ [77] mixtools_2.0.0              matrixStats_1.3.0          
+ [79] stringi_1.8.4               UCSC.utils_1.0.0           
+ [81] lazyeval_0.2.2              yaml_2.3.8                 
+ [83] evaluate_0.24.0             codetools_0.2-20           
+ [85] kernlab_0.9-32              tibble_3.2.1               
+ [87] cli_3.6.2                   segmented_2.1-0            
+ [89] munsell_0.5.1               processx_3.8.4             
+ [91] jquerylib_0.1.4             Rcpp_1.0.12                
+ [93] png_0.1-8                   XML_3.99-0.16.1            
+ [95] ggplot2_3.5.1               blob_1.2.4                 
+ [97] bitops_1.0-7                viridisLite_0.4.2          
+ [99] scales_1.3.0                e1071_1.7-14               
+[101] purrr_1.0.2                 crayon_1.5.2               
+[103] rlang_1.1.4                 KEGGREST_1.44.0            </code></pre>
 </div>
 </div>
 </div>

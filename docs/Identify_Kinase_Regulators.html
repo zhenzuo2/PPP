@@ -365,7 +365,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -376,8 +376,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -386,13 +386,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-16
+<strong>Last updated:</strong> 2024-06-17
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -415,21 +415,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -520,15 +517,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree15464ce073ae911fec987f4758f0f33b07d8cee8targetblank15464cea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree564acc453647f4af6d49b0d5608c7a0638d0ad5btargetblank564acc4a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/15464ce073ae911fec987f4758f0f33b07d8cee8" target="_blank">15464ce</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/564acc453647f4af6d49b0d5608c7a0638d0ad5b" target="_blank">564acc4</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree15464ce073ae911fec987f4758f0f33b07d8cee8targetblank15464cea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree564acc453647f4af6d49b0d5608c7a0638d0ad5btargetblank564acc4a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -538,7 +535,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/15464ce073ae911fec987f4758f0f33b07d8cee8" target="_blank">15464ce</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/564acc453647f4af6d49b0d5608c7a0638d0ad5b" target="_blank">564acc4</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -571,39 +568,10 @@ Ignored files:
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
     Ignored:    output/.DS_Store
+    Ignored:    output/expr/.DS_Store
     Ignored:    output/pho/.DS_Store
+    Ignored:    output/regulon/.DS_Store
     Ignored:    temp/.DS_Store
-
-Untracked files:
-    Untracked:  output/pho/dset_hnsc.RDS
-    Untracked:  output/pho/dset_kirc.RDS
-    Untracked:  output/pho/dset_luad.RDS
-    Untracked:  output/pho/dset_lusc.RDS
-    Untracked:  output/pho/dset_paad.RDS
-    Untracked:  output/pho/hnsc/
-    Untracked:  output/pho/kirc/
-    Untracked:  output/pho/luad/
-    Untracked:  output/pho/lusc/
-    Untracked:  output/pho/paad/
-    Untracked:  output/pho/regul_hnsc.RDS
-    Untracked:  output/pho/regul_kirc.RDS
-    Untracked:  output/pho/regul_luad.RDS
-    Untracked:  output/pho/regul_lusc.RDS
-    Untracked:  output/pho/regul_paad.RDS
-
-Unstaged changes:
-    Modified:   analysis/Identify_Kinase_Regulators.Rmd
-    Modified:   analysis/KSEA.Rmd
-    Modified:   output/regulon/KSA_gold_standard.adj
-    Deleted:    p/ContextSpecificNetworks.Rmd
-    Deleted:    p/Differentially_Gene.Rmd
-    Deleted:    p/Differentially_Phosphorylated_Site.Rmd
-    Deleted:    p/Differentially_Protein.Rmd
-    Deleted:    p/Identify_Kinase_Regulators.Rmd
-    Deleted:    p/KSEA.Rmd
-    Deleted:    p/about.Rmd
-    Deleted:    p/index.Rmd
-    Deleted:    p/license.Rmd
 
 </code></pre>
 <p>
@@ -650,6 +618,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/9d7bb61f98d1737770704f83de445b00a04a32be/analysis/Identify_Kinase_Regulators.Rmd" target="_blank">9d7bb61</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-16
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/9d7bb61f98d1737770704f83de445b00a04a32be/docs/Identify_Kinase_Regulators.html" target="_blank">9d7bb61</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-16
+</td>
+<td>
+.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -862,61 +864,63 @@ other attached packages:
  [9] GenomicRanges_1.56.0      GenomeInfoDb_1.40.0      
 [11] IRanges_2.38.0            S4Vectors_0.42.0         
 [13] viper_1.38.0              Biobase_2.64.0           
-[15] BiocGenerics_0.50.0      
+[15] BiocGenerics_0.50.0       workflowr_1.7.1          
 
 loaded via a namespace (and not attached):
-  [1] DBI_1.2.3                   bitops_1.0-7               
+  [1] bitops_1.0-7                DBI_1.2.3                  
   [3] rlang_1.1.4                 magrittr_2.0.3             
   [5] git2r_0.33.0                matrixStats_1.3.0          
   [7] e1071_1.7-14                compiler_4.4.0             
-  [9] RSQLite_2.3.7               png_0.1-8                  
- [11] vctrs_0.6.5                 ProtGenerics_1.36.0        
- [13] stringr_1.5.1               pkgconfig_2.0.3            
- [15] crayon_1.5.2                fastmap_1.2.0              
- [17] XVector_0.44.0              utf8_1.2.4                 
- [19] Rsamtools_2.20.0            promises_1.3.0             
- [21] rmarkdown_2.27              UCSC.utils_1.0.0           
- [23] purrr_1.0.2                 bit_4.0.5                  
- [25] xfun_0.44                   zlibbioc_1.50.0            
- [27] cachem_1.1.0                jsonlite_1.8.8             
- [29] blob_1.2.4                  later_1.3.2                
- [31] DelayedArray_0.30.1         BiocParallel_1.38.0        
- [33] R6_2.5.1                    bslib_0.7.0                
- [35] stringi_1.8.4               rtracklayer_1.64.0         
- [37] jquerylib_0.1.4             SummarizedExperiment_1.34.0
- [39] Rcpp_1.0.12                 knitr_1.47                 
- [41] mixtools_2.0.0              httpuv_1.6.15              
- [43] Matrix_1.7-0                splines_4.4.0              
- [45] tidyselect_1.2.1            abind_1.4-5                
- [47] rstudioapi_0.16.0           yaml_2.3.8                 
- [49] codetools_0.2-20            curl_5.2.1                 
- [51] plyr_1.8.9                  lattice_0.22-6             
- [53] tibble_3.2.1                KEGGREST_1.44.0            
- [55] evaluate_0.24.0             survival_3.7-0             
- [57] proxy_0.4-27                kernlab_0.9-32             
- [59] Biostrings_2.72.1           pillar_1.9.0               
- [61] MatrixGenerics_1.16.0       whisker_0.4.1              
- [63] KernSmooth_2.23-24          plotly_4.10.4              
- [65] generics_0.1.3              rprojroot_2.0.4            
- [67] RCurl_1.98-1.14             ggplot2_3.5.1              
- [69] munsell_0.5.1               scales_1.3.0               
- [71] class_7.3-22                glue_1.7.0                 
- [73] lazyeval_0.2.2              tools_4.4.0                
- [75] BiocIO_1.14.0               data.table_1.15.4          
- [77] GenomicAlignments_1.40.0    fs_1.6.4                   
- [79] XML_3.99-0.16.1             grid_4.4.0                 
- [81] tidyr_1.3.1                 colorspace_2.1-0           
- [83] nlme_3.1-165                GenomeInfoDbData_1.2.12    
- [85] restfulr_0.0.15             cli_3.6.2                  
- [87] workflowr_1.7.1             fansi_1.0.6                
- [89] S4Arrays_1.4.1              segmented_2.1-0            
- [91] viridisLite_0.4.2           dplyr_1.1.4                
- [93] gtable_0.3.5                sass_0.4.9                 
- [95] digest_0.6.35               SparseArray_1.4.8          
- [97] rjson_0.2.21                htmlwidgets_1.6.4          
- [99] memoise_2.0.1               htmltools_0.5.8.1          
-[101] lifecycle_1.0.4             httr_1.4.7                 
-[103] bit64_4.0.5                 MASS_7.3-61                </code></pre>
+  [9] RSQLite_2.3.7               getPass_0.2-4              
+ [11] png_0.1-8                   callr_3.7.6                
+ [13] vctrs_0.6.5                 ProtGenerics_1.36.0        
+ [15] stringr_1.5.1               pkgconfig_2.0.3            
+ [17] crayon_1.5.2                fastmap_1.2.0              
+ [19] XVector_0.44.0              utf8_1.2.4                 
+ [21] Rsamtools_2.20.0            promises_1.3.0             
+ [23] rmarkdown_2.27              UCSC.utils_1.0.0           
+ [25] ps_1.7.6                    purrr_1.0.2                
+ [27] bit_4.0.5                   xfun_0.44                  
+ [29] zlibbioc_1.50.0             cachem_1.1.0               
+ [31] jsonlite_1.8.8              blob_1.2.4                 
+ [33] later_1.3.2                 DelayedArray_0.30.1        
+ [35] BiocParallel_1.38.0         R6_2.5.1                   
+ [37] bslib_0.7.0                 stringi_1.8.4              
+ [39] rtracklayer_1.64.0          jquerylib_0.1.4            
+ [41] SummarizedExperiment_1.34.0 Rcpp_1.0.12                
+ [43] knitr_1.47                  mixtools_2.0.0             
+ [45] httpuv_1.6.15               Matrix_1.7-0               
+ [47] splines_4.4.0               tidyselect_1.2.1           
+ [49] abind_1.4-5                 rstudioapi_0.16.0          
+ [51] yaml_2.3.8                  codetools_0.2-20           
+ [53] curl_5.2.1                  processx_3.8.4             
+ [55] plyr_1.8.9                  lattice_0.22-6             
+ [57] tibble_3.2.1                KEGGREST_1.44.0            
+ [59] evaluate_0.24.0             survival_3.7-0             
+ [61] proxy_0.4-27                kernlab_0.9-32             
+ [63] Biostrings_2.72.1           pillar_1.9.0               
+ [65] MatrixGenerics_1.16.0       whisker_0.4.1              
+ [67] KernSmooth_2.23-24          plotly_4.10.4              
+ [69] generics_0.1.3              RCurl_1.98-1.14            
+ [71] rprojroot_2.0.4             ggplot2_3.5.1              
+ [73] munsell_0.5.1               scales_1.3.0               
+ [75] class_7.3-22                glue_1.7.0                 
+ [77] lazyeval_0.2.2              tools_4.4.0                
+ [79] BiocIO_1.14.0               data.table_1.15.4          
+ [81] GenomicAlignments_1.40.0    fs_1.6.4                   
+ [83] XML_3.99-0.16.1             grid_4.4.0                 
+ [85] tidyr_1.3.1                 colorspace_2.1-0           
+ [87] nlme_3.1-165                GenomeInfoDbData_1.2.12    
+ [89] restfulr_0.0.15             cli_3.6.2                  
+ [91] fansi_1.0.6                 S4Arrays_1.4.1             
+ [93] segmented_2.1-0             viridisLite_0.4.2          
+ [95] dplyr_1.1.4                 gtable_0.3.5               
+ [97] sass_0.4.9                  digest_0.6.35              
+ [99] SparseArray_1.4.8           rjson_0.2.21               
+[101] htmlwidgets_1.6.4           memoise_2.0.1              
+[103] htmltools_0.5.8.1           lifecycle_1.0.4            
+[105] httr_1.4.7                  bit64_4.0.5                
+[107] MASS_7.3-61                </code></pre>
 </div>
 </div>
 

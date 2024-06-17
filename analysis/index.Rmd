@@ -17,6 +17,15 @@ editor_options:
 }
 </style>
 
+# TO DO
+Add fold change direction to KSEA (remove heatmap)
+Replace figure annoation seq_15 with gene_site. 
+Send Wenyan an email to ask for VIPER.
+Read https://www.embopress.org/doi/full/10.15252/msb.20209730. 
+Add CNV(CNV)-self(RNA) mutual information 1.  
+Add metholoation.  
+Use BIKG for network. 
+
 # Data
 ||CNV (Tumor)|Methylation (Tumor)|Methylation (Normal)|Proteomics (Tumor)|Proteomics (Normal)|Phosphoproteome (Tumor)|Phosphoproteome (Normal)|Transcriptome (Tumor)|Transcriptome (Normal)|
 |:-------------------:|:---------------------:|:----------------------:|:----------------------:|:----------------------:|:----------------------:|:----------------------:|:----------------------:|:----------------------:|:----------------------:|
