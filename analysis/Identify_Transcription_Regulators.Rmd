@@ -1,0 +1,91 @@
+---
+title: "Identify Transcription Regulators"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
+cluster <- makeCluster(5)
+registerDoParallel(cluster)
+dir.create("output/regulon/",showWarnings = FALSE)
+set.seed(0)
+```
+
+# Generating the regulon object for Gene Expression
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+for (name in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("output/regulon/regulon",name,".adj",sep = "")
+    exp_normal <- readRDS(paste("output/expr/count_matrix_", name, "_normal.RDS",
+        sep = ""))
+    prot_normal <- readRDS(paste("output/prot/count_matrix_", name, "_normal.RDS",
+        sep = ""))
+    
+    exp_tumor <- readRDS(paste("output/expr/count_matrix_", name, "_tumor.RDS",
+        sep = ""))
+    prot_tumor <- readRDS(paste("output/prot/count_matrix_", name, "_tumor.RDS",
+        sep = ""))
+    
+    exp <- merge(exp_normal, exp_tumor, by = "row.names", all = FALSE)
+    nor_sam <- colnames(exp)[1:ncol(exp_normal)]
+    tur_sam <- colnames(exp)[(ncol(exp_normal)+1):ncol(exp)]
+    prot <- merge(prot_normal, prot_tumor, by = "row.names", all = FALSE)
+    
+    rownames(exp) <- exp$Row.names
+    exp$Row.names <- NULL
+    
+    rownames(prot) <- paste(prot$Row.names,"_P",sep="")
+    prot$Row.names <- NULL
+    
+    common_ind <- intersect(colnames(exp),colnames(prot))
+    expr <- rbind(prot[,common_ind],exp[,common_ind])
+
+    signature <- c(rep("normal", sum(common_ind %in% nor_sam)), rep("tumor", sum(common_ind %in% tur_sam)))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- factor(signature)
+    regul <- aracne2regulon(adjfile, dset, verbose = TRUE)
+    saveRDS(dset, paste("output/expr/dset_", name, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/expr/regul_", name, ".RDS", sep = ""))
+}
+```
+
+# Run Viper on Gene Expression Data
+```{r}
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+    library(viper)
+    dset <- readRDS(paste("output/expr/dset_", name, ".RDS",
+        sep = ""))
+    regulon <- readRDS(paste("output/expr/regul_", name, ".RDS", sep = ""))
+    signature <- rowTtest(dset, "description", "tumor", "normal")
+    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
+        1]
+
+    # NULL model by sample permutations
+    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
+        repos = TRUE, verbose = FALSE)
+    ## Normalized Enrichment Score (NES)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+    temp <- summary(mrs, length(mrs$regulon))
+    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
+    temp <- temp[temp$FDR < 0.2, ]
+    temp <- temp[, c("Regulon", "NES", "Sign")]
+    temp$NES <- abs(temp$NES)
+    dir.create(paste("output/expr/",
+        name, "/", sep = ""),showWarnings = F)
+    write.table(temp, paste("output/expr/",
+        name, "/transcription_regulators.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+        col.names = F)
+}
+```
+

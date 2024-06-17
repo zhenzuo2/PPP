@@ -14,7 +14,12 @@ editor_options:
 ```{r message=FALSE, warning=FALSE}
 library(viper)
 library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
+cluster <- makeCluster(5)
+registerDoParallel(cluster)
 dir.create("output/regulon/",showWarnings = FALSE)
+set.seed(0)
 ```
 
 ## Process network and save as adj files
@@ -24,34 +29,77 @@ geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = df$UniProt.ID.1,
         keytype = "UNIPROTID", columns = c("SYMBOL", "ENTREZID", "GENEID","UNIPROTID"))
 df$UniProt.ID.2 <- plyr::mapvalues(df$UniProt.ID.1, from = geneID$UNIPROTID,
         to = geneID$SYMBOL, warn_missing = FALSE)
-
+df$ID <- paste(df$UniProt.ID.2,"_","S",df$Position,"_",df$seq_15, "\t", "1", sep="")
 # Group by Regulator and concatenate elements of each group into strings
-result <- aggregate(seq_15 ~ Gene.name, data = df, FUN = function(x) paste(x, collapse = "\t"))
+result <- aggregate(ID ~ Gene.name, data = df, FUN = function(x) paste(x, collapse = "\t"))
 # Print the result
 file <- file(paste("output/regulon/KSA_gold_standard.adj",
     sep = ""))
-writeLines(paste(result$Gene.name,result$seq_15,sep = "\t"),file)
+writeLines(paste(result$Gene.name,result$ID,sep = "\t"),file)
 close(file)
 ```
 
 # Generating the regulon object for pho
 ```{r eval=FALSE, include=TRUE}
 set.seed(0)
-for (ca in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+for (name in c("kirc", "hnsc", "lusc", "luad", "paad")) {
     adjfile <- "output/regulon/KSA_gold_standard.adj"
-    expr_normal <- readRDS(paste("output/pho/count_matrix_", ca, "_normal.RDS",
+    pho_normal <- readRDS(paste("output/pho/count_matrix_", name, "_normal.RDS",
         sep = ""))
-    expr_tumor <- readRDS(paste("output/pho/count_matrix_", ca, "_tumor.RDS",
+    prot_normal <- readRDS(paste("output/prot/count_matrix_", name, "_normal.RDS",
         sep = ""))
-    expr <- merge(expr_normal, expr_tumor, by = "row.names", all = FALSE)
-    rownames(expr) <- expr$Row.names
-    expr$Row.names <- NULL
+    
+    pho_tumor <- readRDS(paste("output/pho/count_matrix_", name, "_tumor.RDS",
+        sep = ""))
+    prot_tumor <- readRDS(paste("output/prot/count_matrix_", name, "_tumor.RDS",
+        sep = ""))
+    
+    pho <- merge(pho_normal, pho_tumor, by = "row.names", all = FALSE)
+    prot <- merge(prot_normal, prot_tumor, by = "row.names", all = FALSE)
+    
+    rownames(pho) <- pho$Row.names
+    pho$Row.names <- NULL
+    
+    rownames(prot) <- prot$Row.names
+    prot$Row.names <- NULL
+    
+    expr <- rbind(prot,pho)
 
-    signature <- c(rep("normal", dim(expr_normal)[2]), rep("tumor", dim(expr_tumor)[2]))
+    signature <- c(rep("normal", dim(pho_normal)[2]), rep("tumor", dim(pho_tumor)[2]))
     dset <- ExpressionSet(assayData = as.matrix(expr))
-    dset$description <- signature
-    regul <- aracne2regulon(adjfile, dset, verbose = FALSE)
-    saveRDS(dset, paste("output/pho/dset_", ca, ".RDS", sep = ""))
-    saveRDS(regul, paste("output/pho/regul_", ca, ".RDS", sep = ""))
+    dset$description <- factor(signature)
+    regul <- aracne2regulon(adjfile, dset, verbose = TRUE)
+    saveRDS(dset, paste("output/pho/dset_", name, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/pho/regul_", name, ".RDS", sep = ""))
 }
 ```
+
+# Run Viper on Phosphoproteome Data
+```{r}
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+    library(viper)
+    dset <- readRDS(paste("output/pho/dset_", name, ".RDS",
+        sep = ""))
+    regulon <- readRDS(paste("output/pho/regul_", name, ".RDS", sep = ""))
+    signature <- rowTtest(dset, "description", "tumor", "normal")
+    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
+        1]
+
+    # NULL model by sample permutations
+    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
+        repos = TRUE, verbose = FALSE)
+    ## Normalized Enrichment Score (NES)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+    temp <- summary(mrs, length(mrs$regulon))
+    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
+    temp <- temp[temp$FDR < 0.1, ]
+    temp <- temp[, c("Regulon", "NES", "Sign")]
+    temp$NES <- abs(temp$NES)
+    dir.create(paste("output/pho/",
+        name, "/", sep = ""),showWarnings = F)
+    write.table(temp, paste("output/pho/",
+        name, "/kinase_regulators.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+        col.names = F)
+}
+```
+
