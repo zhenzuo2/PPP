@@ -1,0 +1,65 @@
+---
+title: "Kinase Set Enrichment Analysis"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+```{r}
+library(clusterProfiler)
+library(ggplot2)
+full_name <- c("Human Kidney Renal Clear Cell Carcinoma",
+"Human Head and Neck Squamous Carcinoma",
+"Human Lung Squamous Carcinoma",
+"Human Lung Adenocarcinoma",
+"Human Pancreas Carcinoma")
+names <- c("kirc", "hnsc", "lusc", "luad", "paad")
+```
+
+```{r fig.height=10, fig.width=10, message=FALSE, warning=FALSE, results="asis"}
+ksa <- rggplot2ksa <- read.gmt("data/gold_standard_CoPheeKSA.gmt")
+i = 1
+for (name in names) {
+    cat("\n\n")
+    cat("# ", full_name[i], sep = "")
+    cat("\n\n")
+    i = i + 1
+    dps <- read.csv(paste("output/DPS/", name, "_fc_0.05_kinases.csv",
+        sep = ""))
+    dps <- dps[order(dps$Adjusted_P_Value, decreasing = TRUE), ]
+    gse <- enricher(gene = dps$Seq, TERM2GENE = ksa)
+    dir.create(paste("output/pho/", name, "/", sep = ""), showWarnings = F)
+    write.table(gse@result, paste("output/pho/", name, "/KSEA.csv", sep = ""))
+    cat("\n\n")
+    cat("## Barplots")
+    cat("\n\n")
+    print(mutate(gse, qscore = -log(p.adjust, base = 10)) %>%
+        barplot(x = "qscore") + ggtitle(full_name[i]))
+
+    cat("\n\n")
+    cat("## Dotplots")
+    cat("\n\n")
+    print(dotplot(gse, showCategory = 30) + ggtitle(full_name[i]))
+
+    cat("\n\n")
+    cat("## Heatmap")
+    cat("\n\n")
+    print(heatplot(gse, showCategory = 5) + ggtitle(full_name[i]))
+
+    cat("\n\n")
+    cat("## Kinase-Concept Network")
+    cat("\n\n")
+    print(cnetplot(gse, color.params = list(foldChange = dps$Fold_Change)) +
+        ggtitle(full_name[i]))
+
+    cat("\n\n")
+    cat("## Enrichment Map")
+    cat("\n\n")
+    print(emapplot(enrichplot::pairwise_termsim(gse)) + ggtitle(full_name[i]))
+}
+```
+

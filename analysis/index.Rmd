@@ -10,7 +10,6 @@ editor_options:
   
 ---
 
-
 <style type="text/css">
   body{
   font-size: 12pt;
@@ -18,12 +17,17 @@ editor_options:
 </style>
 
 # TO DO
-Add fold change direction to KSEA (remove heatmap)
+Add fold change direction to KSEA (remove heatmap). 
 Replace figure annoation seq_15 with gene_site. 
-Send Wenyan an email to ask for VIPER.
 Read https://www.embopress.org/doi/full/10.15252/msb.20209730. 
-Add CNV(CNV)-self(RNA) mutual information 1.  
+
 Add metholoation.  
+
+Add CNV(CNV)-self(RNA) mutual information 1.  
+Loading the dataset...  
+Generating the regulon objects...  
+Error in postprobs[, w] : subscript out of bounds. 
+
 Use BIKG for network. 
 
 # Data
@@ -71,6 +75,15 @@ grid::grid.raster(img,width = 0.4, height = 1)
 - Get proteomics data from <a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer"> CPTAC </a>.  
   + Remove features with more 20% zero/missing values. 
 - Define Differentially Proteins by two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini & Hochberg correction (adjusted p values < 0.05) [See more](Differentially_Protein.html). 
+
+## Copy Number Variation Analysis
+- Get Copy Number Variation from <a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer"> CPTAC </a>.
+- Use t-tests to find key features that show differences between tumor and normal tissues (adjusted p values < 0.05) [See more](Differentially_Protein.html).  
+
+## Differential Methylation Analysis
+- Get Methylation from <a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer"> CPTAC </a>.
+- Use two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini & Hochberg correction (adjusted p values < 0.05) [See more](Differentially_Methylation.html).  
+
 
 ## Master Regulator Inference Algorithm (MARINa)
 ```{r echo=FALSE, out.width="100%", out.height="100%"}

@@ -1,0 +1,116 @@
+---
+title: "Identify CNV Regulators"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
+cluster <- makeCluster(5)
+registerDoParallel(cluster)
+dir.create("output/regulon/",showWarnings = FALSE)
+set.seed(0)
+```
+
+## Process network and save as adj files
+```{r}
+for (name in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    df <- read.csv(paste("output/MUT/", name, "_fc.csv", sep = ""))
+    df$ID <- paste(df$SYMBOL, "_R", sep = "")
+    # Group by Regulator and concatenate elements of each group into
+    # strings
+    df$SYMBOL <- paste(df$SYMBOL, "1",sep = "\t")
+    result <- aggregate(ID ~ SYMBOL, data = df, FUN = function(x) paste(x,
+        collapse = "\t"))
+    # Print the result
+    file <- file(paste("output/regulon/CNV_", name, ".adj", sep = ""))
+    writeLines(paste(result$ID, result$SYMBOL, sep = "\t"), file)
+    close(file)
+}
+```
+
+# Generating the regulon object for CNV
+```{r eval=FALSE, include=TRUE}
+set.seed(0)
+for (name in c("kirc", "hnsc", "lusc", "luad", "paad")) {
+    adjfile <- paste("output/regulon/regulon", name, ".adj", sep = "")
+    cnv_normal <- readRDS(paste("output/cnv/count_matrix_", name, "_normal.RDS",
+        sep = ""))
+    meta <- read.csv(paste("output/MUT/", name, "_fc_0.01.csv",sep = ""))
+    cnv_normal <- cnv_normal[rownames(cnv_normal) %in% meta$SYMBOL,]
+    
+    gex_normal <- readRDS(paste("output/expr/count_matrix_", name, "_normal.RDS",
+        sep = ""))
+    
+    cnv_tumor <- readRDS(paste("output/cnv/count_matrix_", name, "_tumor.RDS",
+        sep = ""))
+    cnv_tumor <- cnv_tumor[rownames(cnv_tumor) %in% meta$SYMBOL,]
+    gex_tumor <- readRDS(paste("output/expr/count_matrix_", name, "_tumor.RDS",
+        sep = ""))
+    
+    cnv <- merge(cnv_normal, cnv_tumor, by = "row.names", all = FALSE)
+    gex <- merge(gex_normal, gex_tumor, by = "row.names", all = FALSE)
+    
+    nor_sam <- colnames(gex)[1:ncol(gex_normal)]
+    tur_sam <- colnames(gex)[(ncol(gex_normal)+1):ncol(gex)]
+    
+    rownames(cnv) <- paste(cnv$Row.names,"_P", sep = "")
+    cnv$Row.names <- NULL
+    
+    rownames(gex) <- gex$Row.names
+    gex$Row.names <- NULL
+    
+    common_terms <- intersect(colnames(gex),colnames(cnv))
+    
+    cnv <- cnv[,common_terms]
+    gex <- gex[,common_terms]
+    expr <- rbind(gex,cnv)
+
+    signature <- c(rep("normal", sum(common_terms %in% nor_sam)), rep("tumor", sum(common_terms %in% tur_sam)))
+    dset <- ExpressionSet(assayData = as.matrix(expr))
+    dset$description <- factor(signature)
+    regul <- aracne2regulon(adjfile, dset, verbose = TRUE)
+    saveRDS(dset, paste("output/cnv/dset_", name, ".RDS", sep = ""))
+    saveRDS(regul, paste("output/cnv/regul_", name, ".RDS", sep = ""))
+}
+```
+
+# Run Viper on CNV Data
+```{r}
+foreach(name = c("kirc", "hnsc", "lusc", "luad", "paad")) %dopar% {
+    library(viper)
+    dset <- readRDS(paste("output/cnv/dset_", name, ".RDS",
+        sep = ""))
+    regulon <- readRDS(paste("output/cnv/regul_", name, ".RDS", sep = ""))
+    signature <- rowTtest(dset, "description", "tumor", "normal")
+    signature <- (qnorm(signature$p.value/2, lower.tail = FALSE) * sign(signature$statistic))[,
+        1]
+
+    # NULL model by sample permutations
+    nullmodel <- ttestNull(dset, "description", "tumor", "normal", per = 1000,
+        repos = TRUE, verbose = FALSE)
+    ## Normalized Enrichment Score (NES)
+    mrs <- msviper(signature, regulon, nullmodel, verbose = FALSE)
+    temp <- summary(mrs, length(mrs$regulon))
+    temp$Sign <- ifelse(temp$NES > 0, "+", "-")
+    temp <- temp[temp$FDR < 0.1, ]
+    temp <- temp[, c("Regulon", "NES", "Sign")]
+    temp$NES <- abs(temp$NES)
+    dir.create(paste("output/cnv/",
+        name, "/", sep = ""),showWarnings = F)
+    write.table(temp, paste("output/cnv/",
+        name, "/cnv_regulators.txt", sep = ""), quote = F, sep = "\t", row.names = F,
+        col.names = F)
+}
+```
+

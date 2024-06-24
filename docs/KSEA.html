@@ -365,7 +365,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -376,8 +376,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -386,13 +386,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-17
+<strong>Last updated:</strong> 2024-06-20
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -415,18 +415,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -517,15 +520,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree564acc453647f4af6d49b0d5608c7a0638d0ad5btargetblank564acc4a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreef0809aee3ae9ef35645f3fc2d83f69c4307de4fatargetblankf0809aea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/564acc453647f4af6d49b0d5608c7a0638d0ad5b" target="_blank">564acc4</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa" target="_blank">f0809ae</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree564acc453647f4af6d49b0d5608c7a0638d0ad5btargetblank564acc4a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreef0809aee3ae9ef35645f3fc2d83f69c4307de4fatargetblankf0809aea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -535,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/564acc453647f4af6d49b0d5608c7a0638d0ad5b" target="_blank">564acc4</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa" target="_blank">f0809ae</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -574,9 +577,10 @@ Ignored files:
     Ignored:    temp/.DS_Store
 
 Untracked files:
-    Untracked:  output/regulon/KSA_gold_standard.adj
+    Untracked:  analysis/PCA.Rmd
 
 Unstaged changes:
+    Modified:   analysis/KSEA.Rmd
     Modified:   analysis/index.Rmd
 
 </code></pre>
@@ -622,6 +626,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/KSEA.html" target="_blank">f0809ae</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-17
+</td>
+<td>
+.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -766,51 +787,89 @@ full_name &lt;- c(&quot;Human Kidney Renal Clear Cell Carcinoma&quot;,
 &quot;Human Lung Adenocarcinoma&quot;,
 &quot;Human Pancreas Carcinoma&quot;)
 names &lt;- c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;paad&quot;)</code></pre>
-<pre class="r"><code>ksa &lt;- rggplot2ksa &lt;- read.gmt(&quot;data/gold_standard_CoPheeKSA.gmt&quot;)
-i = 1
+<pre class="r"><code>ksa &lt;- read.gmt(&quot;data/gold_standard_CoPheeKSA.gmt&quot;)
+i &lt;- 1
 for (name in names) {
     cat(&quot;\n\n&quot;)
     cat(&quot;# &quot;, full_name[i], sep = &quot;&quot;)
     cat(&quot;\n\n&quot;)
-    i = i + 1
+    i &lt;- i + 1
     dps &lt;- read.csv(paste(&quot;output/DPS/&quot;, name, &quot;_fc_0.05_kinases.csv&quot;,
         sep = &quot;&quot;))
+    dps_plus &lt;- dps[dps$Fold_Change &gt; 0, ]
+    dps_neg &lt;- dps[dps$Fold_Change &lt; 0, ]
+    
+    cat(&quot;\n\n&quot;)
+    cat(&quot;## Positive&quot;)
+    cat(&quot;\n\n&quot;)
+
+    dps &lt;- dps_plus
     dps &lt;- dps[order(dps$Adjusted_P_Value, decreasing = TRUE), ]
     gse &lt;- enricher(gene = dps$Seq, TERM2GENE = ksa)
-    dir.create(paste(&quot;output/pho/&quot;, name, &quot;/&quot;, sep = &quot;&quot;), showWarnings = F)
-    write.table(gse@result, paste(&quot;output/pho/&quot;, name, &quot;/KSEA.csv&quot;, sep = &quot;&quot;))
+    dir.create(paste(&quot;output/pho/&quot;, name, &quot;/&quot;, sep = &quot;&quot;), showWarnings = FALSE)
+    write.table(gse@result, paste(&quot;output/pho/&quot;, name, &quot;/KSEA.csv&quot;,
+        sep = &quot;&quot;))
     cat(&quot;\n\n&quot;)
-    cat(&quot;## Barplots&quot;)
+    cat(&quot;### Barplots&quot;)
     cat(&quot;\n\n&quot;)
     print(mutate(gse, qscore = -log(p.adjust, base = 10)) %&gt;%
         barplot(x = &quot;qscore&quot;) + ggtitle(full_name[i]))
 
     cat(&quot;\n\n&quot;)
-    cat(&quot;## Dotplots&quot;)
+    cat(&quot;### Dotplots&quot;)
     cat(&quot;\n\n&quot;)
     print(dotplot(gse, showCategory = 30) + ggtitle(full_name[i]))
 
     cat(&quot;\n\n&quot;)
-    cat(&quot;## Heatmap&quot;)
-    cat(&quot;\n\n&quot;)
-    print(heatplot(gse, showCategory = 5) + ggtitle(full_name[i]))
-
-    cat(&quot;\n\n&quot;)
-    cat(&quot;## Kinase-Concept Network&quot;)
+    cat(&quot;### Kinase-Concept Network&quot;)
     cat(&quot;\n\n&quot;)
     print(cnetplot(gse, color.params = list(foldChange = dps$Fold_Change)) +
         ggtitle(full_name[i]))
 
     cat(&quot;\n\n&quot;)
-    cat(&quot;## Enrichment Map&quot;)
+    cat(&quot;### Enrichment Map&quot;)
+    cat(&quot;\n\n&quot;)
+    print(emapplot(enrichplot::pairwise_termsim(gse)) + ggtitle(full_name[i]))
+    
+    cat(&quot;\n\n&quot;)
+    cat(&quot;## Negative&quot;)
+    cat(&quot;\n\n&quot;)
+
+    dps &lt;- dps_neg
+    dps &lt;- dps[order(dps$Adjusted_P_Value, decreasing = TRUE), ]
+    gse &lt;- enricher(gene = dps$Seq, TERM2GENE = ksa)
+    dir.create(paste(&quot;output/pho/&quot;, name, &quot;/&quot;, sep = &quot;&quot;), showWarnings = FALSE)
+    write.table(gse@result, paste(&quot;output/pho/&quot;, name, &quot;/KSEA.csv&quot;,
+        sep = &quot;&quot;))
+    cat(&quot;\n\n&quot;)
+    cat(&quot;### Barplots&quot;)
+    cat(&quot;\n\n&quot;)
+    print(mutate(gse, qscore = -log(p.adjust, base = 10)) %&gt;%
+        barplot(x = &quot;qscore&quot;) + ggtitle(full_name[i]))
+
+    cat(&quot;\n\n&quot;)
+    cat(&quot;### Dotplots&quot;)
+    cat(&quot;\n\n&quot;)
+    print(dotplot(gse, showCategory = 30) + ggtitle(full_name[i]))
+
+    cat(&quot;\n\n&quot;)
+    cat(&quot;### Kinase-Concept Network&quot;)
+    cat(&quot;\n\n&quot;)
+    print(cnetplot(gse, color.params = list(foldChange = dps$Fold_Change)) +
+        ggtitle(full_name[i]))
+
+    cat(&quot;\n\n&quot;)
+    cat(&quot;### Enrichment Map&quot;)
     cat(&quot;\n\n&quot;)
     print(emapplot(enrichplot::pairwise_termsim(gse)) + ggtitle(full_name[i]))
 }</code></pre>
 <div id="human-kidney-renal-clear-cell-carcinoma"
 class="section level1">
 <h1>Human Kidney Renal Clear Cell Carcinoma</h1>
-<div id="barplots" class="section level2">
-<h2>Barplots</h2>
+<div id="positive" class="section level2">
+<h2>Positive</h2>
+<div id="barplots" class="section level3">
+<h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
@@ -850,8 +909,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="dotplots" class="section level2">
-<h2>Dotplots</h2>
+<div id="dotplots" class="section level3">
+<h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-2.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-2">
@@ -891,8 +950,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="heatmap" class="section level2">
-<h2>Heatmap</h2>
+<div id="kinase-concept-network" class="section level3">
+<h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-3.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-3">
@@ -932,8 +991,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="kinase-concept-network" class="section level2">
-<h2>Kinase-Concept Network</h2>
+<div id="enrichment-map" class="section level3">
+<h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-4.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-4">
@@ -957,6 +1016,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-4.png" target="_blank">f0809ae</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/9d7bb61f98d1737770704f83de445b00a04a32be/docs/figure/KSEA.Rmd/unnamed-chunk-2-4.png" target="_blank">9d7bb61</a>
@@ -995,8 +1065,11 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="enrichment-map" class="section level2">
-<h2>Enrichment Map</h2>
+</div>
+<div id="negative" class="section level2">
+<h2>Negative</h2>
+<div id="barplots-1" class="section level3">
+<h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-5.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-5">
@@ -1036,11 +1109,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-</div>
-<div id="human-head-and-neck-squamous-carcinoma" class="section level1">
-<h1>Human Head and Neck Squamous Carcinoma</h1>
-<div id="barplots-1" class="section level2">
-<h2>Barplots</h2>
+<div id="dotplots-1" class="section level3">
+<h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-6.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-6">
@@ -1080,8 +1150,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="dotplots-1" class="section level2">
-<h2>Dotplots</h2>
+<div id="kinase-concept-network-1" class="section level3">
+<h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-7.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-7">
@@ -1121,8 +1191,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="heatmap-1" class="section level2">
-<h2>Heatmap</h2>
+<div id="enrichment-map-1" class="section level3">
+<h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-8.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-8">
@@ -1162,8 +1232,14 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="kinase-concept-network-1" class="section level2">
-<h2>Kinase-Concept Network</h2>
+</div>
+</div>
+<div id="human-head-and-neck-squamous-carcinoma" class="section level1">
+<h1>Human Head and Neck Squamous Carcinoma</h1>
+<div id="positive-1" class="section level2">
+<h2>Positive</h2>
+<div id="barplots-2" class="section level3">
+<h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-9.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-9">
@@ -1187,6 +1263,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-9.png" target="_blank">f0809ae</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/9d7bb61f98d1737770704f83de445b00a04a32be/docs/figure/KSEA.Rmd/unnamed-chunk-2-9.png" target="_blank">9d7bb61</a>
@@ -1225,8 +1312,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="enrichment-map-1" class="section level2">
-<h2>Enrichment Map</h2>
+<div id="dotplots-2" class="section level3">
+<h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-10.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-10">
@@ -1266,11 +1353,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-</div>
-<div id="human-lung-squamous-carcinoma" class="section level1">
-<h1>Human Lung Squamous Carcinoma</h1>
-<div id="barplots-2" class="section level2">
-<h2>Barplots</h2>
+<div id="kinase-concept-network-2" class="section level3">
+<h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-11.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-11">
@@ -1310,8 +1394,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="dotplots-2" class="section level2">
-<h2>Dotplots</h2>
+<div id="enrichment-map-2" class="section level3">
+<h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-12.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-12">
@@ -1351,8 +1435,11 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="heatmap-2" class="section level2">
-<h2>Heatmap</h2>
+</div>
+<div id="negative-1" class="section level2">
+<h2>Negative</h2>
+<div id="barplots-3" class="section level3">
+<h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-13.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-13">
@@ -1392,8 +1479,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="kinase-concept-network-2" class="section level2">
-<h2>Kinase-Concept Network</h2>
+<div id="dotplots-3" class="section level3">
+<h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-14.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-14">
@@ -1417,6 +1504,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-14.png" target="_blank">f0809ae</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/9d7bb61f98d1737770704f83de445b00a04a32be/docs/figure/KSEA.Rmd/unnamed-chunk-2-14.png" target="_blank">9d7bb61</a>
@@ -1455,8 +1553,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="enrichment-map-2" class="section level2">
-<h2>Enrichment Map</h2>
+<div id="kinase-concept-network-3" class="section level3">
+<h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-15.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-15">
@@ -1496,11 +1594,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-</div>
-<div id="human-lung-adenocarcinoma" class="section level1">
-<h1>Human Lung Adenocarcinoma</h1>
-<div id="barplots-3" class="section level2">
-<h2>Barplots</h2>
+<div id="enrichment-map-3" class="section level3">
+<h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-16.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-16">
@@ -1540,8 +1635,14 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="dotplots-3" class="section level2">
-<h2>Dotplots</h2>
+</div>
+</div>
+<div id="human-lung-squamous-carcinoma" class="section level1">
+<h1>Human Lung Squamous Carcinoma</h1>
+<div id="positive-2" class="section level2">
+<h2>Positive</h2>
+<div id="barplots-4" class="section level3">
+<h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-17.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-17">
@@ -1581,8 +1682,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="heatmap-3" class="section level2">
-<h2>Heatmap</h2>
+<div id="dotplots-4" class="section level3">
+<h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-18.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-18">
@@ -1622,8 +1723,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="kinase-concept-network-3" class="section level2">
-<h2>Kinase-Concept Network</h2>
+<div id="kinase-concept-network-4" class="section level3">
+<h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-19.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-19">
@@ -1647,6 +1748,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-19.png" target="_blank">f0809ae</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/9d7bb61f98d1737770704f83de445b00a04a32be/docs/figure/KSEA.Rmd/unnamed-chunk-2-19.png" target="_blank">9d7bb61</a>
@@ -1685,8 +1797,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="enrichment-map-3" class="section level2">
-<h2>Enrichment Map</h2>
+<div id="enrichment-map-4" class="section level3">
+<h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-20.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-20">
@@ -1727,10 +1839,10 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="human-pancreas-carcinoma" class="section level1">
-<h1>Human Pancreas Carcinoma</h1>
-<div id="barplots-4" class="section level2">
-<h2>Barplots</h2>
+<div id="negative-2" class="section level2">
+<h2>Negative</h2>
+<div id="barplots-5" class="section level3">
+<h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-21.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-21">
@@ -1770,8 +1882,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="dotplots-4" class="section level2">
-<h2>Dotplots</h2>
+<div id="dotplots-5" class="section level3">
+<h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-22.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-22">
@@ -1811,8 +1923,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="heatmap-4" class="section level2">
-<h2>Heatmap</h2>
+<div id="kinase-concept-network-5" class="section level3">
+<h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-23.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-23">
@@ -1852,8 +1964,8 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="kinase-concept-network-4" class="section level2">
-<h2>Kinase-Concept Network</h2>
+<div id="enrichment-map-5" class="section level3">
+<h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-24.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-24">
@@ -1877,6 +1989,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-24.png" target="_blank">f0809ae</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/9d7bb61f98d1737770704f83de445b00a04a32be/docs/figure/KSEA.Rmd/unnamed-chunk-2-24.png" target="_blank">9d7bb61</a>
@@ -1915,8 +2038,14 @@ Zhen Zuo
 </div>
 </div>
 </div>
-<div id="enrichment-map-4" class="section level2">
-<h2>Enrichment Map</h2>
+</div>
+</div>
+<div id="human-lung-adenocarcinoma" class="section level1">
+<h1>Human Lung Adenocarcinoma</h1>
+<div id="positive-3" class="section level2">
+<h2>Positive</h2>
+<div id="barplots-6" class="section level3">
+<h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-25.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-25">
@@ -1955,6 +2084,78 @@ Zhen Zuo
 </table>
 </div>
 </div>
+</div>
+<div id="dotplots-6" class="section level3">
+<h3>Dotplots</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-26.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="kinase-concept-network-6" class="section level3">
+<h3>Kinase-Concept Network</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-27.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="enrichment-map-6" class="section level3">
+<h3>Enrichment Map</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-28.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="negative-3" class="section level2">
+<h2>Negative</h2>
+<div id="barplots-7" class="section level3">
+<h3>Barplots</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-29.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="dotplots-7" class="section level3">
+<h3>Dotplots</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-30.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="kinase-concept-network-7" class="section level3">
+<h3>Kinase-Concept Network</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-31.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="enrichment-map-7" class="section level3">
+<h3>Enrichment Map</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-32.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="human-pancreas-carcinoma" class="section level1">
+<h1>Human Pancreas Carcinoma</h1>
+<div id="positive-4" class="section level2">
+<h2>Positive</h2>
+<div id="barplots-8" class="section level3">
+<h3>Barplots</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-33.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="dotplots-8" class="section level3">
+<h3>Dotplots</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-34.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="kinase-concept-network-8" class="section level3">
+<h3>Kinase-Concept Network</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-35.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="enrichment-map-8" class="section level3">
+<h3>Enrichment Map</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-36.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="negative-4" class="section level2">
+<h2>Negative</h2>
+<div id="barplots-9" class="section level3">
+<h3>Barplots</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-37.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="dotplots-9" class="section level3">
+<h3>Dotplots</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-38.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="kinase-concept-network-9" class="section level3">
+<h3>Kinase-Concept Network</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-39.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="enrichment-map-9" class="section level3">
+<h3>Enrichment Map</h3>
+<p><img src="figure/KSEA.Rmd/unnamed-chunk-2-40.png" width="960" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1982,7 +2183,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggplot2_3.5.1          clusterProfiler_4.12.0 workflowr_1.7.1       
+[1] ggplot2_3.5.1          clusterProfiler_4.12.0
 
 loaded via a namespace (and not attached):
   [1] RColorBrewer_1.1-3      rstudioapi_0.16.0       jsonlite_1.8.8         
@@ -1994,39 +2195,39 @@ loaded via a namespace (and not attached):
  [19] igraph_2.0.3            lifecycle_1.0.4         pkgconfig_2.0.3        
  [22] Matrix_1.7-0            R6_2.5.1                fastmap_1.2.0          
  [25] gson_0.1.0              GenomeInfoDbData_1.2.12 digest_0.6.35          
- [28] aplot_0.2.2             enrichplot_1.24.0       ggnewscale_0.4.10      
- [31] colorspace_2.1-0        patchwork_1.2.0         AnnotationDbi_1.66.0   
- [34] S4Vectors_0.42.0        ps_1.7.6                rprojroot_2.0.4        
- [37] RSQLite_2.3.7           labeling_0.4.3          fansi_1.0.6            
- [40] httr_1.4.7              polyclip_1.10-6         compiler_4.4.0         
- [43] bit64_4.0.5             withr_3.0.0             BiocParallel_1.38.0    
- [46] viridis_0.6.5           DBI_1.2.3               highr_0.11             
- [49] ggforce_0.4.2           MASS_7.3-61             HDO.db_0.99.1          
- [52] tools_4.4.0             ape_5.8                 scatterpie_0.2.3       
- [55] httpuv_1.6.15           glue_1.7.0              callr_3.7.6            
- [58] nlme_3.1-165            GOSemSim_2.30.0         promises_1.3.0         
- [61] grid_4.4.0              shadowtext_0.1.3        getPass_0.2-4          
- [64] reshape2_1.4.4          fgsea_1.30.0            generics_0.1.3         
- [67] gtable_0.3.5            tidyr_1.3.1             data.table_1.15.4      
- [70] tidygraph_1.3.1         utf8_1.2.4              XVector_0.44.0         
- [73] BiocGenerics_0.50.0     ggrepel_0.9.5           pillar_1.9.0           
- [76] stringr_1.5.1           yulab.utils_0.1.4       later_1.3.2            
- [79] splines_4.4.0           dplyr_1.1.4             tweenr_2.0.3           
- [82] treeio_1.28.0           lattice_0.22-6          bit_4.0.5              
- [85] tidyselect_1.2.1        GO.db_3.19.1            Biostrings_2.72.1      
- [88] knitr_1.47              git2r_0.33.0            gridExtra_2.3          
- [91] IRanges_2.38.0          stats4_4.4.0            xfun_0.44              
- [94] graphlayouts_1.1.1      Biobase_2.64.0          stringi_1.8.4          
- [97] UCSC.utils_1.0.0        lazyeval_0.2.2          ggfun_0.1.5            
-[100] yaml_2.3.8              evaluate_0.24.0         codetools_0.2-20       
-[103] ggraph_2.2.1            tibble_3.2.1            qvalue_2.36.0          
-[106] ggplotify_0.1.2         cli_3.6.2               munsell_0.5.1          
-[109] processx_3.8.4          jquerylib_0.1.4         Rcpp_1.0.12            
-[112] GenomeInfoDb_1.40.0     png_0.1-8               parallel_4.4.0         
-[115] blob_1.2.4              DOSE_3.30.1             viridisLite_0.4.2      
-[118] tidytree_0.4.6          scales_1.3.0            purrr_1.0.2            
-[121] crayon_1.5.2            rlang_1.1.4             cowplot_1.1.3          
-[124] fastmatch_1.1-4         KEGGREST_1.44.0        </code></pre>
+ [28] aplot_0.2.3             enrichplot_1.24.0       colorspace_2.1-0       
+ [31] ggnewscale_0.4.10       patchwork_1.2.0         AnnotationDbi_1.66.0   
+ [34] S4Vectors_0.42.0        rprojroot_2.0.4         RSQLite_2.3.7          
+ [37] labeling_0.4.3          fansi_1.0.6             httr_1.4.7             
+ [40] polyclip_1.10-6         compiler_4.4.0          bit64_4.0.5            
+ [43] withr_3.0.0             BiocParallel_1.38.0     viridis_0.6.5          
+ [46] DBI_1.2.3               highr_0.11              ggforce_0.4.2          
+ [49] MASS_7.3-61             HDO.db_0.99.1           tools_4.4.0            
+ [52] ape_5.8                 scatterpie_0.2.3        httpuv_1.6.15          
+ [55] glue_1.7.0              nlme_3.1-165            GOSemSim_2.30.0        
+ [58] promises_1.3.0          grid_4.4.0              shadowtext_0.1.3       
+ [61] reshape2_1.4.4          fgsea_1.30.0            generics_0.1.3         
+ [64] gtable_0.3.5            tidyr_1.3.1             data.table_1.15.4      
+ [67] tidygraph_1.3.1         utf8_1.2.4              XVector_0.44.0         
+ [70] BiocGenerics_0.50.0     ggrepel_0.9.5           pillar_1.9.0           
+ [73] stringr_1.5.1           yulab.utils_0.1.4       later_1.3.2            
+ [76] splines_4.4.0           dplyr_1.1.4             tweenr_2.0.3           
+ [79] treeio_1.28.0           lattice_0.22-6          bit_4.0.5              
+ [82] tidyselect_1.2.1        GO.db_3.19.1            Biostrings_2.72.1      
+ [85] knitr_1.47              git2r_0.33.0            gridExtra_2.3          
+ [88] IRanges_2.38.0          stats4_4.4.0            xfun_0.45              
+ [91] graphlayouts_1.1.1      Biobase_2.64.0          stringi_1.8.4          
+ [94] UCSC.utils_1.0.0        workflowr_1.7.1         lazyeval_0.2.2         
+ [97] ggfun_0.1.5             yaml_2.3.8              evaluate_0.24.0        
+[100] codetools_0.2-20        ggraph_2.2.1            tibble_3.2.1           
+[103] qvalue_2.36.0           ggplotify_0.1.2         cli_3.6.2              
+[106] munsell_0.5.1           jquerylib_0.1.4         Rcpp_1.0.12            
+[109] GenomeInfoDb_1.40.1     png_0.1-8               parallel_4.4.0         
+[112] blob_1.2.4              DOSE_3.30.1             viridisLite_0.4.2      
+[115] tidytree_0.4.6          scales_1.3.0            purrr_1.0.2            
+[118] crayon_1.5.2            rlang_1.1.4             cowplot_1.1.3          
+[121] fastmatch_1.1-4         KEGGREST_1.44.0        </code></pre>
+</div>
 </div>
 </div>
 </div>

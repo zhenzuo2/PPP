@@ -1,0 +1,114 @@
+---
+title: "Differentially Copy Number Variations"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Load packages
+```{r message=FALSE, warning=FALSE}
+library(viper)
+library(EnsDb.Hsapiens.v86)
+library(foreach)
+library(doParallel)
+cluster <- makeCluster(5)
+registerDoParallel(cluster)
+dir.create("output/cnv/",showWarnings = FALSE)
+dir.create("output/MUT/",showWarnings = FALSE)
+set.seed(0)
+```
+
+# Define functions
+```{r}
+read_exp <- function(file_name) {
+    expr <- read.table(file_name, header = TRUE, sep = "\t", row.names = 1,
+        as.is = TRUE)
+    expr[is.na(expr)] <- 0
+    #n_0 <- count_zeros_in_rows(as.matrix(expr))
+    # Remove features with more 20% zero/missing values
+    #expr <- expr[n_0 >= ncol(expr)/5, ]
+    # Split rownames by |
+    meta <- data.frame(rownames(expr))
+    colnames(meta) <- c("ENSG")
+    meta$ENSG <- sub("\\..*$", "", meta$ENSG)
+
+    geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = meta$ENSG, keytype = "GENEID",
+        columns = c("SYMBOL", "UNIPROTID", "GENEID"))
+    meta$UNIPROTID <- plyr::mapvalues(meta$ENSG, from = geneID$GENEID,
+        to = geneID$UNIPROTID, warn_missing = FALSE)
+    meta$SYMBOL <- plyr::mapvalues(meta$ENSG, from = geneID$GENEID, to = geneID$SYMBOL,
+        warn_missing = FALSE)
+
+    # Remove duplicated indexs
+    binary_unique_index <- (!duplicated(meta$SYMBOL)) & (!is.na(meta$SYMBOL) &
+        (!sapply(meta$SYMBOL, function(x) startsWith(x, "ENSG"))))
+
+    print(table(binary_unique_index))
+
+    meta <- meta[binary_unique_index, ]
+
+    expr <- expr[binary_unique_index, ]
+    rownames(expr) <- meta$SYMBOL
+
+    rownames(meta) <- rownames(expr)
+    return(list(expr, meta))
+}
+
+t_test_row <- function(observed) {
+  return(t.test(x = observed, mu = 0)$p.value)
+}
+
+calculate_log_fold_change_and_pvalue <- function(data_matrix, adjust_method = "BH") {
+
+    # Calculate the mean for each row in the tumor and normal groups
+    mean_tumor <- rowMeans(data_matrix, na.rm = TRUE)
+    # Calculate the fold change
+    fold_change <- mean_tumor
+    p_values <- apply(data_matrix, 1, t_test_row)
+    # Adjust the p-values
+    adjusted_p_values <- p.adjust(p_values, method = adjust_method)
+
+    # Create a data frame with fold change, p-values, and adjusted
+    # p-values
+    results <- data.frame(Fold_Change = fold_change, P_Value = p_values,
+        Adjusted_P_Value = adjusted_p_values)
+    # Return the results data frame
+    return(results)
+}
+```
+
+# Extract and process CNV data
+```{r}
+df <- read.csv("data/omics_regulon_pairs.csv")
+labels <- c("kirc", "kirc", "hnsc", "hnsc", "lusc", "lusc", "luad", "luad",
+    "paad", "paad")
+for (i in c(1, 3, 5, 7, 9)) {
+    tumor <- read_exp(df$CNV[i])
+    expr_t <- tumor[[1]]
+    meta_t <- tumor[[2]]
+
+    expr_t[!is.finite(as.matrix(expr_t))] <- 0
+
+    saveRDS(expr_t, paste("output/cnv/count_matrix_", labels[i], "_tumor.RDS",
+        sep = ""))
+    
+    meta <- meta_t
+    fc <- calculate_log_fold_change_and_pvalue(data_matrix = as.matrix(expr_t))
+    fc <- cbind(meta, fc)
+    write.csv(fc, paste("output/MUT/", labels[i],
+        "_fc.csv", sep = ""), row.names = F)
+    fc <- fc[(fc$Adjusted_P_Value < 0.01)&(abs(fc$Fold_Change) > 0.1), ]
+    write.csv(fc, paste("output/MUT/", labels[i],
+        "_fc_0.01.csv", sep = ""), row.names = F)
+    expr_t[,] <- 0
+    saveRDS(expr_t, paste("output/cnv/count_matrix_", labels[i], "_normal.RDS",
+        sep = ""))
+}
+```
+
+

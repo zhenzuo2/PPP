@@ -1,5 +1,5 @@
 ---
-title: " Differentially Gene Expression"
+title: "Differentially Gene Expression"
 output:
   workflowr::wflow_html:
     toc: true
