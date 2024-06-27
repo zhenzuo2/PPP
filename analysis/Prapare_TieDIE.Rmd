@@ -1,0 +1,89 @@
+---
+title: "Prepare Input for TieDIE"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+# Table 1
+```{r}
+library(EnsDb.Hsapiens.v86)
+dir.create("output/TieDIE/",showWarnings = FALSE)
+dir.create("output/TieDIE/input",showWarnings = FALSE)
+name <- c("kirc", "hnsc", "lusc", "luad", "paad")
+KR <- list()
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/pho/", name[i], "/kinase_regulators.csv", sep = ""),sep = ",")
+  temp2 <- read.csv(paste("output/pho/",name[i],"/KSEA.csv",sep=""),sep = " ")
+  temp2 <- temp2[temp2$p.adjust < 0.1,]
+  temp <- temp[(temp$FDR < 0.1)|(temp$Regulon %in% temp2$ID),]
+  
+  dir.create(paste("output/TieDIE/input/",name[i],sep = ""),showWarnings = FALSE)
+  write.table(temp[,c("Regulon","NES","Sign")],paste("output/TieDIE/input/",name[i],"/tab1.txt",sep = ""),sep = "\t", row.names = F,col.names = F,quote = F)
+}
+```
+
+# Table 2
+```{r}
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/expr/",name[i],"/transcription_regulators.csv",sep=""),sep = ",",header = TRUE)
+  temp$Regulon <-  substr(temp$Regulon, 1, nchar(temp$Regulon) - 2)
+  temp <- temp[order(abs(temp$NES),decreasing = T),]
+  temp2 <- temp[1:20,]
+  
+  temp3 <- read.csv(paste("output/DME/",name[i],"_fc.csv",sep=""),sep = ",",header = TRUE)
+  temp3 <- temp3[(temp3$Adjusted_P_Value < 0.01)&(abs(temp3$Fold_Change)>0.01),]
+  temp3 <- temp3[order(abs(temp3$Fold_Change),decreasing = T),]
+  temp3 <- temp3[1:20,]
+  
+  temp <- temp[(temp$Regulon %in% temp2$Regulon)|(temp$Regulon %in% temp3$SYMBOL),]
+  
+  dir.create(paste("output/TieDIE/input/",name[i],sep = ""),showWarnings = FALSE)
+  write.table(temp[,c("Regulon","NES","Sign")],paste("output/TieDIE/input/",name[i],"/tab2.txt",sep = ""),sep = "\t", row.names = F,col.names = F,quote = F)
+}
+```
+
+# Table 3
+```{r}
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/cnv/",name[i],"/cnv_regulators.csv",sep=""),sep = "\t",header = TRUE)
+  temp <- temp[order(temp$NES,decreasing = TRUE),]
+  temp <- temp[1:20,]
+  
+  dir.create(paste("output/TieDIE/input/",name[i],sep = ""),showWarnings = FALSE)
+  write.table(temp[,c("Regulon","NES","Sign")],paste("output/TieDIE/input/",name[i],"/tab3.txt",sep = ""),sep = "\t", row.names = F,col.names = F,quote = F)
+}
+```
+
+# Network
+```{r}
+files <- c("data/GG/hnsc_1000.csv", "data/GG/hnsc_2000.csv", "data/GG/kirc_1000.csv", 
+"data/GG/kirc_2000.csv", "data/GG/luad_1000.csv", "data/GG/luad_2000.csv", 
+"data/GG/lusc_1000.csv", "data/GG/lusc_2000.csv", "data/GG/paad_1000.csv", 
+"data/GG/paad_2000.csv")
+for (f in files) {
+  df <- read.csv(f)
+  df$source <- substr(df$source, 9, nchar(df$source))
+  df$target <- substr(df$target, 9, nchar(df$target))
+  geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = df$source,
+        keytype = "GENEID", columns = c("SYMBOL", "GENEID"))
+  df$source <- plyr::mapvalues(df$source, from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+  
+  geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = df$target,
+        keytype = "GENEID", columns = c("SYMBOL", "GENEID"))
+  df$target <- plyr::mapvalues(df$target, from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+  df <- df[(!grepl("^ENSG", df$source))&(!grepl("^ENSG", df$target)),]
+  df$method <- "interacts-with"
+  df <- df[,c(1,3,2)]
+  write.table(df, paste(tools::file_path_sans_ext(f),"_converted.sif",sep = ""),col.names = F,row.names = F,sep = "\t",quote = F)
+}
+
+```
+

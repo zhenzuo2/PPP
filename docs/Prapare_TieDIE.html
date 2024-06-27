@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Prepare Input for TieDIE</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Proteomics and Phosphoproteomics Pipeline</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/zhenzuo2/PPP">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Prepare Input for TieDIE</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-06-25
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>PPP/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R
+Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240521code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240521)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240521code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240521)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree85fc7b15a6290a668540bf534f2fdc73ce6d75cdtargetblank85fc7b1a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/zhenzuo2/PPP/tree/85fc7b15a6290a668540bf534f2fdc73ce6d75cd" target="_blank">85fc7b1</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree85fc7b15a6290a668540bf534f2fdc73ce6d75cdtargetblank85fc7b1a"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/zhenzuo2/PPP/tree/85fc7b15a6290a668540bf534f2fdc73ce6d75cd" target="_blank">85fc7b1</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .RData
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/.RData
+    Ignored:    analysis/.Rhistory
+    Ignored:    code/.DS_Store
+    Ignored:    code/TieDIE-tiedie2/.DS_Store
+    Ignored:    code/TieDIE-tiedie2/examples/.DS_Store
+    Ignored:    data/.DS_Store
+    Ignored:    data/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
+    Ignored:    data/Phosphoproteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
+    Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
+    Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
+    Ignored:    output/.DS_Store
+    Ignored:    output/DAP/.DS_Store
+    Ignored:    output/MUT/.DS_Store
+    Ignored:    output/cnv/.DS_Store
+    Ignored:    output/expr/.DS_Store
+    Ignored:    output/pho/.DS_Store
+    Ignored:    output/regulon/.DS_Store
+    Ignored:    temp/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/Prapare_TieDIE.Rmd
+    Untracked:  data/GG/
+    Untracked:  output/DAP/hnsc_fc_kinases.csv
+    Untracked:  output/DAP/kirc_fc_kinases.csv
+    Untracked:  output/DAP/luad_fc_kinases.csv
+    Untracked:  output/DAP/lusc_fc_kinases.csv
+    Untracked:  output/DAP/paad_fc_kinases.csv
+    Untracked:  output/TieDIE/
+    Untracked:  output/cnv/hnsc/cnv_regulators.csv
+    Untracked:  output/cnv/kirc/cnv_regulators.csv
+    Untracked:  output/cnv/luad/cnv_regulators.csv
+    Untracked:  output/cnv/lusc/cnv_regulators.csv
+    Untracked:  output/cnv/paad/cnv_regulators.csv
+    Untracked:  output/expr/hnsc/transcription_regulators.csv
+    Untracked:  output/expr/kirc/transcription_regulators.csv
+    Untracked:  output/expr/luad/transcription_regulators.csv
+    Untracked:  output/expr/lusc/transcription_regulators.csv
+    Untracked:  output/expr/paad/transcription_regulators.csv
+    Untracked:  output/pho/hnsc/kinase_regulators.csv
+    Untracked:  output/pho/kirc/kinase_regulators.csv
+    Untracked:  output/pho/luad/kinase_regulators.csv
+    Untracked:  output/pho/lusc/kinase_regulators.csv
+    Untracked:  output/pho/paad/kinase_regulators.csv
+
+Unstaged changes:
+    Modified:   analysis/Differentially_Protein.Rmd
+    Modified:   analysis/Identify_CNV_Regulators.Rmd
+    Modified:   analysis/Identify_Kinase_Regulators.Rmd
+    Modified:   analysis/Identify_Transcription_Regulators.Rmd
+    Modified:   analysis/KSEA.Rmd
+    Deleted:    analysis/PCA.Rmd
+    Modified:   analysis/index.Rmd
+    Deleted:    code/TieDIE-devel/LICENSE.txt
+    Deleted:    code/TieDIE-devel/README.md
+    Deleted:    code/TieDIE-devel/bin/makeKernel.py
+    Deleted:    code/TieDIE-devel/bin/makeKernel.sh
+    Deleted:    code/TieDIE-devel/bin/mapSamples
+    Deleted:    code/TieDIE-devel/bin/masterReg
+    Deleted:    code/TieDIE-devel/bin/n1_pchip
+    Deleted:    code/TieDIE-devel/bin/network_diffusion_kernel.m
+    Deleted:    code/TieDIE-devel/bin/pagerank_power.m
+    Deleted:    code/TieDIE-devel/bin/personalized_pagerank_powermethod.m
+    Deleted:    code/TieDIE-devel/bin/sherpa
+    Deleted:    code/TieDIE-devel/bin/span.R
+    Deleted:    code/TieDIE-devel/bin/tiedie
+    Deleted:    code/TieDIE-devel/bin/tiedie.PSN
+    Deleted:    code/TieDIE-devel/doc/Makefile
+    Deleted:    code/TieDIE-devel/doc/Tutorial.bib
+    Deleted:    code/TieDIE-devel/doc/Tutorial.pdf
+    Deleted:    code/TieDIE-devel/doc/Tutorial.tex
+    Deleted:    code/TieDIE-devel/doc/Tutorial.toc
+    Deleted:    code/TieDIE-devel/examples/hnsc.sh
+    Deleted:    code/TieDIE-devel/examples/hnsc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/Makefile
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/TieDIE.sif
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/edge_frequencies.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:methy.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:phos.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/heats.NA
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/heats.tab
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/methy.txt:phos.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/methy.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/node_frequencies.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/node_heats.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/phos.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/hnsc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/kirc.sh
+    Deleted:    code/TieDIE-devel/examples/kirc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/Makefile
+    Deleted:    code/TieDIE-devel/examples/kirc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/kirc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/luad.sh
+    Deleted:    code/TieDIE-devel/examples/luad/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/luad/Makefile
+    Deleted:    code/TieDIE-devel/examples/luad/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/luad/methy.txt
+    Deleted:    code/TieDIE-devel/examples/luad/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/luad/phos.txt
+    Deleted:    code/TieDIE-devel/examples/luad/prot.txt
+    Deleted:    code/TieDIE-devel/examples/lusc.sh
+    Deleted:    code/TieDIE-devel/examples/lusc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/Makefile
+    Deleted:    code/TieDIE-devel/examples/lusc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/lusc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/paad.sh
+    Deleted:    code/TieDIE-devel/examples/paad/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/paad/Makefile
+    Deleted:    code/TieDIE-devel/examples/paad/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/paad/methy.txt
+    Deleted:    code/TieDIE-devel/examples/paad/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/paad/phos.txt
+    Deleted:    code/TieDIE-devel/examples/paad/prot.txt
+    Deleted:    code/TieDIE-devel/galaxy/tiedie.py
+    Deleted:    code/TieDIE-devel/galaxy/tiedie.xml
+    Deleted:    code/TieDIE-devel/lib/consensus.py
+    Deleted:    code/TieDIE-devel/lib/consensus.pyc
+    Deleted:    code/TieDIE-devel/lib/distance.py
+    Deleted:    code/TieDIE-devel/lib/distance.pyc
+    Deleted:    code/TieDIE-devel/lib/distributions.py
+    Deleted:    code/TieDIE-devel/lib/distributions.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel.py
+    Deleted:    code/TieDIE-devel/lib/kernel.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel_scipy.py
+    Deleted:    code/TieDIE-devel/lib/kernel_scipy.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel_tensorflow.py
+    Deleted:    code/TieDIE-devel/lib/kernel_tensorflow.pyc
+    Deleted:    code/TieDIE-devel/lib/linkers.py
+    Deleted:    code/TieDIE-devel/lib/linkers.pyc
+    Deleted:    code/TieDIE-devel/lib/master_reg.py
+    Deleted:    code/TieDIE-devel/lib/master_reg.pyc
+    Deleted:    code/TieDIE-devel/lib/pathway.py
+    Deleted:    code/TieDIE-devel/lib/permute.py
+    Deleted:    code/TieDIE-devel/lib/permute.pyc
+    Deleted:    code/TieDIE-devel/lib/ppr.py
+    Deleted:    code/TieDIE-devel/lib/ppr.pyc
+    Deleted:    code/TieDIE-devel/lib/tiedie_util.py
+    Deleted:    code/TieDIE-devel/lib/tiedie_util.pyc
+    Deleted:    code/TieDIE-devel/pathways/Superpathway_Collapsed_2.0.KERNEL.zip
+    Deleted:    code/TieDIE-devel/pathways/Superpathway_Collapsed_2.0.zip
+    Deleted:    code/TieDIE-devel/test/kernel_tests.py
+    Deleted:    code/TieDIE-devel/test/pathway_tests.py
+    Deleted:    code/TieDIE-devel/test/regression.py
+    Deleted:    code/TieDIE-devel/test/run-all.sh
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/BRCA/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/BRCA/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/expr.data
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/expr.ranked.tab
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/mut.data
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/edge_frequencies.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/heats.NA
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/heats.tab
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/node_frequencies.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/node_heats.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/test_files.downstream.input:test_files.upstream.input.dist.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/tiedie.sif
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/adj.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/deg.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/exp.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/lap.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/scipy_results/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnet.data.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnet.sif
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnetbig.data.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnetbig.sif
+    Deleted:    code/TieDIE-devel/test/test_files/upstream.diffused
+    Deleted:    code/TieDIE-devel/test/test_files/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_masterReg.sh
+    Deleted:    code/TieDIE-devel/test/test_mr.py
+    Deleted:    code/TieDIE-devel/test/test_psn.py
+    Deleted:    code/TieDIE-devel/test/tiedie_cytoscape_tests.py
+    Deleted:    code/TieDIE-devel/test/util_tests.py
+    Modified:   output/DAP/hnsc_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/hnsc_fc_0.05_kinases.csv
+    Modified:   output/DAP/kirc_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/kirc_fc_0.05_kinases.csv
+    Modified:   output/DAP/luad_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/luad_fc_0.05_kinases.csv
+    Modified:   output/DAP/lusc_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/lusc_fc_0.05_kinases.csv
+    Modified:   output/DAP/paad_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/paad_fc_0.05_kinases.csv
+    Modified:   output/cnv/dset_hnsc.RDS
+    Modified:   output/cnv/dset_kirc.RDS
+    Modified:   output/cnv/dset_luad.RDS
+    Modified:   output/cnv/dset_lusc.RDS
+    Modified:   output/cnv/dset_paad.RDS
+    Modified:   output/cnv/regul_hnsc.RDS
+    Modified:   output/cnv/regul_kirc.RDS
+    Modified:   output/cnv/regul_luad.RDS
+    Modified:   output/cnv/regul_lusc.RDS
+    Modified:   output/cnv/regul_paad.RDS
+    Deleted:    output/expr/hnsc/transcription_regulators.txt
+    Deleted:    output/expr/kirc/transcription_regulators.txt
+    Deleted:    output/expr/luad/transcription_regulators.txt
+    Deleted:    output/expr/lusc/transcription_regulators.txt
+    Deleted:    output/expr/paad/transcription_regulators.txt
+    Deleted:    output/pho/hnsc/kinase_regulators.txt
+    Deleted:    output/pho/kirc/kinase_regulators.txt
+    Deleted:    output/pho/luad/kinase_regulators.txt
+    Deleted:    output/pho/lusc/kinase_regulators.txt
+    Deleted:    output/pho/paad/kinase_regulators.txt
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="table-1" class="section level1">
+<h1>Table 1</h1>
+<pre class="r"><code>library(EnsDb.Hsapiens.v86)</code></pre>
+<pre><code>Loading required package: ensembldb</code></pre>
+<pre><code>Loading required package: BiocGenerics</code></pre>
+<pre><code>
+Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
+    tapply, union, unique, unsplit, which.max, which.min</code></pre>
+<pre><code>Loading required package: GenomicRanges</code></pre>
+<pre><code>Loading required package: stats4</code></pre>
+<pre><code>Loading required package: S4Vectors</code></pre>
+<pre><code>
+Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:utils&#39;:
+
+    findMatches</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    expand.grid, I, unname</code></pre>
+<pre><code>Loading required package: IRanges</code></pre>
+<pre><code>Loading required package: GenomeInfoDb</code></pre>
+<pre><code>Loading required package: GenomicFeatures</code></pre>
+<pre><code>Loading required package: AnnotationDbi</code></pre>
+<pre><code>Loading required package: Biobase</code></pre>
+<pre><code>Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre><code>Loading required package: AnnotationFilter</code></pre>
+<pre><code>
+Attaching package: &#39;ensembldb&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:stats&#39;:
+
+    filter</code></pre>
+<pre class="r"><code>dir.create(&quot;output/TieDIE/&quot;,showWarnings = FALSE)
+dir.create(&quot;output/TieDIE/input&quot;,showWarnings = FALSE)
+name &lt;- c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;paad&quot;)
+KR &lt;- list()
+for (i in 1:length(name)){
+  temp &lt;- read.csv(paste(&quot;output/pho/&quot;, name[i], &quot;/kinase_regulators.csv&quot;, sep = &quot;&quot;),sep = &quot;,&quot;)
+  temp2 &lt;- read.csv(paste(&quot;output/pho/&quot;,name[i],&quot;/KSEA.csv&quot;,sep=&quot;&quot;),sep = &quot; &quot;)
+  temp2 &lt;- temp2[temp2$p.adjust &lt; 0.1,]
+  temp &lt;- temp[(temp$FDR &lt; 0.1)|(temp$Regulon %in% temp2$ID),]
+  
+  dir.create(paste(&quot;output/TieDIE/input/&quot;,name[i],sep = &quot;&quot;),showWarnings = FALSE)
+  write.table(temp[,c(&quot;Regulon&quot;,&quot;NES&quot;,&quot;Sign&quot;)],paste(&quot;output/TieDIE/input/&quot;,name[i],&quot;/tab1.txt&quot;,sep = &quot;&quot;),sep = &quot;\t&quot;, row.names = F,col.names = F,quote = F)
+}</code></pre>
+</div>
+<div id="table-2" class="section level1">
+<h1>Table 2</h1>
+<pre class="r"><code>for (i in 1:length(name)){
+  temp &lt;- read.csv(paste(&quot;output/expr/&quot;,name[i],&quot;/transcription_regulators.csv&quot;,sep=&quot;&quot;),sep = &quot;,&quot;,header = TRUE)
+  temp$Regulon &lt;-  substr(temp$Regulon, 1, nchar(temp$Regulon) - 2)
+  temp &lt;- temp[order(abs(temp$NES),decreasing = T),]
+  temp2 &lt;- temp[1:20,]
+  
+  temp3 &lt;- read.csv(paste(&quot;output/DME/&quot;,name[i],&quot;_fc.csv&quot;,sep=&quot;&quot;),sep = &quot;,&quot;,header = TRUE)
+  temp3 &lt;- temp3[(temp3$Adjusted_P_Value &lt; 0.01)&amp;(abs(temp3$Fold_Change)&gt;0.01),]
+  temp3 &lt;- temp3[order(abs(temp3$Fold_Change),decreasing = T),]
+  temp3 &lt;- temp3[1:20,]
+  
+  temp &lt;- temp[(temp$Regulon %in% temp2$Regulon)|(temp$Regulon %in% temp3$SYMBOL),]
+  
+  dir.create(paste(&quot;output/TieDIE/input/&quot;,name[i],sep = &quot;&quot;),showWarnings = FALSE)
+  write.table(temp[,c(&quot;Regulon&quot;,&quot;NES&quot;,&quot;Sign&quot;)],paste(&quot;output/TieDIE/input/&quot;,name[i],&quot;/tab2.txt&quot;,sep = &quot;&quot;),sep = &quot;\t&quot;, row.names = F,col.names = F,quote = F)
+}</code></pre>
+</div>
+<div id="table-3" class="section level1">
+<h1>Table 3</h1>
+<pre class="r"><code>for (i in 1:length(name)){
+  temp &lt;- read.csv(paste(&quot;output/cnv/&quot;,name[i],&quot;/cnv_regulators.csv&quot;,sep=&quot;&quot;),sep = &quot;\t&quot;,header = TRUE)
+  temp &lt;- temp[order(temp$NES,decreasing = TRUE),]
+  temp &lt;- temp[1:20,]
+  
+  dir.create(paste(&quot;output/TieDIE/input/&quot;,name[i],sep = &quot;&quot;),showWarnings = FALSE)
+  write.table(temp[,c(&quot;Regulon&quot;,&quot;NES&quot;,&quot;Sign&quot;)],paste(&quot;output/TieDIE/input/&quot;,name[i],&quot;/tab3.txt&quot;,sep = &quot;&quot;),sep = &quot;\t&quot;, row.names = F,col.names = F,quote = F)
+}</code></pre>
+</div>
+<div id="network" class="section level1">
+<h1>Network</h1>
+<pre class="r"><code>files &lt;- c(&quot;data/GG/hnsc_1000.csv&quot;, &quot;data/GG/hnsc_2000.csv&quot;, &quot;data/GG/kirc_1000.csv&quot;, 
+&quot;data/GG/kirc_2000.csv&quot;, &quot;data/GG/luad_1000.csv&quot;, &quot;data/GG/luad_2000.csv&quot;, 
+&quot;data/GG/lusc_1000.csv&quot;, &quot;data/GG/lusc_2000.csv&quot;, &quot;data/GG/paad_1000.csv&quot;, 
+&quot;data/GG/paad_2000.csv&quot;)
+for (f in files) {
+  df &lt;- read.csv(f)
+  df$source &lt;- substr(df$source, 9, nchar(df$source))
+  df$target &lt;- substr(df$target, 9, nchar(df$target))
+  geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = df$source,
+        keytype = &quot;GENEID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;GENEID&quot;))
+  df$source &lt;- plyr::mapvalues(df$source, from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+  
+  geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = df$target,
+        keytype = &quot;GENEID&quot;, columns = c(&quot;SYMBOL&quot;, &quot;GENEID&quot;))
+  df$target &lt;- plyr::mapvalues(df$target, from = geneID$GENEID,
+        to = geneID$SYMBOL, warn_missing = FALSE)
+  df &lt;- df[(!grepl(&quot;^ENSG&quot;, df$source))&amp;(!grepl(&quot;^ENSG&quot;, df$target)),]
+  df$method &lt;- &quot;interacts-with&quot;
+  df &lt;- df[,c(1,3,2)]
+  write.table(df, paste(tools::file_path_sans_ext(f),&quot;_converted.sif&quot;,sep = &quot;&quot;),col.names = F,row.names = F,sep = &quot;\t&quot;,quote = F)
+}</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.0 (2024-04-24)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sonoma 14.5
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] EnsDb.Hsapiens.v86_2.99.0 ensembldb_2.28.0         
+ [3] AnnotationFilter_1.28.0   GenomicFeatures_1.56.0   
+ [5] AnnotationDbi_1.66.0      Biobase_2.64.0           
+ [7] GenomicRanges_1.56.1      GenomeInfoDb_1.40.1      
+ [9] IRanges_2.38.0            S4Vectors_0.42.0         
+[11] BiocGenerics_0.50.0      
+
+loaded via a namespace (and not attached):
+ [1] SummarizedExperiment_1.34.0 KEGGREST_1.44.0            
+ [3] rjson_0.2.21                xfun_0.45                  
+ [5] bslib_0.7.0                 lattice_0.22-6             
+ [7] vctrs_0.6.5                 tools_4.4.0                
+ [9] bitops_1.0-7                parallel_4.4.0             
+[11] curl_5.2.1                  tibble_3.2.1               
+[13] fansi_1.0.6                 RSQLite_2.3.7              
+[15] blob_1.2.4                  pkgconfig_2.0.3            
+[17] Matrix_1.7-0                lifecycle_1.0.4            
+[19] GenomeInfoDbData_1.2.12     compiler_4.4.0             
+[21] stringr_1.5.1               git2r_0.33.0               
+[23] Rsamtools_2.20.0            Biostrings_2.72.1          
+[25] codetools_0.2-20            httpuv_1.6.15              
+[27] htmltools_0.5.8.1           sass_0.4.9                 
+[29] lazyeval_0.2.2              RCurl_1.98-1.14            
+[31] yaml_2.3.8                  later_1.3.2                
+[33] pillar_1.9.0                crayon_1.5.2               
+[35] jquerylib_0.1.4             BiocParallel_1.38.0        
+[37] DelayedArray_0.30.1         cachem_1.1.0               
+[39] abind_1.4-5                 digest_0.6.35              
+[41] stringi_1.8.4               restfulr_0.0.15            
+[43] grid_4.4.0                  rprojroot_2.0.4            
+[45] fastmap_1.2.0               SparseArray_1.4.8          
+[47] cli_3.6.2                   magrittr_2.0.3             
+[49] S4Arrays_1.4.1              XML_3.99-0.16.1            
+[51] utf8_1.2.4                  UCSC.utils_1.0.0           
+[53] promises_1.3.0              bit64_4.0.5                
+[55] rmarkdown_2.27              XVector_0.44.0             
+[57] httr_1.4.7                  matrixStats_1.3.0          
+[59] bit_4.0.5                   workflowr_1.7.1            
+[61] png_0.1-8                   memoise_2.0.1              
+[63] evaluate_0.24.0             knitr_1.47                 
+[65] BiocIO_1.14.0               rtracklayer_1.64.0         
+[67] rlang_1.1.4                 Rcpp_1.0.12                
+[69] glue_1.7.0                  DBI_1.2.3                  
+[71] rstudioapi_0.16.0           jsonlite_1.8.8             
+[73] plyr_1.8.9                  R6_2.5.1                   
+[75] ProtGenerics_1.36.0         MatrixGenerics_1.16.0      
+[77] GenomicAlignments_1.40.0    fs_1.6.4                   
+[79] zlibbioc_1.50.0            </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

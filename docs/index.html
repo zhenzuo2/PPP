@@ -366,7 +366,7 @@ Pipeline</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -377,8 +377,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -387,13 +387,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-17
+<strong>Last updated:</strong> 2024-06-25
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PPP/</code> <span
@@ -416,18 +416,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -518,15 +521,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree564acc453647f4af6d49b0d5608c7a0638d0ad5btargetblank564acc4a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree85fc7b15a6290a668540bf534f2fdc73ce6d75cdtargetblank85fc7b1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/564acc453647f4af6d49b0d5608c7a0638d0ad5b" target="_blank">564acc4</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/85fc7b15a6290a668540bf534f2fdc73ce6d75cd" target="_blank">85fc7b1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree564acc453647f4af6d49b0d5608c7a0638d0ad5btargetblank564acc4a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree85fc7b15a6290a668540bf534f2fdc73ce6d75cdtargetblank85fc7b1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -536,7 +539,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/564acc453647f4af6d49b0d5608c7a0638d0ad5b" target="_blank">564acc4</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/85fc7b15a6290a668540bf534f2fdc73ce6d75cd" target="_blank">85fc7b1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -554,13 +557,11 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .RData
     Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/.RData
     Ignored:    analysis/.Rhistory
     Ignored:    code/.DS_Store
-    Ignored:    code/TieDIE-devel/.DS_Store
-    Ignored:    code/TieDIE-devel/examples/.DS_Store
-    Ignored:    code/TieDIE-devel/examples/hnsc/.DS_Store
     Ignored:    code/TieDIE-tiedie2/.DS_Store
     Ignored:    code/TieDIE-tiedie2/examples/.DS_Store
     Ignored:    data/.DS_Store
@@ -569,10 +570,200 @@ Ignored files:
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
     Ignored:    output/.DS_Store
+    Ignored:    output/MUT/.DS_Store
+    Ignored:    output/cnv/.DS_Store
     Ignored:    output/expr/.DS_Store
     Ignored:    output/pho/.DS_Store
     Ignored:    output/regulon/.DS_Store
     Ignored:    temp/.DS_Store
+
+Untracked files:
+    Untracked:  output/DAP/hnsc_fc_kinases.csv
+    Untracked:  output/DAP/kirc_fc_kinases.csv
+    Untracked:  output/DAP/luad_fc_kinases.csv
+    Untracked:  output/DAP/lusc_fc_kinases.csv
+    Untracked:  output/DAP/paad_fc_kinases.csv
+    Untracked:  output/cnv/hnsc/cnv_regulators.csv
+    Untracked:  output/cnv/kirc/cnv_regulators.csv
+    Untracked:  output/cnv/luad/cnv_regulators.csv
+    Untracked:  output/cnv/lusc/cnv_regulators.csv
+    Untracked:  output/cnv/paad/cnv_regulators.csv
+    Untracked:  output/pho/hnsc/kinase_regulators.csv
+    Untracked:  output/pho/kirc/kinase_regulators.csv
+    Untracked:  output/pho/luad/kinase_regulators.csv
+    Untracked:  output/pho/lusc/kinase_regulators.csv
+    Untracked:  output/pho/paad/kinase_regulators.csv
+
+Unstaged changes:
+    Modified:   analysis/Differentially_Protein.Rmd
+    Modified:   analysis/Identify_CNV_Regulators.Rmd
+    Modified:   analysis/Identify_Kinase_Regulators.Rmd
+    Modified:   analysis/KSEA.Rmd
+    Modified:   analysis/index.Rmd
+    Deleted:    code/TieDIE-devel/LICENSE.txt
+    Deleted:    code/TieDIE-devel/README.md
+    Deleted:    code/TieDIE-devel/bin/makeKernel.py
+    Deleted:    code/TieDIE-devel/bin/makeKernel.sh
+    Deleted:    code/TieDIE-devel/bin/mapSamples
+    Deleted:    code/TieDIE-devel/bin/masterReg
+    Deleted:    code/TieDIE-devel/bin/n1_pchip
+    Deleted:    code/TieDIE-devel/bin/network_diffusion_kernel.m
+    Deleted:    code/TieDIE-devel/bin/pagerank_power.m
+    Deleted:    code/TieDIE-devel/bin/personalized_pagerank_powermethod.m
+    Deleted:    code/TieDIE-devel/bin/sherpa
+    Deleted:    code/TieDIE-devel/bin/span.R
+    Deleted:    code/TieDIE-devel/bin/tiedie
+    Deleted:    code/TieDIE-devel/bin/tiedie.PSN
+    Deleted:    code/TieDIE-devel/doc/Makefile
+    Deleted:    code/TieDIE-devel/doc/Tutorial.bib
+    Deleted:    code/TieDIE-devel/doc/Tutorial.pdf
+    Deleted:    code/TieDIE-devel/doc/Tutorial.tex
+    Deleted:    code/TieDIE-devel/doc/Tutorial.toc
+    Deleted:    code/TieDIE-devel/examples/hnsc.sh
+    Deleted:    code/TieDIE-devel/examples/hnsc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/Makefile
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/TieDIE.sif
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/edge_frequencies.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:methy.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:phos.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/heats.NA
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/heats.tab
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/methy.txt:phos.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/methy.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/node_frequencies.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/node_heats.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/phos.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/hnsc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/kirc.sh
+    Deleted:    code/TieDIE-devel/examples/kirc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/Makefile
+    Deleted:    code/TieDIE-devel/examples/kirc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/kirc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/luad.sh
+    Deleted:    code/TieDIE-devel/examples/luad/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/luad/Makefile
+    Deleted:    code/TieDIE-devel/examples/luad/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/luad/methy.txt
+    Deleted:    code/TieDIE-devel/examples/luad/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/luad/phos.txt
+    Deleted:    code/TieDIE-devel/examples/luad/prot.txt
+    Deleted:    code/TieDIE-devel/examples/lusc.sh
+    Deleted:    code/TieDIE-devel/examples/lusc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/Makefile
+    Deleted:    code/TieDIE-devel/examples/lusc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/lusc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/paad.sh
+    Deleted:    code/TieDIE-devel/examples/paad/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/paad/Makefile
+    Deleted:    code/TieDIE-devel/examples/paad/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/paad/methy.txt
+    Deleted:    code/TieDIE-devel/examples/paad/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/paad/phos.txt
+    Deleted:    code/TieDIE-devel/examples/paad/prot.txt
+    Deleted:    code/TieDIE-devel/galaxy/tiedie.py
+    Deleted:    code/TieDIE-devel/galaxy/tiedie.xml
+    Deleted:    code/TieDIE-devel/lib/consensus.py
+    Deleted:    code/TieDIE-devel/lib/consensus.pyc
+    Deleted:    code/TieDIE-devel/lib/distance.py
+    Deleted:    code/TieDIE-devel/lib/distance.pyc
+    Deleted:    code/TieDIE-devel/lib/distributions.py
+    Deleted:    code/TieDIE-devel/lib/distributions.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel.py
+    Deleted:    code/TieDIE-devel/lib/kernel.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel_scipy.py
+    Deleted:    code/TieDIE-devel/lib/kernel_scipy.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel_tensorflow.py
+    Deleted:    code/TieDIE-devel/lib/kernel_tensorflow.pyc
+    Deleted:    code/TieDIE-devel/lib/linkers.py
+    Deleted:    code/TieDIE-devel/lib/linkers.pyc
+    Deleted:    code/TieDIE-devel/lib/master_reg.py
+    Deleted:    code/TieDIE-devel/lib/master_reg.pyc
+    Deleted:    code/TieDIE-devel/lib/pathway.py
+    Deleted:    code/TieDIE-devel/lib/permute.py
+    Deleted:    code/TieDIE-devel/lib/permute.pyc
+    Deleted:    code/TieDIE-devel/lib/ppr.py
+    Deleted:    code/TieDIE-devel/lib/ppr.pyc
+    Deleted:    code/TieDIE-devel/lib/tiedie_util.py
+    Deleted:    code/TieDIE-devel/lib/tiedie_util.pyc
+    Deleted:    code/TieDIE-devel/pathways/Superpathway_Collapsed_2.0.KERNEL.zip
+    Deleted:    code/TieDIE-devel/pathways/Superpathway_Collapsed_2.0.zip
+    Deleted:    code/TieDIE-devel/test/kernel_tests.py
+    Deleted:    code/TieDIE-devel/test/pathway_tests.py
+    Deleted:    code/TieDIE-devel/test/regression.py
+    Deleted:    code/TieDIE-devel/test/run-all.sh
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/BRCA/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/BRCA/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/expr.data
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/expr.ranked.tab
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/mut.data
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/edge_frequencies.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/heats.NA
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/heats.tab
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/node_frequencies.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/node_heats.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/test_files.downstream.input:test_files.upstream.input.dist.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/tiedie.sif
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/adj.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/deg.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/exp.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/lap.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/scipy_results/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnet.data.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnet.sif
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnetbig.data.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnetbig.sif
+    Deleted:    code/TieDIE-devel/test/test_files/upstream.diffused
+    Deleted:    code/TieDIE-devel/test/test_files/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_masterReg.sh
+    Deleted:    code/TieDIE-devel/test/test_mr.py
+    Deleted:    code/TieDIE-devel/test/test_psn.py
+    Deleted:    code/TieDIE-devel/test/tiedie_cytoscape_tests.py
+    Deleted:    code/TieDIE-devel/test/util_tests.py
+    Modified:   output/DAP/hnsc_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/hnsc_fc_0.05_kinases.csv
+    Modified:   output/DAP/kirc_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/kirc_fc_0.05_kinases.csv
+    Modified:   output/DAP/luad_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/luad_fc_0.05_kinases.csv
+    Modified:   output/DAP/lusc_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/lusc_fc_0.05_kinases.csv
+    Modified:   output/DAP/paad_KSA_gold_standard_0.05.csv
+    Deleted:    output/DAP/paad_fc_0.05_kinases.csv
+    Modified:   output/cnv/dset_hnsc.RDS
+    Modified:   output/cnv/dset_kirc.RDS
+    Modified:   output/cnv/dset_luad.RDS
+    Modified:   output/cnv/dset_lusc.RDS
+    Modified:   output/cnv/dset_paad.RDS
+    Modified:   output/cnv/regul_hnsc.RDS
+    Modified:   output/cnv/regul_kirc.RDS
+    Modified:   output/cnv/regul_luad.RDS
+    Modified:   output/cnv/regul_lusc.RDS
+    Modified:   output/cnv/regul_paad.RDS
+    Deleted:    output/pho/hnsc/kinase_regulators.txt
+    Deleted:    output/pho/kirc/kinase_regulators.txt
+    Deleted:    output/pho/luad/kinase_regulators.txt
+    Deleted:    output/pho/lusc/kinase_regulators.txt
+    Deleted:    output/pho/paad/kinase_regulators.txt
 
 </code></pre>
 <p>
@@ -617,6 +808,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/analysis/index.Rmd" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/analysis/index.Rmd" target="_blank">f0809ae</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-17
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/index.html" target="_blank">f0809ae</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-17
+</td>
+<td>
+.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1564,8 +1806,15 @@ Start workflowr project.
   font-size: 12pt;
 }
 </style>
-<div id="data" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Data</h1>
+<div id="to-do" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> TO DO</h1>
+<p>Replace figure annoation seq_15 with gene_site. Read <a
+href="https://www.embopress.org/doi/full/10.15252/msb.20209730"
+class="uri">https://www.embopress.org/doi/full/10.15252/msb.20209730</a>.
+Use BIKG for network.</p>
+</div>
+<div id="data" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Data</h1>
 <table style="width:100%;">
 <colgroup>
 <col width="8%" />
@@ -1731,8 +1980,8 @@ Carcinoma.</p></li>
 </ol>
 </div>
 <div id="pipeline-for-omic-dataset-integration" class="section level1"
-number="2">
-<h1><span class="header-section-number">2</span> Pipeline for Omic
+number="3">
+<h1><span class="header-section-number">3</span> Pipeline for Omic
 Dataset Integration</h1>
 <p><img src="figure/index.Rmd/unnamed-chunk-1-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
 <p>
@@ -1773,8 +2022,8 @@ Zhen Zuo
 </div>
 </div>
 <div id="differentially-phosphorylated-sites-analysis"
-class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Differentially
+class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Differentially
 Phosphorylated Sites Analysis</h2>
 <ul>
 <li>Get phosphorylation data from
@@ -1792,8 +2041,8 @@ kinases <a href="KSEA.html">See more</a>.</li>
 </ul>
 </div>
 <div id="differential-abundance-analysis-in-proteomics"
-class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Differential
+class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Differential
 Abundance Analysis in Proteomics</h2>
 <ul>
 <li>Get proteomics data from
@@ -1808,53 +2057,183 @@ values &lt; 0.05) <a href="Differentially_Protein.html">See
 more</a>.</li>
 </ul>
 </div>
+<div id="copy-number-variation-analysis" class="section level2"
+number="3.3">
+<h2><span class="header-section-number">3.3</span> Copy Number Variation
+Analysis</h2>
+<ul>
+<li>Get Copy Number Variation from
+<a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer">
+CPTAC </a>.</li>
+<li>Use t-tests to find key features that show differences between tumor
+and normal tissues (adjusted p values &lt; 0.05) <a
+href="Identify_CNV_Regulators.html">See more</a>.</li>
+</ul>
+</div>
+<div id="differential-methylation-analysis" class="section level2"
+number="3.4">
+<h2><span class="header-section-number">3.4</span> Differential
+Methylation Analysis</h2>
+<ul>
+<li>Get Methylation from
+<a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer">
+CPTAC </a>.</li>
+<li>Use two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini
+&amp; Hochberg correction (adjusted p values &lt; 0.05) <a
+href="Differentially_Methylation.html">See more</a>.</li>
+</ul>
+</div>
+<div id="summary-of-regulators-and-features" class="section level2"
+number="3.5">
+<h2><span class="header-section-number">3.5</span> Summary of Regulators
+and Features</h2>
+<pre class="r"><code>name &lt;- c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;paad&quot;)
+KR &lt;- list()
+for (i in 1:length(name)){
+  temp &lt;- read.csv(paste(&quot;output/pho/&quot;, name[i], &quot;/kinase_regulators.csv&quot;, sep = &quot;&quot;),sep = &quot;,&quot;)
+  temp &lt;- temp[temp$FDR &lt; 0.1,]
+  KR[[i]] &lt;- temp$Regulon
+}
+KR</code></pre>
+<pre><code>[[1]]
+ [1] &quot;CDK2&quot;     &quot;CSNK2A1&quot;  &quot;MAPK1&quot;    &quot;MAPKAPK2&quot; &quot;MAPK3&quot;    &quot;CDK1&quot;    
+ [7] &quot;AKT1&quot;     &quot;MTOR&quot;     &quot;PRKCA&quot;    &quot;PRKACA&quot;  
+
+[[2]]
+ [1] &quot;CDK2&quot;     &quot;CDK1&quot;     &quot;MAPKAPK2&quot; &quot;CHEK1&quot;    &quot;AURKB&quot;    &quot;CSNK2A1&quot; 
+ [7] &quot;PLK1&quot;     &quot;MAPK8&quot;    &quot;CDK5&quot;     &quot;MAPK1&quot;    &quot;PRKACA&quot;   &quot;MAPK3&quot;   
+
+[[3]]
+ [1] &quot;CDK1&quot;    &quot;CDK2&quot;    &quot;CSNK2A1&quot; &quot;CHEK1&quot;   &quot;AURKB&quot;   &quot;CDK5&quot;    &quot;PLK1&quot;   
+ [8] &quot;RPS6KA3&quot; &quot;AKT1&quot;    &quot;RPS6KA1&quot; &quot;MAPK1&quot;   &quot;PRKCA&quot;   &quot;PRKACA&quot;  &quot;MAPK3&quot;  
+
+[[4]]
+ [1] &quot;CDK1&quot;     &quot;CSNK2A1&quot;  &quot;MAPKAPK2&quot; &quot;CHEK1&quot;    &quot;AURKB&quot;    &quot;CDK5&quot;    
+ [7] &quot;AKT1&quot;     &quot;PRKCA&quot;    &quot;PRKACA&quot;   &quot;MAPK1&quot;    &quot;MAPK3&quot;   
+
+[[5]]
+[1] &quot;AKT1&quot;     &quot;CDK1&quot;     &quot;MAPK3&quot;    &quot;MAPKAPK2&quot; &quot;PRKAA1&quot;   &quot;RPS6KA1&quot;  &quot;PRKACA&quot;  
+[8] &quot;CSNK2A1&quot; </code></pre>
+<pre class="r"><code>KSEA &lt;- list()
+for (i in 1:length(name)){
+  temp &lt;- read.csv(paste(&quot;output/pho/&quot;,name[i],&quot;/KSEA.csv&quot;,sep=&quot;&quot;),sep = &quot; &quot;)
+  temp &lt;- temp[temp$p.adjust &lt; 0.05,]
+  KSEA[[i]] &lt;- temp$ID
+}
+KSEA</code></pre>
+<pre><code>[[1]]
+ [1] &quot;CDK1&quot;    &quot;PLK1&quot;    &quot;PRKAA1&quot;  &quot;PRKACA&quot;  &quot;PRKCE&quot;   &quot;CHEK1&quot;   &quot;MTOR&quot;   
+ [8] &quot;PAK1&quot;    &quot;PRKCD&quot;   &quot;PRKCZ&quot;   &quot;PAK4&quot;    &quot;MAPK14&quot;  &quot;PRKCA&quot;   &quot;AURKB&quot;  
+[15] &quot;PDPK1&quot;   &quot;ATM&quot;     &quot;CAMK2A&quot;  &quot;PRKCI&quot;   &quot;CAMK2B&quot;  &quot;CSNK1A1&quot;
+
+[[2]]
+ [1] &quot;CDK1&quot;     &quot;CAMK2A&quot;   &quot;PLK1&quot;     &quot;MAPK14&quot;   &quot;PRKACA&quot;   &quot;PRKAA1&quot;  
+ [7] &quot;CHEK1&quot;    &quot;ROCK1&quot;    &quot;MTOR&quot;     &quot;AURKA&quot;    &quot;AURKB&quot;    &quot;PRKCI&quot;   
+[13] &quot;PRKCA&quot;    &quot;PDPK1&quot;    &quot;MAPKAPK2&quot; &quot;PAK1&quot;     &quot;PRKCZ&quot;    &quot;PAK4&quot;    
+[19] &quot;PRKDC&quot;    &quot;ROCK2&quot;   
+
+[[3]]
+ [1] &quot;PRKACA&quot;   &quot;PRKCA&quot;    &quot;CAMK2A&quot;   &quot;PAK1&quot;     &quot;AURKA&quot;    &quot;AURKB&quot;   
+ [7] &quot;CDK1&quot;     &quot;ROCK1&quot;    &quot;RPS6KA3&quot;  &quot;PRKCZ&quot;    &quot;RPS6KA1&quot;  &quot;PRKCD&quot;   
+[13] &quot;PRKG1&quot;    &quot;RPS6KB1&quot;  &quot;MAPK14&quot;   &quot;CHEK1&quot;    &quot;PRKCE&quot;    &quot;PRKAA1&quot;  
+[19] &quot;MAPKAPK2&quot; &quot;WNK3&quot;     &quot;PRKDC&quot;    &quot;PKN1&quot;     &quot;PRKCB&quot;    &quot;CAMK2B&quot;  
+[25] &quot;MTOR&quot;     &quot;PDPK1&quot;    &quot;SGK1&quot;     &quot;ROCK2&quot;    &quot;PRKD1&quot;    &quot;AKT2&quot;    
+[31] &quot;MARK2&quot;   
+
+[[4]]
+ [1] &quot;PRKCA&quot;    &quot;MAPK14&quot;   &quot;CAMK2A&quot;   &quot;PRKACA&quot;   &quot;PAK1&quot;     &quot;PRKG1&quot;   
+ [7] &quot;CHEK1&quot;    &quot;CDK1&quot;     &quot;PRKCZ&quot;    &quot;ROCK1&quot;    &quot;AURKA&quot;    &quot;AURKB&quot;   
+[13] &quot;PRKCB&quot;    &quot;MAPKAPK2&quot; &quot;PDPK1&quot;    &quot;PRKDC&quot;    &quot;MTOR&quot;     &quot;PRKAA1&quot;  
+[19] &quot;ROCK2&quot;    &quot;CAMK2B&quot;   &quot;STK11&quot;    &quot;PKN1&quot;     &quot;PRKCE&quot;   
+
+[[5]]
+ [1] &quot;CDK1&quot;    &quot;RPS6KB1&quot; &quot;CSNK1A1&quot; &quot;MAPK14&quot;  &quot;PLK1&quot;    &quot;CHEK1&quot;   &quot;PRKCD&quot;  
+ [8] &quot;MTOR&quot;    &quot;PRKCE&quot;   &quot;PRKACA&quot;  &quot;RPS6KA3&quot; &quot;PRKG1&quot;   &quot;PRKCA&quot;   &quot;EEF2K&quot;  
+[15] &quot;GSK3B&quot;  </code></pre>
+<pre class="r"><code>Prot &lt;- list()
+for (i in 1:length(name)){
+  temp &lt;- read.csv(paste(&quot;output/DAP/&quot;,name[i],&quot;_fc_kinases.csv&quot;,sep=&quot;&quot;),sep = &quot;,&quot;)
+  temp &lt;- temp[(temp$Adjusted_P_Value &lt;= 0.01)&amp;(abs(temp$Fold_Change) &gt; 1),]
+  Prot[[i]] &lt;- temp$SYMBOL
+}
+Prot</code></pre>
+<pre><code>[[1]]
+ [1] &quot;FGR&quot;     &quot;CAMKK1&quot;  &quot;DAPK2&quot;   &quot;FLT4&quot;    &quot;CAMK2B&quot;  &quot;TRPM7&quot;   &quot;TYRO3&quot;  
+ [8] &quot;HCK&quot;     &quot;JAK3&quot;    &quot;NEK6&quot;    &quot;TEK&quot;     &quot;NRK&quot;     &quot;PKMYT1&quot;  &quot;EPHA2&quot;  
+[15] &quot;TLK2&quot;    &quot;PDK1&quot;    &quot;CAMK4&quot;   &quot;CDK19&quot;   &quot;KIT&quot;     &quot;STK17A&quot;  &quot;PLK1&quot;   
+[22] &quot;CSNK1G1&quot; &quot;CDK1&quot;    &quot;ATR&quot;     &quot;EPHB3&quot;   &quot;CHEK2&quot;  
+
+[[2]]
+[1] &quot;CAMK2B&quot; &quot;MAP3K1&quot; &quot;PTK6&quot;   &quot;MYLK2&quot;  &quot;LATS1&quot;  &quot;PDGFRA&quot; &quot;TTN&quot;    &quot;KIT&quot;   
+[9] &quot;PHKG1&quot; 
+
+[[3]]
+ [1] &quot;DAPK2&quot;  &quot;MYLK&quot;   &quot;PRKCZ&quot;  &quot;SRPK1&quot;  &quot;DMPK&quot;   &quot;TEK&quot;    &quot;PKMYT1&quot; &quot;PRKG2&quot; 
+ [9] &quot;ACVRL1&quot; &quot;CHEK1&quot;  &quot;KIT&quot;    &quot;TGFBR2&quot; &quot;MELK&quot;   &quot;ILK&quot;    &quot;CDK1&quot;   &quot;AURKB&quot; 
+[17] &quot;CHEK2&quot;  &quot;PRKG1&quot;  &quot;LRRK2&quot;  &quot;GRK5&quot;  
+
+[[4]]
+[1] &quot;PDK4&quot;   &quot;TEK&quot;    &quot;PKMYT1&quot; &quot;PRKG2&quot;  &quot;WNK2&quot;   &quot;KSR2&quot;   &quot;PRKG1&quot;  &quot;GRK5&quot;  
+
+[[5]]
+[1] &quot;PDK2&quot;    &quot;PAK3&quot;    &quot;MKNK1&quot;   &quot;MYLK2&quot;   &quot;CIT&quot;     &quot;WNK2&quot;    &quot;EIF2AK3&quot;</code></pre>
+<pre class="r"><code>CNV &lt;- list()
+for (i in 1:length(name)){
+  temp &lt;- read.csv(paste(&quot;output/cnv/&quot;,name[i],&quot;/cnv_regulators.csv&quot;,sep=&quot;&quot;),sep = &quot;\t&quot;,header = TRUE)
+  temp &lt;- temp[order(temp$NES,decreasing = FALSE),]
+  CNV[[i]] &lt;- temp$Regulon[1:20]
+}
+
+Meth &lt;- list()
+for (i in 1:length(name)){
+  temp &lt;- read.csv(paste(&quot;output/DME/&quot;,name[i],&quot;_fc.csv&quot;,sep=&quot;&quot;),sep = &quot;,&quot;,header = TRUE)
+  temp &lt;- temp[(temp$Adjusted_P_Value &lt; 0.01)&amp;(abs(temp$Fold_Change)&gt;0.01),]
+  temp &lt;- temp[order(abs(temp$Fold_Change),decreasing = T),]
+  Meth[[i]] &lt;- temp$SYMBOL[1:20]
+}
+Meth</code></pre>
+<pre><code>[[1]]
+ [1] &quot;AC011530.4&quot;    &quot;PCDHGA11&quot;      &quot;UNKL&quot;          &quot;PLEKHN1&quot;      
+ [5] &quot;MAMSTR&quot;        &quot;LHX8&quot;          &quot;MFSD7&quot;         &quot;HOXA5&quot;        
+ [9] &quot;TAF7L&quot;         &quot;CTD-2587H24.4&quot; &quot;ADGRL4&quot;        &quot;ADAM32&quot;       
+[13] &quot;CYYR1&quot;         &quot;MTMR7&quot;         &quot;TVP23A&quot;        &quot;SYT14&quot;        
+[17] &quot;KLHL33&quot;        &quot;PGGHG&quot;         &quot;PCDHGB4&quot;       &quot;CBLN1&quot;        
+
+[[2]]
+ [1] &quot;PABPC5&quot;  &quot;GPRASP1&quot; &quot;CRYGD&quot;   &quot;TAC1&quot;    &quot;NPTX2&quot;   &quot;MARCH11&quot; &quot;HTR2C&quot;  
+ [8] &quot;BHLHB9&quot;  &quot;PCDHGA7&quot; &quot;AKAIN1&quot;  &quot;TRH&quot;     &quot;NKAPL&quot;   &quot;BARHL2&quot;  &quot;ZNF582&quot; 
+[15] &quot;KCNA3&quot;   &quot;CLIP3&quot;   &quot;KLHL33&quot;  &quot;TMEM240&quot; &quot;DRD5&quot;    &quot;PNMAL1&quot; 
+
+[[3]]
+ [1] &quot;CRYGD&quot;          &quot;SLC2A14&quot;        &quot;RP11-544M22.13&quot; &quot;HOXD10&quot;        
+ [5] &quot;OTX2&quot;           &quot;HOXD12&quot;         &quot;TAC1&quot;           &quot;NKAPL&quot;         
+ [9] &quot;HOXD3&quot;          &quot;CCDC81&quot;         &quot;TBX4&quot;           &quot;ZNF382&quot;        
+[13] &quot;BARHL2&quot;         &quot;LHX8&quot;           &quot;PAX9&quot;           &quot;TRH&quot;           
+[17] &quot;PCDHGA7&quot;        &quot;ADAM33&quot;         &quot;CCDC140&quot;        &quot;HOXA9&quot;         
+
+[[4]]
+ [1] &quot;CRYGD&quot;          &quot;RP11-544M22.13&quot; &quot;SLC2A14&quot;        &quot;LHX8&quot;          
+ [5] &quot;BARHL2&quot;         &quot;NKAPL&quot;          &quot;HOXA9&quot;          &quot;PSKH2&quot;         
+ [9] &quot;CADM3&quot;          &quot;MARCH11&quot;        &quot;TAC1&quot;           &quot;HOXD12&quot;        
+[13] &quot;CCDC140&quot;        &quot;C1orf94&quot;        &quot;DRD5&quot;           &quot;KCP&quot;           
+[17] &quot;ZNF382&quot;         &quot;HOXD10&quot;         &quot;MAB21L2&quot;        &quot;CTD-2587H24.4&quot; 
+
+[[5]]
+ [1] &quot;MFSD7&quot;    &quot;VWC2&quot;     &quot;VGLL4&quot;    &quot;PKDREJ&quot;   &quot;KAZALD1&quot;  &quot;PRSS27&quot;  
+ [7] &quot;PRSS3&quot;    &quot;FGR&quot;      &quot;ZNF382&quot;   &quot;MFSD4A&quot;   &quot;SALL1&quot;    &quot;AP2A2&quot;   
+[13] &quot;MARVELD1&quot; &quot;TRIP6&quot;    &quot;CCNA1&quot;    &quot;RAB31&quot;    &quot;FAM83C&quot;   &quot;CDX1&quot;    
+[19] &quot;CTF1&quot;     &quot;HAL&quot;     </code></pre>
+</div>
 <div id="master-regulator-inference-algorithm-marina"
-class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Master Regulator
+class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Master Regulator
 Inference Algorithm (MARINa)</h2>
-<p><img src="figure/index.Rmd/unnamed-chunk-2-1.png" width="100%" height="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
-Past versions of unnamed-chunk-2-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-2-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/zhenzuo2/PPP/blob/552889c377b9c6e6045eab0545f2aa83449a40ae/docs/figure/index.Rmd/unnamed-chunk-2-1.png" target="_blank">552889c</a>
-</td>
-<td>
-Zhen Zuo
-</td>
-<td>
-2024-06-17
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><em>MARINa, a method to infer the activity of a given protein based
-on the differential expression/phosphorylation of the targets it
+<p><img src="figure/index.Rmd/unnamed-chunk-3-1.png" width="100%" height="100%" style="display: block; margin: auto;" />
+<em>MARINa, a method to infer the activity of a given protein based on
+the differential expression/phosphorylation of the targets it
 regulates.</em></p>
-<div id="input" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Input</h3>
+<div id="input" class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Input</h3>
 <ul>
 <li>Known kinases from KESA differentially phosphorylated peptide <a
 href="KSEA.html">See more</a>.</li>
@@ -1871,8 +2250,8 @@ Dark Cancer Phosphoproteome Through a Machine-Learned Co-Regulation Map
 of 26,280 Phosphosites </a>.</li>
 </ul>
 </div>
-<div id="output" class="section level3" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Output</h3>
+<div id="output" class="section level3" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Output</h3>
 <ul>
 <li>Transcription factors with differential activity <a
 href="Identify_Transcription_Regulators.html">See more</a>.</li>
@@ -1888,8 +2267,8 @@ treatment naive prostate cancers (Data S1G and S1H).</em>.</p>
 in our phosphoproteomic dataset (phosphorylated kinases) were merged
 with the kinase regulators before input to TieDIE.</em></p>
 </div>
-<div id="mechanisms-and-details" class="section level3" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> Mechanisms and
+<div id="mechanisms-and-details" class="section level3" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> Mechanisms and
 Details</h3>
 <p>Given a data matrix and a regulon, by running multiple samples
 together (similar to MARINa),
@@ -1921,11 +2300,11 @@ as well as cell lines (Aytes et al., 2014a).</em></p>
 </div>
 </div>
 <div id="copy-number-and-mutation-analysis" class="section level2"
-number="2.4">
-<h2><span class="header-section-number">2.4</span> Copy Number and
+number="3.7">
+<h2><span class="header-section-number">3.7</span> Copy Number and
 Mutation Analysis</h2>
-<div id="output-1" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Output</h3>
+<div id="output-1" class="section level3" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Output</h3>
 <p>The output will a gene list including all putative cancer driver
 genes. - Identify predicted driver genes with MutSig 2.0 (Lawrence et
 al., 2013), and filtered these genes by intersecting with the most
@@ -1945,11 +2324,11 @@ analysis.</span>.</p>
 </div>
 </div>
 <div id="tiedie-pathway-analysis-of-clinical-prostate-cancer-samples"
-class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> TieDIE Pathway
+class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> TieDIE Pathway
 Analysis of Clinical Prostate Cancer Samples</h2>
-<div id="input-1" class="section level3" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> INPUT</h3>
+<div id="input-1" class="section level3" number="3.8.1">
+<h3><span class="header-section-number">3.8.1</span> INPUT</h3>
 <ul>
 <li>Known kinases from mapped differentially phosphorylated peptide</li>
 <li>Kinase Regulators.</li>
@@ -1961,8 +2340,8 @@ href="http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/"
 class="uri">http://homes.gersteinlab.org/Khurana-PLoSCompBio-2013/</a>.</li>
 </ul>
 </div>
-<div id="parameters-and-trimming" class="section level3" number="2.5.2">
-<h3><span class="header-section-number">2.5.2</span> Parameters and
+<div id="parameters-and-trimming" class="section level3" number="3.8.2">
+<h3><span class="header-section-number">3.8.2</span> Parameters and
 Trimming</h3>
 <p><em>A scaffold network was selected by identifying the smallest
 network with high precision in terms of capturing the input genes.
@@ -1988,16 +2367,16 @@ recomputing the “scaffold” using the same procedure described above
 </div>
 </div>
 <div id="sample-specific-activity-and-network-generation"
-class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> Sample-Specific
+class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> Sample-Specific
 Activity and Network Generation</h2>
 <p><em>For each sample, we searched all paths connecting any active
 kinase, mutation or high-level copy number gain or deletion to any
 active TF over edges contained in the scaffold network, using the
 NetworkX python package (Schult and Swart, 2008) and up to an edge-depth
 of 4;</em></p>
-<div id="input-2" class="section level3" number="2.6.1">
-<h3><span class="header-section-number">2.6.1</span> Input</h3>
+<div id="input-2" class="section level3" number="3.9.1">
+<h3><span class="header-section-number">3.9.1</span> Input</h3>
 <ul>
 <li>Known kinases from mapped differentially phosphorylated peptide</li>
 <li>Kinase Regulators.</li>
@@ -2013,8 +2392,8 @@ viper function generates a matrix or “ExpressionSet” object in case an
 containing 621 regulators samples in our example.</p>
 </div>
 <div id="mechanisms-and-details-1" class="section level3"
-number="2.6.2">
-<h3><span class="header-section-number">2.6.2</span> Mechanisms and
+number="3.9.2">
+<h3><span class="header-section-number">3.9.2</span> Mechanisms and
 Details</h3>
 <p><em>We used the VIPER package (Alvarez et al., 2015) to infer
 sample-specific activity (pseudo z-scores) of each of each of the 14
@@ -2044,8 +2423,8 @@ by longer paths in the network as described below.</em></p>
 </div>
 </div>
 </div>
-<div id="environment-setup" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Environment setup</h1>
+<div id="environment-setup" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Environment setup</h1>
 <details>
 <summary>
 Set up python2.7
@@ -2105,22 +2484,21 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_1.4.0 png_0.1-8        workflowr_1.7.1 
+[1] kableExtra_1.4.0 png_0.1-8       
 
 loaded via a namespace (and not attached):
  [1] jsonlite_1.8.8    highr_0.11        compiler_4.4.0    promises_1.3.0   
  [5] Rcpp_1.0.12       xml2_1.3.6        stringr_1.5.1     git2r_0.33.0     
- [9] callr_3.7.6       later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0
-[13] scales_1.3.0      yaml_2.3.8        fastmap_1.2.0     R6_2.5.1         
+ [9] later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0 scales_1.3.0     
+[13] yaml_2.3.8        fastmap_1.2.0     R6_2.5.1          workflowr_1.7.1  
 [17] knitr_1.47        tibble_3.2.1      munsell_0.5.1     rprojroot_2.0.4  
 [21] svglite_2.1.3     bslib_0.7.0       pillar_1.9.0      rlang_1.1.4      
 [25] utf8_1.2.4        cachem_1.1.0      stringi_1.8.4     httpuv_1.6.15    
-[29] xfun_0.44         getPass_0.2-4     fs_1.6.4          sass_0.4.9       
-[33] viridisLite_0.4.2 cli_3.6.2         magrittr_2.0.3    ps_1.7.6         
-[37] grid_4.4.0        digest_0.6.35     processx_3.8.4    rstudioapi_0.16.0
-[41] lifecycle_1.0.4   vctrs_0.6.5       evaluate_0.24.0   glue_1.7.0       
-[45] whisker_0.4.1     colorspace_2.1-0  fansi_1.0.6       rmarkdown_2.27   
-[49] httr_1.4.7        tools_4.4.0       pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
+[29] xfun_0.45         fs_1.6.4          sass_0.4.9        viridisLite_0.4.2
+[33] cli_3.6.2         magrittr_2.0.3    grid_4.4.0        digest_0.6.35    
+[37] rstudioapi_0.16.0 lifecycle_1.0.4   vctrs_0.6.5       evaluate_0.24.0  
+[41] glue_1.7.0        whisker_0.4.1     colorspace_2.1-0  fansi_1.0.6      
+[45] rmarkdown_2.27    tools_4.4.0       pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 

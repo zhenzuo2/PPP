@@ -386,7 +386,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-20
+<strong>Last updated:</strong> 2024-06-24
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -424,10 +424,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -520,15 +520,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreef0809aee3ae9ef35645f3fc2d83f69c4307de4fatargetblankf0809aea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree85fc7b15a6290a668540bf534f2fdc73ce6d75cdtargetblank85fc7b1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa" target="_blank">f0809ae</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/85fc7b15a6290a668540bf534f2fdc73ce6d75cd" target="_blank">85fc7b1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreef0809aee3ae9ef35645f3fc2d83f69c4307de4fatargetblankf0809aea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree85fc7b15a6290a668540bf534f2fdc73ce6d75cdtargetblank85fc7b1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -538,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa" target="_blank">f0809ae</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/85fc7b15a6290a668540bf534f2fdc73ce6d75cd" target="_blank">85fc7b1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -556,13 +556,11 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .RData
     Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/.RData
     Ignored:    analysis/.Rhistory
     Ignored:    code/.DS_Store
-    Ignored:    code/TieDIE-devel/.DS_Store
-    Ignored:    code/TieDIE-devel/examples/.DS_Store
-    Ignored:    code/TieDIE-devel/examples/hnsc/.DS_Store
     Ignored:    code/TieDIE-tiedie2/.DS_Store
     Ignored:    code/TieDIE-tiedie2/examples/.DS_Store
     Ignored:    data/.DS_Store
@@ -571,33 +569,166 @@ Ignored files:
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
     Ignored:    output/.DS_Store
+    Ignored:    output/MUT/.DS_Store
+    Ignored:    output/cnv/.DS_Store
     Ignored:    output/expr/.DS_Store
     Ignored:    output/pho/.DS_Store
     Ignored:    output/regulon/.DS_Store
     Ignored:    temp/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/Differentially_CNV.Rmd
-    Untracked:  analysis/Identify_CNV_Regulators.Rmd
-    Untracked:  analysis/PCA.Rmd
-    Untracked:  output/MUT/
-    Untracked:  output/cnv/
-    Untracked:  output/regulon/CNV_hnsc.adj
-    Untracked:  output/regulon/CNV_kirc.adj
-    Untracked:  output/regulon/CNV_luad.adj
-    Untracked:  output/regulon/CNV_lusc.adj
-    Untracked:  output/regulon/CNV_paad.adj
-
 Unstaged changes:
-    Modified:   analysis/Differentially_Gene.Rmd
+    Modified:   analysis/Identify_CNV_Regulators.Rmd
     Modified:   analysis/KSEA.Rmd
     Modified:   analysis/index.Rmd
-    Modified:   data/omics_regulon_pairs.csv
-    Modified:   output/pho/hnsc/KSEA.csv
-    Modified:   output/pho/kirc/KSEA.csv
-    Modified:   output/pho/luad/KSEA.csv
-    Modified:   output/pho/lusc/KSEA.csv
-    Modified:   output/pho/paad/KSEA.csv
+    Deleted:    code/TieDIE-devel/LICENSE.txt
+    Deleted:    code/TieDIE-devel/README.md
+    Deleted:    code/TieDIE-devel/bin/makeKernel.py
+    Deleted:    code/TieDIE-devel/bin/makeKernel.sh
+    Deleted:    code/TieDIE-devel/bin/mapSamples
+    Deleted:    code/TieDIE-devel/bin/masterReg
+    Deleted:    code/TieDIE-devel/bin/n1_pchip
+    Deleted:    code/TieDIE-devel/bin/network_diffusion_kernel.m
+    Deleted:    code/TieDIE-devel/bin/pagerank_power.m
+    Deleted:    code/TieDIE-devel/bin/personalized_pagerank_powermethod.m
+    Deleted:    code/TieDIE-devel/bin/sherpa
+    Deleted:    code/TieDIE-devel/bin/span.R
+    Deleted:    code/TieDIE-devel/bin/tiedie
+    Deleted:    code/TieDIE-devel/bin/tiedie.PSN
+    Deleted:    code/TieDIE-devel/doc/Makefile
+    Deleted:    code/TieDIE-devel/doc/Tutorial.bib
+    Deleted:    code/TieDIE-devel/doc/Tutorial.pdf
+    Deleted:    code/TieDIE-devel/doc/Tutorial.tex
+    Deleted:    code/TieDIE-devel/doc/Tutorial.toc
+    Deleted:    code/TieDIE-devel/examples/hnsc.sh
+    Deleted:    code/TieDIE-devel/examples/hnsc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/Makefile
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/TieDIE.sif
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/edge_frequencies.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:methy.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:phos.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/heats.NA
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/heats.tab
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/methy.txt:phos.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/methy.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/node_frequencies.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/node_heats.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/phos.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/hnsc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/kirc.sh
+    Deleted:    code/TieDIE-devel/examples/kirc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/Makefile
+    Deleted:    code/TieDIE-devel/examples/kirc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/kirc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/luad.sh
+    Deleted:    code/TieDIE-devel/examples/luad/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/luad/Makefile
+    Deleted:    code/TieDIE-devel/examples/luad/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/luad/methy.txt
+    Deleted:    code/TieDIE-devel/examples/luad/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/luad/phos.txt
+    Deleted:    code/TieDIE-devel/examples/luad/prot.txt
+    Deleted:    code/TieDIE-devel/examples/lusc.sh
+    Deleted:    code/TieDIE-devel/examples/lusc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/Makefile
+    Deleted:    code/TieDIE-devel/examples/lusc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/lusc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/paad.sh
+    Deleted:    code/TieDIE-devel/examples/paad/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/paad/Makefile
+    Deleted:    code/TieDIE-devel/examples/paad/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/paad/methy.txt
+    Deleted:    code/TieDIE-devel/examples/paad/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/paad/phos.txt
+    Deleted:    code/TieDIE-devel/examples/paad/prot.txt
+    Deleted:    code/TieDIE-devel/galaxy/tiedie.py
+    Deleted:    code/TieDIE-devel/galaxy/tiedie.xml
+    Deleted:    code/TieDIE-devel/lib/consensus.py
+    Deleted:    code/TieDIE-devel/lib/consensus.pyc
+    Deleted:    code/TieDIE-devel/lib/distance.py
+    Deleted:    code/TieDIE-devel/lib/distance.pyc
+    Deleted:    code/TieDIE-devel/lib/distributions.py
+    Deleted:    code/TieDIE-devel/lib/distributions.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel.py
+    Deleted:    code/TieDIE-devel/lib/kernel.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel_scipy.py
+    Deleted:    code/TieDIE-devel/lib/kernel_scipy.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel_tensorflow.py
+    Deleted:    code/TieDIE-devel/lib/kernel_tensorflow.pyc
+    Deleted:    code/TieDIE-devel/lib/linkers.py
+    Deleted:    code/TieDIE-devel/lib/linkers.pyc
+    Deleted:    code/TieDIE-devel/lib/master_reg.py
+    Deleted:    code/TieDIE-devel/lib/master_reg.pyc
+    Deleted:    code/TieDIE-devel/lib/pathway.py
+    Deleted:    code/TieDIE-devel/lib/permute.py
+    Deleted:    code/TieDIE-devel/lib/permute.pyc
+    Deleted:    code/TieDIE-devel/lib/ppr.py
+    Deleted:    code/TieDIE-devel/lib/ppr.pyc
+    Deleted:    code/TieDIE-devel/lib/tiedie_util.py
+    Deleted:    code/TieDIE-devel/lib/tiedie_util.pyc
+    Deleted:    code/TieDIE-devel/pathways/Superpathway_Collapsed_2.0.KERNEL.zip
+    Deleted:    code/TieDIE-devel/pathways/Superpathway_Collapsed_2.0.zip
+    Deleted:    code/TieDIE-devel/test/kernel_tests.py
+    Deleted:    code/TieDIE-devel/test/pathway_tests.py
+    Deleted:    code/TieDIE-devel/test/regression.py
+    Deleted:    code/TieDIE-devel/test/run-all.sh
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/BRCA/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/BRCA/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/expr.data
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/expr.ranked.tab
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/mut.data
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/edge_frequencies.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/heats.NA
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/heats.tab
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/node_frequencies.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/node_heats.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/test_files.downstream.input:test_files.upstream.input.dist.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/tiedie.sif
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/adj.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/deg.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/exp.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/lap.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/scipy_results/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnet.data.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnet.sif
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnetbig.data.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnetbig.sif
+    Deleted:    code/TieDIE-devel/test/test_files/upstream.diffused
+    Deleted:    code/TieDIE-devel/test/test_files/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_masterReg.sh
+    Deleted:    code/TieDIE-devel/test/test_mr.py
+    Deleted:    code/TieDIE-devel/test/test_psn.py
+    Deleted:    code/TieDIE-devel/test/tiedie_cytoscape_tests.py
+    Deleted:    code/TieDIE-devel/test/util_tests.py
+    Modified:   output/cnv/dset_hnsc.RDS
+    Modified:   output/cnv/dset_kirc.RDS
+    Modified:   output/cnv/dset_luad.RDS
+    Modified:   output/cnv/dset_lusc.RDS
+    Modified:   output/cnv/dset_paad.RDS
+    Modified:   output/cnv/regul_hnsc.RDS
+    Modified:   output/cnv/regul_kirc.RDS
+    Modified:   output/cnv/regul_luad.RDS
+    Modified:   output/cnv/regul_lusc.RDS
+    Modified:   output/cnv/regul_paad.RDS
 
 </code></pre>
 <p>
@@ -612,10 +743,75 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown
+(<code>analysis/Identify_CNV_Regulators.Rmd</code>) and HTML
+(<code>docs/Identify_CNV_Regulators.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/analysis/Identify_CNV_Regulators.Rmd" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/Identify_CNV_Regulators.html" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+<td>
+.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -654,15 +850,15 @@ for (name in c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&
     adjfile &lt;- paste(&quot;output/regulon/regulon&quot;, name, &quot;.adj&quot;, sep = &quot;&quot;)
     cnv_normal &lt;- readRDS(paste(&quot;output/cnv/count_matrix_&quot;, name, &quot;_normal.RDS&quot;,
         sep = &quot;&quot;))
-    meta &lt;- read.csv(paste(&quot;output/MUT/&quot;, name, &quot;_fc_0.01.csv&quot;,sep = &quot;&quot;))
-    cnv_normal &lt;- cnv_normal[rownames(cnv_normal) %in% meta$SYMBOL,]
+    #meta &lt;- read.csv(paste(&quot;output/MUT/&quot;, name, &quot;_fc_0.01.csv&quot;,sep = &quot;&quot;))
+    #cnv_normal &lt;- cnv_normal[rownames(cnv_normal) %in% meta$SYMBOL,]
     
     gex_normal &lt;- readRDS(paste(&quot;output/expr/count_matrix_&quot;, name, &quot;_normal.RDS&quot;,
         sep = &quot;&quot;))
     
     cnv_tumor &lt;- readRDS(paste(&quot;output/cnv/count_matrix_&quot;, name, &quot;_tumor.RDS&quot;,
         sep = &quot;&quot;))
-    cnv_tumor &lt;- cnv_tumor[rownames(cnv_tumor) %in% meta$SYMBOL,]
+    #cnv_tumor &lt;- cnv_tumor[rownames(cnv_tumor) %in% meta$SYMBOL,]
     gex_tumor &lt;- readRDS(paste(&quot;output/expr/count_matrix_&quot;, name, &quot;_tumor.RDS&quot;,
         sep = &quot;&quot;))
     
@@ -710,14 +906,14 @@ for (name in c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&
     mrs &lt;- msviper(signature, regulon, nullmodel, verbose = FALSE)
     temp &lt;- summary(mrs, length(mrs$regulon))
     temp$Sign &lt;- ifelse(temp$NES &gt; 0, &quot;+&quot;, &quot;-&quot;)
-    temp &lt;- temp[temp$FDR &lt; 0.1, ]
-    temp &lt;- temp[, c(&quot;Regulon&quot;, &quot;NES&quot;, &quot;Sign&quot;)]
+    #temp &lt;- temp[temp$FDR &lt; 0.1, ]
+    temp$Regulon &lt;- substr(temp$Regulon, 1, nchar(temp$Regulon) - 2)
     temp$NES &lt;- abs(temp$NES)
     dir.create(paste(&quot;output/cnv/&quot;,
         name, &quot;/&quot;, sep = &quot;&quot;),showWarnings = F)
     write.table(temp, paste(&quot;output/cnv/&quot;,
-        name, &quot;/cnv_regulators.txt&quot;, sep = &quot;&quot;), quote = F, sep = &quot;\t&quot;, row.names = F,
-        col.names = F)
+        name, &quot;/cnv_regulators.csv&quot;, sep = &quot;&quot;), quote = F, sep = &quot;\t&quot;, row.names = F,
+        col.names = T)
 }</code></pre>
 <pre><code>[[1]]
 NULL
@@ -801,27 +997,28 @@ loaded via a namespace (and not attached):
  [55] survival_3.7-0              proxy_0.4-27               
  [57] kernlab_0.9-32              Biostrings_2.72.1          
  [59] pillar_1.9.0                MatrixGenerics_1.16.0      
- [61] KernSmooth_2.23-24          plotly_4.10.4              
- [63] generics_0.1.3              rprojroot_2.0.4            
- [65] RCurl_1.98-1.14             ggplot2_3.5.1              
- [67] munsell_0.5.1               scales_1.3.0               
- [69] class_7.3-22                glue_1.7.0                 
- [71] lazyeval_0.2.2              tools_4.4.0                
- [73] BiocIO_1.14.0               data.table_1.15.4          
- [75] GenomicAlignments_1.40.0    fs_1.6.4                   
- [77] XML_3.99-0.16.1             grid_4.4.0                 
- [79] tidyr_1.3.1                 colorspace_2.1-0           
- [81] nlme_3.1-165                GenomeInfoDbData_1.2.12    
- [83] restfulr_0.0.15             cli_3.6.2                  
- [85] workflowr_1.7.1             fansi_1.0.6                
- [87] S4Arrays_1.4.1              segmented_2.1-0            
- [89] viridisLite_0.4.2           dplyr_1.1.4                
- [91] gtable_0.3.5                sass_0.4.9                 
- [93] digest_0.6.35               SparseArray_1.4.8          
- [95] rjson_0.2.21                htmlwidgets_1.6.4          
- [97] memoise_2.0.1               htmltools_0.5.8.1          
- [99] lifecycle_1.0.4             httr_1.4.7                 
-[101] bit64_4.0.5                 MASS_7.3-61                </code></pre>
+ [61] whisker_0.4.1               KernSmooth_2.23-24         
+ [63] plotly_4.10.4               generics_0.1.3             
+ [65] rprojroot_2.0.4             RCurl_1.98-1.14            
+ [67] ggplot2_3.5.1               munsell_0.5.1              
+ [69] scales_1.3.0                class_7.3-22               
+ [71] glue_1.7.0                  lazyeval_0.2.2             
+ [73] tools_4.4.0                 BiocIO_1.14.0              
+ [75] data.table_1.15.4           GenomicAlignments_1.40.0   
+ [77] fs_1.6.4                    XML_3.99-0.16.1            
+ [79] grid_4.4.0                  tidyr_1.3.1                
+ [81] colorspace_2.1-0            nlme_3.1-165               
+ [83] GenomeInfoDbData_1.2.12     restfulr_0.0.15            
+ [85] cli_3.6.2                   workflowr_1.7.1            
+ [87] fansi_1.0.6                 S4Arrays_1.4.1             
+ [89] segmented_2.1-0             viridisLite_0.4.2          
+ [91] dplyr_1.1.4                 gtable_0.3.5               
+ [93] sass_0.4.9                  digest_0.6.35              
+ [95] SparseArray_1.4.8           rjson_0.2.21               
+ [97] htmlwidgets_1.6.4           memoise_2.0.1              
+ [99] htmltools_0.5.8.1           lifecycle_1.0.4            
+[101] httr_1.4.7                  bit64_4.0.5                
+[103] MASS_7.3-61                </code></pre>
 </div>
 </div>
 

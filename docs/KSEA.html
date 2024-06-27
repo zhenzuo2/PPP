@@ -386,7 +386,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-20
+<strong>Last updated:</strong> 2024-06-25
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -520,15 +520,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreef0809aee3ae9ef35645f3fc2d83f69c4307de4fatargetblankf0809aea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree85fc7b15a6290a668540bf534f2fdc73ce6d75cdtargetblank85fc7b1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/zhenzuo2/PPP/tree/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa" target="_blank">f0809ae</a>
+<a href="https://github.com/zhenzuo2/PPP/tree/85fc7b15a6290a668540bf534f2fdc73ce6d75cd" target="_blank">85fc7b1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtreef0809aee3ae9ef35645f3fc2d83f69c4307de4fatargetblankf0809aea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomzhenzuo2PPPtree85fc7b15a6290a668540bf534f2fdc73ce6d75cdtargetblank85fc7b1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -538,7 +538,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/zhenzuo2/PPP/tree/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa" target="_blank">f0809ae</a>.
+<a href="https://github.com/zhenzuo2/PPP/tree/85fc7b15a6290a668540bf534f2fdc73ce6d75cd" target="_blank">85fc7b1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -556,13 +556,11 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .RData
     Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/.RData
     Ignored:    analysis/.Rhistory
     Ignored:    code/.DS_Store
-    Ignored:    code/TieDIE-devel/.DS_Store
-    Ignored:    code/TieDIE-devel/examples/.DS_Store
-    Ignored:    code/TieDIE-devel/examples/hnsc/.DS_Store
     Ignored:    code/TieDIE-tiedie2/.DS_Store
     Ignored:    code/TieDIE-tiedie2/examples/.DS_Store
     Ignored:    data/.DS_Store
@@ -571,17 +569,189 @@ Ignored files:
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/.DS_Store
     Ignored:    data/Proteome_BCM_GENCODE_v34_harmonized_v1/README/.DS_Store
     Ignored:    output/.DS_Store
+    Ignored:    output/MUT/.DS_Store
+    Ignored:    output/cnv/.DS_Store
     Ignored:    output/expr/.DS_Store
     Ignored:    output/pho/.DS_Store
     Ignored:    output/regulon/.DS_Store
     Ignored:    temp/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/PCA.Rmd
+    Untracked:  output/cnv/hnsc/cnv_regulators.csv
+    Untracked:  output/cnv/kirc/cnv_regulators.csv
+    Untracked:  output/cnv/luad/cnv_regulators.csv
+    Untracked:  output/cnv/lusc/cnv_regulators.csv
+    Untracked:  output/cnv/paad/cnv_regulators.csv
+    Untracked:  output/pho/hnsc/kinase_regulators.csv
+    Untracked:  output/pho/kirc/kinase_regulators.csv
+    Untracked:  output/pho/luad/kinase_regulators.csv
+    Untracked:  output/pho/lusc/kinase_regulators.csv
+    Untracked:  output/pho/paad/kinase_regulators.csv
 
 Unstaged changes:
+    Modified:   analysis/Identify_CNV_Regulators.Rmd
+    Modified:   analysis/Identify_Kinase_Regulators.Rmd
     Modified:   analysis/KSEA.Rmd
     Modified:   analysis/index.Rmd
+    Deleted:    code/TieDIE-devel/LICENSE.txt
+    Deleted:    code/TieDIE-devel/README.md
+    Deleted:    code/TieDIE-devel/bin/makeKernel.py
+    Deleted:    code/TieDIE-devel/bin/makeKernel.sh
+    Deleted:    code/TieDIE-devel/bin/mapSamples
+    Deleted:    code/TieDIE-devel/bin/masterReg
+    Deleted:    code/TieDIE-devel/bin/n1_pchip
+    Deleted:    code/TieDIE-devel/bin/network_diffusion_kernel.m
+    Deleted:    code/TieDIE-devel/bin/pagerank_power.m
+    Deleted:    code/TieDIE-devel/bin/personalized_pagerank_powermethod.m
+    Deleted:    code/TieDIE-devel/bin/sherpa
+    Deleted:    code/TieDIE-devel/bin/span.R
+    Deleted:    code/TieDIE-devel/bin/tiedie
+    Deleted:    code/TieDIE-devel/bin/tiedie.PSN
+    Deleted:    code/TieDIE-devel/doc/Makefile
+    Deleted:    code/TieDIE-devel/doc/Tutorial.bib
+    Deleted:    code/TieDIE-devel/doc/Tutorial.pdf
+    Deleted:    code/TieDIE-devel/doc/Tutorial.tex
+    Deleted:    code/TieDIE-devel/doc/Tutorial.toc
+    Deleted:    code/TieDIE-devel/examples/hnsc.sh
+    Deleted:    code/TieDIE-devel/examples/hnsc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/Makefile
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/TieDIE.sif
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/edge_frequencies.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:methy.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:phos.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/exprs.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/heats.NA
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/heats.tab
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/methy.txt:phos.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/methy.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/node_frequencies.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/node_heats.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/TieDIE/phos.txt:prot.txt.dist.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/hnsc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/hnsc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/kirc.sh
+    Deleted:    code/TieDIE-devel/examples/kirc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/Makefile
+    Deleted:    code/TieDIE-devel/examples/kirc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/kirc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/kirc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/luad.sh
+    Deleted:    code/TieDIE-devel/examples/luad/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/luad/Makefile
+    Deleted:    code/TieDIE-devel/examples/luad/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/luad/methy.txt
+    Deleted:    code/TieDIE-devel/examples/luad/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/luad/phos.txt
+    Deleted:    code/TieDIE-devel/examples/luad/prot.txt
+    Deleted:    code/TieDIE-devel/examples/lusc.sh
+    Deleted:    code/TieDIE-devel/examples/lusc/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/Makefile
+    Deleted:    code/TieDIE-devel/examples/lusc/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/methy.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/lusc/phos.txt
+    Deleted:    code/TieDIE-devel/examples/lusc/prot.txt
+    Deleted:    code/TieDIE-devel/examples/paad.sh
+    Deleted:    code/TieDIE-devel/examples/paad/CNV.txt
+    Deleted:    code/TieDIE-devel/examples/paad/Makefile
+    Deleted:    code/TieDIE-devel/examples/paad/exprs.txt
+    Deleted:    code/TieDIE-devel/examples/paad/methy.txt
+    Deleted:    code/TieDIE-devel/examples/paad/pathway.sif
+    Deleted:    code/TieDIE-devel/examples/paad/phos.txt
+    Deleted:    code/TieDIE-devel/examples/paad/prot.txt
+    Deleted:    code/TieDIE-devel/galaxy/tiedie.py
+    Deleted:    code/TieDIE-devel/galaxy/tiedie.xml
+    Deleted:    code/TieDIE-devel/lib/consensus.py
+    Deleted:    code/TieDIE-devel/lib/consensus.pyc
+    Deleted:    code/TieDIE-devel/lib/distance.py
+    Deleted:    code/TieDIE-devel/lib/distance.pyc
+    Deleted:    code/TieDIE-devel/lib/distributions.py
+    Deleted:    code/TieDIE-devel/lib/distributions.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel.py
+    Deleted:    code/TieDIE-devel/lib/kernel.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel_scipy.py
+    Deleted:    code/TieDIE-devel/lib/kernel_scipy.pyc
+    Deleted:    code/TieDIE-devel/lib/kernel_tensorflow.py
+    Deleted:    code/TieDIE-devel/lib/kernel_tensorflow.pyc
+    Deleted:    code/TieDIE-devel/lib/linkers.py
+    Deleted:    code/TieDIE-devel/lib/linkers.pyc
+    Deleted:    code/TieDIE-devel/lib/master_reg.py
+    Deleted:    code/TieDIE-devel/lib/master_reg.pyc
+    Deleted:    code/TieDIE-devel/lib/pathway.py
+    Deleted:    code/TieDIE-devel/lib/permute.py
+    Deleted:    code/TieDIE-devel/lib/permute.pyc
+    Deleted:    code/TieDIE-devel/lib/ppr.py
+    Deleted:    code/TieDIE-devel/lib/ppr.pyc
+    Deleted:    code/TieDIE-devel/lib/tiedie_util.py
+    Deleted:    code/TieDIE-devel/lib/tiedie_util.pyc
+    Deleted:    code/TieDIE-devel/pathways/Superpathway_Collapsed_2.0.KERNEL.zip
+    Deleted:    code/TieDIE-devel/pathways/Superpathway_Collapsed_2.0.zip
+    Deleted:    code/TieDIE-devel/test/kernel_tests.py
+    Deleted:    code/TieDIE-devel/test/pathway_tests.py
+    Deleted:    code/TieDIE-devel/test/regression.py
+    Deleted:    code/TieDIE-devel/test/run-all.sh
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/BRCA/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/BRCA/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/expr.data
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/expr.ranked.tab
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/mut.data
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/PSN/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/edge_frequencies.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/heats.NA
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/heats.tab
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/node_frequencies.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/node_heats.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/test_files.downstream.input:test_files.upstream.input.dist.txt
+    Deleted:    code/TieDIE-devel/test/test_files/REGRESSION/tiedie.sif
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/adj.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/deg.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/exp.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/java_results/lap.txt
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/scipy_results/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/cytoscape/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/downstream.input
+    Deleted:    code/TieDIE-devel/test/test_files/kernel.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.pathway.sif
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnet.data.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnet.sif
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnetbig.data.tab
+    Deleted:    code/TieDIE-devel/test/test_files/test.tfnetbig.sif
+    Deleted:    code/TieDIE-devel/test/test_files/upstream.diffused
+    Deleted:    code/TieDIE-devel/test/test_files/upstream.input
+    Deleted:    code/TieDIE-devel/test/test_masterReg.sh
+    Deleted:    code/TieDIE-devel/test/test_mr.py
+    Deleted:    code/TieDIE-devel/test/test_psn.py
+    Deleted:    code/TieDIE-devel/test/tiedie_cytoscape_tests.py
+    Deleted:    code/TieDIE-devel/test/util_tests.py
+    Modified:   output/cnv/dset_hnsc.RDS
+    Modified:   output/cnv/dset_kirc.RDS
+    Modified:   output/cnv/dset_luad.RDS
+    Modified:   output/cnv/dset_lusc.RDS
+    Modified:   output/cnv/dset_paad.RDS
+    Modified:   output/cnv/regul_hnsc.RDS
+    Modified:   output/cnv/regul_kirc.RDS
+    Modified:   output/cnv/regul_luad.RDS
+    Modified:   output/cnv/regul_lusc.RDS
+    Modified:   output/cnv/regul_paad.RDS
+    Deleted:    output/pho/hnsc/KSEA.csv
+    Deleted:    output/pho/hnsc/kinase_regulators.txt
+    Deleted:    output/pho/kirc/KSEA.csv
+    Deleted:    output/pho/kirc/kinase_regulators.txt
+    Deleted:    output/pho/luad/KSEA.csv
+    Deleted:    output/pho/luad/kinase_regulators.txt
+    Deleted:    output/pho/lusc/KSEA.csv
+    Deleted:    output/pho/lusc/kinase_regulators.txt
+    Deleted:    output/pho/paad/KSEA.csv
+    Deleted:    output/pho/paad/kinase_regulators.txt
 
 </code></pre>
 <p>
@@ -626,6 +796,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/analysis/KSEA.Rmd" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+<td>
+.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/zhenzuo2/PPP/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/KSEA.html" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+<td>
+.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -781,13 +985,81 @@ Attaching package: &#39;clusterProfiler&#39;</code></pre>
 
     filter</code></pre>
 <pre class="r"><code>library(ggplot2)
-full_name &lt;- c(&quot;Human Kidney Renal Clear Cell Carcinoma&quot;,
+library(EnsDb.Hsapiens.v86)</code></pre>
+<pre><code>Loading required package: ensembldb</code></pre>
+<pre><code>Loading required package: BiocGenerics</code></pre>
+<pre><code>
+Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
+    tapply, union, unique, unsplit, which.max, which.min</code></pre>
+<pre><code>Loading required package: GenomicRanges</code></pre>
+<pre><code>Loading required package: stats4</code></pre>
+<pre><code>Loading required package: S4Vectors</code></pre>
+<pre><code>
+Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:clusterProfiler&#39;:
+
+    rename</code></pre>
+<pre><code>The following object is masked from &#39;package:utils&#39;:
+
+    findMatches</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    expand.grid, I, unname</code></pre>
+<pre><code>Loading required package: IRanges</code></pre>
+<pre><code>
+Attaching package: &#39;IRanges&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:clusterProfiler&#39;:
+
+    slice</code></pre>
+<pre><code>Loading required package: GenomeInfoDb</code></pre>
+<pre><code>Loading required package: GenomicFeatures</code></pre>
+<pre><code>Loading required package: AnnotationDbi</code></pre>
+<pre><code>Loading required package: Biobase</code></pre>
+<pre><code>Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre><code>
+Attaching package: &#39;AnnotationDbi&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:clusterProfiler&#39;:
+
+    select</code></pre>
+<pre><code>Loading required package: AnnotationFilter</code></pre>
+<pre><code>
+Attaching package: &#39;ensembldb&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:clusterProfiler&#39;:
+
+    filter</code></pre>
+<pre><code>The following object is masked from &#39;package:stats&#39;:
+
+    filter</code></pre>
+<pre class="r"><code>full_name &lt;- c(&quot;Human Kidney Renal Clear Cell Carcinoma&quot;,
 &quot;Human Head and Neck Squamous Carcinoma&quot;,
 &quot;Human Lung Squamous Carcinoma&quot;,
 &quot;Human Lung Adenocarcinoma&quot;,
 &quot;Human Pancreas Carcinoma&quot;)
 names &lt;- c(&quot;kirc&quot;, &quot;hnsc&quot;, &quot;lusc&quot;, &quot;luad&quot;, &quot;paad&quot;)</code></pre>
 <pre class="r"><code>ksa &lt;- read.gmt(&quot;data/gold_standard_CoPheeKSA.gmt&quot;)
+#meta &lt;- read.csv(&quot;data/KSA_gold_standard.csv&quot;)
+#meta &lt;- meta[!duplicated(meta$seq_15),]
+#geneID &lt;- ensembldb::select(EnsDb.Hsapiens.v86, keys = meta$UniProt.ID.1, keytype = &quot;UNIPROTID&quot;,
+#        columns = c(&quot;SYMBOL&quot;, &quot;UNIPROTID&quot;, &quot;GENEID&quot;))
+#meta$UniProt.ID.1_SYMBOL &lt;- plyr::mapvalues(meta$UniProt.ID.1, from = geneID$UNIPROTID,
+#        to = geneID$SYMBOL, warn_missing = FALSE)
+#meta$GS &lt;- paste(meta$UniProt.ID.1_SYMBOL, meta$Position, sep=&quot;_&quot;)
+#ksa$gene &lt;- plyr::mapvalues(ksa$gene, from = meta$seq_15, to = meta$GS)
+
 i &lt;- 1
 for (name in names) {
     cat(&quot;\n\n&quot;)
@@ -895,6 +1167,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-1.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-1.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -934,6 +1217,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-2.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-2.png" target="_blank">3477290</a>
@@ -977,6 +1271,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-3.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-3.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1016,6 +1321,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-4.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-4.png" target="_blank">f0809ae</a>
@@ -1095,6 +1411,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-5.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-5.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1134,6 +1461,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-6.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-6.png" target="_blank">3477290</a>
@@ -1177,6 +1515,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-7.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-7.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1216,6 +1565,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-8.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-8.png" target="_blank">3477290</a>
@@ -1263,6 +1623,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-9.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-9.png" target="_blank">f0809ae</a>
@@ -1339,6 +1710,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-10.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-10.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1380,6 +1762,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-11.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-11.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1419,6 +1812,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-12.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-12.png" target="_blank">3477290</a>
@@ -1465,6 +1869,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-13.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-13.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1504,6 +1919,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-14.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-14.png" target="_blank">f0809ae</a>
@@ -1580,6 +2006,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-15.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-15.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1619,6 +2056,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-16.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-16.png" target="_blank">3477290</a>
@@ -1668,6 +2116,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-17.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-17.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1709,6 +2168,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-18.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-18.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1748,6 +2218,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-19.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-19.png" target="_blank">f0809ae</a>
@@ -1824,6 +2305,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-20.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-20.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1868,6 +2360,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-21.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-21.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1907,6 +2410,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-22.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-22.png" target="_blank">3477290</a>
@@ -1950,6 +2464,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-23.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-23.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -1989,6 +2514,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-24.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/zhenzuo2/PPP/blob/f0809aee3ae9ef35645f3fc2d83f69c4307de4fa/docs/figure/KSEA.Rmd/unnamed-chunk-2-24.png" target="_blank">f0809ae</a>
@@ -2071,6 +2607,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-25.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/zhenzuo2/PPP/blob/3477290c02f75750212201caf12830277b9a5211/docs/figure/KSEA.Rmd/unnamed-chunk-2-25.png" target="_blank">3477290</a>
 </td>
 <td>
@@ -2088,14 +2635,125 @@ Zhen Zuo
 <div id="dotplots-6" class="section level3">
 <h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-26.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-26">
+Past versions of unnamed-chunk-2-26.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-26.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="kinase-concept-network-6" class="section level3">
 <h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-27.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-27">
+Past versions of unnamed-chunk-2-27.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-27" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-27.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="enrichment-map-6" class="section level3">
 <h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-28.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-28">
+Past versions of unnamed-chunk-2-28.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-28" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-28.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="negative-3" class="section level2">
@@ -2103,18 +2761,166 @@ Zhen Zuo
 <div id="barplots-7" class="section level3">
 <h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-29.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-29">
+Past versions of unnamed-chunk-2-29.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-29" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-29.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="dotplots-7" class="section level3">
 <h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-30.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-30">
+Past versions of unnamed-chunk-2-30.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-30" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-30.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="kinase-concept-network-7" class="section level3">
 <h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-31.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-31">
+Past versions of unnamed-chunk-2-31.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-31" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-31.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="enrichment-map-7" class="section level3">
 <h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-32.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-32">
+Past versions of unnamed-chunk-2-32.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-32" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-32.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2125,18 +2931,166 @@ Zhen Zuo
 <div id="barplots-8" class="section level3">
 <h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-33.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-33">
+Past versions of unnamed-chunk-2-33.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-33" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-33.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="dotplots-8" class="section level3">
 <h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-34.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-34">
+Past versions of unnamed-chunk-2-34.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-34" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-34.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="kinase-concept-network-8" class="section level3">
 <h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-35.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-35">
+Past versions of unnamed-chunk-2-35.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-35" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-35.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="enrichment-map-8" class="section level3">
 <h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-36.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-36">
+Past versions of unnamed-chunk-2-36.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-36" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-36.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="negative-4" class="section level2">
@@ -2144,18 +3098,166 @@ Zhen Zuo
 <div id="barplots-9" class="section level3">
 <h3>Barplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-37.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-37">
+Past versions of unnamed-chunk-2-37.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-37" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-37.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="dotplots-9" class="section level3">
 <h3>Dotplots</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-38.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-38">
+Past versions of unnamed-chunk-2-38.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-38" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-38.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="kinase-concept-network-9" class="section level3">
 <h3>Kinase-Concept Network</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-39.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-39">
+Past versions of unnamed-chunk-2-39.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-39" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-39.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="enrichment-map-9" class="section level3">
 <h3>Enrichment Map</h3>
 <p><img src="figure/KSEA.Rmd/unnamed-chunk-2-40.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-40">
+Past versions of unnamed-chunk-2-40.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-40" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/zhenzuo2/PPP/blob/85fc7b15a6290a668540bf534f2fdc73ce6d75cd/docs/figure/KSEA.Rmd/unnamed-chunk-2-40.png" target="_blank">85fc7b1</a>
+</td>
+<td>
+Zhen Zuo
+</td>
+<td>
+2024-06-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -2180,53 +3282,86 @@ time zone: America/New_York
 tzcode source: internal
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
 
 other attached packages:
-[1] ggplot2_3.5.1          clusterProfiler_4.12.0
+ [1] EnsDb.Hsapiens.v86_2.99.0 ensembldb_2.28.0         
+ [3] AnnotationFilter_1.28.0   GenomicFeatures_1.56.0   
+ [5] AnnotationDbi_1.66.0      Biobase_2.64.0           
+ [7] GenomicRanges_1.56.1      GenomeInfoDb_1.40.1      
+ [9] IRanges_2.38.0            S4Vectors_0.42.0         
+[11] BiocGenerics_0.50.0       ggplot2_3.5.1            
+[13] clusterProfiler_4.12.0   
 
 loaded via a namespace (and not attached):
-  [1] RColorBrewer_1.1-3      rstudioapi_0.16.0       jsonlite_1.8.8         
-  [4] magrittr_2.0.3          farver_2.1.2            rmarkdown_2.27         
-  [7] fs_1.6.4                zlibbioc_1.50.0         vctrs_0.6.5            
- [10] memoise_2.0.1           ggtree_3.12.0           htmltools_0.5.8.1      
- [13] gridGraphics_0.5-1      sass_0.4.9              bslib_0.7.0            
- [16] plyr_1.8.9              cachem_1.1.0            whisker_0.4.1          
- [19] igraph_2.0.3            lifecycle_1.0.4         pkgconfig_2.0.3        
- [22] Matrix_1.7-0            R6_2.5.1                fastmap_1.2.0          
- [25] gson_0.1.0              GenomeInfoDbData_1.2.12 digest_0.6.35          
- [28] aplot_0.2.3             enrichplot_1.24.0       colorspace_2.1-0       
- [31] ggnewscale_0.4.10       patchwork_1.2.0         AnnotationDbi_1.66.0   
- [34] S4Vectors_0.42.0        rprojroot_2.0.4         RSQLite_2.3.7          
- [37] labeling_0.4.3          fansi_1.0.6             httr_1.4.7             
- [40] polyclip_1.10-6         compiler_4.4.0          bit64_4.0.5            
- [43] withr_3.0.0             BiocParallel_1.38.0     viridis_0.6.5          
- [46] DBI_1.2.3               highr_0.11              ggforce_0.4.2          
- [49] MASS_7.3-61             HDO.db_0.99.1           tools_4.4.0            
- [52] ape_5.8                 scatterpie_0.2.3        httpuv_1.6.15          
- [55] glue_1.7.0              nlme_3.1-165            GOSemSim_2.30.0        
- [58] promises_1.3.0          grid_4.4.0              shadowtext_0.1.3       
- [61] reshape2_1.4.4          fgsea_1.30.0            generics_0.1.3         
- [64] gtable_0.3.5            tidyr_1.3.1             data.table_1.15.4      
- [67] tidygraph_1.3.1         utf8_1.2.4              XVector_0.44.0         
- [70] BiocGenerics_0.50.0     ggrepel_0.9.5           pillar_1.9.0           
- [73] stringr_1.5.1           yulab.utils_0.1.4       later_1.3.2            
- [76] splines_4.4.0           dplyr_1.1.4             tweenr_2.0.3           
- [79] treeio_1.28.0           lattice_0.22-6          bit_4.0.5              
- [82] tidyselect_1.2.1        GO.db_3.19.1            Biostrings_2.72.1      
- [85] knitr_1.47              git2r_0.33.0            gridExtra_2.3          
- [88] IRanges_2.38.0          stats4_4.4.0            xfun_0.45              
- [91] graphlayouts_1.1.1      Biobase_2.64.0          stringi_1.8.4          
- [94] UCSC.utils_1.0.0        workflowr_1.7.1         lazyeval_0.2.2         
- [97] ggfun_0.1.5             yaml_2.3.8              evaluate_0.24.0        
-[100] codetools_0.2-20        ggraph_2.2.1            tibble_3.2.1           
-[103] qvalue_2.36.0           ggplotify_0.1.2         cli_3.6.2              
-[106] munsell_0.5.1           jquerylib_0.1.4         Rcpp_1.0.12            
-[109] GenomeInfoDb_1.40.1     png_0.1-8               parallel_4.4.0         
-[112] blob_1.2.4              DOSE_3.30.1             viridisLite_0.4.2      
-[115] tidytree_0.4.6          scales_1.3.0            purrr_1.0.2            
-[118] crayon_1.5.2            rlang_1.1.4             cowplot_1.1.3          
-[121] fastmatch_1.1-4         KEGGREST_1.44.0        </code></pre>
+  [1] RColorBrewer_1.1-3          rstudioapi_0.16.0          
+  [3] jsonlite_1.8.8              magrittr_2.0.3             
+  [5] farver_2.1.2                rmarkdown_2.27             
+  [7] BiocIO_1.14.0               fs_1.6.4                   
+  [9] zlibbioc_1.50.0             vctrs_0.6.5                
+ [11] Rsamtools_2.20.0            memoise_2.0.1              
+ [13] RCurl_1.98-1.14             ggtree_3.12.0              
+ [15] S4Arrays_1.4.1              htmltools_0.5.8.1          
+ [17] curl_5.2.1                  SparseArray_1.4.8          
+ [19] gridGraphics_0.5-1          sass_0.4.9                 
+ [21] bslib_0.7.0                 plyr_1.8.9                 
+ [23] cachem_1.1.0                GenomicAlignments_1.40.0   
+ [25] whisker_0.4.1               igraph_2.0.3               
+ [27] lifecycle_1.0.4             pkgconfig_2.0.3            
+ [29] Matrix_1.7-0                R6_2.5.1                   
+ [31] fastmap_1.2.0               gson_0.1.0                 
+ [33] MatrixGenerics_1.16.0       GenomeInfoDbData_1.2.12    
+ [35] digest_0.6.35               aplot_0.2.3                
+ [37] enrichplot_1.24.0           ggnewscale_0.4.10          
+ [39] colorspace_2.1-0            patchwork_1.2.0            
+ [41] rprojroot_2.0.4             RSQLite_2.3.7              
+ [43] labeling_0.4.3              fansi_1.0.6                
+ [45] abind_1.4-5                 httr_1.4.7                 
+ [47] polyclip_1.10-6             compiler_4.4.0             
+ [49] bit64_4.0.5                 withr_3.0.0                
+ [51] BiocParallel_1.38.0         viridis_0.6.5              
+ [53] DBI_1.2.3                   highr_0.11                 
+ [55] ggforce_0.4.2               MASS_7.3-61                
+ [57] DelayedArray_0.30.1         rjson_0.2.21               
+ [59] HDO.db_0.99.1               tools_4.4.0                
+ [61] ape_5.8                     scatterpie_0.2.3           
+ [63] httpuv_1.6.15               glue_1.7.0                 
+ [65] restfulr_0.0.15             nlme_3.1-165               
+ [67] GOSemSim_2.30.0             promises_1.3.0             
+ [69] grid_4.4.0                  shadowtext_0.1.3           
+ [71] reshape2_1.4.4              fgsea_1.30.0               
+ [73] generics_0.1.3              gtable_0.3.5               
+ [75] tidyr_1.3.1                 data.table_1.15.4          
+ [77] tidygraph_1.3.1             utf8_1.2.4                 
+ [79] XVector_0.44.0              ggrepel_0.9.5              
+ [81] pillar_1.9.0                stringr_1.5.1              
+ [83] yulab.utils_0.1.4           later_1.3.2                
+ [85] splines_4.4.0               dplyr_1.1.4                
+ [87] tweenr_2.0.3                treeio_1.28.0              
+ [89] lattice_0.22-6              rtracklayer_1.64.0         
+ [91] bit_4.0.5                   tidyselect_1.2.1           
+ [93] GO.db_3.19.1                Biostrings_2.72.1          
+ [95] knitr_1.47                  git2r_0.33.0               
+ [97] gridExtra_2.3               ProtGenerics_1.36.0        
+ [99] SummarizedExperiment_1.34.0 xfun_0.45                  
+[101] graphlayouts_1.1.1          matrixStats_1.3.0          
+[103] stringi_1.8.4               UCSC.utils_1.0.0           
+[105] workflowr_1.7.1             lazyeval_0.2.2             
+[107] ggfun_0.1.5                 yaml_2.3.8                 
+[109] evaluate_0.24.0             codetools_0.2-20           
+[111] ggraph_2.2.1                tibble_3.2.1               
+[113] qvalue_2.36.0               ggplotify_0.1.2            
+[115] cli_3.6.2                   munsell_0.5.1              
+[117] jquerylib_0.1.4             Rcpp_1.0.12                
+[119] png_0.1-8                   XML_3.99-0.16.1            
+[121] parallel_4.4.0              blob_1.2.4                 
+[123] DOSE_3.30.1                 bitops_1.0-7               
+[125] viridisLite_0.4.2           tidytree_0.4.6             
+[127] scales_1.3.0                purrr_1.0.2                
+[129] crayon_1.5.2                rlang_1.1.4                
+[131] cowplot_1.1.3               fastmatch_1.1-4            
+[133] KEGGREST_1.44.0            </code></pre>
 </div>
 </div>
 </div>

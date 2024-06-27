@@ -17,18 +17,11 @@ editor_options:
 </style>
 
 # TO DO
-Add fold change direction to KSEA (remove heatmap). 
 Replace figure annoation seq_15 with gene_site. 
 Read https://www.embopress.org/doi/full/10.15252/msb.20209730. 
 
-Add metholoation.  
-
-Add CNV(CNV)-self(RNA) mutual information 1.  
-Loading the dataset...  
-Generating the regulon objects...  
-Error in postprobs[, w] : subscript out of bounds. 
-
-Use BIKG for network. 
+Use BIKG, PPI, and a in house network shared by Faye for network. 
+Cutoff 400 for string dataset.https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6323986/
 
 # Data
 ||CNV (Tumor)|Methylation (Tumor)|Methylation (Normal)|Proteomics (Tumor)|Proteomics (Normal)|Phosphoproteome (Tumor)|Phosphoproteome (Normal)|Transcriptome (Tumor)|Transcriptome (Normal)|
@@ -70,20 +63,19 @@ grid::grid.raster(img,width = 0.4, height = 1)
 - Define Differentially Phosphorylated Sites by two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini & Hochberg correction (adjusted p values < 0.05) [See more](Differentially_Phosphorylated_Site.html). 
 - Run Kinase substrate enrichment analysis (KSEA) to find significant kinases [See more](KSEA.html).  
 
-
 ## Differential Abundance Analysis in Proteomics
 - Get proteomics data from <a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer"> CPTAC </a>.  
+- Get list of Human Kinases from http://www.kinhub.org/kinases.html# [See more](extract_kinases_list.html).  
   + Remove features with more 20% zero/missing values. 
 - Define Differentially Proteins by two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini & Hochberg correction (adjusted p values < 0.05) [See more](Differentially_Protein.html). 
 
 ## Copy Number Variation Analysis
 - Get Copy Number Variation from <a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer"> CPTAC </a>.
-- Use t-tests to find key features that show differences between tumor and normal tissues (adjusted p values < 0.05) [See more](Differentially_Protein.html).  
+- Use t-tests to find key features that show differences between tumor and normal tissues (adjusted p values < 0.05) [See more](Identify_CNV_Regulators.html).  
 
 ## Differential Methylation Analysis
 - Get Methylation from <a href="https://proteomic.datacommons.cancer.gov/pdc/cptac-pancancer"> CPTAC </a>.
 - Use two-side Wilcoxon Rank Sum and Signed Rank Tests with Benjamini & Hochberg correction (adjusted p values < 0.05) [See more](Differentially_Methylation.html).  
-
 
 ## Master Regulator Inference Algorithm (MARINa)
 ```{r echo=FALSE, out.width="100%", out.height="100%"}
@@ -123,6 +115,60 @@ The output will a gene list including all putative cancer driver genes.
 *When combined with the genes found in the CNV analysis of metastatic samples, this resulted in 96 candidate genes with significant copy number alteration and 112 genes with either mutation or copy number events with driver potential. Of these, 108 had at least one copy-number or mutation event in the 49 metastatic samples.*
 
 <span style="color:red">Copy number and mutation analysis result was used for cancer-specific network but not copy number and mutation analysis.</span>.
+
+## Summary of Regulators and Features
+```{r}
+name <- c("kirc", "hnsc", "lusc", "luad", "paad")
+KR <- list()
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/pho/", name[i], "/kinase_regulators.csv", sep = ""),sep = ",")
+  temp <- temp[temp$FDR < 0.1,]
+  KR[[i]] <- temp$Regulon
+}
+KR
+
+KSEA <- list()
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/pho/",name[i],"/KSEA.csv",sep=""),sep = " ")
+  temp <- temp[temp$p.adjust < 0.1,]
+  KSEA[[i]] <- temp$ID
+}
+KSEA
+
+Prot <- list()
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/DAP/",name[i],"_fc_kinases.csv",sep=""),sep = ",")
+  temp <- temp[(temp$Adjusted_P_Value <= 0.01)&(abs(temp$Fold_Change) > 1),]
+  Prot[[i]] <- temp$SYMBOL
+}
+Prot
+
+CNV <- list()
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/cnv/",name[i],"/cnv_regulators.csv",sep=""),sep = "\t",header = TRUE)
+  temp <- temp[order(temp$NES,decreasing = FALSE),]
+  CNV[[i]] <- temp$Regulon[1:20]
+}
+
+Meth <- list()
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/DME/",name[i],"_fc.csv",sep=""),sep = ",",header = TRUE)
+  temp <- temp[(temp$Adjusted_P_Value < 0.01)&(abs(temp$Fold_Change)>0.01),]
+  temp <- temp[order(abs(temp$Fold_Change),decreasing = T),]
+  Meth[[i]] <- temp$SYMBOL[1:20]
+}
+Meth
+
+# add more TFs and add more CNS
+TF <- list()
+for (i in 1:length(name)){
+  temp <- read.csv(paste("output/expr/",name[i],"/transcription_regulators.csv",sep=""),sep = ",",header = TRUE)
+  temp$Regulon <-  substr(temp$Regulon, 1, nchar(temp$Regulon) - 2)
+  temp <- temp[order(abs(temp$NES),decreasing = T),]
+  TF[[i]] <- temp$Regulon[1:20]
+}
+TF
+```
 
 ## TieDIE Pathway Analysis of Clinical Prostate Cancer Samples 
 ### INPUT

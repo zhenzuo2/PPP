@@ -1,0 +1,37 @@
+---
+title: "Prepare Input for TieDIE"
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+library(rvest)
+library(dplyr)
+```
+
+
+```{r}
+# Read the HTML content
+html_content <- readLines("data/HumanKinases.html")
+
+# Convert character vector to a single string
+html_content <- paste(html_content, collapse = "\n")
+
+# Extract the table
+html <- read_html(html_content)
+
+# Convert to a data frame
+table <- html %>%
+  html_table(fill = TRUE)
+
+# Print the data frame
+table <- table[[1]]
+```
+
+

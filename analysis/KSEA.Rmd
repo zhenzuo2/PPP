@@ -12,6 +12,7 @@ editor_options:
 ```{r}
 library(clusterProfiler)
 library(ggplot2)
+library(EnsDb.Hsapiens.v86)
 full_name <- c("Human Kidney Renal Clear Cell Carcinoma",
 "Human Head and Neck Squamous Carcinoma",
 "Human Lung Squamous Carcinoma",
@@ -22,6 +23,15 @@ names <- c("kirc", "hnsc", "lusc", "luad", "paad")
 
 ```{r fig.height=10, fig.width=10, message=FALSE, warning=FALSE, results="asis"}
 ksa <- read.gmt("data/gold_standard_CoPheeKSA.gmt")
+#meta <- read.csv("data/KSA_gold_standard.csv")
+#meta <- meta[!duplicated(meta$seq_15),]
+#geneID <- ensembldb::select(EnsDb.Hsapiens.v86, keys = meta$UniProt.ID.1, keytype = "UNIPROTID",
+#        columns = c("SYMBOL", "UNIPROTID", "GENEID"))
+#meta$UniProt.ID.1_SYMBOL <- plyr::mapvalues(meta$UniProt.ID.1, from = geneID$UNIPROTID,
+#        to = geneID$SYMBOL, warn_missing = FALSE)
+#meta$GS <- paste(meta$UniProt.ID.1_SYMBOL, meta$Position, sep="_")
+#ksa$gene <- plyr::mapvalues(ksa$gene, from = meta$seq_15, to = meta$GS)
+
 i <- 1
 for (name in names) {
     cat("\n\n")
